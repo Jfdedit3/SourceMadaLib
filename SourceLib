@@ -1,0 +1,220 @@
+
+local Library = {}
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local function createCornerStroke(instance)
+    local corner = Instance.new("UICorner", instance)
+    corner.CornerRadius = UDim.new(0, 5)
+    local stroke = Instance.new("UIStroke", instance)
+    stroke.Color = Color3.fromRGB(0, 0, 0)
+end
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "DeltaUILibrary"
+ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ResetOnSpawn = false
+
+local OpenButton = Instance.new("TextButton")
+OpenButton.Size = UDim2.new(0, 100, 0, 30)
+OpenButton.Position = UDim2.new(0, 10, 0.5, 0)
+OpenButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+OpenButton.Text = "OPEN"
+OpenButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+OpenButton.Font = Enum.Font.SourceSansBold
+OpenButton.TextSize = 14
+createCornerStroke(OpenButton)
+OpenButton.Parent = ScreenGui
+
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0, 500, 0, 350)
+MainFrame.Position = UDim2.new(0.5, -250, 0.5, -175)
+MainFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+MainFrame.Visible = false
+createCornerStroke(MainFrame)
+MainFrame.Parent = ScreenGui
+
+local TopBar = Instance.new("Frame")
+TopBar.Size = UDim2.new(1, 0, 0, 30)
+TopBar.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+createCornerStroke(TopBar)
+TopBar.Parent = MainFrame
+
+local TabHolder = Instance.new("Frame")
+TabHolder.Size = UDim2.new(1, -30, 0, 30)
+TabHolder.Position = UDim2.new(0, 0, 1, 0)
+TabHolder.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+createCornerStroke(TabHolder)
+TabHolder.Parent = TopBar
+
+local XButton = Instance.new("TextButton")
+XButton.Size = UDim2.new(0, 30, 0, 30)
+XButton.Position = UDim2.new(1, -30, 0, 0)
+XButton.Text = "X"
+XButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+XButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+XButton.Font = Enum.Font.SourceSansBold
+XButton.TextSize = 16
+createCornerStroke(XButton)
+XButton.Parent = TopBar
+
+local ContentFrame = Instance.new("Frame")
+ContentFrame.Size = UDim2.new(1, 0, 1, -60)
+ContentFrame.Position = UDim2.new(0, 0, 0, 60)
+ContentFrame.BackgroundTransparency = 1
+ContentFrame.Parent = MainFrame
+
+XButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = false
+end)
+
+OpenButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = true
+end)
+
+function Library:CreateTab(name)
+    local Tab = Instance.new("TextButton")
+    Tab.Size = UDim2.new(0, 100, 0, 30)
+    Tab.Text = name
+    Tab.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    Tab.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Tab.Font = Enum.Font.SourceSansBold
+    Tab.TextSize = 14
+    createCornerStroke(Tab)
+    Tab.Parent = TabHolder
+
+    local TabContent = Instance.new("Frame")
+    TabContent.Size = UDim2.new(1, 0, 1, 0)
+    TabContent.Visible = false
+    TabContent.BackgroundTransparency = 1
+    TabContent.Parent = ContentFrame
+
+    Tab.MouseButton1Click:Connect(function()
+        for _, v in pairs(ContentFrame:GetChildren()) do
+            if v:IsA("Frame") then
+                v.Visible = false
+            end
+        end
+        TabContent.Visible = true
+    end)
+
+    local Layout = Instance.new("UIListLayout", TabContent)
+    Layout.Padding = UDim.new(0, 5)
+    Layout.SortOrder = Enum.SortOrder.LayoutOrder
+
+    return {
+        Button = function(text, callback)
+            local Btn = Instance.new("TextButton")
+            Btn.Size = UDim2.new(0, 200, 0, 30)
+            Btn.Text = text
+            Btn.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+            Btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Btn.Font = Enum.Font.SourceSansBold
+            Btn.TextSize = 14
+            createCornerStroke(Btn)
+            Btn.Parent = TabContent
+            Btn.MouseButton1Click:Connect(callback)
+        end,
+
+        Toggle = function(text, callback)
+            local state = false
+            local Toggle = Instance.new("TextButton")
+            Toggle.Size = UDim2.new(0, 200, 0, 30)
+            Toggle.Text = text .. ": OFF"
+            Toggle.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+            Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Toggle.Font = Enum.Font.SourceSansBold
+            Toggle.TextSize = 14
+            createCornerStroke(Toggle)
+            Toggle.Parent = TabContent
+            Toggle.MouseButton1Click:Connect(function()
+                state = not state
+                Toggle.Text = text .. ": " .. (state and "ON" or "OFF")
+                callback(state)
+            end)
+        end,
+
+        Label = function(text)
+            local Label = Instance.new("TextLabel")
+            Label.Size = UDim2.new(0, 200, 0, 30)
+            Label.Text = text
+            Label.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+            Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Label.Font = Enum.Font.SourceSansBold
+            Label.TextSize = 14
+            Label.TextXAlignment = Enum.TextXAlignment.Left
+            createCornerStroke(Label)
+            Label.Parent = TabContent
+        end,
+
+        Input = function(placeholder, callback)
+            local Box = Instance.new("TextBox")
+            Box.Size = UDim2.new(0, 200, 0, 30)
+            Box.PlaceholderText = placeholder
+            Box.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+            Box.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Box.Font = Enum.Font.SourceSansBold
+            Box.TextSize = 14
+            createCornerStroke(Box)
+            Box.Parent = TabContent
+            Box.FocusLost:Connect(function()
+                callback(Box.Text)
+            end)
+        end,
+
+        Dropdown = function(title, options, callback)
+            local Drop = Instance.new("TextButton")
+            Drop.Size = UDim2.new(0, 200, 0, 30)
+            Drop.Text = title .. ": " .. options[1]
+            Drop.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+            Drop.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Drop.Font = Enum.Font.SourceSansBold
+            Drop.TextSize = 14
+            createCornerStroke(Drop)
+            Drop.Parent = TabContent
+            local index = 1
+            Drop.MouseButton1Click:Connect(function()
+                index = (index % #options) + 1
+                Drop.Text = title .. ": " .. options[index]
+                callback(options[index])
+            end)
+        end,
+
+        Slider = function(text, min, max, callback)
+            local Slider = Instance.new("TextButton")
+            Slider.Size = UDim2.new(0, 200, 0, 30)
+            Slider.Text = text .. ": " .. min
+            Slider.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+            Slider.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Slider.Font = Enum.Font.SourceSansBold
+            Slider.TextSize = 14
+            createCornerStroke(Slider)
+            Slider.Parent = TabContent
+            local value = min
+            Slider.MouseButton1Click:Connect(function()
+                value = value + 1
+                if value > max then value = min end
+                Slider.Text = text .. ": " .. value
+                callback(value)
+            end)
+        end
+    }
+end
+
+function Library:Notify(text)
+    local Notify = Instance.new("TextLabel")
+    Notify.Size = UDim2.new(0, 300, 0, 50)
+    Notify.Position = UDim2.new(0.5, -150, 0.9, 0)
+    Notify.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    Notify.Text = text
+    Notify.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Notify.Font = Enum.Font.SourceSansBold
+    Notify.TextSize = 16
+    createCornerStroke(Notify)
+    Notify.Parent = ScreenGui
+    task.delay(3, function()
+        Notify:Destroy()
+    end)
+end
+
+return Library
