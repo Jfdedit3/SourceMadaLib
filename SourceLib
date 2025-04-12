@@ -1,10 +1,10 @@
 local Clude = {}
 
 function Clude:CreateWindow(config)
-    local cludegui = Instance.new("ScreenGui")
-    cludegui.Name = "CludeGui"
-    cludegui.ResetOnSpawn = false
-    cludegui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "CludeGui"
+    gui.ResetOnSpawn = false
+    gui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
     local window = Instance.new("Frame")
     window.Size = UDim2.new(0, 500, 0, 360)
@@ -12,8 +12,7 @@ function Clude:CreateWindow(config)
     window.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     window.Draggable = true
     window.Active = true
-    window.Parent = cludegui
-
+    window.Parent = gui
     Instance.new("UICorner", window).CornerRadius = UDim.new(0, 5)
 
     local title = Instance.new("TextLabel")
@@ -26,14 +25,13 @@ function Clude:CreateWindow(config)
     title.Parent = window
     Instance.new("UICorner", title).CornerRadius = UDim.new(0, 5)
 
-    -- Scrollable Tab Buttons
     local tabbuttons = Instance.new("ScrollingFrame")
     tabbuttons.Size = UDim2.new(0, 110, 1, -40)
     tabbuttons.Position = UDim2.new(0, 0, 0, 40)
     tabbuttons.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
     tabbuttons.ScrollBarThickness = 4
-    tabbuttons.CanvasSize = UDim2.new(0, 0, 0, 0)
     tabbuttons.AutomaticCanvasSize = Enum.AutomaticSize.Y
+    tabbuttons.CanvasSize = UDim2.new(0, 0, 0, 0)
     tabbuttons.Parent = window
     Instance.new("UICorner", tabbuttons).CornerRadius = UDim.new(0, 5)
 
@@ -45,20 +43,26 @@ function Clude:CreateWindow(config)
     tabfolder.Name = "Tabs"
 
     function Clude:CreateTab(name)
-        local tab = Instance.new("ScrollingFrame")
-        tab.Size = UDim2.new(1, -120, 1, -50)
-        tab.Position = UDim2.new(0, 120, 0, 45)
-        tab.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-        tab.Visible = false
-        tab.ScrollBarThickness = 6
-        tab.CanvasSize = UDim2.new(0, 0, 0, 0)
-        tab.AutomaticCanvasSize = Enum.AutomaticSize.Y
-        tab.Parent = tabfolder
-        Instance.new("UICorner", tab).CornerRadius = UDim.new(0, 5)
+        local container = Instance.new("Frame")
+        container.Size = UDim2.new(1, -120, 1, -50)
+        container.Position = UDim2.new(0, 120, 0, 45)
+        container.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        container.Visible = false
+        container.Parent = tabfolder
+        Instance.new("UICorner", container).CornerRadius = UDim.new(0, 5)
 
-        local layout = Instance.new("UIListLayout", tab)
+        local scroll = Instance.new("ScrollingFrame")
+        scroll.Size = UDim2.new(1, 0, 1, 0)
+        scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+        scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+        scroll.ScrollBarThickness = 5
+        scroll.BackgroundTransparency = 1
+        scroll.Parent = container
+
+        local layout = Instance.new("UIListLayout")
+        layout.Padding = UDim.new(0, 8)
         layout.SortOrder = Enum.SortOrder.LayoutOrder
-        layout.Padding = UDim.new(0, 6)
+        layout.Parent = scroll
 
         local tabButton = Instance.new("TextButton")
         tabButton.Size = UDim2.new(1, -10, 0, 32)
@@ -74,15 +78,15 @@ function Clude:CreateWindow(config)
             for _, other in pairs(tabfolder:GetChildren()) do
                 other.Visible = false
             end
-            tab.Visible = true
+            container.Visible = true
         end)
 
-        return tab
+        return scroll
     end
 
     function Clude:CreateButton(tab, text, callback)
         local button = Instance.new("TextButton")
-        button.Size = UDim2.new(0, 220, 0, 40)
+        button.Size = UDim2.new(1, -20, 0, 40)
         button.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
         button.Text = text
         button.TextColor3 = Color3.new(1, 1, 1)
@@ -90,8 +94,78 @@ function Clude:CreateWindow(config)
         button.TextSize = 16
         button.Parent = tab
         Instance.new("UICorner", button).CornerRadius = UDim.new(0, 5)
-
         button.MouseButton1Click:Connect(callback)
+    end
+
+    function Clude:CreateToggle(tab, text, default, callback)
+        local toggle = Instance.new("TextButton")
+        toggle.Size = UDim2.new(1, -20, 0, 40)
+        toggle.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+        toggle.TextColor3 = Color3.new(1, 1, 1)
+        toggle.Font = Enum.Font.GothamBold
+        toggle.TextSize = 16
+        toggle.Text = text .. ": " .. (default and "ON" or "OFF")
+        toggle.Parent = tab
+        Instance.new("UICorner", toggle).CornerRadius = UDim.new(0, 5)
+
+        local state = default
+        toggle.MouseButton1Click:Connect(function()
+            state = not state
+            toggle.Text = text .. ": " .. (state and "ON" or "OFF")
+            if callback then callback(state) end
+        end)
+    end
+
+    function Clude:CreateSlider(tab, text, min, max, default, callback)
+        local frame = Instance.new("Frame")
+        frame.Size = UDim2.new(1, -20, 0, 50)
+        frame.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+        frame.Parent = tab
+        Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 5)
+
+        local label = Instance.new("TextLabel")
+        label.Size = UDim2.new(1, 0, 0, 20)
+        label.BackgroundTransparency = 1
+        label.Text = text .. ": " .. default
+        label.TextColor3 = Color3.new(1, 1, 1)
+        label.Font = Enum.Font.Gotham
+        label.TextSize = 14
+        label.Parent = frame
+
+        local slider = Instance.new("TextButton")
+        slider.Size = UDim2.new(1, -10, 0, 20)
+        slider.Position = UDim2.new(0, 5, 0, 25)
+        slider.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
+        slider.Text = ""
+        slider.Parent = frame
+        Instance.new("UICorner", slider).CornerRadius = UDim.new(0, 5)
+
+        local value = default
+        slider.MouseButton1Click:Connect(function()
+            value = value + 1
+            if value > max then value = min end
+            label.Text = text .. ": " .. value
+            if callback then callback(value) end
+        end)
+    end
+
+    function Clude:CreateInput(tab, placeholder, callback)
+        local input = Instance.new("TextBox")
+        input.Size = UDim2.new(1, -20, 0, 40)
+        input.PlaceholderText = placeholder
+        input.Text = ""
+        input.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
+        input.TextColor3 = Color3.new(1, 1, 1)
+        input.Font = Enum.Font.Gotham
+        input.TextSize = 14
+        input.Parent = tab
+        Instance.new("UICorner", input).CornerRadius = UDim.new(0, 5)
+
+        input.FocusLost:Connect(function(enter)
+            if enter then
+                callback(input.Text)
+            end
+        end)
     end
 
     return Clude
