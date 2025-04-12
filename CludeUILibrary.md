@@ -2,16 +2,35 @@
 ```lua
 local Clude = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHub/SourceCludeLib/refs/heads/main/SourceLib"))()
 ```
-# Create Window and Title
+# Creating the Window Frame and Title
 ```lua
-local myWindow = Clude:CreateWindow({
-    Title = "My UI Library",
-    Size = UDim2.new(0.6, 0, 0.8, 0),
-    Position = UDim2.new(0.2, 0, 0.06, 0)
-})
+local win = Clude:CreateWindow({ Title = "Clude Test UI" })
 ```
-#Create Tabs
+# Creating Tabs
 ```lua
-local tab1 = myWindow:CreateTab("Example")
-local tab2 = myWindow:CreateTab("Example")
+local tab = win:CreateTab("Main")
+```
+# Creating Buttons
+```lua
+win:CreateButton(tab, "Click Me", function()
+    print("Button clicked!")
+end)
+```
+# Creating Toggle
+```lua
+win:CreateToggle(tab, "Enable Power", false, function(state)
+    print("Toggle:", state)
+end)
+```
+# Creating Slider
+```lua
+win:CreateSlider(tab, "Volume", 0, 10, 5, function(val)
+    print("Slider:", val)
+end)
+```
+# Create TextBox
+```lua
+win:CreateInput(tab, "type hi", function(text)
+    print("Typed:", text)
+end)
 ```
