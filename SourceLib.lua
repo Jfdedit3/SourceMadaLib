@@ -1,3 +1,5 @@
+# Notification Script
+
 local TweenService = game:GetService("TweenService")
 local Clude = {}
 
@@ -248,6 +250,29 @@ function Clude:CreateWindow(config)
         btn.MouseButton1Click:Connect(function()
             window.Visible = not window.Visible
         end)
+    end
+
+    function Clude:CreateNotification(message)
+        local notification = Instance.new("Frame")
+        notification.Size = UDim2.new(0, 300, 0, 100)
+        notification.Position = UDim2.new(0.5, -150, 0.5, -50)
+        notification.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        notification.Parent = gui
+
+        local label = Instance.new("TextLabel")
+        label.Size = UDim2.new(1, 0, 1, 0)
+        label.BackgroundTransparency = 1
+        label.Text = message
+        label.TextColor3 = Color3.new(0, 0, 0)
+        label.Font = Enum.Font.Gotham
+        label.TextSize = 16
+        label.Parent = notification
+
+        TweenService:Create(notification, TweenInfo.new(0.5), {BackgroundTransparency = 0}):Play()
+        wait(3)
+        TweenService:Create(notification, TweenInfo.new(0.5), {BackgroundTransparency = 1}):Play()
+        wait(0.5)
+        notification:Destroy()
     end
 
     return Clude
