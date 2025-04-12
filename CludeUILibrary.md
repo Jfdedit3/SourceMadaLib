@@ -4,7 +4,7 @@ intruding suck ui library the only sucks i made is the ui so ugly ass hell for m
 # Source
 this is the siurce of the library you need this source because without this all nit will work
 ```lua
-local Clude = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHub/SourceCludeLib/refs/heads/main/SourceLib"))()
+local Clude = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHub/SourceCludeLib/refs/heads/main/SourceLib.lua"))()
 ```
 # Creating the Window Frame and Title
 this is the frame handling all the ui elements
