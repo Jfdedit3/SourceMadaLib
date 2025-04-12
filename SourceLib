@@ -10,16 +10,16 @@ function Clude:CreateWindow(config)
     local cludegui = Instance.new("ScreenGui")
     cludegui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
-    local window = Instance.new("Frame")
-    window.Parent = cludegui
-    window.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-    window.Size = config.Size or UDim2.new(0.4, 0, 0.6, 0)
-    window.Position = config.Position or UDim2.new(0.3, 0, 0.1, 0)
-    window.ZIndex = 1
-    addCorner(window)
+    local windowFrame = Instance.new("Frame")
+    windowFrame.Parent = cludegui
+    windowFrame.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    windowFrame.Size = config.Size or UDim2.new(0.4, 0, 0.6, 0)
+    windowFrame.Position = config.Position or UDim2.new(0.3, 0, 0.1, 0)
+    windowFrame.ZIndex = 1
+    addCorner(windowFrame)
 
     local title = Instance.new("TextLabel")
-    title.Parent = window
+    title.Parent = windowFrame
     title.Text = config.Title or "Clude UI"
     title.Size = UDim2.new(1, 0, 0, 30)
     title.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -30,7 +30,7 @@ function Clude:CreateWindow(config)
     addCorner(title)
 
     local tabHolder = Instance.new("Frame")
-    tabHolder.Parent = window
+    tabHolder.Parent = windowFrame
     tabHolder.Size = UDim2.new(1, 0, 0, 30)
     tabHolder.Position = UDim2.new(0, 0, 0, 30)
     tabHolder.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
@@ -38,7 +38,7 @@ function Clude:CreateWindow(config)
     addCorner(tabHolder)
 
     local contentHolder = Instance.new("Frame")
-    contentHolder.Parent = window
+    contentHolder.Parent = windowFrame
     contentHolder.Size = UDim2.new(1, 0, 1, -60)
     contentHolder.Position = UDim2.new(0, 0, 0, 60)
     contentHolder.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
@@ -54,7 +54,9 @@ function Clude:CreateWindow(config)
         end
     end
 
-    function window:CreateTab(name)
+    local windowObject = {}
+
+    function windowObject:CreateTab(name)
         local tabButton = Instance.new("TextButton")
         tabButton.Parent = tabHolder
         tabButton.Size = UDim2.new(0, 80, 1, 0)
@@ -91,7 +93,7 @@ function Clude:CreateWindow(config)
         return tabFrame
     end
 
-    return window
+    return windowObject
 end
 
 return Clude
