@@ -1,6 +1,12 @@
 local Clude = {}
 
 function Clude:CreateWindow(config)
+    local function addCorner(obj)
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(0, 5)
+        corner.Parent = obj
+    end
+
     local cludegui = Instance.new("ScreenGui")
     cludegui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
@@ -10,39 +16,80 @@ function Clude:CreateWindow(config)
     window.Size = config.Size or UDim2.new(0.4, 0, 0.6, 0)
     window.Position = config.Position or UDim2.new(0.3, 0, 0.1, 0)
     window.ZIndex = 1
+    addCorner(window)
 
-    if config.Title then
-        local title = Instance.new("TextLabel")
-        title.Parent = window
-        title.Text = config.Title
-        title.Size = UDim2.new(1, 0, 0, 30)
-        title.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-        title.TextColor3 = Color3.fromRGB(255, 255, 255)
-        title.Font = Enum.Font.SourceSansBold
-        title.TextSize = 20
+    local title = Instance.new("TextLabel")
+    title.Parent = window
+    title.Text = config.Title or "Clude UI"
+    title.Size = UDim2.new(1, 0, 0, 30)
+    title.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    title.Font = Enum.Font.SourceSansBold
+    title.TextSize = 20
+    title.BorderSizePixel = 0
+    addCorner(title)
+
+    local tabHolder = Instance.new("Frame")
+    tabHolder.Parent = window
+    tabHolder.Size = UDim2.new(1, 0, 0, 30)
+    tabHolder.Position = UDim2.new(0, 0, 0, 30)
+    tabHolder.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    tabHolder.BorderSizePixel = 0
+    addCorner(tabHolder)
+
+    local contentHolder = Instance.new("Frame")
+    contentHolder.Parent = window
+    contentHolder.Size = UDim2.new(1, 0, 1, -60)
+    contentHolder.Position = UDim2.new(0, 0, 0, 60)
+    contentHolder.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    contentHolder.BorderSizePixel = 0
+    contentHolder.ClipsDescendants = true
+    addCorner(contentHolder)
+
+    local tabs = {}
+
+    local function hideAllTabs()
+        for _, tab in pairs(tabs) do
+            tab.Frame.Visible = false
+        end
     end
 
-    -- Drag support
-    local dragging, dragInput, dragStart, startPos
-    window.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 then
-            dragging = true
-            dragStart = input.Position
-            startPos = window.Position
-            input.Changed:Connect(function()
-                if input.UserInputState == Enum.UserInputState.End then
-                    dragging = false
-                end
-            end)
-        end
-    end)
+    function window:CreateTab(name)
+        local tabButton = Instance.new("TextButton")
+        tabButton.Parent = tabHolder
+        tabButton.Size = UDim2.new(0, 80, 1, 0)
+        tabButton.Position = UDim2.new(#tabs * 0, #tabs * 85, 0, 0)
+        tabButton.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+        tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        tabButton.Font = Enum.Font.SourceSansBold
+        tabButton.TextSize = 16
+        tabButton.Text = name
+        tabButton.BorderSizePixel = 0
+        addCorner(tabButton)
 
-    window.InputChanged:Connect(function(input)
-        if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-            local delta = input.Position - dragStart
-            window.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+        local tabFrame = Instance.new("Frame")
+        tabFrame.Parent = contentHolder
+        tabFrame.Size = UDim2.new(1, 0, 1, 0)
+        tabFrame.BackgroundTransparency = 1
+        tabFrame.Visible = false
+        addCorner(tabFrame)
+
+        table.insert(tabs, {
+            Button = tabButton,
+            Frame = tabFrame
+        })
+
+        tabButton.MouseButton1Click:Connect(function()
+            hideAllTabs()
+            tabFrame.Visible = true
+        end)
+
+        if #tabs == 1 then
+            tabFrame.Visible = true
         end
-    end)
+
+        return tabFrame
+    end
 
     return window
 end
