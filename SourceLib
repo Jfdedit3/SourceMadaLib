@@ -7,83 +7,68 @@ function Clude:CreateWindow(config)
     cludegui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
     local window = Instance.new("Frame")
-    window.Name = "MainWindow"
-    window.Size = UDim2.new(0, 450, 0, 350)
+    window.Size = UDim2.new(0, 500, 0, 360)
     window.Position = UDim2.new(0.3, 0, 0.1, 0)
     window.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     window.Draggable = true
     window.Active = true
     window.Parent = cludegui
 
-    local uicorner = Instance.new("UICorner")
-    uicorner.CornerRadius = UDim.new(0, 5)
-    uicorner.Parent = window
+    Instance.new("UICorner", window).CornerRadius = UDim.new(0, 5)
 
     local title = Instance.new("TextLabel")
     title.Size = UDim2.new(1, 0, 0, 40)
-    title.Position = UDim2.new(0, 0, 0, 0)
     title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
     title.Text = config.Title or "Clude UI"
     title.TextColor3 = Color3.new(1, 1, 1)
     title.Font = Enum.Font.SourceSansBold
     title.TextSize = 20
     title.Parent = window
+    Instance.new("UICorner", title).CornerRadius = UDim.new(0, 5)
 
-    local titlecorner = Instance.new("UICorner")
-    titlecorner.CornerRadius = UDim.new(0, 5)
-    titlecorner.Parent = title
-
-    local tabbuttons = Instance.new("Frame")
-    tabbuttons.Size = UDim2.new(0, 100, 1, -40)
+    -- Scrollable Tab Buttons
+    local tabbuttons = Instance.new("ScrollingFrame")
+    tabbuttons.Size = UDim2.new(0, 110, 1, -40)
     tabbuttons.Position = UDim2.new(0, 0, 0, 40)
     tabbuttons.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+    tabbuttons.ScrollBarThickness = 4
+    tabbuttons.CanvasSize = UDim2.new(0, 0, 0, 0)
+    tabbuttons.AutomaticCanvasSize = Enum.AutomaticSize.Y
     tabbuttons.Parent = window
+    Instance.new("UICorner", tabbuttons).CornerRadius = UDim.new(0, 5)
 
-    local tabcorner = Instance.new("UICorner")
-    tabcorner.CornerRadius = UDim.new(0, 5)
-    tabcorner.Parent = tabbuttons
+    local tabListLayout = Instance.new("UIListLayout", tabbuttons)
+    tabListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    tabListLayout.Padding = UDim.new(0, 6)
 
-    local tabfolder = Instance.new("Folder")
+    local tabfolder = Instance.new("Folder", window)
     tabfolder.Name = "Tabs"
-    tabfolder.Parent = window
-
-    local buttonY = 10
 
     function Clude:CreateTab(name)
         local tab = Instance.new("ScrollingFrame")
-        tab.Size = UDim2.new(1, -110, 1, -50)
-        tab.Position = UDim2.new(0, 110, 0, 45)
+        tab.Size = UDim2.new(1, -120, 1, -50)
+        tab.Position = UDim2.new(0, 120, 0, 45)
         tab.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
         tab.Visible = false
-        tab.ScrollBarThickness = 5
+        tab.ScrollBarThickness = 6
         tab.CanvasSize = UDim2.new(0, 0, 0, 0)
         tab.AutomaticCanvasSize = Enum.AutomaticSize.Y
         tab.Parent = tabfolder
+        Instance.new("UICorner", tab).CornerRadius = UDim.new(0, 5)
 
-        local tabcorner = Instance.new("UICorner")
-        tabcorner.CornerRadius = UDim.new(0, 5)
-        tabcorner.Parent = tab
-
-        local layout = Instance.new("UIListLayout")
-        layout.Padding = UDim.new(0, 6)
+        local layout = Instance.new("UIListLayout", tab)
         layout.SortOrder = Enum.SortOrder.LayoutOrder
-        layout.Parent = tab
+        layout.Padding = UDim.new(0, 6)
 
         local tabButton = Instance.new("TextButton")
-        tabButton.Size = UDim2.new(1, -10, 0, 30)
-        tabButton.Position = UDim2.new(0, 5, 0, buttonY)
-        tabButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+        tabButton.Size = UDim2.new(1, -10, 0, 32)
         tabButton.Text = name
+        tabButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
         tabButton.TextColor3 = Color3.new(1, 1, 1)
         tabButton.Font = Enum.Font.SourceSansBold
-        tabButton.TextSize = 18
+        tabButton.TextSize = 16
         tabButton.Parent = tabbuttons
-
-        local tabbtncorner = Instance.new("UICorner")
-        tabbtncorner.CornerRadius = UDim.new(0, 5)
-        tabbtncorner.Parent = tabButton
-
-        buttonY = buttonY + 35
+        Instance.new("UICorner", tabButton).CornerRadius = UDim.new(0, 5)
 
         tabButton.MouseButton1Click:Connect(function()
             for _, other in pairs(tabfolder:GetChildren()) do
@@ -95,20 +80,16 @@ function Clude:CreateWindow(config)
         return tab
     end
 
-    -- Create a simple button inside the window or tab
     function Clude:CreateButton(tab, text, callback)
         local button = Instance.new("TextButton")
-        button.Size = UDim2.new(0, 200, 0, 40)
+        button.Size = UDim2.new(0, 220, 0, 40)
+        button.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
         button.Text = text
-        button.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
         button.TextColor3 = Color3.new(1, 1, 1)
-        button.Font = Enum.Font.SourceSansBold
-        button.TextSize = 18
+        button.Font = Enum.Font.GothamBold
+        button.TextSize = 16
         button.Parent = tab
-
-        local corner = Instance.new("UICorner")
-        corner.CornerRadius = UDim.new(0, 5)
-        corner.Parent = button
+        Instance.new("UICorner", button).CornerRadius = UDim.new(0, 5)
 
         button.MouseButton1Click:Connect(callback)
     end
