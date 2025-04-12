@@ -250,6 +250,44 @@ function Clude:CreateWindow(config)
         end)
     end
 
+    function Clude:CreateNotification(message, duration)
+    -- Create the notification frame
+    local notification = Instance.new("Frame")
+    notification.Size = UDim2.new(0, 300, 0, 60)
+    notification.Position = UDim2.new(0.5, -150, 0, -100)
+    notification.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    notification.BackgroundTransparency = 0.5
+    notification.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+    -- Create the notification text
+    local notificationText = Instance.new("TextLabel")
+    notificationText.Size = UDim2.new(1, 0, 1, 0)
+    notificationText.Text = message
+    notificationText.TextColor3 = Color3.fromRGB(255, 255, 255)
+    notificationText.Font = Enum.Font.SourceSansBold
+    notificationText.TextSize = 18
+    notificationText.BackgroundTransparency = 1
+    notificationText.TextWrapped = true
+    notificationText.TextYAlignment = Enum.TextYAlignment.Center
+    notificationText.Parent = notification
+
+    -- Tween the notification to show and hide
+    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+    local tween = TweenService:Create(notification, tweenInfo, {Position = UDim2.new(0.5, -150, 0, 20)})
+    tween:Play()
+
+    -- Wait for the duration and then hide the notification
+    wait(duration)
+
+    local hideTween = TweenService:Create(notification, tweenInfo, {Position = UDim2.new(0.5, -150, 0, -100)})
+    hideTween:Play()
+
+    -- Remove the notification after it fades out
+    hideTween.Completed:Connect(function()
+        notification:Destroy()
+    end)
+end
+    
     return Clude
 end
 
