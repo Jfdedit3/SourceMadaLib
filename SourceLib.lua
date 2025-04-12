@@ -1,5 +1,3 @@
-local TweenService = game:GetService("TweenService")
-
 local Clude = {}
 
 -- Function for creating a new window
@@ -10,23 +8,7 @@ function Clude:CreateWindow(options)
     window.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
     window.BackgroundTransparency = 0.5
     window.Parent = game.CoreGui
-
-local goalSize = UDim2.new(0, 500, 0, 360)
-    local goalTransparency = 0 -- Start with fully transparent
-
-    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
-    local sizeTween = TweenService:Create(window, tweenInfo, {Size = goalSize})
-    local transparencyTween = TweenService:Create(window, tweenInfo, {BackgroundTransparency = 0}) -- Make it visible
-
-    -- Play the tween
-    sizeTween:Play()
-    transparencyTween:Play()
-
-    -- When the animation finishes, ensure the background is fully visible
-    sizeTween.Completed:Connect(function()
-        window.BackgroundTransparency = 0
-    end)
-
+    
     local title = Instance.new("TextLabel")
     title.Size = UDim2.new(1, 0, 0, 50)
     title.BackgroundTransparency = 1
