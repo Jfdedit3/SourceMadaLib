@@ -1,4 +1,3 @@
-# Notification Script
 
 local TweenService = game:GetService("TweenService")
 local Clude = {}
