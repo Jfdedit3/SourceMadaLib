@@ -1,3 +1,4 @@
+
 local TweenService = game:GetService("TweenService")
 
 local Clude = {}
@@ -187,7 +188,66 @@ function Clude:CreateWindow(config)
         end)
     end
 
+    -- Dropdown function
+    function Clude:CreateDropdown(tab, text, options, callback)
+        local dropdownFrame = Instance.new("Frame")
+        dropdownFrame.Size = UDim2.new(1, -20, 0, 50)
+        dropdownFrame.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+        dropdownFrame.Parent = tab
+        Instance.new("UICorner", dropdownFrame).CornerRadius = UDim.new(0, 5)
+
+        local label = Instance.new("TextLabel")
+        label.Size = UDim2.new(1, 0, 0, 20)
+        label.BackgroundTransparency = 1
+        label.Text = text
+        label.TextColor3 = Color3.new(1, 1, 1)
+        label.Font = Enum.Font.Gotham
+        label.TextSize = 14
+        label.Parent = dropdownFrame
+
+        local button = Instance.new("TextButton")
+        button.Size = UDim2.new(1, -10, 0, 30)
+        button.Position = UDim2.new(0, 5, 0, 20)
+        button.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
+        button.Text = "Select an Option"
+        button.TextColor3 = Color3.new(1, 1, 1)
+        button.Font = Enum.Font.Gotham
+        button.TextSize = 16
+        button.Parent = dropdownFrame
+        Instance.new("UICorner", button).CornerRadius = UDim.new(0, 5)
+
+        local dropdownList = Instance.new("Frame")
+        dropdownList.Size = UDim2.new(1, -10, 0, 0)
+        dropdownList.Position = UDim2.new(0, 5, 0, 55)
+        dropdownList.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        dropdownList.Visible = false
+        dropdownList.Parent = dropdownFrame
+
+        local listLayout = Instance.new("UIListLayout")
+        listLayout.Parent = dropdownList
+
+        -- Dropdown options
+        for _, option in pairs(options) do
+            local optionButton = Instance.new("TextButton")
+            optionButton.Size = UDim2.new(1, 0, 0, 30)
+            optionButton.Text = option
+            optionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+            optionButton.TextColor3 = Color3.new(1, 1, 1)
+            optionButton.Font = Enum.Font.Gotham
+            optionButton.TextSize = 16
+            optionButton.Parent = dropdownList
+
+            optionButton.MouseButton1Click:Connect(function()
+                button.Text = option
+                dropdownList.Visible = false
+                if callback then callback(option) end
+            end)
+        end
+
+        button.MouseButton1Click:Connect(function()
+            dropdownList.Visible = not dropdownList.Visible
+        end)
+    end
+
     return Clude
 end
-
-return Clude
