@@ -233,22 +233,6 @@ function Clude:CreateWindow(config)
             end)
         end
     end
-
-    function Clude:CreateOpenCloseButton()
-        local btn = Instance.new("TextButton")
-        btn.Size = UDim2.new(0, 120, 0, 40)
-        btn.Position = UDim2.new(1, -130, 0, 0)
-        btn.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
-        btn.Text = "Open/Close"
-        btn.TextColor3 = Color3.new(1, 1, 1)
-        btn.Font = Enum.Font.GothamBold
-        btn.TextSize = 14
-        btn.Parent = window
-        Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 5)
-        btn.MouseButton1Click:Connect(function()
-            window.Visible = not window.Visible
-        end)
-    end
     
     return Clude
 end
