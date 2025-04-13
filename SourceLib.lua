@@ -9,8 +9,7 @@ function Clude:CreateWindow(config)
 
     local window = Instance.new("Frame")
     window.Size = UDim2.new(0, 0, 0, 0)
-    window.Position = UDim2.new(0.5, 0, 0.5, 0)
-    window.AnchorPoint = Vector2.new(0.5, 0.5)
+    window.Position = UDim2.new(0.3, 0, 0.01, 0)
     window.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     window.Draggable = true
     window.Active = true
@@ -53,7 +52,7 @@ function Clude:CreateWindow(config)
 
     TweenService:Create(window, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
     Size = UDim2.new(0, 500, 0, 360),
-    Position = UDim2.new(0.3, 0, 0.1, 0)
+    Position = UDim2.new(0.3, 0, 0.01, 0)
 }):Play()
     
     function Clude:CreateTab(name)
