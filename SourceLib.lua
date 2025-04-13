@@ -43,6 +43,11 @@ function Clude:CreateWindow(config)
     local tabfolder = Instance.new("Folder", window)
     tabfolder.Name = "Tabs"
 
+    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)  -- Tween settings
+    local goal = {Position = UDim2.new(0.3, 0, 0.1, 0)}  -- Final position (middle of the screen)
+    local tween = TweenService:Create(window, tweenInfo, goal)
+    tween:Play()
+
     function Clude:CreateTab(name)
         local container = Instance.new("Frame")
         container.Size = UDim2.new(1, -120, 1, -50)
