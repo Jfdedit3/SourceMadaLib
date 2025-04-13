@@ -16,6 +16,13 @@ function Clude:CreateWindow(config)
     window.Active = true
     window.Parent = gui
     Instance.new("UICorner", window).CornerRadius = UDim.new(0, 5)
+    
+    local gradient = Instance.new("UIGradient")
+    gradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),    -- Red at the top
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 165, 0))   -- Orange at the bottom
+    }
+    gradient.Parent = window
 
     local title = Instance.new("TextLabel")
     title.Size = UDim2.new(1, 0, 0, 40)
