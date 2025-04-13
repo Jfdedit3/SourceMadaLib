@@ -8,8 +8,9 @@ function Clude:CreateWindow(config)
     gui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
     local window = Instance.new("Frame")
-    window.Size = UDim2.new(0, 500, 0, 360)
-    window.Position = UDim2.new(0.3, 0, -0.8, 0)
+    window.Size = UDim2.new(0, 0, 0, 0)
+    window.Position = UDim2.new(0.5, 0, 0.5, 0)
+    window.AnchorPoint = Vector2.new(0.5, 0.5)
     window.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     window.Draggable = true
     window.Active = true
@@ -43,11 +44,11 @@ function Clude:CreateWindow(config)
     local tabfolder = Instance.new("Folder", window)
     tabfolder.Name = "Tabs"
 
-    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)  -- Tween settings
-    local goal = {Position = UDim2.new(0.3, 0, 0.1, 0)}  -- Final position (middle of the screen)
-    local tween = TweenService:Create(window, tweenInfo, goal)
-    tween:Play()
-
+    TweenService:Create(window, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+    Size = UDim2.new(0, 500, 0, 360),
+    Position = UDim2.new(0.3, 0, 0.1, 0)
+}):Play()
+    
     function Clude:CreateTab(name)
         local container = Instance.new("Frame")
         container.Size = UDim2.new(1, -120, 1, -50)
