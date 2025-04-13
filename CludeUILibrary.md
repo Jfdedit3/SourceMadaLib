@@ -47,17 +47,17 @@ end)
 # Create Label
 this is a label that you can write your credit or your title example: "my dad is on jail"
 ```lua
-myClude:CreateLabel(tab1, "This is a label")
+win:CreateLabel(tab, "This is a label")
 ```
 # Create Paragraph
 this is the paragraph that you can write a letter for your dad in jail
 ```lua
-myClude:CreateParagraph(tab1, "This is a longer paragraph of text that can span multiple lines.")
+win:CreateParagraph(tab, "This is a longer paragraph of text that can span multiple lines.")
 ```
 # Create Dropdown 
 this is dropdown that you can add multiple buttons parented in one button
 ```lua
-myClude:CreateDropdown(tab1, "Select Option", {"Option 1", "Option 2", "Option 3"}, function(selectedOption)
+win:CreateDropdown(tab, "Select Option", {"Option 1", "Option 2", "Option 3"}, function(selectedOption)
     print("Selected option:", selectedOption)
 end)
 ```
