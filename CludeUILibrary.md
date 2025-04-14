@@ -23,15 +23,19 @@ local tab = win:CreateTab("Main")
 ```
 # Creating Buttons
 this is the button click this so your dad back at your home with milk
+
+don't remove the space
 ```lua
-win:CreateButton(tab, "Click Me", function()
+win:CreateButton(tab, " Click Me", function()
     print("Button clicked!")
 end)
 ```
 # Creating Toggle
 this is the toggle same as button but the difference is it has a on off
+
+pls don't remove the space 
 ```lua
-win:CreateToggle(tab, "Enable Power", false, function(state)
+win:CreateToggle(tab, " Enable Power", false, function(state)
     print("Toggle:", state)
 end)
 ```
@@ -71,8 +75,10 @@ win:CreateParagraph(tab, "This is a longer paragraph of text that can span multi
 ```
 # Create Dropdown 
 this is dropdown that you can add multiple buttons parented in one button
+
+pls space when adding this
 ```lua
-win:CreateDropdown(tab, "Select Option", {"Option 1", "Option 2", "Option 3"}, function(selectedOption)
+win:CreateDropdown(tab, " Select Option^", {"Option 1", "Option 2", "Option 3"}, function(selectedOption)
     print("Selected option:", selectedOption)
 end)
 ```
