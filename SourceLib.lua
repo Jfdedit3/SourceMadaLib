@@ -41,8 +41,8 @@ function Clude:CreateWindow(config)
        }):Play()
     closeOpenButton.Text = "+"
                 closeOpenButton.Visible = false
-                wait(1)
-                window.Visible = false
+                wait(0.9)
+                window.Visible = true
                 closeOpenButton.Visible = true
   else
             TweenService:Create(window, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
@@ -50,7 +50,7 @@ function Clude:CreateWindow(config)
     }):Play()
       closeOpenButton.Text = "-"
                 closeOpenButton.Visible = false
-                wait(1)
+                wait(0.9)
                 window.Visible = true
                 closeOpenButton.Visible = true
     end
