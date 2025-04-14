@@ -41,7 +41,7 @@ function Clude:CreateWindow(config)
        }):Play()
     closeOpenButton.Text = "+"
                 closeOpenButton.Visible = false
-                wait(0.9)
+                wait(0.6)
                 window.Visible = true
                 closeOpenButton.Visible = true
   else
@@ -50,8 +50,8 @@ function Clude:CreateWindow(config)
     }):Play()
       closeOpenButton.Text = "-"
                 closeOpenButton.Visible = false
-                wait(0.9)
-                window.Visible = true
+                wait(0.6)
+                window.Visible = false
                 closeOpenButton.Visible = true
     end
 end)
