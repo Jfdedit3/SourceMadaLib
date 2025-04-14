@@ -211,7 +211,7 @@ end)
 
     local thumb = Instance.new("Frame")
     thumb.Size = UDim2.new(0, 10, 1, 0)
-    thumb.Position = UDim2.new((default - min)/(max - min), 0, 0, 0)
+    thumb.Position = UDim2.new((default - min) / (max - min), 0, 0, 0)
     thumb.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     thumb.Parent = sliderBar
     Instance.new("UICorner", thumb).CornerRadius = UDim.new(1, 0)
@@ -230,12 +230,7 @@ end)
     thumb.InputBegan:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 then
             dragging = true
-        end
-    end)
-
-    userInputService.InputEnded:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 then
-            dragging = false
+            updateValue(input.Position.X)
         end
     end)
 
@@ -244,7 +239,13 @@ end)
             updateValue(input.Position.X)
         end
     end)
-    end
+
+    userInputService.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = false
+        end
+    end)
+end
 
     function Clude:CreateInput(tab, label, placeholder, callback)
     local frame = Instance.new("Frame")
