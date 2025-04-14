@@ -35,6 +35,16 @@ win:CreateToggle(tab, "Enable Power", false, function(state)
     print("Toggle:", state)
 end)
 ```
+
+# Example Toggle script:
+```lua
+if yourmamasawyouwatchingporm then
+print("fake sleeping")
+else
+warn("stop watching that go watch clude80 from yt")
+end
+```
+
 # Creating Slider
 thisis the slider that you xan change any number or speed or poop
 ```lua
