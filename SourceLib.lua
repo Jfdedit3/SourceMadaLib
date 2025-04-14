@@ -166,22 +166,43 @@ function Clude:CreateWindow(config)
         end)
     end
 
-    function Clude:CreateInput(tab, placeholder, callback)
-        local input = Instance.new("TextBox")
-        input.Size = UDim2.new(1, -20, 0, 40)
-        input.PlaceholderText = placeholder
-        input.Text = ""
-        input.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
-        input.TextColor3 = Color3.new(1, 1, 1)
-        input.Font = Enum.Font.Gotham
-        input.TextSize = 14
-        input.Parent = tab
-        Instance.new("UICorner", input).CornerRadius = UDim.new(0, 5)
-        input.FocusLost:Connect(function(enter)
-            if enter then callback(input.Text) end
-        end)
-    end
+    function Clude:CreateInput(tab, label, placeholder, callback)
+    -- Create the frame to hold the label and input box
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, -20, 0, 40)
+    frame.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    frame.Parent = tab
+    Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 5)
 
+    -- Create the label
+    local labelText = Instance.new("TextLabel")
+    labelText.Size = UDim2.new(0, 100, 1, 0)  -- Fixed width for the label
+    labelText.BackgroundTransparency = 1
+    labelText.Text = label
+    labelText.TextColor3 = Color3.new(1, 1, 1)
+    labelText.Font = Enum.Font.Gotham
+    labelText.TextSize = 14
+    labelText.TextXAlignment = Enum.TextXAlignment.Left
+    labelText.Parent = frame
+
+    -- Create the input box (TextBox)
+    local input = Instance.new("TextBox")
+    input.Size = UDim2.new(1, -120, 1, 0)  -- Make it take the rest of the space
+    input.Position = UDim2.new(0, 120, 0, 0)  -- Position it to the right of the label
+    input.PlaceholderText = placeholder
+    input.Text = ""
+    input.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
+    input.TextColor3 = Color3.new(1, 1, 1)
+    input.Font = Enum.Font.Gotham
+    input.TextSize = 14
+    input.Parent = frame
+    Instance.new("UICorner", input).CornerRadius = UDim.new(0, 5)
+
+    -- Trigger the callback when the input is submitted
+    input.FocusLost:Connect(function(enter)
+        if enter then callback(input.Text) end
+ end)
+end
     function Clude:CreateLabel(tab, text)
         local label = Instance.new("TextLabel")
         label.Size = UDim2.new(1, -20, 0, 40)
