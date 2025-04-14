@@ -182,7 +182,7 @@ function Clude:CreateWindow(config)
 
     -- Create the input box (TextBox)
     local input = Instance.new("TextBox")
-    input.Size = UDim2.new(1, -80, 1, 0)  -- Make it take the rest of the space
+    input.Size = UDim2.new(1, -160, 1, 0)  -- Make it take the rest of the space
     input.Position = UDim2.new(0, 160, 0, 0)  -- Position it to the right of the label
     input.PlaceholderText = placeholder
     input.Text = ""
