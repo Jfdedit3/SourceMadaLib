@@ -16,6 +16,11 @@ function Clude:CreateWindow(config)
     window.Parent = gui
     Instance.new("UICorner", window).CornerRadius = UDim.new(0, 5)
 
+    local uiStroke = Instance.new("UIStroke")
+    uiStroke.Thickness = 2
+    uiStroke.Color = Color3.fromRGB(0, 0, 0)  -- Black stroke
+    uiStroke.Parent = window
+
     local title = Instance.new("TextLabel")
     title.Size = UDim2.new(1, 0, 0, 40)
     title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
@@ -56,6 +61,11 @@ function Clude:CreateWindow(config)
         container.Visible = false
         container.Parent = tabfolder
         Instance.new("UICorner", container).CornerRadius = UDim.new(0, 5)
+
+        local uiStroke = Instance.new("UIStroke")
+        uiStroke.Thickness = 2
+        uiStroke.Color = Color3.fromRGB(0, 0, 0)  -- Black stroke
+        uiStroke.Parent = container
 
         local scroll = Instance.new("ScrollingFrame")
         scroll.Size = UDim2.new(1, 0, 1, 0)
