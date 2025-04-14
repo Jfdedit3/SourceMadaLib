@@ -22,7 +22,7 @@ function Clude:CreateWindow(config)
     title.Text = config.Title or "Clude UI"
     title.TextColor3 = Color3.new(1, 1, 1)
     title.Font = Enum.Font.SourceSansBold
-    title.TextSize = 20
+    title.TextSize = 22
     title.Parent = window
     Instance.new("UICorner", title).CornerRadius = UDim.new(0, 5)
 
