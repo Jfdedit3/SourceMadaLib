@@ -14,7 +14,9 @@ local Clude = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHu
 # Creating the Window Frame and Title
 this is the frame handling all the ui elements
 ```lua
-local win = Clude:CreateWindow({ Title = "Clude Test UI" })
+local win = Clude:CreateWindow({
+      Title = "Clude Test UI"
+})
 ```
 # Creating Tabs
 this is the tabs you can add tabs like combat or home or misc
@@ -59,8 +61,8 @@ end)
 # Create TextBox
 this is textbox you can type anything like "po**"
 ```lua
-win:CreateInput(tab, "type hi", function(text)
-    print("Typed:", text)
+win:CreateInput(tab, "title", "textbox", function(value)
+   print("Textbox: " .. value)
 end)
 ```
 # Create Label
