@@ -132,23 +132,53 @@ end)
     end
 
     function Clude:CreateToggle(tab, text, default, callback)
-        local toggle = Instance.new("TextButton")
-        toggle.Size = UDim2.new(1, -20, 0, 40)
-        toggle.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
-        toggle.TextColor3 = Color3.new(1, 1, 1)
-        toggle.Font = Enum.Font.GothamBold
-        toggle.TextSize = 15
-        toggle.Text = text .. ": " .. (default and "ON" or "OFF")
-        toggle.TextXAlignment = Enum.TextXAlignment.Left
-        toggle.Parent = tab
-        Instance.new("UICorner", toggle).CornerRadius = UDim.new(0, 5)
-        local state = default
-        toggle.MouseButton1Click:Connect(function()
-            state = not state
-            toggle.Text = text .. ": " .. (state and "ON" or "OFF")
-            if callback then callback(state) end
-        end)
+    local toggle = Instance.new("TextButton")
+    toggle.Size = UDim2.new(1, -20, 0, 40)
+    toggle.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    toggle.TextColor3 = Color3.new(1, 1, 1)
+    toggle.Font = Enum.Font.GothamBold
+    toggle.TextSize = 15
+    toggle.Text = text
+    toggle.TextXAlignment = Enum.TextXAlignment.Left
+    toggle.Parent = tab
+    Instance.new("UICorner", toggle).CornerRadius = UDim.new(0, 5)
+
+    -- Create the small box frame for the toggle
+    local box = Instance.new("Frame")
+    box.Size = UDim2.new(0, 30, 0, 20)
+    box.Position = UDim2.new(1, -40, 0.5, -10)
+    box.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    box.Parent = toggle
+    Instance.new("UICorner", box).CornerRadius = UDim.new(0, 5)
+
+    -- Create a small black inner frame inside the box
+    local innerBox = Instance.new("Frame")
+    innerBox.Size = UDim2.new(0, 10, 0, 10)
+    innerBox.Position = UDim2.new(0, 5, 0, 5)
+    innerBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    innerBox.Parent = box
+    Instance.new("UICorner", innerBox).CornerRadius = UDim.new(0, 5)
+
+    -- Handle the state of the toggle
+    local state = default
+    if state then
+        innerBox.Position = UDim2.new(1, -15, 0, 5) -- Move the box to the "ON" position
     end
+
+    -- When the toggle is clicked
+    toggle.MouseButton1Click:Connect(function()
+        state = not state
+        toggle.Text = text
+        if state then
+            innerBox.Position = UDim2.new(1, -15, 0, 5) -- Move the box to the "ON" position
+            box.BackgroundColor3 = Color3.fromRGB(0, 0, 255) -- Turn the box blue
+        else
+            innerBox.Position = UDim2.new(0, 5, 0, 5) -- Move the box back to the "OFF" position
+            box.BackgroundColor3 = Color3.fromRGB(70, 70, 70) -- Reset the box color
+        end
+        if callback then callback(state) end
+  end)
+ end
 
     function Clude:CreateSlider(tab, text, min, max, default, callback)
         local frame = Instance.new("Frame")
