@@ -56,7 +56,7 @@ function Clude:CreateWindow(config)
     function Clude:CreateTab(name)
         local container = Instance.new("Frame")
         container.Size = UDim2.new(1, -120, 1, -50)
-        container.Position = UDim2.new(0, 120, 0, 45)
+        container.Position = UDim2.new(0, 114, 0, 45)
         container.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
         container.Visible = false
         container.Parent = tabfolder
