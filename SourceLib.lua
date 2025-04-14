@@ -209,8 +209,9 @@ end)
     sliderBar.Parent = frame
     Instance.new("UICorner", sliderBar).CornerRadius = UDim.new(1, 0)
 
+    -- Make the thumb bigger so it's easier to drag
     local thumb = Instance.new("Frame")
-    thumb.Size = UDim2.new(0, 10, 1, 0)
+    thumb.Size = UDim2.new(0, 20, 1, 0)  -- Increased size
     thumb.Position = UDim2.new((default - min) / (max - min), 0, 0, 0)
     thumb.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     thumb.Parent = sliderBar
@@ -245,7 +246,7 @@ end)
             dragging = false
         end
     end)
-end
+    end
 
     function Clude:CreateInput(tab, label, placeholder, callback)
     local frame = Instance.new("Frame")
