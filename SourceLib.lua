@@ -137,7 +137,7 @@ end)
     toggle.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
     toggle.TextColor3 = Color3.new(1, 1, 1)
     toggle.Font = Enum.Font.GothamBold
-    toggle.TextSize = 18
+    toggle.TextSize = 14
     toggle.Text = text
     toggle.TextXAlignment = Enum.TextXAlignment.Left
     toggle.Parent = tab
