@@ -163,7 +163,6 @@ end)
     innerBox.Position = UDim2.new(0, 2, 0, 1)
     innerBox.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
     innerBox.Parent = box
-    inerBox.ZIndex = 20
     innerBox.BorderSizePixel = 0
     Instance.new("UICorner", innerBox).CornerRadius = UDim.new(1, 0)
 
