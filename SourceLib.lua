@@ -22,30 +22,31 @@ function Clude:CreateWindow(config)
     uiStroke.Parent = window
 
     local closeOpenButton = Instance.new("TextButton")
-closeOpenButton.Size = UDim2.new(0, 40, 0, 40)
-closeOpenButton.Position = UDim2.new(1, -40, 0, 0)
-closeOpenButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-closeOpenButton.Text = "-"
-closeOpenButton.TextColor3 = Color3.new(1, 1, 1)
-closeOpenButton.Font = Enum.Font.SourceSansBold
-closeOpenButton.TextSize = 22
-closeOpenButton.Parent = window
-Instance.new("UICorner", closeOpenButton).CornerRadius = UDim.new(0, 5)
+    closeOpenButton.Size = UDim2.new(0, 40, 0, 40)
+    closeOpenButton.Position = UDim2.new(1, -40, 0, 0)
+    closeOpenButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    closeOpenButton.Text = "-"
+    closeOpenButton.TextColor3 = Color3.new(1, 1, 1)
+    closeOpenButton.Font = Enum.Font.SourceSansBold
+    closeOpenButton.TextSize = 22
+    closeOpenButton.ZIndex = 3
+    closeOpenButton.Parent = window
+    Instance.new("UICorner", closeOpenButton).CornerRadius = UDim.new(0, 5)
 
--- Toggle the window open/close
-closeOpenButton.MouseButton1Click:Connect(function()
-    if window.Size == UDim2.new(0, 500, 0, 360) then
-        -- Hide the window
-        TweenService:Create(window, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
-            Size = UDim2.new(0, 0, 0, 0)
-        }):Play()
-        closeOpenButton.Text = "+"
-    else
-        -- Show the window
-        TweenService:Create(window, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
-            Size = UDim2.new(0, 500, 0, 360)
-        }):Play()
-        closeOpenButton.Text = "-"
+    closeOpenButton.MouseButton1Click:Connect(function()
+      if window.Size == UDim2.new(0, 500, 0, 360) then
+        
+     TweenService:Create(window, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
+        Size = UDim2.new(0, 0, 0, 0)
+       }):Play()
+    closeOpenButton.Text = "+"
+                window.Visible = false
+  else
+            TweenService:Create(window, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+        Size = UDim2.new(0, 500, 0, 360)
+    }):Play()
+      closeOpenButton.Text = "-"
+                window.Visible = true
     end
 end)
 
