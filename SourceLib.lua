@@ -182,11 +182,11 @@ function Clude:CreateWindow(config)
 
     -- Create the input box (TextBox)
     local input = Instance.new("TextBox")
-    input.Size = UDim2.new(1, -120, 1, 0)  -- Make it take the rest of the space
-    input.Position = UDim2.new(0, 120, 0, 0)  -- Position it to the right of the label
+    input.Size = UDim2.new(1, -80, 1, 0)  -- Make it take the rest of the space
+    input.Position = UDim2.new(0, 160, 0, 0)  -- Position it to the right of the label
     input.PlaceholderText = placeholder
     input.Text = ""
-    input.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    input.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
     input.TextColor3 = Color3.new(1, 1, 1)
     input.Font = Enum.Font.Gotham
     input.TextSize = 14
