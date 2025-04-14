@@ -149,7 +149,6 @@ end)
     box.Position = UDim2.new(1, -60, 0.5, -12)
     box.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
     box.Parent = toggle
-    box.BorderSizePixel = 0
     Instance.new("UICorner", box).CornerRadius = UDim.new(1, 0)
 
     local uiStroke = Instance.new("UIStroke")
