@@ -147,7 +147,7 @@ end)
     local box = Instance.new("Frame")
     box.Size = UDim2.new(0, 50, 0, 24)
     box.Position = UDim2.new(1, -60, 0.5, -12)
-    box.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    box.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     box.Parent = toggle
     box.BorderSizePixel = 0
     Instance.new("UICorner", box).CornerRadius = UDim.new(1, 0)
@@ -161,7 +161,7 @@ end)
     local innerBox = Instance.new("Frame")
     innerBox.Size = UDim2.new(0, 22, 0, 22)
     innerBox.Position = UDim2.new(0, 2, 0, 1)
-    innerBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    innerBox.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
     innerBox.Parent = box
     innerBox.BorderSizePixel = 0
     Instance.new("UICorner", innerBox).CornerRadius = UDim.new(1, 0)
