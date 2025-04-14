@@ -104,10 +104,6 @@ function Clude:CreateWindow(config)
         button.MouseButton1Click:Connect(callback)
     end
 
-    local padding = Instance.new("UIPadding")
-    padding.PaddingLeft = UDim.new(0, 9)
-    padding.Parent = button
-
     function Clude:CreateToggle(tab, text, default, callback)
         local toggle = Instance.new("TextButton")
         toggle.Size = UDim2.new(1, -20, 0, 40)
@@ -126,10 +122,6 @@ function Clude:CreateWindow(config)
             if callback then callback(state) end
         end)
     end
-
-    local togglePadding = Instance.new("UIPadding")
-    togglePadding.PaddingLeft = UDim.new(0, 9)
-    togglePadding.Parent = toggle
 
     function Clude:CreateSlider(tab, text, min, max, default, callback)
         local frame = Instance.new("Frame")
