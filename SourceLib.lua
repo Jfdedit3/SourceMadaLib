@@ -187,36 +187,63 @@ end)
     end
 
     function Clude:CreateSlider(tab, text, min, max, default, callback)
-        local frame = Instance.new("Frame")
-        frame.Size = UDim2.new(1, -20, 0, 50)
-        frame.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
-        frame.Parent = tab
-        Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 5)
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, -20, 0, 50)
+    frame.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    frame.Parent = tab
+    Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 5)
 
-        local label = Instance.new("TextLabel")
-        label.Size = UDim2.new(1, 0, 0, 20)
-        label.BackgroundTransparency = 1
-        label.Text = text .. ": " .. default
-        label.TextColor3 = Color3.new(1, 1, 1)
-        label.Font = Enum.Font.GothamBold
-        label.TextSize = 14
-        label.Parent = frame
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(1, 0, 0, 20)
+    label.BackgroundTransparency = 1
+    label.Text = text .. ": " .. default
+    label.TextColor3 = Color3.new(1, 1, 1)
+    label.Font = Enum.Font.GothamBold
+    label.TextSize = 14
+    label.Parent = frame
 
-        local slider = Instance.new("TextButton")
-        slider.Size = UDim2.new(1, -10, 0, 20)
-        slider.Position = UDim2.new(0, 5, 0, 25)
-        slider.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-        slider.Text = ""
-        slider.Parent = frame
-        Instance.new("UICorner", slider).CornerRadius = UDim.new(0, 5)
+    local sliderBar = Instance.new("Frame")
+    sliderBar.Size = UDim2.new(1, -10, 0, 8)
+    sliderBar.Position = UDim2.new(0, 5, 0, 32)
+    sliderBar.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    sliderBar.Parent = frame
+    Instance.new("UICorner", sliderBar).CornerRadius = UDim.new(1, 0)
 
-        local value = default
-        slider.MouseButton1Click:Connect(function()
-            value = value + 1
-            if value > max then value = min end
-            label.Text = text .. ": " .. value
-            if callback then callback(value) end
-        end)
+    local thumb = Instance.new("Frame")
+    thumb.Size = UDim2.new(0, 10, 1, 0)
+    thumb.Position = UDim2.new((default - min)/(max - min), 0, 0, 0)
+    thumb.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    thumb.Parent = sliderBar
+    Instance.new("UICorner", thumb).CornerRadius = UDim.new(1, 0)
+
+    local dragging = false
+    local userInputService = game:GetService("UserInputService")
+
+    local function updateValue(x)
+        local relX = math.clamp((x - sliderBar.AbsolutePosition.X) / sliderBar.AbsoluteSize.X, 0, 1)
+        thumb.Position = UDim2.new(relX, 0, 0, 0)
+        local newValue = math.floor(min + (max - min) * relX + 0.5)
+        label.Text = text .. ": " .. newValue
+        if callback then callback(newValue) end
+    end
+
+    thumb.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = true
+        end
+    end)
+
+    userInputService.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = false
+        end
+    end)
+
+    userInputService.InputChanged:Connect(function(input)
+        if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+            updateValue(input.Position.X)
+        end
+    end)
     end
 
     function Clude:CreateInput(tab, label, placeholder, callback)
