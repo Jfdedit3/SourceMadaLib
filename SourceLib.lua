@@ -95,6 +95,7 @@ function Clude:CreateWindow(config)
         button.Size = UDim2.new(1, -20, 0, 40)
         button.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
         button.Text = text
+        button.TextXAlignment = Enum.TextXAlignment.Left
         button.TextColor3 = Color3.new(1, 1, 1)
         button.Font = Enum.Font.GothamBold
         button.TextSize = 16
@@ -111,6 +112,7 @@ function Clude:CreateWindow(config)
         toggle.Font = Enum.Font.GothamBold
         toggle.TextSize = 16
         toggle.Text = text .. ": " .. (default and "ON" or "OFF")
+toggle.TextXAlignment = Enum.TextXAlignment.Left
         toggle.Parent = tab
         Instance.new("UICorner", toggle).CornerRadius = UDim.new(0, 5)
         local state = default
