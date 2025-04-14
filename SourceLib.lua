@@ -177,10 +177,10 @@ end)
         toggle.Text = text
         if state then
             innerBox:TweenPosition(UDim2.new(1, -24, 0, 1), "Out", "Quad", 0.3, true)
-            box.BackgroundColor3 = Color3.fromRGB(0, 102, 255)
+            innerBox.BackgroundColor3 = Color3.fromRGB(0, 102, 255)
         else
             innerBox:TweenPosition(UDim2.new(0, 2, 0, 1), "Out", "Quad", 0.3, true)
-            box.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+            innerBox.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
         end
         if callback then callback(state) end
     end)
