@@ -147,7 +147,7 @@ end)
     local box = Instance.new("Frame")
     box.Size = UDim2.new(0, 50, 0, 24)
     box.Position = UDim2.new(1, -60, 0.5, -12)
-    box.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    box.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
     box.Parent = toggle
     box.BorderSizePixel = 0
     Instance.new("UICorner", box).CornerRadius = UDim.new(1, 0)
@@ -163,6 +163,7 @@ end)
     innerBox.Position = UDim2.new(0, 2, 0, 1)
     innerBox.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
     innerBox.Parent = box
+    inerBox.ZIndex = 20
     innerBox.BorderSizePixel = 0
     Instance.new("UICorner", innerBox).CornerRadius = UDim.new(1, 0)
 
@@ -181,7 +182,7 @@ end)
             box.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
         else
             innerBox:TweenPosition(UDim2.new(0, 2, 0, 1), "Out", "Quad", 0.15, true)
-            box.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+            box.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
         end
         if callback then callback(state) end
     end)
