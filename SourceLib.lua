@@ -243,7 +243,10 @@ function Clude:CreateWindow(config)
 end
 
 function Clude:Destroy()
-	Clude:Destroy()
+    local gui = game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui"):FindFirstChild("CludeGui")
+    if gui then
+        gui:Destroy()
+    end
 end
 
 return Clude
