@@ -1,5 +1,13 @@
 # CludeHub Library
-intruding suck ui library the only sucks i made is the ui so ugly ass hell for me but this ui library doesn't has a bug
+intruding suck ui library the only sucks i made is the ui so ugly ass hell for me but this ui library doesn't has a bug🐞
+
+# Credit
+bullshit72916 -> scripter
+paulparasplaythis -> animations
+clude80 -> UI library maker
+
+# skiddo
+don't pucking steal my gui make sure to add credit when your showcasing bruh no one will showcase this it's suck lol i will ravamp this shi
 
 # Source
 this is the siurce of the library you need this source because without this all nit will work
@@ -65,5 +73,6 @@ end)
 # Destroy your mom
 this is the script that destroy the ui library
 ```lua
+Clude:Destroy()
 print("your mom get attacked by 5 black people and get pregnant and has 20 baby in stomach")
 ```
