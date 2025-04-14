@@ -40,11 +40,19 @@ function Clude:CreateWindow(config)
         Size = UDim2.new(0, 0, 0, 0)
        }):Play()
     closeOpenButton.Text = "+"
+                closeOpenButton.Visible = false
+                wait(1.6)
+                window:Destroy()
+                closeOpenButton.Visible = true
   else
             TweenService:Create(window, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
         Size = UDim2.new(0, 500, 0, 360)
     }):Play()
       closeOpenButton.Text = "-"
+                closeOpenButton.Visible = false
+                wait(1.6)
+                window.Visible = true
+                closeOpenButton.Visible = true
     end
 end)
 
