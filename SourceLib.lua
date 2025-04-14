@@ -133,52 +133,59 @@ end)
 
     function Clude:CreateToggle(tab, text, default, callback)
     local toggle = Instance.new("TextButton")
-    toggle.Size = UDim2.new(1, -20, 0, 40)
+    toggle.Size = UDim2.new(1, -20, 0, 50)
     toggle.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
     toggle.TextColor3 = Color3.new(1, 1, 1)
     toggle.Font = Enum.Font.GothamBold
-    toggle.TextSize = 15
+    toggle.TextSize = 18
     toggle.Text = text
     toggle.TextXAlignment = Enum.TextXAlignment.Left
     toggle.Parent = tab
-    Instance.new("UICorner", toggle).CornerRadius = UDim.new(0, 5)
+    Instance.new("UICorner", toggle).CornerRadius = UDim.new(0, 8)
 
-    -- Create the small box frame for the toggle
+    -- Toggle switch container (background bar)
     local box = Instance.new("Frame")
-    box.Size = UDim2.new(0, 30, 0, 20)
-    box.Position = UDim2.new(1, -40, 0.5, -10)
-    box.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    box.Size = UDim2.new(0, 50, 0, 24)
+    box.Position = UDim2.new(1, -60, 0.5, -12)
+    box.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
     box.Parent = toggle
-    Instance.new("UICorner", box).CornerRadius = UDim.new(0, 5)
+    box.BorderSizePixel = 0
+    Instance.new("UICorner", box).CornerRadius = UDim.new(1, 0)
 
-    -- Create a small black inner frame inside the box
+    local uiStroke = Instance.new("UIStroke")
+    uiStroke.Thickness = 2
+    uiStroke.Color = Color3.fromRGB(0, 0, 0)  -- Black stroke
+    uiStroke.Parent = box
+        
+    -- Switch knob
     local innerBox = Instance.new("Frame")
-    innerBox.Size = UDim2.new(0, 10, 0, 10)
-    innerBox.Position = UDim2.new(0, 5, 0, 5)
-    innerBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    innerBox.Size = UDim2.new(0, 22, 0, 22)
+    innerBox.Position = UDim2.new(0, 2, 0, 1)
+    innerBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     innerBox.Parent = box
-    Instance.new("UICorner", innerBox).CornerRadius = UDim.new(0, 5)
+    innerBox.BorderSizePixel = 0
+    Instance.new("UICorner", innerBox).CornerRadius = UDim.new(1, 0)
 
-    -- Handle the state of the toggle
+    -- State logic
     local state = default
     if state then
-        innerBox.Position = UDim2.new(1, -15, 0, 5) -- Move the box to the "ON" position
+        innerBox.Position = UDim2.new(1, -24, 0, 1)
+        box.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
     end
 
-    -- When the toggle is clicked
     toggle.MouseButton1Click:Connect(function()
         state = not state
         toggle.Text = text
         if state then
-            innerBox.Position = UDim2.new(1, -15, 0, 5) -- Move the box to the "ON" position
-            box.BackgroundColor3 = Color3.fromRGB(0, 0, 255) -- Turn the box blue
+            innerBox:TweenPosition(UDim2.new(1, -24, 0, 1), "Out", "Quad", 0.15, true)
+            box.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
         else
-            innerBox.Position = UDim2.new(0, 5, 0, 5) -- Move the box back to the "OFF" position
-            box.BackgroundColor3 = Color3.fromRGB(70, 70, 70) -- Reset the box color
+            innerBox:TweenPosition(UDim2.new(0, 2, 0, 1), "Out", "Quad", 0.15, true)
+            box.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
         end
         if callback then callback(state) end
-  end)
- end
+    end)
+    end
 
     function Clude:CreateSlider(tab, text, min, max, default, callback)
         local frame = Instance.new("Frame")
