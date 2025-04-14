@@ -161,49 +161,6 @@ function Clude:CreateWindow(config)
         end)
     end
 
-    function Clude:CreatePlayerFrame()
-    -- Create the player frame
-    local playerFrame = Instance.new("Frame")
-    playerFrame.Size = UDim2.new(0, 200, 0, 200)  -- Adjust the size as needed
-    playerFrame.Position = UDim2.new(0.95, 0, 0.01, 0)  -- Position it to the right side of the window
-    playerFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-    playerFrame.Parent = window
-    Instance.new("UICorner", playerFrame).CornerRadius = UDim.new(0, 5)
-
-    -- Create a UIStroke for the player frame
-    local uiStroke = Instance.new("UIStroke")
-    uiStroke.Thickness = 3
-    uiStroke.Color = Color3.fromRGB(0, 0, 0)  -- Black stroke
-    uiStroke.Parent = playerFrame
-
-    -- Create a viewport frame inside the player frame
-    local viewportFrame = Instance.new("ViewportFrame")
-    viewportFrame.Size = UDim2.new(1, 0, 1, 0)
-    viewportFrame.BackgroundTransparency = 1
-    viewportFrame.Parent = playerFrame
-
-    -- Set up the camera for the viewport
-    local camera = Instance.new("Camera")
-    viewportFrame.CurrentCamera = camera
-
-    -- Clone the character and display it in the viewport
-    local characterClone = game.Players.LocalPlayer.Character:Clone()
-    characterClone.Parent = viewportFrame
-    characterClone:SetPrimaryPartCFrame(CFrame.new(0, 0, 0))  -- Adjust position as needed
-
-    -- Set the camera position to a 2D-like view of the character
-    camera.CFrame = CFrame.new(characterClone.PrimaryPart.Position + Vector3.new(0, 5, 10), characterClone.PrimaryPart.Position)
-
-    -- Ensure the character is visible in the viewport
-    for _, part in ipairs(characterClone:GetChildren()) do
-        if part:IsA("MeshPart") or part:IsA("Part") then
-            part.CanCollide = false
-        end
-    end
-
-    return playerFrame
-    end
-
     function Clude:CreateInput(tab, label, placeholder, callback)
     local frame = Instance.new("Frame")
     frame.Size = UDim2.new(1, -20, 0, 40)
