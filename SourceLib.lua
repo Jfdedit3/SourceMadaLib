@@ -162,42 +162,40 @@ function Clude:CreateWindow(config)
     end
 
     function Clude:CreateInput(tab, label, placeholder, callback)
-    -- Create the frame to hold the label and input box
     local frame = Instance.new("Frame")
     frame.Size = UDim2.new(1, -20, 0, 40)
     frame.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
     frame.Parent = tab
     Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 5)
 
-    -- Create the label
     local labelText = Instance.new("TextLabel")
-    labelText.Size = UDim2.new(0, 100, 1, 0)  -- Fixed width for the label
+    labelText.Size = UDim2.new(0, 100, 1, 0)
+    labelText.Position = UDim2.new(0, 10, 0, 0)
     labelText.BackgroundTransparency = 1
     labelText.Text = label
     labelText.TextColor3 = Color3.new(1, 1, 1)
     labelText.Font = Enum.Font.GothamBold
-    labelText.TextScaled = true
+    labelText.TextSize = 15
     labelText.TextXAlignment = Enum.TextXAlignment.Left
     labelText.Parent = frame
 
-    -- Create the input box (TextBox)
     local input = Instance.new("TextBox")
-    input.Size = UDim2.new(1, -160, 1, 0)  -- Make it take the rest of the space
-    input.Position = UDim2.new(0, 160, 0, 0)  -- Position it to the right of the label
+    input.Size = UDim2.new(0, 150, 1, -10)
+    input.Position = UDim2.new(1, -160, 0, 5)
     input.PlaceholderText = placeholder
     input.Text = ""
     input.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
     input.TextColor3 = Color3.new(1, 1, 1)
     input.Font = Enum.Font.Gotham
-    input.TextSize = 14
+    input.TextSize = 15
     input.Parent = frame
     Instance.new("UICorner", input).CornerRadius = UDim.new(0, 5)
 
-    -- Trigger the callback when the input is submitted
-    input.FocusLost:Connect(function(enter)
-        if enter then callback(input.Text) end
- end)
-end
+ input.FocusLost:Connect(function(enter)
+     if enter then callback(input.Text) end
+   end)
+  end
+    
     function Clude:CreateLabel(tab, text)
         local label = Instance.new("TextLabel")
         label.Size = UDim2.new(1, -20, 0, 40)
