@@ -98,7 +98,7 @@ function Clude:CreateWindow(config)
         button.TextXAlignment = Enum.TextXAlignment.Left
         button.TextColor3 = Color3.new(1, 1, 1)
         button.Font = Enum.Font.GothamBold
-        button.TextSize = 16
+        button.TextSize = 15
         button.Parent = tab
         Instance.new("UICorner", button).CornerRadius = UDim.new(0, 5)
         button.MouseButton1Click:Connect(callback)
@@ -110,9 +110,9 @@ function Clude:CreateWindow(config)
         toggle.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
         toggle.TextColor3 = Color3.new(1, 1, 1)
         toggle.Font = Enum.Font.GothamBold
-        toggle.TextSize = 16
+        toggle.TextSize = 15
         toggle.Text = text .. ": " .. (default and "ON" or "OFF")
-toggle.TextXAlignment = Enum.TextXAlignment.Left
+        toggle.TextXAlignment = Enum.TextXAlignment.Left
         toggle.Parent = tab
         Instance.new("UICorner", toggle).CornerRadius = UDim.new(0, 5)
         local state = default
@@ -179,7 +179,7 @@ toggle.TextXAlignment = Enum.TextXAlignment.Left
         label.Text = text
         label.TextColor3 = Color3.new(1, 1, 1)
         label.Font = Enum.Font.SourceSansBold
-        label.TextSize = 16
+        label.TextSize = 15
         label.Parent = tab
         Instance.new("UICorner", label).CornerRadius = UDim.new(0, 5)
     end
@@ -203,9 +203,10 @@ toggle.TextXAlignment = Enum.TextXAlignment.Left
         drop.Size = UDim2.new(1, -20, 0, 40)
         drop.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
         drop.Text = title
+        drop.TextXAlignment = Enum.TextXAlignment.Left
         drop.TextColor3 = Color3.new(1, 1, 1)
         drop.Font = Enum.Font.GothamBold
-        drop.TextSize = 16
+        drop.TextSize = 15
         drop.Parent = tab
         Instance.new("UICorner", drop).CornerRadius = UDim.new(0, 5)
 
