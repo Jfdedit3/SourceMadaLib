@@ -17,7 +17,7 @@ function Clude:CreateWindow(config)
     Instance.new("UICorner", window).CornerRadius = UDim.new(0, 5)
 
     local uiStroke = Instance.new("UIStroke")
-    uiStroke.Thickness = 2
+    uiStroke.Thickness = 3
     uiStroke.Color = Color3.fromRGB(0, 0, 0)  -- Black stroke
     uiStroke.Parent = window
 
@@ -61,12 +61,7 @@ function Clude:CreateWindow(config)
         container.Visible = false
         container.Parent = tabfolder
         Instance.new("UICorner", container).CornerRadius = UDim.new(0, 5)
-
-        local uiStroke = Instance.new("UIStroke")
-        uiStroke.Thickness = 2
-        uiStroke.Color = Color3.fromRGB(0, 0, 0)  -- Black stroke
-        uiStroke.Parent = container
-
+        
         local scroll = Instance.new("ScrollingFrame")
         scroll.Size = UDim2.new(1, 0, 1, 0)
         scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
@@ -103,7 +98,7 @@ function Clude:CreateWindow(config)
     function Clude:CreateButton(tab, text, callback)
         local button = Instance.new("TextButton")
         button.Size = UDim2.new(1, -20, 0, 40)
-        button.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
+        button.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
         button.Text = text
         button.TextXAlignment = Enum.TextXAlignment.Left
         button.TextColor3 = Color3.new(1, 1, 1)
@@ -145,14 +140,14 @@ function Clude:CreateWindow(config)
         label.BackgroundTransparency = 1
         label.Text = text .. ": " .. default
         label.TextColor3 = Color3.new(1, 1, 1)
-        label.Font = Enum.Font.Gotham
+        label.Font = Enum.Font.GothamBold
         label.TextSize = 14
         label.Parent = frame
 
         local slider = Instance.new("TextButton")
         slider.Size = UDim2.new(1, -10, 0, 20)
         slider.Position = UDim2.new(0, 5, 0, 25)
-        slider.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
+        slider.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
         slider.Text = ""
         slider.Parent = frame
         Instance.new("UICorner", slider).CornerRadius = UDim.new(0, 5)
@@ -180,8 +175,8 @@ function Clude:CreateWindow(config)
     labelText.BackgroundTransparency = 1
     labelText.Text = label
     labelText.TextColor3 = Color3.new(1, 1, 1)
-    labelText.Font = Enum.Font.Gotham
-    labelText.TextSize = 14
+    labelText.Font = Enum.Font.GothamBold
+    labelText.TextScaled = true
     labelText.TextXAlignment = Enum.TextXAlignment.Left
     labelText.Parent = frame
 
@@ -191,7 +186,7 @@ function Clude:CreateWindow(config)
     input.Position = UDim2.new(0, 120, 0, 0)  -- Position it to the right of the label
     input.PlaceholderText = placeholder
     input.Text = ""
-    input.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
+    input.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
     input.TextColor3 = Color3.new(1, 1, 1)
     input.Font = Enum.Font.Gotham
     input.TextSize = 14
@@ -255,7 +250,7 @@ end
             local btn = Instance.new("TextButton")
             btn.Size = UDim2.new(1, -40, 0, 30)
             btn.Position = UDim2.new(0, 20, 0, 0)
-            btn.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
+            btn.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
             btn.Text = option
             btn.TextColor3 = Color3.new(1, 1, 1)
             btn.Font = Enum.Font.Gotham
