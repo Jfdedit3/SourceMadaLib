@@ -242,4 +242,8 @@ function Clude:CreateWindow(config)
     return Clude
 end
 
+function Clude:Destroy()
+	Clude:Destroy()
+end
+
 return Clude
