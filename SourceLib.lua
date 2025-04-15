@@ -202,12 +202,12 @@ label2.ZIndex = 3
 
 local goBack = Instance.new("TextButton")
 goBack.Size = UDim2.new(0, 50, 0, 30)
-goBack.Position = UDim2.new(0, 10, 1, -40)
+goBack.Position = UDim2.new(1, 10, 0.5, -0.25)
 goBack.Text = "-"
 goBack.TextColor3 = Color3.fromRGB(255, 255, 255)
 goBack.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
 goBack.TextScaled = true
-goBack.Parent = window2
+goBack.Parent = gui
 
 goBack.MouseButton1Click:Connect(function()
 	window2.Visible = false
