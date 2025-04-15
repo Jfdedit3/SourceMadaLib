@@ -94,6 +94,183 @@ game:GetService("RunService").RenderStepped:Connect(function()
 	end
 end)
 
+	local GraphicsButton = Instance.new("ImageButton")
+GraphicsButton.Name = "GraphicsButton"
+GraphicsButton.Size = UDim2.new(0, 50, 0, 50)
+GraphicsButton.Position = UDim2.new(1, 10, 0.5, -25)
+GraphicsButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+GraphicsButton.Image = "rbxassetid://123112467890707"
+GraphicsButton.Parent = window
+GraphicsButton.ZIndex = 3
+Instance.new("UICorner", GraphicsButton).CornerRadius = UDim.new(0, 5)
+
+local graphicsEnabled = false
+local shakeConnection
+
+GraphicsButton.MouseButton1Click:Connect(function()
+	local Lighting = game:GetService("Lighting")
+	local Terrain = workspace:FindFirstChildOfClass("Terrain")
+	local Camera = workspace.CurrentCamera
+	local RunService = game:GetService("RunService")
+	local Players = game:GetService("Players")
+	local player = Players.LocalPlayer
+
+	if not graphicsEnabled then
+		graphicsEnabled = true
+		GraphicsButton.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+
+		-- Clear current effects
+		for _, v in pairs(Lighting:GetChildren()) do
+			if v:IsA("PostEffect") or v:IsA("Sky") or v:IsA("Atmosphere") then
+				v:Destroy()
+			end
+		end
+
+		Lighting.Technology = Enum.Technology.Future
+		Lighting.Brightness = 3.5
+		Lighting.ClockTime = 15
+		Lighting.FogEnd = 1000
+		Lighting.ExposureCompensation = 0.4
+		Lighting.GlobalShadows = true
+		Lighting.ShadowSoftness = 0.08
+		Lighting.EnvironmentDiffuseScale = 1
+		Lighting.EnvironmentSpecularScale = 1.5
+		Lighting.Ambient = Color3.fromRGB(80, 80, 90)
+		Lighting.OutdoorAmbient = Color3.fromRGB(120, 120, 120)
+
+		local atm = Instance.new("Atmosphere", Lighting)
+		atm.Density = 0.4
+		atm.Offset = 0.2
+		atm.Glare = 1
+		atm.Haze = 1
+		atm.Color = Color3.fromRGB(255, 245, 235)
+		atm.Decay = Color3.fromRGB(220, 220, 210)
+
+		local sunrays = Instance.new("SunRaysEffect", Lighting)
+		sunrays.Intensity = 0.3
+		sunrays.Spread = 1
+
+		local color = Instance.new("ColorCorrectionEffect", Lighting)
+		color.Contrast = 0.15
+		color.Saturation = 0.1
+		color.Brightness = 0.05
+		color.TintColor = Color3.fromRGB(255, 250, 235)
+
+		local dof = Instance.new("DepthOfFieldEffect", Lighting)
+		dof.FarIntensity = 0.2
+		dof.FocusDistance = 30
+		dof.InFocusRadius = 25
+		dof.NearIntensity = 0.15
+
+		local bloom = Instance.new("BloomEffect", Lighting)
+		bloom.Intensity = 0.5
+		bloom.Size = 64
+		bloom.Threshold = 0.8
+
+		if Terrain then
+			Terrain.WaterTransparency = 0.85
+			Terrain.WaterReflectance = 0.55
+			Terrain.WaterColor = Color3.fromRGB(40, 110, 150)
+			Terrain.WaterWaveSize = 0.15
+			Terrain.WaterWaveSpeed = 14
+			Terrain.WaterFresnel = 1
+		end
+
+		local swayIntensity = 0.03
+		shakeConnection = RunService.RenderStepped:Connect(function()
+			local char = player.Character
+			if char and char:FindFirstChild("HumanoidRootPart") and char:FindFirstChild("Humanoid") then
+				local velocity = char.HumanoidRootPart.Velocity
+				local speed = velocity.Magnitude
+				if speed > 0.1 then
+					local shake = Vector3.new(
+						math.noise(tick()) * swayIntensity,
+						math.noise(tick() + 100) * swayIntensity,
+						math.noise(tick() + 200) * swayIntensity
+					)
+					Camera.CFrame = Camera.CFrame * CFrame.new(shake)
+				end
+			end
+		end)
+	else
+		graphicsEnabled = false
+		GraphicsButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+
+		for _, v in pairs(Lighting:GetChildren()) do
+			if v:IsA("PostEffect") or v:IsA("Sky") or v:IsA("Atmosphere") then
+				v:Destroy()
+			end
+		end
+
+		if Terrain then
+			Terrain.WaterTransparency = 1
+			Terrain.WaterReflectance = 0
+			Terrain.WaterColor = Color3.fromRGB(128, 128, 128)
+			Terrain.WaterWaveSize = 0
+			Terrain.WaterWaveSpeed = 0
+			Terrain.WaterFresnel = 0
+		end
+
+		if shakeConnection then
+			shakeConnection:Disconnect()
+			shakeConnection = nil
+		end
+	end
+end)
+
+	local cameraScript
+local isCameraOn = false
+
+CameraButton.MouseButton1Click:Connect(function()
+	isCameraOn = not isCameraOn
+
+	if isCameraOn then
+		CameraButton.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+
+		cameraScript = Instance.new("LocalScript")
+		cameraScript.Name = "CameraEffectScript"
+		cameraScript.Source = [[
+			local Players = game:GetService("Players")
+			local RunService = game:GetService("RunService")
+			local UserInputService = game:GetService("UserInputService")
+			local LocalPlayer = Players.LocalPlayer
+			local Char = workspace:WaitForChild(LocalPlayer.Name)
+			local Humanoid = Char:WaitForChild("Humanoid")
+			local Camera = workspace.CurrentCamera
+
+			local Turn = 0
+
+			local function Lerp(a, b, t)
+				return a + (b - a) * t
+			end
+
+			RunService.RenderStepped:Connect(function()
+				local CT = tick()
+
+				if Humanoid.MoveDirection.Magnitude > 0 then
+					local BobbleX = math.cos(CT * 5) * 0.25
+					local BobbleY = math.abs(math.sin(CT * 5)) * 0.25
+					local Bobble = Vector3.new(BobbleX, BobbleY, 0)
+					Humanoid.CameraOffset = Humanoid.CameraOffset:Lerp(Bobble, 0.25)
+				else
+					Humanoid.CameraOffset = Humanoid.CameraOffset * 0.75
+				end
+
+				local MouseDelta = UserInputService:GetMouseDelta()
+				Turn = Lerp(Turn, math.clamp(MouseDelta.X, -6, 6), 6 * RunService.RenderStepped:Wait())
+				Camera.CFrame = Camera.CFrame * CFrame.Angles(0, 0, math.rad(Turn))
+			end)
+		]]
+		cameraScript.Parent = CameraButton -- parent it anywhere safe, it runs immediately
+	else
+		CameraButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+		if cameraScript then
+			cameraScript:Destroy()
+			cameraScript = nil
+		end
+	end
+end)
+
     local tabbuttons = Instance.new("ScrollingFrame")
     tabbuttons.Size = UDim2.new(0, 110, 1, -40)
     tabbuttons.Position = UDim2.new(0, 0, 0, 40)
