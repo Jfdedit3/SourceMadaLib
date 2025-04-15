@@ -7,6 +7,34 @@ function Clude:CreateWindow(config)
     gui.ResetOnSpawn = false
     gui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
+local title = Instance.new("TextLabel")
+title.Parent = gui
+title.Size = UDim2.new(1, 0, 1, 0)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "CludeHub"
+title.Font = Enum.Font.GothamBlack
+title.TextScaled = true
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextStrokeTransparency = 0.3
+title.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+
+-- Fade In
+for i = 1, 0, -0.05 do
+	title.TextTransparency = i
+	task.wait(0.02)
+end
+
+task.wait(2) -- Display duration
+
+-- Fade Out
+for i = 0, 1, 0.05 do
+	title.TextTransparency = i
+	task.wait(0.02)
+end
+
+introGui:Destroy()
+    
     local window = Instance.new("Frame")
     window.Size = UDim2.new(0, 0, 0, 0)
     window.Position = UDim2.new(0.3, 0, 0.01, 0)
