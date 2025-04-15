@@ -78,9 +78,9 @@ win:CreateParagraph(tab, "This is a longer paragraph of text that can span multi
 # Create Dropdown 
 this is dropdown that you can add multiple buttons parented in one button
 
-pls space when adding this
+pls add space when adding this
 ```lua
-win:CreateDropdown(tab, " Select Option^", {"Option 1", "Option 2", "Option 3"}, function(selectedOption)
+win:CreateDropdown(tab, " Select Option", {"Option 1", "Option 2", "Option 3"}, function(selectedOption)
     print("Selected option:", selectedOption)
 end)
 ```
