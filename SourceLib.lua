@@ -208,7 +208,6 @@ goBack.TextColor3 = Color3.fromRGB(255, 255, 255)
 goBack.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
 goBack.TextScaled = true
 goBack.Parent = window2
-goback.ZIndex = 5
 
 goBack.MouseButton1Click:Connect(function()
 	window2.Visible = false
