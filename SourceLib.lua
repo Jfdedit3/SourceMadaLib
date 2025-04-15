@@ -46,11 +46,11 @@ end)
     local title = Instance.new("TextLabel")
     title.Size = UDim2.new(1, 0, 0, 40)
     title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    title.Position = UDim2.new(0, 370, 0, 0)
     title.Text = config.Title or "Clude UI"
     title.TextColor3 = Color3.new(1, 1, 1)
     title.Font = Enum.Font.SourceSansBold
     title.TextSize = 22
+    title.TextXAlignment = Enum.TextXAlignment.Left
     title.Parent = window
     Instance.new("UICorner", title).CornerRadius = UDim.new(0, 5)
 
@@ -80,7 +80,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 		frames = 0
 		lastTime = currentTime
 		local playerCount = #game:GetService("Players"):GetPlayers()
-		fpsLabel.Text = "FPS: "..fps.."  |  Players: "..playerCount
+		fpsLabel.Text = "FPS: "..fps.."  |  Players:   "..playerCount
 	end
 end)
 
