@@ -112,13 +112,14 @@ local LocalPlayer = Players.LocalPlayer
 local Camera = workspace.CurrentCamera
 
 local isCameraEffectOn = false
-local cameraConnection
+local cameraConnection = nil
+local lastCFrame = nil
 
 CameraButton.MouseButton1Click:Connect(function()
 	isCameraEffectOn = not isCameraEffectOn
 
 	if isCameraEffectOn then
-		CameraButton.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+		CameraButton.BackgroundColor3 = Color3.fromRGB(0, 102, 255)
 
 		local Char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 		local Humanoid = Char:WaitForChild("Humanoid")
@@ -131,7 +132,10 @@ CameraButton.MouseButton1Click:Connect(function()
 		cameraConnection = RunService.RenderStepped:Connect(function()
 			local CT = tick()
 
-			-- Bobbing when walking
+			-- Save original CFrame
+			lastCFrame = Camera.CFrame
+
+			-- Bobbing
 			if Humanoid.MoveDirection.Magnitude > 0 then
 				local BobbleX = math.cos(CT * 5) * 0.25
 				local BobbleY = math.abs(math.sin(CT * 5)) * 0.25
@@ -141,11 +145,12 @@ CameraButton.MouseButton1Click:Connect(function()
 				Humanoid.CameraOffset = Humanoid.CameraOffset * 0.75
 			end
 
-			-- Sway with mouse
+			-- Sway
 			local MouseDelta = UserInputService:GetMouseDelta()
 			Turn = Lerp(Turn, math.clamp(MouseDelta.X, -6, 6), 6 * RunService.RenderStepped:Wait())
 			Camera.CFrame = Camera.CFrame * CFrame.Angles(0, 0, math.rad(Turn))
 		end)
+
 	else
 		CameraButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
 
@@ -160,6 +165,11 @@ CameraButton.MouseButton1Click:Connect(function()
 			if Humanoid then
 				Humanoid.CameraOffset = Vector3.new(0, 0, 0)
 			end
+		end
+
+		if lastCFrame then
+			Camera.CFrame = lastCFrame -- Reset to last normal CFrame before sway
+			lastCFrame = nil
 		end
 	end
 end)
