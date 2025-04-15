@@ -33,8 +33,8 @@ for i = 0, 1, 0.05 do
 	task.wait(0.02)
 end
 
-introGui:Destroy()
-    
+title:Destroy()
+	wait(0.2)
     local window = Instance.new("Frame")
     window.Size = UDim2.new(0, 0, 0, 0)
     window.Position = UDim2.new(0.3, 0, 0.01, 0)
