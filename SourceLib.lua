@@ -104,55 +104,62 @@ CameraButton.Parent = window
 CameraButton.ZIndex = 3
 Instance.new("UICorner", CameraButton).CornerRadius = UDim.new(0, 5)
 
-local cameraScript
-local isCameraOn = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+
+local LocalPlayer = Players.LocalPlayer
+local Camera = workspace.CurrentCamera
+
+local isCameraEffectOn = false
+local cameraConnection
 
 CameraButton.MouseButton1Click:Connect(function()
-	isCameraOn = not isCameraOn
+	isCameraEffectOn = not isCameraEffectOn
 
-	if isCameraOn then
+	if isCameraEffectOn then
 		CameraButton.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 
-		cameraScript = Instance.new("LocalScript")
-		cameraScript.Name = "CameraEffectScript"
-		cameraScript.Source = [[
-			local Players = game:GetService("Players")
-			local RunService = game:GetService("RunService")
-			local UserInputService = game:GetService("UserInputService")
-			local LocalPlayer = Players.LocalPlayer
-			local Char = workspace:WaitForChild(LocalPlayer.Name)
-			local Humanoid = Char:WaitForChild("Humanoid")
-			local Camera = workspace.CurrentCamera
+		local Char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+		local Humanoid = Char:WaitForChild("Humanoid")
+		local Turn = 0
 
-			local Turn = 0
+		local function Lerp(a, b, t)
+			return a + (b - a) * t
+		end
 
-			local function Lerp(a, b, t)
-				return a + (b - a) * t
+		cameraConnection = RunService.RenderStepped:Connect(function()
+			local CT = tick()
+
+			-- Bobbing when walking
+			if Humanoid.MoveDirection.Magnitude > 0 then
+				local BobbleX = math.cos(CT * 5) * 0.25
+				local BobbleY = math.abs(math.sin(CT * 5)) * 0.25
+				local Bobble = Vector3.new(BobbleX, BobbleY, 0)
+				Humanoid.CameraOffset = Humanoid.CameraOffset:Lerp(Bobble, 0.25)
+			else
+				Humanoid.CameraOffset = Humanoid.CameraOffset * 0.75
 			end
 
-			RunService.RenderStepped:Connect(function()
-				local CT = tick()
-
-				if Humanoid.MoveDirection.Magnitude > 0 then
-					local BobbleX = math.cos(CT * 5) * 0.25
-					local BobbleY = math.abs(math.sin(CT * 5)) * 0.25
-					local Bobble = Vector3.new(BobbleX, BobbleY, 0)
-					Humanoid.CameraOffset = Humanoid.CameraOffset:Lerp(Bobble, 0.25)
-				else
-					Humanoid.CameraOffset = Humanoid.CameraOffset * 0.75
-				end
-
-				local MouseDelta = UserInputService:GetMouseDelta()
-				Turn = Lerp(Turn, math.clamp(MouseDelta.X, -6, 6), 6 * RunService.RenderStepped:Wait())
-				Camera.CFrame = Camera.CFrame * CFrame.Angles(0, 0, math.rad(Turn))
-			end)
-		]]
-		cameraScript.Parent = CameraButton -- parent it anywhere safe, it runs immediately
+			-- Sway with mouse
+			local MouseDelta = UserInputService:GetMouseDelta()
+			Turn = Lerp(Turn, math.clamp(MouseDelta.X, -6, 6), 6 * RunService.RenderStepped:Wait())
+			Camera.CFrame = Camera.CFrame * CFrame.Angles(0, 0, math.rad(Turn))
+		end)
 	else
 		CameraButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
-		if cameraScript then
-			cameraScript:Destroy()
-			cameraScript = nil
+
+		if cameraConnection then
+			cameraConnection:Disconnect()
+			cameraConnection = nil
+		end
+
+		local Char = LocalPlayer.Character
+		if Char then
+			local Humanoid = Char:FindFirstChild("Humanoid")
+			if Humanoid then
+				Humanoid.CameraOffset = Vector3.new(0, 0, 0)
+			end
 		end
 	end
 end)
