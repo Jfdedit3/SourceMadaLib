@@ -113,67 +113,58 @@ local Camera = workspace.CurrentCamera
 
 local isCameraEffectOn = false
 local cameraConnection = nil
-local lastCFrame = nil
+local Turn = 0
 
 CameraButton.MouseButton1Click:Connect(function()
 	isCameraEffectOn = not isCameraEffectOn
 
+	if cameraConnection then
+		cameraConnection:Disconnect()
+		cameraConnection = nil
+	end
+
+	local Char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+	local Humanoid = Char:FindFirstChild("Humanoid")
+
 	if isCameraEffectOn then
-		CameraButton.BackgroundColor3 = Color3.fromRGB(0, 102, 255)
+		CameraButton.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+		Turn = 0
 
-		local Char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-		local Humanoid = Char:WaitForChild("Humanoid")
-		local Turn = 0
-
-		local function Lerp(a, b, t)
-			return a + (b - a) * t
-		end
-
-		cameraConnection = RunService.RenderStepped:Connect(function()
+		cameraConnection = RunService.RenderStepped:Connect(function(dt)
 			local CT = tick()
 
-			-- Save original CFrame
-			lastCFrame = Camera.CFrame
-
-			-- Bobbing
-			if Humanoid.MoveDirection.Magnitude > 0 then
-				local BobbleX = math.cos(CT * 5) * 0.25
-				local BobbleY = math.abs(math.sin(CT * 5)) * 0.25
-				local Bobble = Vector3.new(BobbleX, BobbleY, 0)
-				Humanoid.CameraOffset = Humanoid.CameraOffset:Lerp(Bobble, 0.25)
-			else
-				Humanoid.CameraOffset = Humanoid.CameraOffset * 0.75
+			if Humanoid then
+				-- Camera bobbing
+				if Humanoid.MoveDirection.Magnitude > 0 then
+					local BobbleX = math.cos(CT * 5) * 0.25
+					local BobbleY = math.abs(math.sin(CT * 5)) * 0.25
+					local Bobble = Vector3.new(BobbleX, BobbleY, 0)
+					Humanoid.CameraOffset = Humanoid.CameraOffset:Lerp(Bobble, 0.25)
+				else
+					Humanoid.CameraOffset = Humanoid.CameraOffset * 0.75
+				end
 			end
 
-			-- Sway
+			-- Mouse sway
 			local MouseDelta = UserInputService:GetMouseDelta()
-			Turn = Lerp(Turn, math.clamp(MouseDelta.X, -6, 6), 6 * RunService.RenderStepped:Wait())
+			Turn = Turn + (math.clamp(MouseDelta.X, -6, 6) - Turn) * 6 * dt
 			Camera.CFrame = Camera.CFrame * CFrame.Angles(0, 0, math.rad(Turn))
 		end)
 
 	else
 		CameraButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+		Turn = 0
 
-		if cameraConnection then
-			cameraConnection:Disconnect()
-			cameraConnection = nil
+		if Humanoid then
+			Humanoid.CameraOffset = Vector3.new(0, 0, 0)
 		end
 
-		local Char = LocalPlayer.Character
-		if Char then
-			local Humanoid = Char:FindFirstChild("Humanoid")
-			if Humanoid then
-				Humanoid.CameraOffset = Vector3.new(0, 0, 0)
-			end
-		end
-
-		if lastCFrame then
-			Camera.CFrame = lastCFrame -- Reset to last normal CFrame before sway
-			lastCFrame = nil
-		end
+		-- Reset camera roll to flat
+		local cf = Camera.CFrame
+		local pos, look = cf.Position, cf.LookVector
+		Camera.CFrame = CFrame.lookAt(pos, pos + look, Vector3.new(0, 1, 0))
 	end
 end)
-
     local tabbuttons = Instance.new("ScrollingFrame")
     tabbuttons.Size = UDim2.new(0, 110, 1, -40)
     tabbuttons.Position = UDim2.new(0, 0, 0, 40)
