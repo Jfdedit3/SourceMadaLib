@@ -198,7 +198,7 @@ label2.TextColor3 = Color3.fromRGB(255, 255, 255)
 label2.BackgroundTransparency = 1
 label2.TextScaled = true
 label2.Parent = image2
-label2.ZIndez = 3
+label2.ZIndex = 3
 
 local goBack = Instance.new("TextButton")
 goBack.Size = UDim2.new(0, 50, 0, 30)
