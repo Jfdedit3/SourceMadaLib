@@ -94,6 +94,121 @@ game:GetService("RunService").RenderStepped:Connect(function()
 	end
 end)
 
+local window2 = Instance.new("ScrollingFrame")
+window2.Name = "Window2"
+window2.Size = window.Size
+window2.Position = window.Position
+window2.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+window2.Visible = false
+window2.Draggable = true
+window2.ScrollBarThickness = 5
+window2.ScrollingDirection = Enum.ScrollingDirection.Y
+window2.Parent = window
+
+local corner2 = Instance.new("UICorner")
+corner2.CornerRadius = UDim.new(0, 12)
+corner2.Parent = window2
+
+local infoButton = Instance.new("ImageButton")
+infoButton.Name = "InfoButton"
+infoButton.Size = UDim2.new(0, 50, 0, 50)
+infoButton.Position = UDim2.new(1, 10, 0.5, -25)
+infoButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+infoButton.Image = "rbxassetid://0"
+infoButton.Parent = window
+
+local title = Instance.new("TextLabel")
+title.Text = "OWNERS"
+title.Size = UDim2.new(1, 0, 0, 40)
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.BackgroundTransparency = 1
+title.TextScaled = true
+title.Parent = window2
+
+local clude = Instance.new("TextLabel")
+clude.Text = "Clude"
+clude.Size = UDim2.new(1, 0, 0, 30)
+clude.Position = UDim2.new(0, 0, 0, 40)
+clude.TextColor3 = Color3.fromRGB(255, 255, 255)
+clude.BackgroundTransparency = 1
+clude.TextScaled = true
+clude.Parent = window2
+
+local image1 = Instance.new("Frame")
+image1.Size = UDim2.new(0.8, 0, 0.4, 0)
+image1.Position = UDim2.new(0.1, 0, 0.2, 0)
+image1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+image1.ZIndex = 2
+image1.Parent = window2
+
+Instance.new("UICorner", image1).CornerRadius = UDim.new(0, 12)
+
+local imgLabel1 = Instance.new("ImageLabel")
+imgLabel1.Size = UDim2.new(1, 0, 1, 0)
+imgLabel1.Image = "rbxassetid://134013226250881"
+imgLabel1.BackgroundTransparency = 1
+imgLabel1.Parent = image1
+
+local label1 = Instance.new("TextLabel")
+label1.Text = "Script Maker"
+label1.Size = UDim2.new(1, 0, 0, 30)
+label1.Position = UDim2.new(0, 0, 1, -30)
+label1.TextColor3 = Color3.fromRGB(255, 255, 255)
+label1.BackgroundTransparency = 1
+label1.TextScaled = true
+label1.Parent = image1
+
+local image2 = Instance.new("Frame")
+image2.Size = UDim2.new(0.8, 0, 0.4, 0)
+image2.Position = UDim2.new(0.1, 0, 0.7, 0)
+image2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+image2.ZIndex = 2
+image2.Parent = window2
+
+Instance.new("UICorner", image2).CornerRadius = UDim.new(0, 12)
+
+local imgLabel2 = Instance.new("ImageLabel")
+imgLabel2.Size = UDim2.new(1, 0, 1, 0)
+imgLabel2.Image = "rbxassetid://0"
+imgLabel2.BackgroundTransparency = 1
+imgLabel2.Parent = image2
+
+local nameLabel = Instance.new("TextLabel")
+nameLabel.Text = "paulparasplaythis"
+nameLabel.Size = UDim2.new(1, 0, 0, 30)
+nameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+nameLabel.BackgroundTransparency = 1
+nameLabel.TextScaled = true
+nameLabel.Parent = image2
+
+local label2 = Instance.new("TextLabel")
+label2.Text = "UI Designer"
+label2.Size = UDim2.new(1, 0, 0, 30)
+label2.Position = UDim2.new(0, 0, 1, -30)
+label2.TextColor3 = Color3.fromRGB(255, 255, 255)
+label2.BackgroundTransparency = 1
+label2.TextScaled = true
+label2.Parent = image2
+
+local goBack = Instance.new("TextButton")
+goBack.Size = UDim2.new(0, 50, 0, 30)
+goBack.Position = UDim2.new(0, 10, 1, -40)
+goBack.Text = "<-"
+goBack.TextColor3 = Color3.fromRGB(255, 255, 255)
+goBack.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+goBack.TextScaled = true
+goBack.Parent = window2
+
+goBack.MouseButton1Click:Connect(function()
+	window2.Visible = false
+	window.Visible = true
+end)
+
+infoButton.MouseButton1Click:Connect(function()
+	window.Visible = false
+	window2.Visible = true
+end)
+
     local tabbuttons = Instance.new("ScrollingFrame")
     tabbuttons.Size = UDim2.new(0, 110, 1, -40)
     tabbuttons.Position = UDim2.new(0, 0, 0, 40)
