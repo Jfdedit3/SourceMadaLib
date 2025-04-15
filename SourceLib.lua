@@ -72,11 +72,11 @@ end)
     fpsLabel.TextStrokeColor3 = Color3.new(0, 0, 0)
     fpsLabel.Font = Enum.Font.SourceSansBold
     fpsLabel.TextSize = 22
-    fpsLabel.Size = UDim2.new(0, 210, 0, 30)
-    fpsLabel.Position = UDim2.new(1, -205, 0.5, -15)
+    fpsLabel.Size = UDim2.new(0.980, 0, 0, 40)
+    fpsLabel.Position = UDim2.new(0, 205, 0, 0)
     fpsLabel.TextXAlignment = Enum.TextXAlignment.Right
     fpsLabel.TextYAlignment = Enum.TextYAlignment.Center
-    fpsLabel.Parent = title2
+    fpsLabel.Parent = window
     fpsLabel.ZIndex = 3
 
 local fps = 0
