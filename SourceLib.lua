@@ -103,7 +103,8 @@ window2.Visible = false
 window2.Draggable = true
 window2.ScrollBarThickness = 5
 window2.ScrollingDirection = Enum.ScrollingDirection.Y
-window2.Parent = window
+window2.Parent = gui
+Instance.new("UICorner", window2).CornerRadius = UDim.new(0, 5)
 
 local corner2 = Instance.new("UICorner")
 corner2.CornerRadius = UDim.new(0, 12)
@@ -116,6 +117,7 @@ infoButton.Position = UDim2.new(1, 10, 0.5, -25)
 infoButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
 infoButton.Image = "rbxassetid://0"
 infoButton.Parent = window
+Instance.new("UICorner", infoButton).CornerRadius = UDim.new(0, 5)
 
 local title = Instance.new("TextLabel")
 title.Text = "OWNERS"
@@ -141,7 +143,7 @@ image1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 image1.ZIndex = 2
 image1.Parent = window2
 
-Instance.new("UICorner", image1).CornerRadius = UDim.new(0, 12)
+Instance.new("UICorner", image1).CornerRadius = UDim.new(0, 5)
 
 local imgLabel1 = Instance.new("ImageLabel")
 imgLabel1.Size = UDim2.new(1, 0, 1, 0)
@@ -165,11 +167,11 @@ image2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 image2.ZIndex = 2
 image2.Parent = window2
 
-Instance.new("UICorner", image2).CornerRadius = UDim.new(0, 12)
+Instance.new("UICorner", image2).CornerRadius = UDim.new(0, 5)
 
 local imgLabel2 = Instance.new("ImageLabel")
 imgLabel2.Size = UDim2.new(1, 0, 1, 0)
-imgLabel2.Image = "rbxassetid://0"
+imgLabel2.Image = "rbxassetid://96196242830717"
 imgLabel2.BackgroundTransparency = 1
 imgLabel2.Parent = image2
 
@@ -193,7 +195,7 @@ label2.Parent = image2
 local goBack = Instance.new("TextButton")
 goBack.Size = UDim2.new(0, 50, 0, 30)
 goBack.Position = UDim2.new(0, 10, 1, -40)
-goBack.Text = "<-"
+goBack.Text = "-"
 goBack.TextColor3 = Color3.fromRGB(255, 255, 255)
 goBack.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
 goBack.TextScaled = true
@@ -202,11 +204,13 @@ goBack.Parent = window2
 goBack.MouseButton1Click:Connect(function()
 	window2.Visible = false
 	window.Visible = true
+	infoButton.Visible = true
 end)
 
 infoButton.MouseButton1Click:Connect(function()
 	window.Visible = false
 	window2.Visible = true
+	infoButton.Visible = false
 end)
 
     local tabbuttons = Instance.new("ScrollingFrame")
