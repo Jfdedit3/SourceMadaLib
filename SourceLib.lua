@@ -94,6 +94,119 @@ game:GetService("RunService").RenderStepped:Connect(function()
 	end
 end)
 
+	local infoButton = Instance.new("ImageButton")
+infoButton.Parent = game.Players.LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
+infoButton.Position = UDim2.new(1, 0, 0, 0)
+infoButton.Size = UDim2.new(0, 50, 0, 50)
+infoButton.Image = "rbxassetid://YOUR_IMAGE_ID"
+
+local mainWindow = Instance.new("Frame")
+mainWindow.Parent = game.Players.LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
+mainWindow.Size = UDim2.new(0, 400, 0, 300)
+mainWindow.Position = UDim2.new(0.5, -200, 0.5, -150)
+mainWindow.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+mainWindow.Visible = false
+
+local newTab = Instance.new("ScrollingFrame")
+newTab.Parent = mainWindow
+newTab.Size = UDim2.new(1, 0, 1, 0)
+newTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+newTab.ScrollBarThickness = 8
+newTab.CanvasSize = UDim2.new(0, 0, 2, 0)
+
+local titleOwners = Instance.new("TextLabel")
+titleOwners.Parent = newTab
+titleOwners.Text = "Owners"
+titleOwners.Size = UDim2.new(0, 400, 0, 50)
+titleOwners.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleOwners.BackgroundTransparency = 1
+titleOwners.Font = Enum.Font.SourceSansBold
+titleOwners.TextSize = 30
+titleOwners.Position = UDim2.new(0, 0, 0, 0)
+
+local titleClude = Instance.new("TextLabel")
+titleClude.Parent = newTab
+titleClude.Text = "Clude"
+titleClude.Size = UDim2.new(0, 400, 0, 50)
+titleClude.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleClude.BackgroundTransparency = 1
+titleClude.Font = Enum.Font.SourceSansBold
+titleClude.TextSize = 25
+titleClude.Position = UDim2.new(0, 0, 0, 60)
+
+local imageFrame = Instance.new("Frame")
+imageFrame.Parent = newTab
+imageFrame.Size = UDim2.new(0, 400, 0, 200)
+imageFrame.Position = UDim2.new(0, 0, 0, 120)
+imageFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+imageFrame.ZIndex = 2
+
+local scriptMakerTitle = Instance.new("TextLabel")
+scriptMakerTitle.Parent = imageFrame
+scriptMakerTitle.Text = "Script Maker"
+scriptMakerTitle.Size = UDim2.new(0, 400, 0, 30)
+scriptMakerTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+scriptMakerTitle.BackgroundTransparency = 1
+scriptMakerTitle.Font = Enum.Font.SourceSansBold
+scriptMakerTitle.TextSize = 20
+scriptMakerTitle.Position = UDim2.new(0, 0, 0, 170)
+
+local bottomRow = Instance.new("Frame")
+bottomRow.Parent = newTab
+bottomRow.Size = UDim2.new(0, 400, 0, 150)
+bottomRow.Position = UDim2.new(0, 0, 0, 320)
+bottomRow.BackgroundTransparency = 1
+
+local ownerTitle = Instance.new("TextLabel")
+ownerTitle.Parent = bottomRow
+ownerTitle.Text = "Owner"
+ownerTitle.Size = UDim2.new(0, 400, 0, 50)
+ownerTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+ownerTitle.BackgroundTransparency = 1
+ownerTitle.Font = Enum.Font.SourceSansBold
+ownerTitle.TextSize = 25
+ownerTitle.Position = UDim2.new(0, 0, 0, 0)
+
+local paulParasTitle = Instance.new("TextLabel")
+paulParasTitle.Parent = bottomRow
+paulParasTitle.Text = "paulparasplaythis"
+paulParasTitle.Size = UDim2.new(0, 400, 0, 50)
+paulParasTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+paulParasTitle.BackgroundTransparency = 1
+paulParasTitle.Font = Enum.Font.SourceSansBold
+paulParasTitle.TextSize = 25
+paulParasTitle.Position = UDim2.new(0, 0, 0, 60)
+
+local uiDesignerTitle = Instance.new("TextLabel")
+uiDesignerTitle.Parent = bottomRow
+uiDesignerTitle.Text = "UI Designer"
+uiDesignerTitle.Size = UDim2.new(0, 400, 0, 50)
+uiDesignerTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+uiDesignerTitle.BackgroundTransparency = 1
+uiDesignerTitle.Font = Enum.Font.SourceSansBold
+uiDesignerTitle.TextSize = 25
+uiDesignerTitle.Position = UDim2.new(0, 0, 0, 120)
+
+local goBackButton = Instance.new("TextButton")
+goBackButton.Parent = newTab
+goBackButton.Text = "<-"
+goBackButton.Size = UDim2.new(0, 100, 0, 50)
+goBackButton.Position = UDim2.new(0, 0, 1, -60)
+goBackButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+goBackButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+goBackButton.Font = Enum.Font.SourceSansBold
+goBackButton.TextSize = 25
+
+infoButton.MouseButton1Click:Connect(function()
+    mainWindow.Visible = true
+    infoButton.Visible = false
+end)
+
+goBackButton.MouseButton1Click:Connect(function()
+    mainWindow.Visible = false
+    infoButton.Visible = true
+end)
+
     local tabbuttons = Instance.new("ScrollingFrame")
     tabbuttons.Size = UDim2.new(0, 110, 1, -40)
     tabbuttons.Position = UDim2.new(0, 0, 0, 40)
