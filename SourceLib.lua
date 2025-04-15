@@ -9,7 +9,7 @@ function Clude:CreateWindow(config)
 	
     local window = Instance.new("Frame")
     window.Size = UDim2.new(0, 0, 0, 0)
-    window.Position = UDim2.new(0.232, 0, -0.011, 0)
+    window.Position = UDim2.new(0.262, 0, -0.011, 0)
     window.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     window.Draggable = false
     window.Active = true
@@ -100,7 +100,7 @@ window2.Size = window.Size
 window2.Position = window.Position
 window2.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
 window2.Visible = false
-window2.Draggable = true
+window2.Draggable = false
 window2.ScrollBarThickness = 5
 window2.ScrollingDirection = Enum.ScrollingDirection.Y
 window2.Parent = gui
@@ -115,7 +115,7 @@ infoButton.Name = "InfoButton"
 infoButton.Size = UDim2.new(0, 50, 0, 50)
 infoButton.Position = UDim2.new(1, 10, 0.5, -25)
 infoButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
-infoButton.Image = "rbxassetid://0"
+infoButton.Image = "rbxassetid://123112467890707"
 infoButton.Parent = window
 Instance.new("UICorner", infoButton).CornerRadius = UDim.new(0, 5)
 
@@ -217,7 +217,7 @@ end)
     tabbuttons.Size = UDim2.new(0, 110, 1, -40)
     tabbuttons.Position = UDim2.new(0, 0, 0, 40)
     tabbuttons.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-    tabbuttons.ScrollBarThickness = 4
+    tabbuttons.ScrollBarThickness = 5
     tabbuttons.AutomaticCanvasSize = Enum.AutomaticSize.Y
     tabbuttons.CanvasSize = UDim2.new(0, 0, 0, 0)
     tabbuttons.Parent = window
@@ -248,7 +248,7 @@ end)
         scroll.Size = UDim2.new(1, 0, 1, 0)
         scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
         scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
-        scroll.ScrollBarThickness = 5
+        scroll.ScrollBarThickness = 7
         scroll.BackgroundTransparency = 1
         scroll.Parent = container
 
