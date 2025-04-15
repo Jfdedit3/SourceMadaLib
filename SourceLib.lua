@@ -118,15 +118,17 @@ infoButton.Position = UDim2.new(1, 10, 0.5, -25)
 infoButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
 infoButton.Image = "rbxassetid://123112467890707"
 infoButton.Parent = window
+infoButton.ZIndex = 3
 Instance.new("UICorner", infoButton).CornerRadius = UDim.new(0, 5)
 
-local title = Instance.new("TextLabel")
-title.Text = "OWNERS"
-title.Size = UDim2.new(1, 0, 0, 40)
-title.TextColor3 = Color3.fromRGB(255, 255, 255)
-title.BackgroundTransparency = 1
-title.TextScaled = true
-title.Parent = window2
+local titleq = Instance.new("TextLabel")
+titleq.Text = "OWNERS"
+titleq.Size = UDim2.new(1, 0, 0, 40)
+titleq.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleq.BackgroundTransparency = 1
+titleq.TextScaled = true
+titleq.Parent = window2
+titleq.ZIndex = 3
 
 local clude = Instance.new("TextLabel")
 clude.Text = "Clude"
@@ -136,12 +138,13 @@ clude.TextColor3 = Color3.fromRGB(255, 255, 255)
 clude.BackgroundTransparency = 1
 clude.TextScaled = true
 clude.Parent = window2
+clude.ZIndex = 3
 
 local image1 = Instance.new("Frame")
 image1.Size = UDim2.new(0.8, 0, 0.4, 0)
 image1.Position = UDim2.new(0.1, 0, 0.2, 0)
 image1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-image1.ZIndex = 2
+image1.ZIndex = 3
 image1.Parent = window2
 
 Instance.new("UICorner", image1).CornerRadius = UDim.new(0, 5)
@@ -151,6 +154,7 @@ imgLabel1.Size = UDim2.new(1, 0, 1, 0)
 imgLabel1.Image = "rbxassetid://134013226250881"
 imgLabel1.BackgroundTransparency = 1
 imgLabel1.Parent = image1
+imgLabel1.ZIndex = 4
 
 local label1 = Instance.new("TextLabel")
 label1.Text = "Script Maker"
@@ -160,14 +164,14 @@ label1.TextColor3 = Color3.fromRGB(255, 255, 255)
 label1.BackgroundTransparency = 1
 label1.TextScaled = true
 label1.Parent = image1
+label1.ZIndex = 3
 
 local image2 = Instance.new("Frame")
 image2.Size = UDim2.new(0.8, 0, 0.4, 0)
 image2.Position = UDim2.new(0.1, 0, 0.7, 0)
 image2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-image2.ZIndex = 2
+image2.ZIndex = 3
 image2.Parent = window2
-
 Instance.new("UICorner", image2).CornerRadius = UDim.new(0, 5)
 
 local imgLabel2 = Instance.new("ImageLabel")
@@ -175,6 +179,7 @@ imgLabel2.Size = UDim2.new(1, 0, 1, 0)
 imgLabel2.Image = "rbxassetid://96196242830717"
 imgLabel2.BackgroundTransparency = 1
 imgLabel2.Parent = image2
+imgLabel2.ZIndex = 4
 
 local nameLabel = Instance.new("TextLabel")
 nameLabel.Text = "paulparasplaythis"
@@ -183,6 +188,7 @@ nameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 nameLabel.BackgroundTransparency = 1
 nameLabel.TextScaled = true
 nameLabel.Parent = image2
+nameLabel.ZIndez = 3
 
 local label2 = Instance.new("TextLabel")
 label2.Text = "UI Designer"
@@ -192,6 +198,7 @@ label2.TextColor3 = Color3.fromRGB(255, 255, 255)
 label2.BackgroundTransparency = 1
 label2.TextScaled = true
 label2.Parent = image2
+label2.ZIndez = 3
 
 local goBack = Instance.new("TextButton")
 goBack.Size = UDim2.new(0, 50, 0, 30)
@@ -201,6 +208,7 @@ goBack.TextColor3 = Color3.fromRGB(255, 255, 255)
 goBack.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
 goBack.TextScaled = true
 goBack.Parent = window2
+goback.ZIndex = 5
 
 goBack.MouseButton1Click:Connect(function()
 	window2.Visible = false
