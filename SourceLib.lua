@@ -97,17 +97,18 @@ end)
 local window2 = Instance.new("ScrollingFrame")
 window2.Name = "Window2"
 window2.Size = UDim2.new(0, 500, 0, 360)
-window2.Position = window.Position
+window2.Position = UDim2.new(0.262, 0, -0.11, 0)
 window2.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
 window2.Visible = false
+window2.Active = true
 window2.Draggable = false
 window2.ScrollBarThickness = 5
 window2.ScrollingDirection = Enum.ScrollingDirection.Y
 window2.Parent = gui
-Instance.new("UICorner", window2).CornerRadius = UDim.new(0, 5)
-
+window2.ZIndex = 2
+	
 local corner2 = Instance.new("UICorner")
-corner2.CornerRadius = UDim.new(0, 12)
+corner2.CornerRadius = UDim.new(0, 5)
 corner2.Parent = window2
 
 local infoButton = Instance.new("ImageButton")
