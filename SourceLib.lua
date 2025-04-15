@@ -46,6 +46,7 @@ end)
     local title = Instance.new("TextLabel")
     title.Size = UDim2.new(1, 0, 0, 40)
     title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    title.Position = UDim2.new(0, 370, 0, 0)
     title.Text = config.Title or "Clude UI"
     title.TextColor3 = Color3.new(1, 1, 1)
     title.Font = Enum.Font.SourceSansBold
@@ -60,9 +61,9 @@ end)
     fpsLabel.TextStrokeTransparency = 0
     fpsLabel.TextStrokeColor3 = Color3.new(0, 0, 0)
     fpsLabel.Font = Enum.Font.SourceSansBold
-    fpsLabel.TextScaled = true
+    fpsLabel.TextSize = 22
     fpsLabel.Size = UDim2.new(0, 210, 0, 30)
-    fpsLabel.Position = UDim2.new(1, -215, 0.5, -15)
+    fpsLabel.Position = UDim2.new(1, -205, 0.5, -15)
     fpsLabel.TextXAlignment = Enum.TextXAlignment.Right
     fpsLabel.TextYAlignment = Enum.TextYAlignment.Center
     fpsLabel.Parent = title
