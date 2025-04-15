@@ -44,16 +44,26 @@ function Clude:CreateWindow(config)
 end)
 
     local title = Instance.new("TextLabel")
-    title.Size = UDim2.new(1, 0, 0, 40)
+    title.Size = UDim2.new(0.980, 0, 0, 40)
     title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    title.BackgroundTransparency = 1
     title.Text = config.Title or "Clude UI"
     title.TextColor3 = Color3.new(1, 1, 1)
     title.Font = Enum.Font.SourceSansBold
+    title.Position = UDim2.new(0, 10, 0, 0)
     title.TextSize = 22
     title.TextXAlignment = Enum.TextXAlignment.Left
     title.Parent = window
+    title.ZIndex = 3
     Instance.new("UICorner", title).CornerRadius = UDim.new(0, 5)
-
+ 
+    local title2 = Instance.new("Frame")
+    title2.Size = UDim2.new(1, 0, 0, 40)
+    title2.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    title2.Parent = title
+    title2.ZIndex = 2
+    Instance.new("UICorner", title2).CornerRadius = UDim.new(0, 5)
+    
     local fpsLabel = Instance.new("TextLabel")
     fpsLabel.Name = "FPSCounter"
     fpsLabel.BackgroundTransparency = 1
@@ -66,7 +76,8 @@ end)
     fpsLabel.Position = UDim2.new(1, -205, 0.5, -15)
     fpsLabel.TextXAlignment = Enum.TextXAlignment.Right
     fpsLabel.TextYAlignment = Enum.TextYAlignment.Center
-    fpsLabel.Parent = title
+    fpsLabel.Parent = title2
+    fpsLabel.ZIndex = 3
 
 local fps = 0
 local frames = 0
