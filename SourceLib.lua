@@ -110,6 +110,7 @@ local UserInputService = game:GetService("UserInputService")
 
 local LocalPlayer = Players.LocalPlayer
 local Camera = workspace.CurrentCamera
+local CameraButton = script.Parent -- change if needed
 
 local isCameraEffectOn = false
 local cameraConnection = nil
@@ -130,8 +131,10 @@ CameraButton.MouseButton1Click:Connect(function()
 		CameraButton.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 		Turn = 0
 
-		-- Enable first person
+		-- FORCE FIRST PERSON
 		LocalPlayer.CameraMode = Enum.CameraMode.LockFirstPerson
+		LocalPlayer.CameraMinZoomDistance = 0.5
+		LocalPlayer.CameraMaxZoomDistance = 0.5
 
 		cameraConnection = RunService.RenderStepped:Connect(function(dt)
 			local CT = tick()
@@ -160,15 +163,18 @@ CameraButton.MouseButton1Click:Connect(function()
 			Humanoid.CameraOffset = Vector3.new(0, 0, 0)
 		end
 
-		-- Reset camera roll
+		-- Reset camera
 		local cf = Camera.CFrame
 		local pos, look = cf.Position, cf.LookVector
 		Camera.CFrame = CFrame.lookAt(pos, pos + look, Vector3.new(0, 1, 0))
 
-		-- Restore classic camera
+		-- Restore third person
 		LocalPlayer.CameraMode = Enum.CameraMode.Classic
+		LocalPlayer.CameraMinZoomDistance = 8
+		LocalPlayer.CameraMaxZoomDistance = 400
 	end
 end)
+	
     local tabbuttons = Instance.new("ScrollingFrame")
     tabbuttons.Size = UDim2.new(0, 110, 1, -40)
     tabbuttons.Position = UDim2.new(0, 0, 0, 40)
