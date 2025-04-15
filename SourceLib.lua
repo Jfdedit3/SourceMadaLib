@@ -11,7 +11,7 @@ function Clude:CreateWindow(config)
     window.Size = UDim2.new(0, 0, 0, 0)
     window.Position = UDim2.new(0.232, 0, -0.011, 0)
     window.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-    window.Draggable = true
+    window.Draggable = false
     window.Active = true
     window.Parent = gui
     Instance.new("UICorner", window).CornerRadius = UDim.new(0, 5)
