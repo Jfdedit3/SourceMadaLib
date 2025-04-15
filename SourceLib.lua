@@ -130,11 +130,13 @@ CameraButton.MouseButton1Click:Connect(function()
 		CameraButton.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 		Turn = 0
 
+		-- Enable first person
+		LocalPlayer.CameraMode = Enum.CameraMode.LockFirstPerson
+
 		cameraConnection = RunService.RenderStepped:Connect(function(dt)
 			local CT = tick()
 
 			if Humanoid then
-				-- Camera bobbing
 				if Humanoid.MoveDirection.Magnitude > 0 then
 					local BobbleX = math.cos(CT * 5) * 0.25
 					local BobbleY = math.abs(math.sin(CT * 5)) * 0.25
@@ -145,7 +147,6 @@ CameraButton.MouseButton1Click:Connect(function()
 				end
 			end
 
-			-- Mouse sway
 			local MouseDelta = UserInputService:GetMouseDelta()
 			Turn = Turn + (math.clamp(MouseDelta.X, -6, 6) - Turn) * 6 * dt
 			Camera.CFrame = Camera.CFrame * CFrame.Angles(0, 0, math.rad(Turn))
@@ -159,10 +160,13 @@ CameraButton.MouseButton1Click:Connect(function()
 			Humanoid.CameraOffset = Vector3.new(0, 0, 0)
 		end
 
-		-- Reset camera roll to flat
+		-- Reset camera roll
 		local cf = Camera.CFrame
 		local pos, look = cf.Position, cf.LookVector
 		Camera.CFrame = CFrame.lookAt(pos, pos + look, Vector3.new(0, 1, 0))
+
+		-- Restore classic camera
+		LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end
 end)
     local tabbuttons = Instance.new("ScrollingFrame")
