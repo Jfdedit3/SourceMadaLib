@@ -188,7 +188,7 @@ nameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 nameLabel.BackgroundTransparency = 1
 nameLabel.TextScaled = true
 nameLabel.Parent = image2
-nameLabel.ZIndez = 3
+nameLabel.ZIndex = 3
 
 local label2 = Instance.new("TextLabel")
 label2.Text = "UI Designer"
