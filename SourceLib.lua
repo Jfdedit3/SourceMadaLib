@@ -96,7 +96,7 @@ end)
 
 local window2 = Instance.new("ScrollingFrame")
 window2.Name = "Window2"
-window2.Size = window.Size
+window2.Size = UDim2.new(0, 500, 0, 360)
 window2.Position = window.Position
 window2.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
 window2.Visible = false
