@@ -53,6 +53,36 @@ end)
     title.Parent = window
     Instance.new("UICorner", title).CornerRadius = UDim.new(0, 5)
 
+    local fpsLabel = Instance.new("TextLabel")
+    fpsLabel.Name = "FPSCounter"
+    fpsLabel.BackgroundTransparency = 1
+    fpsLabel.TextColor3 = Color3.new(1, 1, 1)
+    fpsLabel.TextStrokeTransparency = 0
+    fpsLabel.TextStrokeColor3 = Color3.new(0, 0, 0)
+    fpsLabel.Font = Enum.Font.SourceSansBold
+    fpsLabel.TextScaled = true
+    fpsLabel.Size = UDim2.new(0, 210, 0, 30)
+    fpsLabel.Position = UDim2.new(1, -215, 0.5, -15)
+    fpsLabel.TextXAlignment = Enum.TextXAlignment.Right
+    fpsLabel.TextYAlignment = Enum.TextYAlignment.Center
+    fpsLabel.Parent = title
+
+local fps = 0
+local frames = 0
+local lastTime = tick()
+
+game:GetService("RunService").RenderStepped:Connect(function()
+	frames = frames + 1
+	local currentTime = tick()
+	if currentTime - lastTime >= 1 then
+		fps = frames
+		frames = 0
+		lastTime = currentTime
+		local playerCount = #game:GetService("Players"):GetPlayers()
+		fpsLabel.Text = "FPS: "..fps.."  |  Players: "..playerCount
+	end
+end)
+
     local tabbuttons = Instance.new("ScrollingFrame")
     tabbuttons.Size = UDim2.new(0, 110, 1, -40)
     tabbuttons.Position = UDim2.new(0, 0, 0, 40)
