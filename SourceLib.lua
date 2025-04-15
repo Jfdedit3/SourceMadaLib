@@ -321,49 +321,79 @@ end
         Instance.new("UICorner", paragraph).CornerRadius = UDim.new(0, 5)
     end
 
-    function Clude:CreateDropdown(tab, title, options, callback)
-        local drop = Instance.new("TextButton")
-        drop.Size = UDim2.new(1, -20, 0, 40)
-        drop.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
-        drop.Text = title
-        drop.TextXAlignment = Enum.TextXAlignment.Left
-        drop.TextColor3 = Color3.new(1, 1, 1)
-        drop.Font = Enum.Font.GothamBold
-        drop.TextSize = 15
-        drop.Parent = tab
-        Instance.new("UICorner", drop).CornerRadius = UDim.new(0, 5)
+    local TweenService = game:GetService("TweenService")
 
-        local open = false
-        local list = {}
+function Clude:CreateDropdown(tab, title, options, callback)
+    local drop = Instance.new("TextButton")
+    drop.Size = UDim2.new(1, -20, 0, 40)
+    drop.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    drop.TextColor3 = Color3.new(1, 1, 1)
+    drop.Font = Enum.Font.GothamBold
+    drop.TextSize = 15
+    drop.TextXAlignment = Enum.TextXAlignment.Left
+    drop.Text = title .. " ▼"
+    drop.Parent = tab
+    Instance.new("UICorner", drop).CornerRadius = UDim.new(0, 5)
 
-        drop.MouseButton1Click:Connect(function()
-            open = not open
-            for _, item in ipairs(list) do
-                item.Visible = open
-            end
-        end)
+    local open = false
+    local list = {}
+    local spacing = 35
 
-        for _, option in ipairs(options) do
-            local btn = Instance.new("TextButton")
-            btn.Size = UDim2.new(1, -40, 0, 30)
-            btn.Position = UDim2.new(0, 20, 0, 0)
-            btn.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
-            btn.Text = option
-            btn.TextColor3 = Color3.new(1, 1, 1)
-            btn.Font = Enum.Font.Gotham
-            btn.TextSize = 14
-            btn.Visible = false
-            btn.Parent = tab
-            Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 5)
-            table.insert(list, btn)
-            btn.MouseButton1Click:Connect(function()
-                callback(option)
-                drop.Text = title .. ": " .. option
-                for _, b in ipairs(list) do b.Visible = false end
-                open = false
-            end)
+    local function updateDropdownPosition()
+        for i, item in ipairs(list) do
+            item.Position = UDim2.new(0, 20, 0, drop.Position.Y.Offset + drop.Size.Y.Offset + 5 + ((i - 1) * spacing))
         end
     end
+
+    drop.MouseButton1Click:Connect(function()
+        open = not open
+        drop.Text = open and (title .. " ▲") or (title .. " ▼")
+
+        for i, item in ipairs(list) do
+            if open then
+                item.Visible = true
+                item.Position = UDim2.new(0, 20, 0, drop.Position.Y.Offset + drop.Size.Y.Offset)
+                local targetPos = UDim2.new(0, 20, 0, drop.Position.Y.Offset + drop.Size.Y.Offset + 5 + ((i - 1) * spacing))
+                TweenService:Create(item, TweenInfo.new(0.2, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {Position = targetPos}):Play()
+            else
+                local tween = TweenService:Create(item, TweenInfo.new(0.15, Enum.EasingStyle.Sine, Enum.EasingDirection.In), {
+                    Position = UDim2.new(0, 20, 0, drop.Position.Y.Offset + drop.Size.Y.Offset)
+                })
+                tween:Play()
+                tween.Completed:Connect(function()
+                    item.Visible = false
+                end)
+            end
+        end
+    end)
+
+    for i, option in ipairs(options) do
+        local btn = Instance.new("TextButton")
+        btn.Size = UDim2.new(1, -40, 0, 30)
+        btn.Position = UDim2.new(0, 20, 0, 0)
+        btn.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
+        btn.Text = option
+        btn.TextColor3 = Color3.new(1, 1, 1)
+        btn.Font = Enum.Font.Gotham
+        btn.TextSize = 14
+        btn.Visible = false
+        btn.Parent = tab
+        Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 5)
+        table.insert(list, btn)
+
+        btn.MouseButton1Click:Connect(function()
+            callback(option)
+            drop.Text = title .. ": " .. option .. " ▼"
+            open = false
+            for _, b in ipairs(list) do
+                TweenService:Create(b, TweenInfo.new(0.15), {Position = UDim2.new(0, 20, 0, drop.Position.Y.Offset + drop.Size.Y.Offset)}):Play()
+                task.delay(0.15, function() b.Visible = false end)
+            end
+        end)
+    end
+
+    updateDropdownPosition()
+	end
     
     return Clude
 end
