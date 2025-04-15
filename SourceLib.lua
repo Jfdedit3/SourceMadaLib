@@ -218,7 +218,17 @@ GraphicsButton.MouseButton1Click:Connect(function()
 	end
 end)
 
-	local cameraScript
+local CameraButton = Instance.new("ImageButton")
+CameraButton.Name = "CameraButton"
+CameraButton.Size = UDim2.new(0, 50, 0, 50)
+CameraButton.Position = UDim2.new(1, 10, 0.5, 30) -- 50px below GraphicsButton
+CameraButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+CameraButton.Image = "rbxassetid://123112467890707" -- change this to your camera icon
+CameraButton.Parent = window
+CameraButton.ZIndex = 3
+Instance.new("UICorner", CameraButton).CornerRadius = UDim.new(0, 5)
+
+local cameraScript
 local isCameraOn = false
 
 CameraButton.MouseButton1Click:Connect(function()
