@@ -75,6 +75,14 @@ this is the paragraph that you can write a letter for your dad in jail
 ```lua
 win:CreateParagraph(tab, "This is a longer paragraph of text that can span multiple lines.")
 ```
+
+# Color Picker
+what color is your milk?
+```lua
+Clude:CreateColorPicker(myTab, "Title", Color3.fromRGB(255, 0, 0), function(selectedColor)
+    print("Selected color:", selectedColor)
+end)
+```
 # Create Dropdown 
 this is dropdown that you can add multiple buttons parented in one button
 
