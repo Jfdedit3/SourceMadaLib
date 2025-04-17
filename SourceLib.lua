@@ -9,7 +9,7 @@ function Clude:CreateWindow(config)
 	
     local window = Instance.new("Frame")
     window.Size = UDim2.new(0, 0, 0, 0)
-    window.Position = UDim2.new(0.262, 0, -0.011, 0)
+    window.Position = UDim2.new(0.25, 0, 0.2, 0)
     window.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     window.Draggable = false
     window.Active = true
