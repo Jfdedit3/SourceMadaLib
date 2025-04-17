@@ -227,6 +227,39 @@ end)
     end)
     end
 
+	function createIntro()
+    local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer:WaitForChild("PlayerGui"))
+    screenGui.IgnoreGuiInset = true
+
+    local frame = Instance.new("Frame", screenGui)
+    frame.Size = UDim2.new(1, 0, 1, 0)
+    frame.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+
+    local title = Instance.new("TextLabel", frame)
+    title.Size = UDim2.new(0, 400, 0, 50)
+    title.Position = UDim2.new(0.5, -200, 0.4, 0)
+    title.Text = "Clude UI Library"
+    title.TextColor3 = Color3.new(1, 1, 1)
+    title.TextScaled = true
+    title.Font = Enum.Font.SourceSansBold
+    title.BackgroundTransparency = 1
+
+    local loading = Instance.new("TextLabel", frame)
+    loading.Size = UDim2.new(0, 200, 0, 30)
+    loading.Position = UDim2.new(0.5, -100, 0.4, 60)
+    loading.Text = "Loading..."
+    loading.TextColor3 = Color3.new(1, 1, 1)
+    loading.TextScaled = true
+    loading.Font = Enum.Font.SourceSans
+    loading.BackgroundTransparency = 1
+
+    task.delay(5, function()
+        screenGui:Destroy()
+    end)
+end
+
+createIntro()
+
     function Clude:CreateSlider(tab, text, min, max, default, callback)  
     local frame = Instance.new("Frame")  
     frame.Size = UDim2.new(1, -20, 0, 50)  
