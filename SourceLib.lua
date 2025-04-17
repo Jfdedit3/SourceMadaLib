@@ -56,7 +56,7 @@ end)
     title.Text = config.Title or "Clude UI"
     title.TextColor3 = Color3.new(1, 1, 1)
     title.Font = Enum.Font.SourceSansBold
-    title.Position = UDim2.new(0, 13, 0, -5)
+    title.Position = UDim2.new(0, 13, 0, 0)
     title.TextScaled = true
     title.TextXAlignment = Enum.TextXAlignment.Left
     title.Parent = window
@@ -79,7 +79,7 @@ end)
     fpsLabel.Font = Enum.Font.SourceSansBold
     fpsLabel.TextScaled = true
     fpsLabel.Size = UDim2.new(0.980, 0, 0, 20)
-    fpsLabel.Position = UDim2.new(0, -3, 0, -5)
+    fpsLabel.Position = UDim2.new(0, -3, 0, 0)
     fpsLabel.TextXAlignment = Enum.TextXAlignment.Right
     fpsLabel.TextYAlignment = Enum.TextYAlignment.Center
     fpsLabel.Parent = window
