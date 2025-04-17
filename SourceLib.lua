@@ -51,13 +51,13 @@ function Clude:CreateWindow(config)
 end)
 
     local title = Instance.new("TextLabel")
-    title.Size = UDim2.new(0.980, 0, 0, 40)
+    title.Size = UDim2.new(0.980, 0, 0, 25)
     title.BackgroundTransparency = 1
     title.Text = config.Title or "Clude UI"
     title.TextColor3 = Color3.new(1, 1, 1)
     title.Font = Enum.Font.SourceSansBold
-    title.Position = UDim2.new(0, 13, 0, 0)
-    title.TextSize = 22
+    title.Position = UDim2.new(0, 13, 0, 15)
+    title.TextScaled = true
     title.TextXAlignment = Enum.TextXAlignment.Left
     title.Parent = window
     title.ZIndex = 3
@@ -78,8 +78,8 @@ end)
     fpsLabel.TextStrokeColor3 = Color3.new(0, 0, 0)
     fpsLabel.Font = Enum.Font.SourceSansBold
     fpsLabel.TextSize = 22
-    fpsLabel.Size = UDim2.new(0.980, 0, 0, 40)
-    fpsLabel.Position = UDim2.new(0, -3, 0, 0)
+    fpsLabel.Size = UDim2.new(0.980, 0, 0, 25)
+    fpsLabel.Position = UDim2.new(0, -3, 0, 15)
     fpsLabel.TextXAlignment = Enum.TextXAlignment.Right
     fpsLabel.TextYAlignment = Enum.TextYAlignment.Center
     fpsLabel.Parent = window
