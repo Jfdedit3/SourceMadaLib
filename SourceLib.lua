@@ -112,8 +112,8 @@ end)
     tabfolder.Name = "Tabs"
 
     TweenService:Create(window, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
-    Size = UDim2.new(0, 500, 0, 360),
-    Position = UDim2.new(0.232, 0, -0.11, 0)
+    Size = UDim2.new(0.5, 0, 0.55, 0),
+    Position = UDim2.new(0.25, 0, 0.2, 0)
 }):Play()
     
     function Clude:CreateTab(name)
