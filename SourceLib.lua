@@ -8,7 +8,7 @@ function Clude:CreateWindow(config)
     gui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 	
     local window = Instance.new("Frame")
-    window.Size = UDim2.new(0.694, 0, 0.81, 0)
+    window.Size = UDim2.new(0, 500, 0, 360)
     window.Position = UDim2.new(0.262, 0, -0.011, 0)
     window.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     window.Draggable = false
