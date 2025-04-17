@@ -16,7 +16,7 @@ function Clude:CreateWindow(config)
 	
     local window = Instance.new("Frame")
     window.Size = UDim2.new(0, 0, 0, 0)
-    window.Position = UDim2.new(0.25, 0, -0.04, 0)
+    window.Position = UDim2.new(0.21, 0, -0.04, 0)
     window.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     window.Draggable = false
     window.Active = true
@@ -119,7 +119,7 @@ end)
     tabfolder.Name = "Tabs"
 
     TweenService:Create(window, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
-    Size = UDim2.new(0.525, 0, 1, 0),
+    Size = UDim2.new(0.565, 0, 1, 0),
     Position = UDim2.new(0.25, 0, -0.04, 0)
 }):Play()
     
