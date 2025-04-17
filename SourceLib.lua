@@ -50,7 +50,7 @@ end)
     title.TextColor3 = Color3.new(1, 1, 1)
     title.Font = Enum.Font.SourceSansBold
     title.Position = UDim2.new(0, 13, 0, 0)
-    title.TextScaled = true
+    title.TextSize = 22
     title.TextXAlignment = Enum.TextXAlignment.Left
     title.Parent = window
     title.ZIndex = 3
@@ -70,7 +70,7 @@ end)
     fpsLabel.TextStrokeTransparency = 0
     fpsLabel.TextStrokeColor3 = Color3.new(0, 0, 0)
     fpsLabel.Font = Enum.Font.SourceSansBold
-    fpsLabel.TextScaled = true
+    fpsLabel.TextSize = 22
     fpsLabel.Size = UDim2.new(0.980, 0, 0, 40)
     fpsLabel.Position = UDim2.new(0, -3, 0, 0)
     fpsLabel.TextXAlignment = Enum.TextXAlignment.Right
@@ -238,7 +238,7 @@ end)
     local title = Instance.new("TextLabel", frame)
     title.Size = UDim2.new(0, 400, 0, 50)
     title.Position = UDim2.new(0.5, -200, 0.4, 0)
-    title.Text = "Clude UI Library"
+    title.Text = "CludeHub Library"
     title.TextColor3 = Color3.new(1, 1, 1)
     title.TextScaled = true
     title.Font = Enum.Font.SourceSansBold
@@ -380,7 +380,7 @@ end
     labelText.Text = label
     labelText.TextColor3 = Color3.new(1, 1, 1)
     labelText.Font = Enum.Font.GothamBold
-    labelText.TextScaled = true
+    labelText.TextSize = 22
     labelText.TextXAlignment = Enum.TextXAlignment.Left
     labelText.Parent = frame
 
