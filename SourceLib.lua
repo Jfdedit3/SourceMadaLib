@@ -227,46 +227,6 @@ end)
     end)
     end
 
-	local function createImageBlock(parent, imageId, descriptionText)
-    local frame = Instance.new("Frame")
-    frame.Size = UDim2.new(0, 300, 0, 100)
-    frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-    frame.Parent = parent
-
-    -- ImageLabel
-    local image = Instance.new("ImageLabel")
-    image.Size = UDim2.new(0, 70, 0, 70)
-    image.Position = UDim2.new(0.5, -image.Size.X.Offset / 2 - 15, 0.5, -image.Size.Y.Offset / 2)
-    image.BackgroundTransparency = 1
-    image.Image = "rbxassetid://" .. tostring(imageId)
-    image.Parent = frame
-
-    -- UICorner
-    local corner = Instance.new("UICorner")
-    corner.CornerRadius = UDim.new(0, 5)
-    corner.Parent = image
-
-    -- UIStroke
-    local stroke = Instance.new("UIStroke")
-    stroke.Color = Color3.fromRGB(0, 0, 0)
-    stroke.Thickness = 1
-    stroke.Parent = image
-
-    -- Description Text
-    local desc = Instance.new("TextLabel")
-    desc.Size = UDim2.new(0, 170, 0, 70)
-    desc.Position = UDim2.new(0, image.Position.X.Offset + image.Size.X.Offset + 10, 0.5, -35)
-    desc.BackgroundTransparency = 1
-    desc.Text = descriptionText
-    desc.TextColor3 = Color3.fromRGB(255, 255, 255)
-    desc.Font = Enum.Font.SourceSansBold
-    desc.TextSize = 18
-    desc.TextXAlignment = Enum.TextXAlignment.Left
-    desc.Parent = frame
-
-    return frame
-end
-
     function Clude:CreateSlider(tab, text, min, max, default, callback)  
     local frame = Instance.new("Frame")  
     frame.Size = UDim2.new(1, -20, 0, 50)  
