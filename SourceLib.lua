@@ -380,7 +380,7 @@ end
     labelText.Text = label
     labelText.TextColor3 = Color3.new(1, 1, 1)
     labelText.Font = Enum.Font.GothamBold
-    labelText.TextSize = 22
+    labelText.TextSize = 15
     labelText.TextXAlignment = Enum.TextXAlignment.Left
     labelText.Parent = frame
 
