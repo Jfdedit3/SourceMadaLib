@@ -9,7 +9,7 @@ function Clude:CreateWindow(config)
 	
     local window = Instance.new("Frame")
     window.Size = UDim2.new(0, 0, 0, 0)
-    window.Position = UDim2.new(0.25, 0, -0.026, 0)
+    window.Position = UDim2.new(0.25, 0, -0.04, 0)
     window.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     window.Draggable = false
     window.Active = true
@@ -50,7 +50,7 @@ end)
     title.TextColor3 = Color3.new(1, 1, 1)
     title.Font = Enum.Font.SourceSansBold
     title.Position = UDim2.new(0, 13, 0, 0)
-    title.TextSize = 22
+    title.TextScaled = true
     title.TextXAlignment = Enum.TextXAlignment.Left
     title.Parent = window
     title.ZIndex = 3
@@ -70,7 +70,7 @@ end)
     fpsLabel.TextStrokeTransparency = 0
     fpsLabel.TextStrokeColor3 = Color3.new(0, 0, 0)
     fpsLabel.Font = Enum.Font.SourceSansBold
-    fpsLabel.TextSize = 22
+    fpsLabel.TextScaled = true
     fpsLabel.Size = UDim2.new(0.980, 0, 0, 40)
     fpsLabel.Position = UDim2.new(0, -3, 0, 0)
     fpsLabel.TextXAlignment = Enum.TextXAlignment.Right
@@ -113,7 +113,7 @@ end)
 
     TweenService:Create(window, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
     Size = UDim2.new(0.525, 0, 1, 0),
-    Position = UDim2.new(0.25, 0, -0.026, 0)
+    Position = UDim2.new(0.25, 0, -0.04, 0)
 }):Play()
     
     function Clude:CreateTab(name)
@@ -293,7 +293,7 @@ createIntro()
     end)  
 end
 
-	function Clude:CreateColorPicker(tab, labelText, defaultColor, callback)
+    function Clude:CreateColorPicker(tab, labelText, defaultColor, callback)
     local container = Instance.new("Frame")
     container.Size = UDim2.new(1, -20, 0, 120)
     container.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
@@ -380,7 +380,7 @@ end
     labelText.Text = label
     labelText.TextColor3 = Color3.new(1, 1, 1)
     labelText.Font = Enum.Font.GothamBold
-    labelText.TextSize = 15
+    labelText.TextScaled = true
     labelText.TextXAlignment = Enum.TextXAlignment.Left
     labelText.Parent = frame
 
