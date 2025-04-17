@@ -112,7 +112,7 @@ end)
     tabfolder.Name = "Tabs"
 
     TweenService:Create(window, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
-    Size = UDim2.new(0.5, 0, 0.55, 0),
+    Size = UDim2.new(0.5, 0, 0.8, 0),
     Position = UDim2.new(0.25, 0, 0.2, 0)
 }):Play()
     
