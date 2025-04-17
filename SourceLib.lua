@@ -49,7 +49,7 @@ end)
     title.Text = config.Title or "Clude UI"
     title.TextColor3 = Color3.new(1, 1, 1)
     title.Font = Enum.Font.SourceSansBold
-    title.Position = UDim2.new(0, 10, 0, 0)
+    title.Position = UDim2.new(0, 13, 0, 0)
     title.TextSize = 22
     title.TextXAlignment = Enum.TextXAlignment.Left
     title.Parent = window
@@ -59,7 +59,7 @@ end)
     local title2 = Instance.new("Frame")
     title2.Size = UDim2.new(1, 0, 0, 40)
     title2.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    title2.Parent = title
+    title2.Parent = window
     title2.ZIndex = 2
     Instance.new("UICorner", title2).CornerRadius = UDim.new(0, 5)
     
