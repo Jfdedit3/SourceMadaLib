@@ -1,4 +1,11 @@
 local TweenService = game:GetService("TweenService")
+local player = game.Players.LocalPlayer
+local existingGui = player.PlayerGui:FindFirstChild("CludeGui")
+
+if existingGui then
+    existingGui:Destroy()
+end
+
 local Clude = {}
 
 function Clude:CreateWindow(config)
