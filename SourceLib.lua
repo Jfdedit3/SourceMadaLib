@@ -151,7 +151,7 @@ end)
         tabButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
         tabButton.TextColor3 = Color3.new(1, 1, 1)
         tabButton.Font = Enum.Font.SourceSansBold
-        tabButton.TextSize = 16
+        tabButton.TextScaled = true
         tabButton.Parent = tabbuttons
         Instance.new("UICorner", tabButton).CornerRadius = UDim.new(0, 5)
 
@@ -399,7 +399,7 @@ end
     input.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
     input.TextColor3 = Color3.new(1, 1, 1)
     input.Font = Enum.Font.Gotham
-    input.TextSize = 15
+    input.TextScaled = true
     input.Parent = frame
     Instance.new("UICorner", input).CornerRadius = UDim.new(0, 5)
 
