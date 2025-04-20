@@ -53,10 +53,10 @@ end)
     local title = Instance.new("TextLabel")
     title.Size = UDim2.new(0.980, 0, 0, 20)
     title.BackgroundTransparency = 1
-    title.Text = config.Title or "Clude UI"
+    title.Text = config.Title or "Clude Library"
     title.TextColor3 = Color3.new(1, 1, 1)
     title.Font = Enum.Font.SourceSansBold
-    title.Position = UDim2.new(0, 13, 0, 5)
+    title.Position = UDim2.new(0, 13, 0, 10)
     title.TextScaled = true
     title.TextXAlignment = Enum.TextXAlignment.Left
     title.Parent = window
@@ -79,7 +79,7 @@ end)
     fpsLabel.Font = Enum.Font.SourceSansBold
     fpsLabel.TextScaled = true
     fpsLabel.Size = UDim2.new(0.980, 0, 0, 20)
-    fpsLabel.Position = UDim2.new(0, -3, 0, 5)
+    fpsLabel.Position = UDim2.new(0, -3, 0, 10)
     fpsLabel.TextXAlignment = Enum.TextXAlignment.Right
     fpsLabel.TextYAlignment = Enum.TextYAlignment.Center
     fpsLabel.Parent = window
@@ -151,7 +151,7 @@ end)
         tabButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
         tabButton.TextColor3 = Color3.new(1, 1, 1)
         tabButton.Font = Enum.Font.SourceSansBold
-        tabButton.TextSize = 22
+        tabButton.TextSize = 18
         tabButton.Parent = tabbuttons
         Instance.new("UICorner", tabButton).CornerRadius = UDim.new(0, 5)
 
