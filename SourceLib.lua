@@ -151,7 +151,7 @@ end)
         tabButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
         tabButton.TextColor3 = Color3.new(1, 1, 1)
         tabButton.Font = Enum.Font.SourceSansBold
-        tabButton.TextScaled = true
+        tabButton.TextSize = 22
         tabButton.Parent = tabbuttons
         Instance.new("UICorner", tabButton).CornerRadius = UDim.new(0, 5)
 
@@ -245,7 +245,7 @@ end)
     local title = Instance.new("TextLabel", frame)
     title.Size = UDim2.new(0, 400, 0, 50)
     title.Position = UDim2.new(0.5, -200, 0.4, 0)
-    title.Text = "CludeHub Library"
+    title.Text = "CludeHub"
     title.TextColor3 = Color3.new(1, 1, 1)
     title.TextScaled = true
     title.Font = Enum.Font.SourceSansBold
