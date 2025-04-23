@@ -28,9 +28,8 @@ function Clude:CreateWindow(config)
 local window = Instance.new("ImageLabel")
 window.Size = UDim2.new(0, 0, 0, 0)
 window.Position = UDim2.new(0.21, 0, -0.04, 0)
-window.BackgroundColor3 = colors.window
 window.BackgroundTransparency = 1
-window.Image = "rbxassetid://yourImageIdHere"
+window.Image = "rbxassetid://113408885567053"
 window.Draggable = false
 window.Active = true
 window.Parent = gui
