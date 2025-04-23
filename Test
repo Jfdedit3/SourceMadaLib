@@ -6,15 +6,14 @@ if existingGui then
     existingGui:Destroy()
 end
 
-local colors = {
-	window = Color3.fromRGB(15, 25, 35),         -- Deep ocean background
-	title2 = Color3.fromRGB(30, 40, 50),         -- Lighter sea foam for titles
-	tabbuttons = Color3.fromRGB(20, 30, 40),     -- Cool water-like section tabs
-	tabButton = Color3.fromRGB(100, 150, 200),   -- Crystal clear blue button
-	container = Color3.fromRGB(35, 50, 65),      -- Smooth current container
-	button = Color3.fromRGB(50, 120, 190),       -- Bright and refreshing button blue
-	toggle = Color3.fromRGB(70, 130, 200),       -- Calming toggle blue
-	box = Color3.fromRGB(45, 70, 95)             -- Deep water input box
+local colors = {        
+	title2 = Color3.fromRGB(25, 25, 25),         
+	tabbuttons = Color3.fromRGB(20, 30, 40),    
+	tabButton = Color3.fromRGB(100, 150, 200),   
+	container = Color3.fromRGB(35, 50, 65),     
+	button = Color3.fromRGB(50, 120, 190),       
+	toggle = Color3.fromRGB(70, 130, 200),       
+	box = Color3.fromRGB(45, 70, 95)             
 }
 
 local Clude = {}
@@ -77,7 +76,7 @@ end)
  
     local title2 = Instance.new("ImageLabel")
     title2.Size = UDim2.new(1, 0, 0, 40)
-    title2.Image = "rbxassetid://113408885567053"
+    title2.BackgroundColor3 = colors.title2
     title2.Parent = window
     title2.ZIndex = 2
     Instance.new("UICorner", title2).CornerRadius = UDim.new(0, 5)
