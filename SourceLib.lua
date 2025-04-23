@@ -6,6 +6,17 @@ if existingGui then
     existingGui:Destroy()
 end
 
+local colors = {
+	window = Color3.fromRGB(36, 36, 48),
+	title2 = Color3.fromRGB(44, 44, 56),
+	tabbuttons = Color3.fromRGB(32, 32, 42),
+	tabButton = Color3.fromRGB(70, 85, 100),
+	container = Color3.fromRGB(45, 50, 60),
+	button = Color3.fromRGB(60, 85, 105),
+	toggle = Color3.fromRGB(60, 85, 105),
+	box = Color3.fromRGB(55, 55, 65)
+}
+
 local Clude = {}
 
 function Clude:CreateWindow(config)
@@ -17,7 +28,7 @@ function Clude:CreateWindow(config)
     local window = Instance.new("Frame")
     window.Size = UDim2.new(0, 0, 0, 0)
     window.Position = UDim2.new(0.21, 0, -0.04, 0)
-    window.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    window.BackgroundColor3 = colors.window
     window.Draggable = false
     window.Active = true
     window.Parent = gui
@@ -36,7 +47,7 @@ function Clude:CreateWindow(config)
     closeOpenButton.TextColor3 = Color3.new(1, 1, 1)
     closeOpenButton.Font = Enum.Font.SourceSansBold
     closeOpenButton.TextSize = 23
-    closeOpenButton.ZIndex = 3
+    closeOpenButton.ZIndex = 255
     closeOpenButton.Parent = gui
     Instance.new("UICorner", closeOpenButton).CornerRadius = UDim.new(0, 5)
 
@@ -65,7 +76,7 @@ end)
  
     local title2 = Instance.new("Frame")
     title2.Size = UDim2.new(1, 0, 0, 40)
-    title2.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    title2.BackgroundColor3 = colors.title2
     title2.Parent = window
     title2.ZIndex = 2
     Instance.new("UICorner", title2).CornerRadius = UDim.new(0, 5)
@@ -104,7 +115,7 @@ end)
     local tabbuttons = Instance.new("ScrollingFrame")
     tabbuttons.Size = UDim2.new(0, 110, 1, -40)
     tabbuttons.Position = UDim2.new(0, 0, 0, 40)
-    tabbuttons.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+    tabbuttons.BackgroundColor3 = colors.tabbuttons
     tabbuttons.ScrollBarThickness = 5
     tabbuttons.AutomaticCanvasSize = Enum.AutomaticSize.Y
     tabbuttons.CanvasSize = UDim2.new(0, 0, 0, 0)
@@ -127,7 +138,7 @@ end)
         local container = Instance.new("Frame")
         container.Size = UDim2.new(1, -120, 1, -50)
         container.Position = UDim2.new(0, 114, 0, 45)
-        container.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        container.BackgroundColor3 = colors.container
         container.Visible = false
         container.Parent = tabfolder
         Instance.new("UICorner", container).CornerRadius = UDim.new(0, 5)
@@ -148,7 +159,7 @@ end)
         local tabButton = Instance.new("TextButton")
         tabButton.Size = UDim2.new(1, -10, 0, 32)
         tabButton.Text = name
-        tabButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        tabButton.BackgroundColor3 = colors.tabButton
         tabButton.TextColor3 = Color3.new(1, 1, 1)
         tabButton.Font = Enum.Font.SourceSansBold
         tabButton.TextSize = 18
@@ -168,7 +179,7 @@ end)
     function Clude:CreateButton(tab, text, callback)
         local button = Instance.new("TextButton")
         button.Size = UDim2.new(1, -20, 0, 40)
-        button.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+        button.BackgroundColor3 = colors.button
         button.Text = text
         button.TextXAlignment = Enum.TextXAlignment.Left
         button.TextColor3 = Color3.new(1, 1, 1)
@@ -182,7 +193,7 @@ end)
     function Clude:CreateToggle(tab, text, default, callback)
     local toggle = Instance.new("TextButton")
     toggle.Size = UDim2.new(1, -20, 0, 50)
-    toggle.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    toggle.BackgroundColor3 = colors.toggle
     toggle.TextColor3 = Color3.new(1, 1, 1)
     toggle.Font = Enum.Font.GothamBold
     toggle.TextSize = 14
@@ -195,7 +206,7 @@ end)
     local box = Instance.new("Frame")
     box.Size = UDim2.new(0, 50, 0, 24)
     box.Position = UDim2.new(1, -60, 0.5, -12)
-    box.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    box.BackgroundColor3 = colors.box
     box.Parent = toggle
     Instance.new("UICorner", box).CornerRadius = UDim.new(1, 0)
 
