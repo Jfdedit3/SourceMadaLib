@@ -25,14 +25,16 @@ function Clude:CreateWindow(config)
     gui.ResetOnSpawn = false
     gui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 	
-    local window = Instance.new("Frame")
-    window.Size = UDim2.new(0, 0, 0, 0)
-    window.Position = UDim2.new(0.21, 0, -0.04, 0)
-    window.BackgroundColor3 = colors.window
-    window.Draggable = false
-    window.Active = true
-    window.Parent = gui
-    Instance.new("UICorner", window).CornerRadius = UDim.new(0, 5)
+local window = Instance.new("ImageLabel")
+window.Size = UDim2.new(0, 0, 0, 0)
+window.Position = UDim2.new(0.21, 0, -0.04, 0)
+window.BackgroundColor3 = colors.window
+window.BackgroundTransparency = 1
+window.Image = "rbxassetid://yourImageIdHere"
+window.Draggable = false
+window.Active = true
+window.Parent = gui
+Instance.new("UICorner", window).CornerRadius = UDim.new(0, 5)
 
     local uiStroke = Instance.new("UIStroke")
     uiStroke.Thickness = 3
