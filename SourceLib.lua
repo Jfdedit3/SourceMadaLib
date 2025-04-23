@@ -7,14 +7,14 @@ if existingGui then
 end
 
 local colors = {
-	window = Color3.fromRGB(20, 20, 30),         -- Dark matte background
-	title2 = Color3.fromRGB(30, 30, 45),         -- Slightly lighter for headers
-	tabbuttons = Color3.fromRGB(25, 25, 35),     -- Soft border between sections
-	tabButton = Color3.fromRGB(90, 100, 130),    -- Smooth steel blue
-	container = Color3.fromRGB(35, 40, 55),      -- Clean inner section
-	button = Color3.fromRGB(50, 115, 175),       -- Vibrant button blue
-	toggle = Color3.fromRGB(90, 140, 190),       -- Slightly brighter for toggles
-	box = Color3.fromRGB(40, 45, 60)             -- Subtle contrast for input boxes
+	window = Color3.fromRGB(28, 12, 8),          -- Dark ember background
+	title2 = Color3.fromRGB(40, 16, 10),         -- Slightly brighter header
+	tabbuttons = Color3.fromRGB(45, 20, 12),     -- Tabs with a burnt touch
+	tabButton = Color3.fromRGB(255, 100, 50),    -- Molten orange-red
+	container = Color3.fromRGB(50, 24, 15),      -- Deep fiery section
+	button = Color3.fromRGB(255, 80, 30),        -- Bright flame button
+	toggle = Color3.fromRGB(255, 110, 60),       -- Ember-orange toggle
+	box = Color3.fromRGB(60, 30, 20)             -- Smoked box input
 }
 
 local Clude = {}
