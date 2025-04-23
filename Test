@@ -75,13 +75,18 @@ end)
     title.ZIndex = 3
     Instance.new("UICorner", title).CornerRadius = UDim.new(0, 5)
  
-    local title2 = Instance.new("Frame")
+    local title2 = Instance.new("ImageLabel")
     title2.Size = UDim2.new(1, 0, 0, 40)
-    title2.BackgroundColor3 = colors.title2
+    title2.Image = "rbxassetid://113408885567053"
     title2.Parent = window
     title2.ZIndex = 2
     Instance.new("UICorner", title2).CornerRadius = UDim.new(0, 5)
-    
+
+    local uiStroket = Instance.new("UIStroke")
+    uiStroket.Thickness = 2
+    uiStroket.Color = Color3.fromRGB(0, 0, 0)  -- Black stroke
+    uiStroket.Parent = title2
+
     local fpsLabel = Instance.new("TextLabel")
     fpsLabel.Name = "FPSCounter"
     fpsLabel.BackgroundTransparency = 1
