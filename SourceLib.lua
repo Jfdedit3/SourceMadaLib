@@ -17,7 +17,8 @@ local colors = {
 	box = Color3.fromRGB(40, 40, 40),
 	btn = Color3.fromRGB(40, 40, 40),
 	sliderframe = Color3.fromRGB(70, 70, 70),
-	dropdown = Color3.fromRGB(70, 70, 70)
+	dropdown = Color3.fromRGB(70, 70, 70),
+	input = Color3.fromRGB(40, 40, 40)
 }
 
 local Clude = {}
@@ -414,7 +415,7 @@ end
     function Clude:CreateInput(tab, label, placeholder, callback)
     local frame = Instance.new("Frame")
     frame.Size = UDim2.new(1, -20, 0, 40)
-    frame.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    frame.BackgroundColor3 = colors.input
     frame.Parent = tab
     Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 5)
 
