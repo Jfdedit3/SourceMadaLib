@@ -18,6 +18,11 @@ local win = Clude:CreateWindow({
       Title = "Clude Test UI"
 })
 ```
+
+# Creating Intro
+```
+createIntro("Welcome to my UILibrary")
+```
 # Creating Tabs
 this is the tabs you can add tabs like combat or home or misc
 ```lua
