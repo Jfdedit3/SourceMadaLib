@@ -7,14 +7,17 @@ if existingGui then
 end
 
 local colors = {
-	window = Color3.fromRGB(25, 25, 25),         -- Deep ocean background
-	title2 = Color3.fromRGB(32, 32, 32),         -- Lighter sea foam for titles
-	tabbuttons = Color3.fromRGB(32, 32, 32),     -- Cool water-like section tabs
-	tabButton = Color3.fromRGB(32, 32, 32),   -- Crystal clear blue button
-	container = Color3.fromRGB(32, 32, 32),      -- Smooth current container
-	button = Color3.fromRGB(70, 70, 70),       -- Bright and refreshing button blue
-	toggle = Color3.fromRGB(70, 70, 70),       -- Calming toggle blue
-	box = Color3.fromRGB(70, 70, 70)             -- Deep water input box
+	window = Color3.fromRGB(25, 25, 25),        
+	title2 = Color3.fromRGB(32, 32, 32),        
+	tabbuttons = Color3.fromRGB(32, 32, 32),     
+	tabButton = Color3.fromRGB(32, 32, 32),   
+	container = Color3.fromRGB(32, 32, 32),      
+	button = Color3.fromRGB(40, 40, 40),       
+	toggle = Color3.fromRGB(40, 40, 40),       
+	box = Color3.fromRGB(40, 40, 40),
+	btn = Color3.fromRGB(40, 40, 40),
+	sliderframe = Color3.fromRGB(70, 70, 70),
+	dropdown = Color3.fromRGB(70, 70, 70)
 }
 
 local Clude = {}
@@ -250,7 +253,7 @@ end)
     end)
     end
 
-	function createIntro()
+    function createIntro()
     local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer:WaitForChild("PlayerGui"))
     screenGui.IgnoreGuiInset = true
 
@@ -286,7 +289,7 @@ createIntro()
     function Clude:CreateSlider(tab, text, min, max, default, callback)  
     local frame = Instance.new("Frame")  
     frame.Size = UDim2.new(1, -20, 0, 50)  
-    frame.BackgroundColor3 = Color3.fromRGB(70, 70, 70)  
+    frame.BackgroundColor3 = colors.sliderframe  
     frame.Parent = tab  
     Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 5)  
 
@@ -302,7 +305,7 @@ createIntro()
     local slider = Instance.new("TextButton")  
     slider.Size = UDim2.new(1, -10, 0, 20)  
     slider.Position = UDim2.new(0, 5, 0, 25)  
-    slider.BackgroundColor3 = Color3.fromRGB(40, 40, 40)  
+    slider.BackgroundColor3 = Color3.fromRGB(47, 47, 47)  
     slider.Text = ""  
     slider.Parent = frame  
     Instance.new("UICorner", slider).CornerRadius = UDim.new(0, 5)  
@@ -455,7 +458,7 @@ end
 function Clude:CreateDropdown(tab, title, options, callback)
     local drop = Instance.new("TextButton")
     drop.Size = UDim2.new(1, -20, 0, 40)
-    drop.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    drop.BackgroundColor3 = colors.dropdown
     drop.TextColor3 = Color3.new(1, 1, 1)
     drop.Font = Enum.Font.GothamBold
     drop.TextSize = 15
@@ -500,7 +503,7 @@ function Clude:CreateDropdown(tab, title, options, callback)
         local btn = Instance.new("TextButton")
         btn.Size = UDim2.new(1, -40, 0, 30)
         btn.Position = UDim2.new(0, 20, 0, 0)
-        btn.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
+        btn.BackgroundColor3 = colors.btn
         btn.Text = option
         btn.TextColor3 = Color3.new(1, 1, 1)
         btn.Font = Enum.Font.Gotham
