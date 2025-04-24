@@ -20,7 +20,7 @@ local win = Clude:CreateWindow({
 ```
 
 # Creating Intro
-```
+```lua
 createIntro("Welcome to my UILibrary")
 ```
 # Creating Tabs
