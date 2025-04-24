@@ -7,14 +7,14 @@ if existingGui then
 end
 
 local colors = {
-	window = Color3.fromRGB(15, 25, 35),         -- Deep ocean background
-	title2 = Color3.fromRGB(30, 40, 50),         -- Lighter sea foam for titles
-	tabbuttons = Color3.fromRGB(20, 30, 40),     -- Cool water-like section tabs
-	tabButton = Color3.fromRGB(100, 150, 200),   -- Crystal clear blue button
-	container = Color3.fromRGB(35, 50, 65),      -- Smooth current container
-	button = Color3.fromRGB(50, 120, 190),       -- Bright and refreshing button blue
-	toggle = Color3.fromRGB(70, 130, 200),       -- Calming toggle blue
-	box = Color3.fromRGB(45, 70, 95)             -- Deep water input box
+	window = Color3.fromRGB(25, 25, 25),         -- Deep ocean background
+	title2 = Color3.fromRGB(32, 32, 32),         -- Lighter sea foam for titles
+	tabbuttons = Color3.fromRGB(32, 32, 32),     -- Cool water-like section tabs
+	tabButton = Color3.fromRGB(32, 32, 32),   -- Crystal clear blue button
+	container = Color3.fromRGB(32, 32, 32),      -- Smooth current container
+	button = Color3.fromRGB(70, 70, 70),       -- Bright and refreshing button blue
+	toggle = Color3.fromRGB(70, 70, 70),       -- Calming toggle blue
+	box = Color3.fromRGB(70, 70, 70)             -- Deep water input box
 }
 
 local Clude = {}
@@ -142,6 +142,11 @@ end)
         container.Visible = false
         container.Parent = tabfolder
         Instance.new("UICorner", container).CornerRadius = UDim.new(0, 5)
+
+	local uiStroke = Instance.new("UIStroke")
+	uiStroke.Thickness = 2
+        uiStroke.Color = Color3.fromRGB(0, 0, 0)  -- Black stroke
+        uiStroke.Parent = window
         
         local scroll = Instance.new("ScrollingFrame")
         scroll.Size = UDim2.new(1, 0, 1, 0)
