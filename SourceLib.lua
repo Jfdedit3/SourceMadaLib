@@ -253,39 +253,58 @@ end)
     end)
     end
 
-    function createIntro()
-    local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer:WaitForChild("PlayerGui"))
+    function createIntro(titleText)
+    local player = game.Players.LocalPlayer
+    local screenGui = Instance.new("ScreenGui")
     screenGui.IgnoreGuiInset = true
+    screenGui.Parent = player:WaitForChild("PlayerGui")
 
-    local frame = Instance.new("Frame", screenGui)
+    local frame = Instance.new("Frame")
     frame.Size = UDim2.new(1, 0, 1, 0)
     frame.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    frame.Parent = screenGui
 
-    local title = Instance.new("TextLabel", frame)
+    local title = Instance.new("TextLabel")
     title.Size = UDim2.new(0, 400, 0, 50)
     title.Position = UDim2.new(0.5, -200, 0.4, 0)
-    title.Text = "CludeHub"
+    title.Text = titleText or "CludeHub"
     title.TextColor3 = Color3.new(1, 1, 1)
     title.TextScaled = true
     title.Font = Enum.Font.SourceSansBold
     title.BackgroundTransparency = 1
+    title.Parent = frame
 
-    local loading = Instance.new("TextLabel", frame)
-    loading.Size = UDim2.new(0, 200, 0, 30)
-    loading.Position = UDim2.new(0.5, -100, 0.4, 60)
-    loading.Text = "Loading..."
-    loading.TextColor3 = Color3.new(1, 1, 1)
-    loading.TextScaled = true
-    loading.Font = Enum.Font.SourceSans
-    loading.BackgroundTransparency = 1
+    local loadingFrame = Instance.new("Frame")
+    loadingFrame.Size = UDim2.new(0, 400, 0, 12)
+    loadingFrame.Position = UDim2.new(0.5, -200, 0.4, 70)
+    loadingFrame.BackgroundColor3 = Color3.fromRGB(64, 64, 64)
+    loadingFrame.BorderSizePixel = 0
+    loadingFrame.Parent = frame
 
-    task.delay(5, function()
+    local loadingCorner = Instance.new("UICorner", loadingFrame)
+    loadingCorner.CornerRadius = UDim.new(0, 8)
+
+    local progressBar = Instance.new("Frame")
+    progressBar.Size = UDim2.new(0, 0, 1, 0)
+    progressBar.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+    progressBar.BorderSizePixel = 0
+    progressBar.Parent = loadingFrame
+
+    local progressCorner = Instance.new("UICorner", progressBar)
+    progressCorner.CornerRadius = UDim.new(0, 8)
+
+    local TweenService = game:GetService("TweenService")
+    local tweenInfo = TweenInfo.new(5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+    local tween = TweenService:Create(progressBar, tweenInfo, {
+        Size = UDim2.new(1, 0, 1, 0)
+    })
+    tween:Play()
+
+    tween.Completed:Connect(function()
         screenGui:Destroy()
     end)
 end
-
-createIntro()
-
+	
     function Clude:CreateSlider(tab, text, min, max, default, callback)  
     local frame = Instance.new("Frame")  
     frame.Size = UDim2.new(1, -20, 0, 50)  
