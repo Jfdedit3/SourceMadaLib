@@ -16,8 +16,8 @@ local colors = {
 	toggle = Color3.fromRGB(40, 40, 40),       
 	box = Color3.fromRGB(40, 40, 40),
 	btn = Color3.fromRGB(40, 40, 40),
-	sliderframe = Color3.fromRGB(70, 70, 70),
-	dropdown = Color3.fromRGB(70, 70, 70),
+	sliderframe = Color3.fromRGB(40, 40, 40),
+	dropdown = Color3.fromRGB(40, 40, 40),
 	input = Color3.fromRGB(40, 40, 40)
 }
 
@@ -325,7 +325,7 @@ end
     local slider = Instance.new("TextButton")  
     slider.Size = UDim2.new(1, -10, 0, 20)  
     slider.Position = UDim2.new(0, 5, 0, 25)  
-    slider.BackgroundColor3 = Color3.fromRGB(47, 47, 47)  
+    slider.BackgroundColor3 = Color3.fromRGB(32, 32, 32)  
     slider.Text = ""  
     slider.Parent = frame  
     Instance.new("UICorner", slider).CornerRadius = UDim.new(0, 5)  
