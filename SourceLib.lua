@@ -462,7 +462,7 @@ end
     function Clude:CreateParagraph(tab, text)
         local paragraph = Instance.new("TextLabel")
         paragraph.Size = UDim2.new(1, -20, 0, 60)
-        paragraph.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        paragraph.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
         paragraph.Text = text
         paragraph.TextColor3 = Color3.new(1, 1, 1)
         paragraph.Font = Enum.Font.Gotham
