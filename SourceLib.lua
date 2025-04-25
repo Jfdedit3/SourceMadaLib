@@ -450,7 +450,7 @@ end
     function Clude:CreateLabel(tab, text)
         local label = Instance.new("TextLabel")
         label.Size = UDim2.new(1, -20, 0, 40)
-        label.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        label.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
         label.Text = text
         label.TextColor3 = Color3.new(1, 1, 1)
         label.Font = Enum.Font.SourceSansBold
