@@ -341,7 +341,7 @@ end
 
     function Clude:CreateColorPicker(tab, labelText, defaultColor, callback)
     local container = Instance.new("Frame")
-    container.Size = UDim2.new(1, -20, 0, 120)
+    container.Size = UDim2.new(1, -20, 0, 150)
     container.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
     container.Parent = tab
     Instance.new("UICorner", container).CornerRadius = UDim.new(0, 5)
@@ -364,27 +364,35 @@ end
     preview.Parent = container
     Instance.new("UICorner", preview).CornerRadius = UDim.new(0, 6)
 
-    local function createSlider(name, posY, initVal)
-        local slider = Instance.new("TextButton")
-        slider.Size = UDim2.new(1, -20, 0, 20)
-        slider.Position = UDim2.new(0, 10, 0, posY)
-        slider.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
-        slider.Text = name .. ": " .. tostring(initVal)
-        slider.TextColor3 = Color3.new(1, 1, 1)
-        slider.Font = Enum.Font.GothamBold
-        slider.TextSize = 13
-        slider.TextXAlignment = Enum.TextXAlignment.Left
-        slider.AutoButtonColor = false
-        slider.Parent = container
-        Instance.new("UICorner", slider).CornerRadius = UDim.new(0, 5)
-
-        return slider
-    end
-
     local r, g, b = defaultColor.R * 255, defaultColor.G * 255, defaultColor.B * 255
-    local rSlider = createSlider("R", 35, math.floor(r))
-    local gSlider = createSlider("G", 60, math.floor(g))
-    local bSlider = createSlider("B", 85, math.floor(b))
+
+    local function createSlider(name, posY, initVal)
+        local label = Instance.new("TextLabel")
+        label.Size = UDim2.new(0.5, -20, 0, 20)
+        label.Position = UDim2.new(0, 10, 0, posY)
+        label.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+        label.Text = name .. ": " .. tostring(initVal)
+        label.TextColor3 = Color3.new(1, 1, 1)
+        label.Font = Enum.Font.GothamBold
+        label.TextSize = 13
+        label.TextXAlignment = Enum.TextXAlignment.Left
+        label.Parent = container
+        Instance.new("UICorner", label).CornerRadius = UDim.new(0, 5)
+
+        local box = Instance.new("TextBox")
+        box.Size = UDim2.new(0.5, -20, 0, 20)
+        box.Position = UDim2.new(0.5, 10, 0, posY)
+        box.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+        box.Text = tostring(initVal)
+        box.TextColor3 = Color3.new(1, 1, 1)
+        box.Font = Enum.Font.GothamBold
+        box.TextSize = 13
+        box.ClearTextOnFocus = false
+        box.Parent = container
+        Instance.new("UICorner", box).CornerRadius = UDim.new(0, 5)
+
+        return label, box
+    end
 
     local function updateColor()
         local newColor = Color3.fromRGB(r, g, b)
@@ -394,22 +402,25 @@ end
         end
     end
 
-    local function onSliderClick(sliderName)
-        local slider = ({ R = rSlider, G = gSlider, B = bSlider })[sliderName]
-        slider.MouseButton1Click:Connect(function()
-            local new = tonumber(game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("CludeGui"):FindFirstChildWhichIsA("ScreenGui", true):FindFirstChild("CludeGui") and game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui").CludeGui:FindFirstChildWhichIsA("TextBox", true) and game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui").CludeGui:FindFirstChildWhichIsA("TextBox", true).Text) or 0
-            new = math.clamp(math.floor(new), 0, 255)
-            if sliderName == "R" then r = new end
-            if sliderName == "G" then g = new end
-            if sliderName == "B" then b = new end
-            slider.Text = sliderName .. ": " .. new
+    local rLabel, rBox = createSlider("R", 40, math.floor(r))
+    local gLabel, gBox = createSlider("G", 70, math.floor(g))
+    local bLabel, bBox = createSlider("B", 100, math.floor(b))
+
+    local function boxHandler(box, colorName)
+        box.FocusLost:Connect(function()
+            local val = tonumber(box.Text) or 0
+            val = math.clamp(math.floor(val), 0, 255)
+            box.Text = tostring(val)
+            if colorName == "R" then r = val rLabel.Text = "R: " .. val end
+            if colorName == "G" then g = val gLabel.Text = "G: " .. val end
+            if colorName == "B" then b = val bLabel.Text = "B: " .. val end
             updateColor()
         end)
     end
 
-    onSliderClick("R")
-    onSliderClick("G")
-    onSliderClick("B")
+    boxHandler(rBox, "R")
+    boxHandler(gBox, "G")
+    boxHandler(bBox, "B")
 	end
 
     function Clude:CreateInput(tab, label, placeholder, callback)
