@@ -501,7 +501,7 @@ end
         Instance.new("UICorner", paragraph).CornerRadius = UDim.new(0, 5)
     end
 
-    local TweenService = game:GetService("TweenService")
+	local TweenService = game:GetService("TweenService")
 
 function Clude:CreateDropdown(tab, title, options, callback)
     local drop = Instance.new("TextButton")
@@ -534,10 +534,15 @@ function Clude:CreateDropdown(tab, title, options, callback)
                 item.Visible = true
                 item.Position = UDim2.new(0, 20, 0, drop.Position.Y.Offset + drop.Size.Y.Offset)
                 local targetPos = UDim2.new(0, 20, 0, drop.Position.Y.Offset + drop.Size.Y.Offset + 5 + ((i - 1) * spacing))
-                TweenService:Create(item, TweenInfo.new(0.2, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {Position = targetPos}):Play()
+
+                TweenService:Create(item, TweenInfo.new(0.3, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {
+                    Position = targetPos,
+                    TextTransparency = 0
+                }):Play()
             else
                 local tween = TweenService:Create(item, TweenInfo.new(0.15, Enum.EasingStyle.Sine, Enum.EasingDirection.In), {
-                    Position = UDim2.new(0, 20, 0, drop.Position.Y.Offset + drop.Size.Y.Offset)
+                    Position = UDim2.new(0, 20, 0, drop.Position.Y.Offset + drop.Size.Y.Offset),
+                    TextTransparency = 1
                 })
                 tween:Play()
                 tween.Completed:Connect(function()
@@ -556,6 +561,7 @@ function Clude:CreateDropdown(tab, title, options, callback)
         btn.TextColor3 = Color3.new(1, 1, 1)
         btn.Font = Enum.Font.Gotham
         btn.TextSize = 14
+        btn.TextTransparency = 1
         btn.Visible = false
         btn.Parent = tab
         Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 5)
