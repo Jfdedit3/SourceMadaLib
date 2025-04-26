@@ -208,23 +208,30 @@ end)
     toggle.TextSize = 14
     toggle.Text = text
     toggle.TextXAlignment = Enum.TextXAlignment.Left
+    toggle.TextButtonStyle = Enum.ButtonStyle.RobloxButton
     toggle.Parent = tab
     Instance.new("UICorner", toggle).CornerRadius = UDim.new(0, 8)
+    
+    toggle.MouseEnter:Connect(function()
+        toggle.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+    end)
+    
+    toggle.MouseLeave:Connect(function()
+        toggle.BackgroundColor3 = colors.toggle
+    end)
 
-    -- Toggle switch container (background bar)
     local box = Instance.new("Frame")
     box.Size = UDim2.new(0, 50, 0, 24)
     box.Position = UDim2.new(1, -60, 0.5, -12)
     box.BackgroundColor3 = colors.box
     box.Parent = toggle
     Instance.new("UICorner", box).CornerRadius = UDim.new(1, 0)
-
+    
     local uiStroke = Instance.new("UIStroke")
     uiStroke.Thickness = 2
-    uiStroke.Color = Color3.fromRGB(0, 0, 0)  -- Black stroke
+    uiStroke.Color = Color3.fromRGB(0, 0, 0)
     uiStroke.Parent = box
-        
-    -- Switch knob
+    
     local innerBox = Instance.new("Frame")
     innerBox.Size = UDim2.new(0, 22, 0, 22)
     innerBox.Position = UDim2.new(0, 2, 0, 1)
@@ -233,7 +240,6 @@ end)
     innerBox.ZIndex = 10
     Instance.new("UICorner", innerBox).CornerRadius = UDim.new(1, 0)
 
-    -- State logic
     local state = default
     if state then
         innerBox.Position = UDim2.new(1, -24, 0, 1)
@@ -246,13 +252,15 @@ end)
         if state then
             innerBox:TweenPosition(UDim2.new(1, -24, 0, 1), "Out", "Quad", 0.3, true)
             innerBox.BackgroundColor3 = Color3.fromRGB(0, 102, 255)
+            box.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
         else
             innerBox:TweenPosition(UDim2.new(0, 2, 0, 1), "Out", "Quad", 0.3, true)
             innerBox.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+            box.BackgroundColor3 = colors.box
         end
         if callback then callback(state) end
     end)
-    end
+	end
 
     function createIntro(titleText)
     local player = game.Players.LocalPlayer
