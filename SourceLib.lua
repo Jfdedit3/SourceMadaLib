@@ -306,38 +306,55 @@ end)
     end)
 end
 	
-    function Clude:CreateSlider(tab, text, min, max, default, callback)  
-    local frame = Instance.new("Frame")  
-    frame.Size = UDim2.new(1, -20, 0, 50)  
-    frame.BackgroundColor3 = colors.sliderframe  
-    frame.Parent = tab  
-    Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 5)  
+    local function createSlider(frame, text, min, max, default, callback)
+    local slider = Instance.new("TextButton")
+    slider.Size = UDim2.new(1, -10, 0, 20)
+    slider.Position = UDim2.new(0, 5, 0, 25)
+    slider.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    slider.Text = ""
+    slider.Parent = frame
+    Instance.new("UICorner", slider).CornerRadius = UDim.new(0, 5)
 
-    local label = Instance.new("TextLabel")  
-    label.Size = UDim2.new(1, 0, 0, 20)  
-    label.BackgroundTransparency = 1  
-    label.Text = text .. ": " .. default  
-    label.TextColor3 = Color3.new(1, 1, 1)  
-    label.Font = Enum.Font.GothamBold  
-    label.TextSize = 14  
-    label.Parent = frame  
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(1, -10, 0, 20)
+    label.Position = UDim2.new(0, 5, 0, 0)
+    label.BackgroundTransparency = 1
+    label.TextColor3 = Color3.fromRGB(255, 255, 255)
+    label.Font = Enum.Font.SourceSans
+    label.TextSize = 18
+    label.Text = text .. ": " .. default
+    label.Parent = slider
 
-    local slider = Instance.new("TextButton")  
-    slider.Size = UDim2.new(1, -10, 0, 20)  
-    slider.Position = UDim2.new(0, 5, 0, 25)  
-    slider.BackgroundColor3 = Color3.fromRGB(32, 32, 32)  
-    slider.Text = ""  
-    slider.Parent = frame  
-    Instance.new("UICorner", slider).CornerRadius = UDim.new(0, 5)  
+    local value = default
+    local holding = false
 
-    local value = default  
-    slider.MouseButton1Click:Connect(function()  
-        value = value + 1  
-        if value > max then value = min end  
-        label.Text = text .. ": " .. value  
-        if callback then callback(value) end  
-    end)  
-end
+    local function updateValue()
+        value = value + 1
+        if value > max then
+            value = min
+        end
+        label.Text = text .. ": " .. value
+        if callback then
+            callback(value)
+        end
+    end
+
+    slider.MouseButton1Down:Connect(function()
+        holding = true
+        while holding do
+            updateValue()
+            task.wait(0.2) -- Wait 0.2 seconds between each increase
+        end
+    end)
+
+    slider.MouseButton1Up:Connect(function()
+        holding = false
+    end)
+
+    slider.MouseLeave:Connect(function()
+        holding = false
+    end)
+	end
 
     function Clude:CreateColorPicker(tab, labelText, defaultColor, callback)
     local container = Instance.new("Frame")
