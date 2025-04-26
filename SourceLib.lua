@@ -208,30 +208,23 @@ end)
     toggle.TextSize = 14
     toggle.Text = text
     toggle.TextXAlignment = Enum.TextXAlignment.Left
-    toggle.TextButtonStyle = Enum.ButtonStyle.RobloxButton
     toggle.Parent = tab
     Instance.new("UICorner", toggle).CornerRadius = UDim.new(0, 8)
-    
-    toggle.MouseEnter:Connect(function()
-        toggle.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-    end)
-    
-    toggle.MouseLeave:Connect(function()
-        toggle.BackgroundColor3 = colors.toggle
-    end)
 
+    -- Toggle switch container (background bar)
     local box = Instance.new("Frame")
     box.Size = UDim2.new(0, 50, 0, 24)
     box.Position = UDim2.new(1, -60, 0.5, -12)
     box.BackgroundColor3 = colors.box
     box.Parent = toggle
     Instance.new("UICorner", box).CornerRadius = UDim.new(1, 0)
-    
+
     local uiStroke = Instance.new("UIStroke")
     uiStroke.Thickness = 2
-    uiStroke.Color = Color3.fromRGB(0, 0, 0)
+    uiStroke.Color = Color3.fromRGB(0, 0, 0)  -- Black stroke
     uiStroke.Parent = box
-    
+        
+    -- Switch knob
     local innerBox = Instance.new("Frame")
     innerBox.Size = UDim2.new(0, 22, 0, 22)
     innerBox.Position = UDim2.new(0, 2, 0, 1)
@@ -240,6 +233,7 @@ end)
     innerBox.ZIndex = 10
     Instance.new("UICorner", innerBox).CornerRadius = UDim.new(1, 0)
 
+    -- State logic
     local state = default
     if state then
         innerBox.Position = UDim2.new(1, -24, 0, 1)
@@ -252,15 +246,13 @@ end)
         if state then
             innerBox:TweenPosition(UDim2.new(1, -24, 0, 1), "Out", "Quad", 0.3, true)
             innerBox.BackgroundColor3 = Color3.fromRGB(0, 102, 255)
-            box.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
         else
             innerBox:TweenPosition(UDim2.new(0, 2, 0, 1), "Out", "Quad", 0.3, true)
             innerBox.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
-            box.BackgroundColor3 = colors.box
         end
         if callback then callback(state) end
     end)
-	end
+    end
 
     function createIntro(titleText)
     local player = game.Players.LocalPlayer
@@ -314,55 +306,38 @@ end)
     end)
 end
 	
-    local function createSlider(frame, text, min, max, default, callback)
-    local slider = Instance.new("TextButton")
-    slider.Size = UDim2.new(1, -10, 0, 20)
-    slider.Position = UDim2.new(0, 5, 0, 25)
-    slider.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
-    slider.Text = ""
-    slider.Parent = frame
-    Instance.new("UICorner", slider).CornerRadius = UDim.new(0, 5)
+    function Clude:CreateSlider(tab, text, min, max, default, callback)  
+    local frame = Instance.new("Frame")  
+    frame.Size = UDim2.new(1, -20, 0, 50)  
+    frame.BackgroundColor3 = colors.sliderframe  
+    frame.Parent = tab  
+    Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 5)  
 
-    local label = Instance.new("TextLabel")
-    label.Size = UDim2.new(1, -10, 0, 20)
-    label.Position = UDim2.new(0, 5, 0, 0)
-    label.BackgroundTransparency = 1
-    label.TextColor3 = Color3.fromRGB(255, 255, 255)
-    label.Font = Enum.Font.SourceSans
-    label.TextSize = 18
-    label.Text = text .. ": " .. default
-    label.Parent = slider
+    local label = Instance.new("TextLabel")  
+    label.Size = UDim2.new(1, 0, 0, 20)  
+    label.BackgroundTransparency = 1  
+    label.Text = text .. ": " .. default  
+    label.TextColor3 = Color3.new(1, 1, 1)  
+    label.Font = Enum.Font.GothamBold  
+    label.TextSize = 14  
+    label.Parent = frame  
 
-    local value = default
-    local holding = false
+    local slider = Instance.new("TextButton")  
+    slider.Size = UDim2.new(1, -10, 0, 20)  
+    slider.Position = UDim2.new(0, 5, 0, 25)  
+    slider.BackgroundColor3 = Color3.fromRGB(32, 32, 32)  
+    slider.Text = ""  
+    slider.Parent = frame  
+    Instance.new("UICorner", slider).CornerRadius = UDim.new(0, 5)  
 
-    local function updateValue()
-        value = value + 1
-        if value > max then
-            value = min
-        end
-        label.Text = text .. ": " .. value
-        if callback then
-            callback(value)
-        end
-    end
-
-    slider.MouseButton1Down:Connect(function()
-        holding = true
-        while holding do
-            updateValue()
-            task.wait(0.2) -- Wait 0.2 seconds between each increase
-        end
-    end)
-
-    slider.MouseButton1Up:Connect(function()
-        holding = false
-    end)
-
-    slider.MouseLeave:Connect(function()
-        holding = false
-    end)
-	end
+    local value = default  
+    slider.MouseButton1Click:Connect(function()  
+        value = value + 1  
+        if value > max then value = min end  
+        label.Text = text .. ": " .. value  
+        if callback then callback(value) end  
+    end)  
+end
 
     function Clude:CreateColorPicker(tab, labelText, defaultColor, callback)
     local container = Instance.new("Frame")
@@ -509,7 +484,7 @@ end
         Instance.new("UICorner", paragraph).CornerRadius = UDim.new(0, 5)
     end
 
-	local TweenService = game:GetService("TweenService")
+    local TweenService = game:GetService("TweenService")
 
 function Clude:CreateDropdown(tab, title, options, callback)
     local drop = Instance.new("TextButton")
@@ -542,15 +517,10 @@ function Clude:CreateDropdown(tab, title, options, callback)
                 item.Visible = true
                 item.Position = UDim2.new(0, 20, 0, drop.Position.Y.Offset + drop.Size.Y.Offset)
                 local targetPos = UDim2.new(0, 20, 0, drop.Position.Y.Offset + drop.Size.Y.Offset + 5 + ((i - 1) * spacing))
-
-                TweenService:Create(item, TweenInfo.new(0.3, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {
-                    Position = targetPos,
-                    TextTransparency = 0
-                }):Play()
+                TweenService:Create(item, TweenInfo.new(0.2, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {Position = targetPos}):Play()
             else
                 local tween = TweenService:Create(item, TweenInfo.new(0.15, Enum.EasingStyle.Sine, Enum.EasingDirection.In), {
-                    Position = UDim2.new(0, 20, 0, drop.Position.Y.Offset + drop.Size.Y.Offset),
-                    TextTransparency = 1
+                    Position = UDim2.new(0, 20, 0, drop.Position.Y.Offset + drop.Size.Y.Offset)
                 })
                 tween:Play()
                 tween.Completed:Connect(function()
@@ -569,7 +539,6 @@ function Clude:CreateDropdown(tab, title, options, callback)
         btn.TextColor3 = Color3.new(1, 1, 1)
         btn.Font = Enum.Font.Gotham
         btn.TextSize = 14
-        btn.TextTransparency = 1
         btn.Visible = false
         btn.Parent = tab
         Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 5)
