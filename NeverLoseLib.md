@@ -3,7 +3,7 @@
 # By C-A-T-S-U-S madapaker
 # Example Code
 ```lua
-local NEVERLOSE = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHub/SourceCludeLib/main/NeverLoseLibEdited.lua"))()
+local NEVERLOSE = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHub/SourceCludeLib/refs/heads/main/NerverLoseLibEdited.lua"))()
 
 -- Change Theme --
 NEVERLOSE:Theme("dark") -- [ dark , nightly , original ]
@@ -69,14 +69,14 @@ end)
 # Key System
 
 ```lua
-local NEVERLOSE = loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-c-a-t-s-u-s/NEVERLOSE-UI-Nightly/main/source.lua"))()
+local NEVERLOSE = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHub/SourceCludeLib/refs/heads/main/NerverLoseLibEdited.lua"))()
 
 local function Start(Key)
 	local Window = NEVERLOSE:AddWindow("NEVERLOSE","TEXT HERE")
 end
 
-local KeySystem = NEVERLOSE:KeySystem("Key System","https://discord.gg/bedol-hub",function(key)
-	if key=='1234' then
+local KeySystem = NEVERLOSE:KeySystem("Key System","YOUR URL",function(key)
+	if key=='Ah!! im coming' then
 		return true
 	end
 	return false
