@@ -1,115 +1,45 @@
-local cludelib = {}
 
--- Function to create a window with tab buttons
-function cludelib:createWindow(options)
-    local options = options or {}
-    local Text = options.Text or "Library"
-    local tabNames = options.Tabs or {}  -- A list of tab names
-    local tabContents = options.TabContents or {}  -- A list of content for each tab
+local Clude = {}
 
-    local ScreenGui = Instance.new("ScreenGui")
-    local Frame = Instance.new("Frame")
+function Clude:CreateWindow(config)
+local gui = Instance.new("ScreenGui")
+gui.Name = "Clude"
+gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+gui.ResetOnSpawn = true
 
-    ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
-    ScreenGui.Name = "CludeLibWindow"
+local window = Instance.new("Frame")  
+window.Name = "Window"  
+window.Parent = gui  
+window.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  
+window.Active = true  
+window.Draggable = true  
+window.Size = UDim2.new(0.485, 0, 0.885, 0)  
+window.Position = UDim2.new(0.340, 0, 0, 0)  
+ 
+local uiCorner = Instance.new("UICorner")  
+uiCorner.CornerRadius = UDim.new(0, 5)  
+uiCorner.Parent = window  
 
-    Frame.Parent = ScreenGui
-    Frame.Size = UDim2.new(0, 400, 0, 300)
-    Frame.Position = UDim2.new(0.150, 0, 0, 0)
-    Frame.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
-    Frame.BackgroundTransparency = 0.1
+local TabFrams = Instance.new("Frame")  
+TabFrams.Name = "TabFrams"  
+TabFrams.Parent = window  
+TabFrams.BackgroundColor3 = Color3.fromRGB(44, 47, 51)  
+TabFrams.BackgroundTransparency = 0.2  
+TabFrams.Size = UDim2.new(0.347, 0, 1, 0)  
+TabFrams.Position = UDim2.new(-0.348, 0, 0, 0)  
+ 
+local uiCorner1 = Instance.new("UICorner")  
+uiCorner1.CornerRadius = UDim.new(0, 5)  
+uiCorner1.Parent = TabFrams  
 
-    local FrameCorner = Instance.new("UICorner")
-    FrameCorner.Parent = Frame
-    FrameCorner.CornerRadius = UDim.new(0, 5)
-
-    -- Title TextLabel
-    local TitleLabel = Instance.new("TextLabel")
-    TitleLabel.Parent = Frame
-    TitleLabel.Size = UDim2.new(1, 0, 0, 30)
-    TitleLabel.Position = UDim2.new(0, 0, 0, 0)
-    TitleLabel.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
-    TitleLabel.BackgroundTransparency = 0.1
-    TitleLabel.Text = Text
-    TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    TitleLabel.TextSize = 18
-    TitleLabel.Font = Enum.Font.SourceSansBold
-    TitleLabel.TextAlign = Enum.TextAlignment.Center
-    TitleLabel.TextYAlignment = Enum.TextYAlignment.Center
-
-    -- Left Side Tab Frame
-    local TabFrame = Instance.new("Frame")
-    TabFrame.Parent = ScreenGui
-    TabFrame.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
-    TabFrame.BackgroundTransparency = 0.1
-    TabFrame.Size = UDim2.new(0, 160, 0, 300)
-    TabFrame.Position = UDim2.new(0.65, 0, 0, 0)
-
-    local TabFrameCorner = Instance.new("UICorner")
-    TabFrameCorner.Parent = TabFrame
-    TabFrameCorner.CornerRadius = UDim.new(0, 5)
-
-    -- Create tab buttons dynamically
-    local yPosition = 10  -- Starting position for the first button
-    local tabContentFrames = {}  -- Store content frames for each tab
-
-    for i, tabName in ipairs(tabNames) do
-        -- Create Tab Button
-        local TabButton = Instance.new("TextButton")
-        TabButton.Parent = TabFrame
-        TabButton.Size = UDim2.new(1, 0, 0, 40)
-        TabButton.Position = UDim2.new(0, 0, 0, yPosition)
-        TabButton.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
-        TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        TabButton.Text = tabName
-        TabButton.TextSize = 16
-        TabButton.Font = Enum.Font.SourceSans
-        TabButton.TextAlign = Enum.TextAlignment.Center
-        TabButton.TextYAlignment = Enum.TextYAlignment.Center
-        TabButton.BackgroundTransparency = 0.1
-
-        -- Create content for each tab
-        local ContentFrame = Instance.new("Frame")
-        ContentFrame.Parent = Frame
-        ContentFrame.Size = UDim2.new(1, 0, 1, -30)  -- Adjust size to fit the window (exclude title height)
-        ContentFrame.Position = UDim2.new(0, 0, 0, 30)  -- Place below the title
-        ContentFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-        ContentFrame.Visible = false  -- Hide all content initially
-
-        -- Add custom content for the tab (can be text, buttons, etc.)
-        if tabContents[i] then
-            local ContentText = Instance.new("TextLabel")
-            ContentText.Parent = ContentFrame
-            ContentText.Size = UDim2.new(1, 0, 1, 0)
-            ContentText.Text = tabContents[i]  -- Content text passed in TabContents
-            ContentText.TextColor3 = Color3.fromRGB(255, 255, 255)
-            ContentText.TextSize = 16
-            ContentText.Font = Enum.Font.SourceSans
-            ContentText.TextAlign = Enum.TextAlignment.Center
-            ContentText.TextYAlignment = Enum.TextYAlignment.Center
-        end
-
-        -- Add an event for button click
-        TabButton.MouseButton1Click:Connect(function()
-            -- Hide all content frames
-            for _, frame in ipairs(tabContentFrames) do
-                frame.Visible = false
-            end
-            -- Show the content for the selected tab
-            ContentFrame.Visible = true
-        end)
-
-        -- Store the content frame for this tab
-        table.insert(tabContentFrames, ContentFrame)
-
-        -- Adjust the vertical position for the next button
-        yPosition = yPosition + 50
-    end
-
-    -- Show the first tab's content by default
-    if #tabContentFrames > 0 then
-        tabContentFrames[1].Visible = true
-    end
+local label1 = Instance.new("TextLabel")  
+label1.Parent = TabFrams  
+label1.BackgroundColor3 = Color3.fromRGB(44, 47, 51)  
+label1.Text = Title  
+label1.Size = UDim2.new(0.9, 0, 0.20, 0)  
+label1.Position = UDim2.new(0.039, 0, -0.04, 0)  
+label1.TextColor3 = Color3.fromRGB(255, 255, 255)  
+label1.TextScaled = true  
+label1.Font = Enum.Font.SourceSansBold  
+label1.BackgroundTransparency = 1
 end
-
-return cludelib
