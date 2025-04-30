@@ -43,3 +43,5 @@ function Clude:CreateWindow(config)
     label1.Font = Enum.Font.SourceSansBold  
     label1.BackgroundTransparency = 1
 end
+
+return Clude
