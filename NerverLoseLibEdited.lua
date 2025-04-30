@@ -324,7 +324,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	task.spawn(function()
 		local dragToggle = nil
-		local dragSpeed = 0.15
+		local dragSpeed = 0
 		local dragStart = nil
 		local startPos = nil
 
