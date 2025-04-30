@@ -59,7 +59,9 @@ Guide: Adds tabs to the window. The tabs can be customized with icons (like 'ear
 # Create Left Section in Example Tab
 ```lua
 local Example = ExampleTab:AddSection('Example',"left")
-
+```
+# Creating Label
+```
 Example:AddLabel("Label")
 ```
 Guide: Creates a section in the "Example Tab" aligned to the left, and adds a label called "Label."
