@@ -175,7 +175,7 @@ end
 function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	local WindowFunctinos={}
 	local ToggleUI=false
-	local ooldsize=UICustomSize or UDim2.new(0.210000006, 230, 0.210000006, 195)
+	local ooldsize=UICustomSize or UDim2.new(0.300000004, 310, 0.300000004, 275)
 	local Tabs={}
 
 	local ScreenGui = Instance.new("ScreenGui")
@@ -1863,7 +1863,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	Frame_3.InputBegan:Connect(function(input)
 		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
-			dragToggle = true
+			dragToggle = false
 			dragStart = input.Position
 			startPos = Frame.Position
 			input.Changed:Connect(function()
