@@ -28,9 +28,14 @@ Guide: Sets the UI theme. You can change the theme between "dark", "nightly", or
 # Create Main Window and Notification System
 ```lua
 local Window = NEVERLOSE:AddWindow("NEVERLOSE","TEXT HERE")
+```
+```lua
 local Notification = NEVERLOSE:Notification()
 Notification.MaxNotifications = 6
+Notification:Notify("info","Notification","Test Notification")
+    Notification:Notify("warning","Notification","Don't Spam",4)
 ```
+
 Guide: This code creates the main window and initializes the notification system. You can set the number of max notifications here.
 
 
@@ -73,12 +78,10 @@ Guide: Creates a section in the "Example Tab" aligned to the left, and adds a la
 ```lua
 Example:AddButton("Test Notification",function()
     print('button')
-    Notification:Notify("info","Notification","Test Notification")
-    Notification:Notify("warning","Notification","Don't Spam",4)
 end)
 ```
 
-Guide: This creates a button that triggers two notifications when clicked: one info and one warning.
+Guide: This creates a button
 
 
 ---
