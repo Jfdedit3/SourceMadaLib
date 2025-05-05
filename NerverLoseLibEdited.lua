@@ -175,7 +175,7 @@ end
 function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	local WindowFunctinos={}
 	local ToggleUI=false
-	local ooldsize=UICustomSize or UDim2.new(0.200000005, 220, 0.200000005, 185)
+	local ooldsize=UICustomSize or UDim2.new(0.200000006, 230, 0.200000006, 195)
 	local Tabs={}
 
 	local ScreenGui = Instance.new("ScreenGui")
@@ -324,7 +324,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	task.spawn(function()
 		local dragToggle = nil
-		local dragSpeed = 0
+		local dragSpeed = 0.5
 		local dragStart = nil
 		local startPos = nil
 
@@ -337,7 +337,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 		Frame.InputBegan:Connect(function(input)
 			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and not toggle_valu then 
-				dragToggle = false
+				dragToggle = true
 				dragStart = input.Position
 				startPos = Frame.Position
 				input.Changed:Connect(function()
@@ -2072,7 +2072,7 @@ function NEVERLOSE:KeySystem(TitleName,LinkKey,callback)
 
 	task.spawn(function()
 		local dragToggle = nil
-		local dragSpeed = 0.2
+		local dragSpeed = 0
 		local dragStart = nil
 		local startPos = nil
 
@@ -2085,7 +2085,7 @@ function NEVERLOSE:KeySystem(TitleName,LinkKey,callback)
 
 		Frame.InputBegan:Connect(function(input)
 			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and not toggle_valu then 
-				dragToggle = true
+				dragToggle = false
 				dragStart = input.Position
 				startPos = Frame.Position
 				input.Changed:Connect(function()
