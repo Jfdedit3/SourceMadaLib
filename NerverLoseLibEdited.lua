@@ -1519,6 +1519,49 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 				return func
 			end
 
+	function NEVERLOSE:CreateTextBox(parent, placeholderText, callback)
+	local boxHolder = Instance.new("Frame")
+	boxHolder.Name = "BoxHolder"
+	boxHolder.Size = UDim2.new(0, 200, 0, 35)
+	boxHolder.BackgroundColor3 = self.Themes.ButtonBlackgroundColor
+	boxHolder.BorderSizePixel = 0
+	boxHolder.Parent = parent
+
+	local stroke = Instance.new("UIStroke", boxHolder)
+	stroke.Color = self.Themes.StrokeColor
+	stroke.Thickness = 1
+	stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+	local corner = Instance.new("UICorner", boxHolder)
+	corner.CornerRadius = UDim.new(0, 4)
+
+	local textbox = Instance.new("TextBox")
+	textbox.Size = UDim2.new(1, -10, 1, 0)
+	textbox.Position = UDim2.new(0, 5, 0, 0)
+	textbox.BackgroundTransparency = 1
+	textbox.Text = ""
+	textbox.PlaceholderText = placeholderText or "Enter text..."
+	textbox.TextColor3 = Color3.new(1, 1, 1)
+	textbox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
+	textbox.Font = Enum.Font.Code
+	textbox.TextSize = 14
+	textbox.ClearTextOnFocus = false
+	textbox.TextXAlignment = Enum.TextXAlignment.Left
+	textbox.Parent = boxHolder
+
+	textbox.FocusLost:Connect(function(enterPressed)
+		if enterPressed and callback then
+			pcall(function()
+				callback(textbox.Text)
+			end)
+		end
+	end)
+
+	ConnectButtonEffect(boxHolder, stroke) -- Adds hover glow effect
+
+	return textbox
+			end
+
 			function sectionfunc:AddDropdown(DropdownName,data,Default,callback)
 				data=data or {}
 				Default=Default or data[1]
