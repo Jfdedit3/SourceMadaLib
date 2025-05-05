@@ -96,8 +96,6 @@ local function GetImageData(name:string,image:ImageLabel)
 
 	if name == "combat" then
 		image.Image = com
-		image.ImageRectOffset = Vector2.new(604,324)
-		image.ImageRectSize = Vector2.new(35,35)
 	end
 
 	if name == "locked" then
