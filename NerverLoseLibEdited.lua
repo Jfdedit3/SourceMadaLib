@@ -69,7 +69,6 @@ local function GetImageData(name:string,image:ImageLabel)
 	name = name or "ADS"
 	name = name:lower()
 	local NigImage = "rbxassetid://3926305904"
-	local com = "rbxassetid://82635240213192"
 	if name == "ads" then
 		image.Image = NigImage
 		image.ImageRectOffset = Vector2.new(205,565)
@@ -94,10 +93,6 @@ local function GetImageData(name:string,image:ImageLabel)
 		image.ImageRectSize = Vector2.new(35,35)
 	end
 
-	if name == "combat" then
-		image.Image = com
-	end
-
 	if name == "locked" then
 		image.Image = NigImage
 		image.ImageRectOffset = Vector2.new(524, 644)
@@ -114,8 +109,8 @@ local function GetImageData(name:string,image:ImageLabel)
 		image.Image = "rbxassetid://3515393063"
 	end
 
-	if name == "user" then
-		image.Image = "rbxassetid://10494577250"
+	if name == "combat" then
+		image.Image = "rbxassetid://82635240213192"
 	end
 end
 
