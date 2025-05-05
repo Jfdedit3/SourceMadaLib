@@ -1,5 +1,3 @@
-Here's the script with sections clearly labeled with hashtags, along with a guide for each part. This will help you understand what each section does when writing the .md file.
-
 
 ---
 
