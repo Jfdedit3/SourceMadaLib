@@ -69,6 +69,7 @@ local function GetImageData(name:string,image:ImageLabel)
 	name = name or "ADS"
 	name = name:lower()
 	local NigImage = "rbxassetid://3926305904"
+	local com = "rbxassetid://82635240213192"
 	if name == "ads" then
 		image.Image = NigImage
 		image.ImageRectOffset = Vector2.new(205,565)
@@ -89,6 +90,12 @@ local function GetImageData(name:string,image:ImageLabel)
 
 	if name == "earth" then
 		image.Image = NigImage
+		image.ImageRectOffset = Vector2.new(604,324)
+		image.ImageRectSize = Vector2.new(35,35)
+	end
+
+	if name == "combat" then
+		image.Image = com
 		image.ImageRectOffset = Vector2.new(604,324)
 		image.ImageRectSize = Vector2.new(35,35)
 	end
