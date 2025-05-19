@@ -1116,7 +1116,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 				Icon.SizeConstraint = Enum.SizeConstraint.RelativeYY
 				Icon.ZIndex = 7
 
-				UICorner_3.CornerRadius = UDim.new(0.5, 0)
+				UICorner_3.CornerRadius = UDim.new(1, 0)
 				UICorner_3.Parent = Icon
 
 				local function toggleval(val,timea)
