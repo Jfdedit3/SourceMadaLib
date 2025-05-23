@@ -536,6 +536,28 @@ end)
 	UICorner_8.CornerRadius = UDim.new(0.5, 0)
 	UICorner_8.Parent = UserImage
 
+local ob = Instance.new("ImageButton")
+ob.Name = "OpenButton"
+ob.Parent = ScreenGui
+ob.BackgroundTransparency = 1
+ob.Image = "rbxassetid://12874887887"
+ob.Size = UDim2.new(0.1, -20, 0.12, 0)
+ob.Position = UDim2.new(0.2, 0, 0.14, 0)
+ob.Active = true
+ob.Draggable = true
+
+ob.MouseButton1Click:Connect(function()
+Frame.Visible = false
+Frame_2.Visible = false
+Frame_3.Visible = false
+TabHose.Visible = false
+outlo.Visible = false
+outlo_2.Visible = false
+outlo_3.Visible = false
+UserData.Visible = false
+frame.Visible = false
+		end)
+
 	UserName.Name = "UserName"
 	UserName.Parent = UserData
 	UserName.AnchorPoint = Vector2.new(0, 0.5)
