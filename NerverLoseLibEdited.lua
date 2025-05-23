@@ -131,8 +131,6 @@ local NEVERLOSE = {
 	_Name="NEVERLOSE"
 }
 
-print(NEVERLOSE._Name..":",NEVERLOSE._Version..':',[[https://neverlose.cc/]],": UI BY OWNER BEDOL HUB","__ui")
-
 function NEVERLOSE:Theme(name)
 	name = tostring(name or "original"):lower()
 	if name == "original" then
@@ -298,7 +296,7 @@ local userId = player.UserId
 -- Create main frame
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0, 190, 0, 275)
-frame.Position = UDim2.new(0.28, 20, 0.15, 2) -- Center roughly
+frame.Position = UDim2.new(0.28, 100, 0.15, 2) -- Center roughly
 frame.BackgroundColor3 = Color3.new(0, 0, 0)
 frame.Active = true
 frame.Draggable = false
