@@ -1,13 +1,12 @@
+-- CludeLibrary ModuleScript
 local Clude = {}
 
 function Clude:CreateWindow(Option)
     local size = UDim2.new(0.2000004, 289, 0.2000004, 235)
-    local gui = Instance.new("ScreenGui")
-    gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    local gui = Instance.new("ScreenGui", game.Players.LocalPlayer:WaitForChild("PlayerGui"))
     gui.ResetOnSpawn = true
 
-    local frame = Instance.new("Frame")
-    frame.Parent = gui
+    local frame = Instance.new("Frame", gui)
     frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
     frame.Size = size
     frame.Position = UDim2.new(0.23, 0, 0.01, 0)
@@ -15,14 +14,12 @@ function Clude:CreateWindow(Option)
     frame.Draggable = true
     Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 7)
 
-    local ftl = Instance.new("Frame")
-    ftl.Parent = frame
-    ftl.BackgroundTransparency = 1
-    ftl.Size = UDim2.new(0.987, 0, 0.08, 0)
-    ftl.Position = UDim2.new(0, 3, 0, 3)
+    local titleFrame = Instance.new("Frame", frame)
+    titleFrame.BackgroundTransparency = 1
+    titleFrame.Size = UDim2.new(0.987, 0, 0.08, 0)
+    titleFrame.Position = UDim2.new(0, 3, 0, 3)
 
-    local title = Instance.new("TextLabel")
-    title.Parent = ftl
+    local title = Instance.new("TextLabel", titleFrame)
     title.BackgroundTransparency = 1
     title.Text = Option.Title or "Cludes Window"
     title.Font = Enum.Font.SourceSansBold
@@ -30,11 +27,9 @@ function Clude:CreateWindow(Option)
     title.Position = UDim2.new(0, 1, 0, 6)
     title.TextColor3 = Color3.fromRGB(255, 255, 255)
     title.TextSize = 20
-    title.Size = ftl.Size
+    title.Size = titleFrame.Size
 
-    -- Tab Scroll Section
-    local tabScroll = Instance.new("ScrollingFrame")
-    tabScroll.Parent = frame
+    local tabScroll = Instance.new("ScrollingFrame", frame)
     tabScroll.Size = UDim2.new(0, 87, 0.82, 0)
     tabScroll.Position = UDim2.new(0, 3, 0.07, 0)
     tabScroll.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
@@ -43,94 +38,93 @@ function Clude:CreateWindow(Option)
     tabScroll.CanvasSize = UDim2.new(0, 0, 0, 0)
     tabScroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
     Instance.new("UICorner", tabScroll).CornerRadius = UDim.new(0, 7)
+    local tabList = Instance.new("UIListLayout", tabScroll)
+    tabList.SortOrder = Enum.SortOrder.LayoutOrder
+    tabList.Padding = UDim.new(0, 6)
+    local pad = Instance.new("UIPadding", tabScroll)
+    pad.PaddingTop = UDim.new(0, 8)
+    pad.PaddingLeft = UDim.new(0, 5)
+    pad.PaddingRight = UDim.new(0, 5)
 
-    local uilist = Instance.new("UIListLayout", tabScroll)
-    uilist.SortOrder = Enum.SortOrder.LayoutOrder
-    uilist.Padding = UDim.new(0, 6)
-
-    local uipadding = Instance.new("UIPadding", tabScroll)
-    uipadding.PaddingTop = UDim.new(0, 8)
-    uipadding.PaddingLeft = UDim.new(0, 5)
-    uipadding.PaddingRight = UDim.new(0, 5)
-
-    -- Main Content Container
-    local contentContainer = Instance.new("Frame")
-    contentContainer.Name = "ContentContainer"
-    contentContainer.Parent = frame
+    local contentContainer = Instance.new("Frame", frame)
+    contentContainer.Name = "TabContentFrame"
     contentContainer.Size = UDim2.new(1, -100, 0.82, 0)
     contentContainer.Position = UDim2.new(0, 95, 0.07, 0)
     contentContainer.BackgroundTransparency = 1
 
-    local tabPages = {}
     local currentTab = nil
 
-    local function switchTab(tabName)
-        for name, page in pairs(tabPages) do
-            page.Visible = (name == tabName)
-        end
-        currentTab = tabName
+    local function CreatePage(name)
+        local page = Instance.new("Frame", contentContainer)
+        page.Name = name
+        page.Size = UDim2.new(1, 0, 1, 0)
+        page.BackgroundTransparency = 1
+        page.Visible = false
+
+        local left = Instance.new("ScrollingFrame", page)
+        left.Name = "LeftColumn"
+        left.Size = UDim2.new(0.5, -6, 1, 0)
+        left.Position = UDim2.new(0, 0, 0, 0)
+        left.BackgroundTransparency = 1
+        left.BorderSizePixel = 0
+        left.ScrollBarThickness = 4
+        left.AutomaticCanvasSize = Enum.AutomaticSize.Y
+        left.CanvasSize = UDim2.new(0, 0, 0, 0)
+        Instance.new("UIListLayout", left).Padding = UDim.new(0, 6)
+
+        local right = Instance.new("ScrollingFrame", page)
+        right.Name = "RightColumn"
+        right.Size = UDim2.new(0.5, -6, 1, 0)
+        right.Position = UDim2.new(0.5, 6, 0, 0)
+        right.BackgroundTransparency = 1
+        right.BorderSizePixel = 0
+        right.ScrollBarThickness = 4
+        right.AutomaticCanvasSize = Enum.AutomaticSize.Y
+        right.CanvasSize = UDim2.new(0, 0, 0, 0)
+        Instance.new("UIListLayout", right).Padding = UDim.new(0, 6)
+
+        return page
     end
 
-    local function AddSectionTabLabel(parent, text)
-        local label = Instance.new("TextLabel")
-        label.Size = UDim2.new(1, 0, 0, 24)
-        label.BackgroundTransparency = 1
-        label.Text = text
-        label.Font = Enum.Font.SourceSansBold
-        label.TextSize = 16
-        label.TextColor3 = Color3.fromRGB(255, 255, 255)
-        label.TextXAlignment = Enum.TextXAlignment.Left
-        label.Name = "SectionTabLabel"
-        label.Parent = parent
-    end
-
-    local function AddTabButton(parent, text, iconId, contentFrame)
-        local button = Instance.new("TextButton")
+    local function AddTabButton(name, iconId, page)
+        local button = Instance.new("TextButton", tabScroll)
         button.Size = UDim2.new(1, 0, 0, 30)
         button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
         button.Text = ""
         button.AutoButtonColor = false
-        button.Parent = parent
         Instance.new("UICorner", button).CornerRadius = UDim.new(0, 5)
 
-        local icon = Instance.new("ImageLabel")
+        local icon = Instance.new("ImageLabel", button)
         icon.Size = UDim2.new(0, 18, 0, 18)
         icon.Position = UDim2.new(0, 6, 0.5, -9)
         icon.BackgroundTransparency = 1
         icon.Image = iconId or "rbxassetid://6031071050"
-        icon.Parent = button
 
-        local textLabel = Instance.new("TextLabel")
+        local textLabel = Instance.new("TextLabel", button)
         textLabel.Size = UDim2.new(1, -30, 1, 0)
         textLabel.Position = UDim2.new(0, 26, 0, 0)
         textLabel.BackgroundTransparency = 1
-        textLabel.Text = text
+        textLabel.Text = name
         textLabel.Font = Enum.Font.SourceSansBold
         textLabel.TextSize = 14
         textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
         textLabel.TextXAlignment = Enum.TextXAlignment.Left
-        textLabel.Parent = button
 
-        if contentFrame then
-            tabPages[text] = contentFrame
-            contentFrame.Visible = false
-
-            button.MouseButton1Click:Connect(function()
-                switchTab(text)
-            end)
-
-            if not currentTab then
-                switchTab(text)
-            end
-        end
+        button.MouseButton1Click:Connect(function()
+            if currentTab then currentTab.Visible = false end
+            page.Visible = true
+            currentTab = page
+        end)
     end
 
-    function Clude:CreateSectionTab(parent, titleText, useLeft, useRight)
-        local section = Instance.new("Frame")
-        section.Size = UDim2.new(1, 0, 0, 120)
+    function Clude:CreateSectionTab(tabPage, titleText, column)
+        local targetColumn = tabPage:FindFirstChild(column .. "Column")
+        if not targetColumn then warn("Invalid column:", column) return end
+
+        local section = Instance.new("Frame", targetColumn)
+        section.Size = UDim2.new(1, 0, 0, 100)
         section.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
         section.AutomaticSize = Enum.AutomaticSize.Y
-        section.Parent = parent
         section.Name = titleText or "Section"
         Instance.new("UICorner", section).CornerRadius = UDim.new(0, 7)
 
@@ -144,38 +138,19 @@ function Clude:CreateWindow(Option)
         title.Size = UDim2.new(1, -10, 0, 20)
         title.Position = UDim2.new(0, 8, 0, 4)
 
-        local left, right
-        if useLeft then
-            left = Instance.new("Frame", section)
-            left.Name = "Left"
-            left.Size = UDim2.new(useRight and 0.5 or 1, -6, 0, 90)
-            left.Position = UDim2.new(0, 6, 0, 30)
-            left.BackgroundTransparency = 1
-        end
+        local content = Instance.new("Frame", section)
+        content.Name = "Content"
+        content.Size = UDim2.new(1, -12, 0, 70)
+        content.Position = UDim2.new(0, 6, 0, 28)
+        content.BackgroundTransparency = 1
 
-        if useRight then
-            right = Instance.new("Frame", section)
-            right.Name = "Right"
-            right.Size = UDim2.new(useLeft and 0.5 or 1, -6, 0, 90)
-            right.Position = UDim2.new(useLeft and 0.5 or 0, 0, 0, 30)
-            right.BackgroundTransparency = 1
-        end
-
-        return left, right
+        return content
     end
 
     return {
-        AddSectionTabLabel = AddSectionTabLabel,
+        CreatePage = CreatePage,
         AddTabButton = AddTabButton,
-        CreateSectionTab = function(...) return Clude:CreateSectionTab(...) end,
-        CreatePage = function(name)
-            local page = Instance.new("Frame")
-            page.Size = UDim2.new(1, 0, 1, 0)
-            page.BackgroundTransparency = 1
-            page.Visible = false
-            page.Parent = contentContainer
-            return page
-        end
+        CreateSectionTab = function(...) return self:CreateSectionTab(...) end
     }
 end
 
