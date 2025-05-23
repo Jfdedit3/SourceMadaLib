@@ -251,7 +251,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 		Frame.InputBegan:Connect(function(input)
 			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and not toggle_valu then 
-				dragToggle = true
+				dragToggle = false
 				dragStart = input.Position
 				startPos = Frame.Position
 				input.Changed:Connect(function()
@@ -540,7 +540,7 @@ local ob = Instance.new("ImageButton")
 ob.Name = "OpenButton"
 ob.Parent = ScreenGui
 ob.BackgroundTransparency = 1
-ob.Image = "rbxassetid://12874887887"
+ob.Image = "112365820228324"
 ob.Size = UDim2.new(0.1, -20, 0.12, 0)
 ob.Position = UDim2.new(0.2, 0, 0.14, 0)
 ob.Active = true
@@ -1885,7 +1885,7 @@ end)
 
 	Frame_3.InputBegan:Connect(function(input)
 		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
-			dragToggle = true
+			dragToggle = false
 			dragStart = input.Position
 			startPos = Frame.Position
 			input.Changed:Connect(function()
@@ -2107,7 +2107,7 @@ function NEVERLOSE:KeySystem(TitleName,LinkKey,callback)
 
 		Frame.InputBegan:Connect(function(input)
 			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and not toggle_valu then 
-				dragToggle = true
+				dragToggle = false
 				dragStart = input.Position
 				startPos = Frame.Position
 				input.Changed:Connect(function()
