@@ -540,7 +540,7 @@ local ob = Instance.new("ImageButton")
 ob.Name = "OpenButton"
 ob.Parent = ScreenGui
 ob.BackgroundTransparency = 1
-ob.Image = "112365820228324"
+ob.Image = "rbxassetid://112365820228324"
 ob.Size = UDim2.new(0.1, -20, 0.12, 0)
 ob.Position = UDim2.new(0.2, 0, 0.14, 0)
 ob.Active = true
@@ -555,7 +555,7 @@ ob.MouseButton1Click:Connect(function()
     outlo_2.Visible = not outlo_2.Visible
     outlo_3.Visible = not outlo_3.Visible
     UserData.Visible = not UserData.Visible
-    frame.Visible = not frame.Visible
+    framec.Visible = not framec.Visible
 end)
 
 	UserName.Name = "UserName"
