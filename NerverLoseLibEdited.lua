@@ -131,6 +131,11 @@ local NEVERLOSE = {
 	_Name="NEVERLOSE"
 }
 
+for i = 1, 250 do
+	warn("010010001000100010010010010101011010")
+wait(0.1)
+end
+
 function NEVERLOSE:Theme(name)
 	name = tostring(name or "original"):lower()
 	if name == "original" then
@@ -540,7 +545,7 @@ local ob = Instance.new("ImageButton")
 ob.Name = "OpenButton"
 ob.Parent = ScreenGui
 ob.BackgroundTransparency = 1
-ob.Image = "rbxassetid://112365820228324"
+ob.Image = "rbxassetid://132926238025459"
 ob.Size = UDim2.new(0.1, -30, 0.12, 0)
 ob.Position = UDim2.new(0.16, 0, 0.14, 0)
 ob.Active = true
