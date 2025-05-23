@@ -130,12 +130,6 @@ local NEVERLOSE = {
 	_Version="10.C",
 	_Name="NEVERLOSE"
 }
-
-for i = 1, 250 do
-	warn("010010001000100010010010010101011010")
-wait(0.1)
-end
-
 function NEVERLOSE:Theme(name)
 	name = tostring(name or "original"):lower()
 	if name == "original" then
