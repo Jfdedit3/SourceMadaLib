@@ -298,11 +298,11 @@ local userId = player.UserId
 -- Create main frame
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0, 190, 0, 275)
-frame.Position = UDim2.new(0.78, 0, 0.15, 2) -- Center roughly
+frame.Position = UDim2.new(0.28, 20, 0.15, 2) -- Center roughly
 frame.BackgroundColor3 = Color3.new(0, 0, 0)
 frame.Active = true
-frame.Draggable = true
-frame.Parent = ScreenGui
+frame.Draggable = false
+frame.Parent = Frame
 
 local corner = Instance.new("UICorner")
 corner.CornerRadius = UDim.new(0, 7)
