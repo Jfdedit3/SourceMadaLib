@@ -6,7 +6,7 @@
 		original Neverlose
 		
 		[https://neverlose.cc/] - csgo cheat
-   Resized by Cludeshit madapaker
+   Edited by Cludeshit madapaker
 ]]
 
 local LocalPlayer = game:GetService('Players').LocalPlayer;
@@ -382,7 +382,7 @@ local userId = player.UserId
 -- Create main frame
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0, 190, 0, 275)
-frame.Position = UDim2.new(0.77, 0, 0, 2) -- Center roughly
+frame.Position = UDim2.new(0.77, 0, 0.1, 2) -- Center roughly
 frame.BackgroundColor3 = Color3.new(0, 0, 0)
 frame.Active = true
 frame.Draggable = false
