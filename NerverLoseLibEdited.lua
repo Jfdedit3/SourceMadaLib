@@ -541,10 +541,11 @@ ob.Name = "OpenButton"
 ob.Parent = ScreenGui
 ob.BackgroundTransparency = 1
 ob.Image = "rbxassetid://112365820228324"
-ob.Size = UDim2.new(0.1, -20, 0.12, 0)
-ob.Position = UDim2.new(0.2, 0, 0.14, 0)
+ob.Size = UDim2.new(0.1, -30, 0.12, 0)
+ob.Position = UDim2.new(0.16, 0, 0.14, 0)
 ob.Active = true
 ob.Draggable = true
+ob.ZIndex = 5000
 
 ob.MouseButton1Click:Connect(function()
     Frame.Visible = not Frame.Visible
