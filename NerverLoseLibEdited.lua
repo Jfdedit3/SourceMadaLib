@@ -240,7 +240,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	task.spawn(function()
 		local dragToggle = nil
-		local dragSpeed = 0.5
+		local dragSpeed = 5
 		local dragStart = nil
 		local startPos = nil
 
@@ -291,7 +291,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	Frame.ZIndex = 2
 	Frame.ClipsDescendants=true
 
-	local Players = game:GetService("Players")
+local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local userId = player.UserId
 
@@ -301,7 +301,7 @@ frame.Size = UDim2.new(0, 190, 0, 275)
 frame.Position = UDim2.new(0.78, 0, 0.15, 2) -- Center roughly
 frame.BackgroundColor3 = Color3.new(0, 0, 0)
 frame.Active = true
-frame.Draggable = false
+frame.Draggable = true
 frame.Parent = ScreenGui
 
 local corner = Instance.new("UICorner")
@@ -1852,7 +1852,7 @@ end)
 	end
 
 	local dragToggle = nil
-	local dragSpeed = 0.5
+	local dragSpeed = 5
 	local dragStart = nil
 	local startPos = nil
 
@@ -2074,7 +2074,7 @@ function NEVERLOSE:KeySystem(TitleName,LinkKey,callback)
 
 	task.spawn(function()
 		local dragToggle = nil
-		local dragSpeed = 0.5
+		local dragSpeed = 5
 		local dragStart = nil
 		local startPos = nil
 
