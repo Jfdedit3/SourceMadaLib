@@ -375,6 +375,92 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	Frame.ZIndex = 2
 	Frame.ClipsDescendants=true
 
+	local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local userId = player.UserId
+
+-- Create main frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 190, 0, 275)
+frame.Position = UDim2.new(0.77, 0, 0, 2) -- Center roughly
+frame.BackgroundColor3 = Color3.new(0, 0, 0)
+frame.Active = true
+frame.Draggable = false
+frame.Parent = ScreenGui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 7)
+corner.Parent = frame
+
+-- Create ViewportFrame inside the frame
+local viewportFrame = Instance.new("ViewportFrame")
+viewportFrame.Size = frame.Size
+viewportFrame.Position = UDim2.new(0, 0, 0, 0)
+viewportFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+viewportFrame.BorderSizePixel = 0
+viewportFrame.Parent = frame
+
+local vu = Instance.new("UICorner")
+vu.CornerRadius = UDim.new(0, 5)
+vu.Parent = viewportFrame
+
+-- Create WorldModel container
+local worldModel = Instance.new("WorldModel")
+worldModel.Parent = viewportFrame
+
+-- Camera setup
+local cam = Instance.new("Camera")
+cam.Parent = viewportFrame
+viewportFrame.CurrentCamera = cam
+cam.CFrame = CFrame.new(0, 0, 0)
+
+-- Wait until player character is loaded
+local char = player.Character or player.CharacterAdded:Wait()
+char.Archivable = true
+
+local clonedChar = char:Clone()
+clonedChar.Parent = worldModel
+clonedChar.Humanoid.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+clonedChar:SetPrimaryPartCFrame(CFrame.new(Vector3.new(0,0,-9.5), Vector3.new(0,0,0)))
+
+local UserInputService = game:GetService("UserInputService")
+
+local mouseInViewport = false
+local holdInViewport = false
+local lastX = nil
+
+UserInputService.InputBegan:Connect(function(input)
+	if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and mouseInViewport then
+		holdInViewport = true
+		lastX = nil
+	end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		holdInViewport = false
+	end
+end)
+
+viewportFrame.MouseMoved:Connect(function(x, y)
+	if not holdInViewport then return end
+	if lastX then
+		local delta = (x - lastX) * 0.025
+		local prim = clonedChar.PrimaryPart
+		prim.CFrame = prim.CFrame * CFrame.Angles(0, delta, 0)
+	end
+	lastX = x
+end)
+
+viewportFrame.MouseEnter:Connect(function()
+	mouseInViewport = true
+end)
+
+viewportFrame.MouseLeave:Connect(function()
+	mouseInViewport = false
+	holdInViewport = false
+end)
+
 	TweenService:Create(Frame,TweenInfo.new(1,Enum.EasingStyle.Quint),{Size=ooldsize}):Play()
 
 	UICorner.Parent = Frame
