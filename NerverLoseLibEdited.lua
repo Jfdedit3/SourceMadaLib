@@ -301,10 +301,10 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 		ImageButton.ScaleType = Enum.ScaleType.Fit
 
 		ImageButton.MouseButton1Click:Connect(function()
-			frame.Visible = not frame.Visible
 			toggle_valu=not toggle_valu
 
 			if toggle_valu then
+				frame.Visible = false
 				oldPositionClose = Frame.Position
 				TweenService:Create(ImageButton,TweenInfo.new(0.5),{
 					Size=UDim2.new(0.0900000036, 0, 0.0900000036, 0),
@@ -312,6 +312,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 					AnchorPoint=Vector2.new(0,0)
 				}):Play()
 			else
+				frame.Visible = true
 				TweenService:Create(ImageButton,TweenInfo.new(0.5),{
 					Size=UDim2.new(0.3, 0,0.3, 0),
 					Position=UDim2.new(1,0,-0.009,0),
