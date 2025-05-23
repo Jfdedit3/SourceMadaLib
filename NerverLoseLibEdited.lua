@@ -547,16 +547,16 @@ ob.Active = true
 ob.Draggable = true
 
 ob.MouseButton1Click:Connect(function()
-Frame.Visible = false
-Frame_2.Visible = false
-Frame_3.Visible = false
-TabHose.Visible = false
-outlo.Visible = false
-outlo_2.Visible = false
-outlo_3.Visible = false
-UserData.Visible = false
-frame.Visible = false
-		end)
+    Frame.Visible = not Frame.Visible
+    Frame_2.Visible = not Frame_2.Visible
+    Frame_3.Visible = not Frame_3.Visible
+    TabHose.Visible = not TabHose.Visible
+    outlo.Visible = not outlo.Visible
+    outlo_2.Visible = not outlo_2.Visible
+    outlo_3.Visible = not outlo_3.Visible
+    UserData.Visible = not UserData.Visible
+    frame.Visible = not frame.Visible
+end)
 
 	UserName.Name = "UserName"
 	UserName.Parent = UserData
