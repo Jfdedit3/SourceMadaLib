@@ -2347,51 +2347,53 @@ function NEVERLOSE:Notification()
 		local currenttime = 0.3
 
 local function start_vu()
-
-local function start_vu()
-	frame.Visible = true
-	TweenService:Create(frame, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quint), {Size = UDim2.new(0.99, 0, 0.75, 0)}):Play()
-	TweenService:Create(UIStroke, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Transparency = 0}):Play()
-	TweenService:Create(HeadTitle, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {TextTransparency = 0}):Play()
-	TweenService:Create(BodyTitle, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {TextTransparency = 0.3}):Play()
-	TweenService:Create(Countdown, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {BackgroundTransparency = 0}):Play()
-	TweenService:Create(IconImage, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {ImageTransparency = 0}):Play()
-	TweenService:Create(CloseButton, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {ImageTransparency = 0}):Play()
+TweenService:Create(frame, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quint), {Size = UDim2.new(0.99, 0, 0.75, 0)}):Play()
+TweenService:Create(UIStroke, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Transparency = 0}):Play()
+TweenService:Create(HeadTitle, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {TextTransparency = 0}):Play()
+TweenService:Create(BodyTitle, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {TextTransparency = 0.3}):Play()
+TweenService:Create(Countdown, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {BackgroundTransparency = 0}):Play()
+TweenService:Create(IconImage, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {ImageTransparency = 0}):Play()
+TweenService:Create(CloseButton, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {ImageTransparency = 0}):Play()
+frame.Visible = true
 end
 
 local function end_vu()
-	local trantween = TweenService:Create(frame, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Size = UDim2.new(0.75, 0, 0, 0)})
-	TweenService:Create(UIStroke, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {Transparency = 1}):Play()
-	TweenService:Create(HeadTitle, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {TextTransparency = 1}):Play()
-	TweenService:Create(BodyTitle, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {TextTransparency = 1}):Play()
-	TweenService:Create(Countdown, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {BackgroundTransparency = 1}):Play()
-	TweenService:Create(IconImage, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {ImageTransparency = 1}):Play()
-	TweenService:Create(CloseButton, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {ImageTransparency = 1}):Play()
-	trantween:Play()
-	trantween.Completed:Connect(function()
-		frame.Visible = false
-	end)
+local trantween = TweenService:Create(frame, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Size = UDim2.new(0.75, 0, 0, 0)})
+TweenService:Create(UIStroke, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {Transparency = 1}):Play()
+TweenService:Create(HeadTitle, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {TextTransparency = 1}):Play()
+TweenService:Create(BodyTitle, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {TextTransparency = 1}):Play()
+TweenService:Create(Countdown, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {BackgroundTransparency = 1}):Play()
+TweenService:Create(IconImage, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {ImageTransparency = 1}):Play()
+TweenService:Create(CloseButton, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {ImageTransparency = 1}):Play()
+trantween:Play()
+frame.Visible = false
+trantween.Completed:Connect(function()  
+end)
+
 end
 
 start_vu()
 
 task.spawn(function()
-	CloseButton.MouseButton1Click:Connect(end_vu)
-	if countdown then
-		pcall(function()
-			task.wait(1.3)
-			local tween = TweenService:Create(Countdown, TweenInfo.new(tonumber(countdown) or 3, Enum.EasingStyle.Linear), {
-				Size = UDim2.new(1, 0, 0.1, 0)
-			})
-			tween:Play()
-			tween.Completed:Wait()
-			task.wait(0.5)
-			end_vu()
-		end)
-	end
-end)
-	end
+CloseButton.MouseButton1Click:Connect(end_vu)
 
+if countdown then  
+	pcall(function()  
+		task.wait(1.3)  
+		local tween = TweenService:Create(Countdown, TweenInfo.new(tonumber(countdown) or 3, Enum.EasingStyle.Linear), {  
+			Size = UDim2.new(1, 0, 0.1, 0)  
+		})  
+
+		tween:Play()  
+		tween.Completed:Wait()  
+		task.wait(0.5)  
+		end_vu()  
+	end)  
+end
+
+end)
+end
+		
 	return Notification_
 end
 
