@@ -382,7 +382,7 @@ local userId = player.UserId
 -- Create main frame
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0, 190, 0, 275)
-frame.Position = UDim2.new(0, 0, 0.15, 2) -- Center roughly
+frame.Position = UDim2.new(0.23, 0, 0.15, 2) -- Center roughly
 frame.BackgroundColor3 = Color3.new(0, 0, 0)
 frame.Active = true
 frame.Draggable = false
@@ -2365,9 +2365,9 @@ local function end_vu()
 	TweenService:Create(IconImage, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {ImageTransparency = 1}):Play()
 	TweenService:Create(CloseButton, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {ImageTransparency = 1}):Play()
 	trantween:Play()
+	frame.Visible = false
 
 	trantween.Completed:Connect(function()
-		frame.Visible = false
 	end)
 end
 
