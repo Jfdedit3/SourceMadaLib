@@ -2347,6 +2347,9 @@ function NEVERLOSE:Notification()
 		local currenttime = 0.3
 
 local function start_vu()
+
+local function start_vu()
+	frame.Visible = true
 	TweenService:Create(frame, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quint), {Size = UDim2.new(0.99, 0, 0.75, 0)}):Play()
 	TweenService:Create(UIStroke, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Transparency = 0}):Play()
 	TweenService:Create(HeadTitle, TweenInfo.new(currenttime, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {TextTransparency = 0}):Play()
@@ -2365,8 +2368,8 @@ local function end_vu()
 	TweenService:Create(IconImage, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {ImageTransparency = 1}):Play()
 	TweenService:Create(CloseButton, TweenInfo.new(currenttime / 2, Enum.EasingStyle.Quad), {ImageTransparency = 1}):Play()
 	trantween:Play()
-
 	trantween.Completed:Connect(function()
+		frame.Visible = false
 	end)
 end
 
@@ -2374,14 +2377,12 @@ start_vu()
 
 task.spawn(function()
 	CloseButton.MouseButton1Click:Connect(end_vu)
-
 	if countdown then
 		pcall(function()
 			task.wait(1.3)
 			local tween = TweenService:Create(Countdown, TweenInfo.new(tonumber(countdown) or 3, Enum.EasingStyle.Linear), {
 				Size = UDim2.new(1, 0, 0.1, 0)
 			})
-
 			tween:Play()
 			tween.Completed:Wait()
 			task.wait(0.5)
