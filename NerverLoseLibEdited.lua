@@ -301,6 +301,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 		ImageButton.ScaleType = Enum.ScaleType.Fit
 
 		ImageButton.MouseButton1Click:Connect(function()
+			frame.Visible = not frame.Visible
 			toggle_valu=not toggle_valu
 
 			if toggle_valu then
