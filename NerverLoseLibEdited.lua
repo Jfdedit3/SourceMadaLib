@@ -238,90 +238,6 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 		end
 	end)
 
-	local toggle_valu = true
-
-	local function ui_toggleong(val)
-		local uptime=1.4
-		if val then
-			TweenService:Create(Frame,TweenInfo.new(uptime,Enum.EasingStyle.Quint),{Size=ooldsize,Position=UDim2.new(0.5,0,0.5,0)}):Play()
-			TweenService:Create(HeadName,TweenInfo.new(uptime/3,Enum.EasingStyle.Quint),{Size=UDim2.new(0.205458686, 0, 0.133462012, 0),Position=UDim2.new(0.0100000342, 0, 0.010000146, 0)}):Play()
-
-
-			TweenService:Create(TabHose,TweenInfo.new(0.3),{Position=UDim2.new(.223,0,0.143,0)}):Play()
-			TweenService:Create(TabButtons,TweenInfo.new(0.3),{Position=UDim2.new(.008,0,0.143,0)}):Play()
-
-			if headd2text then
-				TweenService:Create(headd2text,TweenInfo.new(0.3),{TextTransparency=0,TextStrokeTransparency=0.900}):Play()
-			end
-
-			TweenService:Create(UserName,TweenInfo.new(0.3),{TextTransparency=0,TextStrokeTransparency=1}):Play()
-			TweenService:Create(UserImage,TweenInfo.new(0.3),{ImageTransparency=0}):Play()
-			TweenService:Create(outlo,TweenInfo.new(0.3),{BackgroundTransparency=0.7}):Play()
-			TweenService:Create(outlo_2,TweenInfo.new(0.3),{BackgroundTransparency=0.7}):Play()
-			TweenService:Create(outlo_3,TweenInfo.new(0.3),{BackgroundTransparency=0.7}):Play()
-			TweenService:Create(Frame_2,TweenInfo.new(0.3),{BackgroundTransparency=0}):Play()
-			TweenService:Create(Frame_3,TweenInfo.new(0.3),{BackgroundTransparency=0.9}):Play()
-			TweenService:Create(DropShadow,TweenInfo.new(0.3),{ImageTransparency=0.86}):Play()
-
-		else
-			TweenService:Create(Frame,TweenInfo.new(uptime,Enum.EasingStyle.Quint),{Size=UDim2.new(0.14, 0,0.14, 0),Position=oldPositionClose}):Play()
-			TweenService:Create(HeadName,TweenInfo.new(uptime/1.2,Enum.EasingStyle.Quint),{Size=UDim2.new(0.9, 0,0.5, 0),Position=UDim2.new(0.046,0,0.24,0)}):Play()
-
-			TweenService:Create(TabHose,TweenInfo.new(0.3),{Position=UDim2.new(1.5,0,0.143,0)}):Play()
-			TweenService:Create(TabButtons,TweenInfo.new(0.3),{Position=UDim2.new(-1.25,0,0.143,0)}):Play()
-
-			if headd2text then
-				TweenService:Create(headd2text,TweenInfo.new(0.3),{TextTransparency=1,TextStrokeTransparency=1}):Play()
-			end
-
-			TweenService:Create(UserName,TweenInfo.new(0.3),{TextTransparency=1,TextStrokeTransparency=1}):Play()
-			TweenService:Create(UserImage,TweenInfo.new(0.3),{ImageTransparency=1}):Play()
-			TweenService:Create(outlo,TweenInfo.new(0.3),{BackgroundTransparency=1}):Play()
-			TweenService:Create(outlo_2,TweenInfo.new(0.3),{BackgroundTransparency=1}):Play()
-			TweenService:Create(outlo_3,TweenInfo.new(0.3),{BackgroundTransparency=1}):Play()
-			TweenService:Create(Frame_2,TweenInfo.new(0.3),{BackgroundTransparency=1}):Play()
-			TweenService:Create(Frame_3,TweenInfo.new(0.3),{BackgroundTransparency=1}):Play()
-			TweenService:Create(DropShadow,TweenInfo.new(0.3),{ImageTransparency=1}):Play()
-		end
-	end
-
-	task.spawn(function()
-		local ImageButton = Instance.new("ImageButton")
-
-		ImageButton.Parent = Frame
-		ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		ImageButton.BackgroundTransparency = 1.000
-		ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		ImageButton.BorderSizePixel = 0
-		ImageButton.Position = UDim2.new(0.908723712, 0, 0.0239103697, 0)
-		ImageButton.Size = UDim2.new(0.0900000036, 0, 0.0900000036, 0)
-		ImageButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
-		ImageButton.ZIndex = 4
-		ImageButton.Image = "rbxassetid://10002398990"
-		ImageButton.ScaleType = Enum.ScaleType.Fit
-
-		ImageButton.MouseButton1Click:Connect(function()
-			toggle_valu=not toggle_valu
-
-			if toggle_valu then
-				oldPositionClose = Frame.Position
-				TweenService:Create(ImageButton,TweenInfo.new(0.5),{
-					Size=UDim2.new(0.0900000036, 0, 0.0900000036, 0),
-					Position=UDim2.new(0.908723712, 0, 0.0239103697, 0),
-					AnchorPoint=Vector2.new(0,0)
-				}):Play()
-			else
-				TweenService:Create(ImageButton,TweenInfo.new(0.5),{
-					Size=UDim2.new(0.3, 0,0.3, 0),
-					Position=UDim2.new(1,0,-0.009,0),
-					AnchorPoint=Vector2.new(1,0)
-				}):Play()
-			end
-
-			ui_toggleong(toggle_valu)
-		end)
-	end)
-
 	task.spawn(function()
 		local dragToggle = nil
 		local dragSpeed = 0.5
@@ -1936,7 +1852,7 @@ end)
 	end
 
 	local dragToggle = nil
-	local dragSpeed = 0.1
+	local dragSpeed = 0.5
 	local dragStart = nil
 	local startPos = nil
 
@@ -1949,7 +1865,7 @@ end)
 
 	Frame_3.InputBegan:Connect(function(input)
 		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
-			dragToggle = false
+			dragToggle = true
 			dragStart = input.Position
 			startPos = Frame.Position
 			input.Changed:Connect(function()
@@ -2158,7 +2074,7 @@ function NEVERLOSE:KeySystem(TitleName,LinkKey,callback)
 
 	task.spawn(function()
 		local dragToggle = nil
-		local dragSpeed = 0
+		local dragSpeed = 0.5
 		local dragStart = nil
 		local startPos = nil
 
@@ -2171,7 +2087,7 @@ function NEVERLOSE:KeySystem(TitleName,LinkKey,callback)
 
 		Frame.InputBegan:Connect(function(input)
 			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and not toggle_valu then 
-				dragToggle = false
+				dragToggle = true
 				dragStart = input.Position
 				startPos = Frame.Position
 				input.Changed:Connect(function()
