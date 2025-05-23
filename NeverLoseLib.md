@@ -2,7 +2,8 @@
 ---
 
 # NEVERLOSE UI Library
-### By: **C-A-T-S-U-S**
+# By: **C-A-T-S-U-S*
+# Edited by: **CludeHub*
 
 ## # Load NEVERLOSE UI Library
 ```lua
@@ -150,29 +151,7 @@ Guide: Adds a toggle in the right section of the "Example Tab." If toggled on, i
 local SectionTest = MainTab:AddSection('Test',"left")
 
 SectionTest:AddButton("Kick",function()
-    -- game.Players.LocalPlayer:Kick()
+    game.Players.LocalPlayer:Kick()
 end)
 ```
 Guide: Adds a button in the "MainTab" to kick the local player from the game (this line is commented out for safety).
-
-
----
-
-# Key System
-```lua
-local NEVERLOSE = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHub/SourceCludeLib/refs/heads/main/NerverLoseLibEdited.lua"))()
-
-local function Start(Key)
-    local Window = NEVERLOSE:AddWindow("NEVERLOSE","TEXT HERE")
-end
-
-local KeySystem = NEVERLOSE:KeySystem("Key System","YOUR URL",function(key)
-    if key=='Ah!! im coming' then
-        return true
-    end
-    return false
-end)
-
-KeySystem:Callback(Start)
-```
-Guide: This initializes a key system where you check if the entered key matches the string 'Ah!! im coming'. If it matches, the system returns true, and the callback function is executed.
