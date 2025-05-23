@@ -294,25 +294,23 @@ local player = Players.LocalPlayer
 local userId = player.UserId
 
 -- Create main frame
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 190, 0, 275)
-frame.Position = UDim2.new(0.6, 100, 0.15, 2) -- Center roughly
-frame.BackgroundColor3 = Color3.new(0, 0, 0)
-frame.Active = true
-frame.Draggable = false
-frame.Parent = Frame
+local framec = Instance.new("Frame")
+framec.Size = UDim2.new(0, 190, 0, 275)
+framec.Position = UDim2.new(0.78, 0, 0.15, 2) -- Center roughly
+framec.BackgroundColor3 = Color3.new(0, 0, 0)
+framec.Parent = Frame
 
 local corner = Instance.new("UICorner")
 corner.CornerRadius = UDim.new(0, 7)
-corner.Parent = frame
+corner.Parent = framec
 
 -- Create ViewportFrame inside the frame
 local viewportFrame = Instance.new("ViewportFrame")
-viewportFrame.Size = frame.Size
+viewportFrame.Size = framec.Size
 viewportFrame.Position = UDim2.new(0, 0, 0, 0)
 viewportFrame.BackgroundColor3 = Color3.new(0, 0, 0)
 viewportFrame.BorderSizePixel = 0
-viewportFrame.Parent = frame
+viewportFrame.Parent = framec
 
 local vu = Instance.new("UICorner")
 vu.CornerRadius = UDim.new(0, 5)
