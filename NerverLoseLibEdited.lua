@@ -546,6 +546,10 @@ ob.Active = true
 ob.Draggable = true
 ob.ZIndex = 5000
 
+	local obcorner = Instance.new("UICorner")
+	obcorner.CornerRadius = UDim.new(0, 8)
+	obcorner.Parent = ob
+
 ob.MouseButton1Click:Connect(function()
     Frame.Visible = not Frame.Visible
     Frame_2.Visible = not Frame_2.Visible
