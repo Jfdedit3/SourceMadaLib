@@ -386,7 +386,7 @@ frame.Position = UDim2.new(1, 0, 0.15, 2) -- Center roughly
 frame.BackgroundColor3 = Color3.new(0, 0, 0)
 frame.Active = true
 frame.Draggable = false
-frame.Parent = Frame
+frame.Parent = Frame_3
 
 local corner = Instance.new("UICorner")
 corner.CornerRadius = UDim.new(0, 7)
