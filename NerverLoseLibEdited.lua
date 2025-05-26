@@ -295,7 +295,7 @@ local userId = player.UserId
 -- Create main frame
 local framec = Instance.new("Frame")
 framec.Name = "CharacterFrame"
-framec.Size = UDim2.new(0.230, 0, 0.375, 0)
+framec.Size = UDim2.new(0.190, 0, 0.515, 0)
 framec.Position = UDim2.new(0.78, 0, 0.15, 2) -- Center roughly
 framec.BackgroundColor3 = Color3.new(0, 0, 0)
 framec.Parent = ScreenGui
