@@ -295,7 +295,7 @@ local userId = player.UserId
 -- Create main frame
 local framec = Instance.new("Frame")
 framec.Name = "CharacterFrame"
-framec.Size = UDim2.new(-0.0636882973, 190, 0.3819, 128)
+framec.Size = UDim2.new(-0.001, 190, 0.3819, 128)
 framec.Position = UDim2.new(0.78, 0, 0.15, 2) -- Center roughly
 framec.BackgroundColor3 = Color3.new(0, 0, 0)
 framec.Parent = ScreenGui
@@ -314,7 +314,7 @@ viewportFrame.BorderSizePixel = 0
 viewportFrame.Parent = framec
 
 local vu = Instance.new("UICorner")
-vu.CornerRadius = UDim.new(0, 5)
+vu.CornerRadius = UDim.new(0, 7)
 vu.Parent = viewportFrame
 
 -- Create WorldModel container
