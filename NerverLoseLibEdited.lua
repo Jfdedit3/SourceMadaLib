@@ -161,7 +161,7 @@ function NEVERLOSE:Theme(name)
 		NEVERLOSE.Themes.BlackColor = Color3.fromRGB(8, 8, 8)
 		NEVERLOSE.Themes.HeaderColor = Color3.fromRGB(8, 8, 8)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
-		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
+		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 174, 255)
 		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
 		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(13, 13, 13)
 		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
@@ -1151,7 +1151,7 @@ end)
 						TweenService:Create(Icon,TweenInfo.new(timea),{Position=UDim2.new(0.75,0,0.5,0),BackgroundColor3=NEVERLOSE.Themes.MainColor}):Play();
 					else
 						TweenService:Create(LabelText,TweenInfo.new(timea),{TextTransparency=0.3}):Play()
-						TweenService:Create(Icon,TweenInfo.new(timea),{Position=UDim2.new(0.25,0,0.5,0),BackgroundColor3=Color3.fromRGB(194, 194, 194)}):Play();
+						TweenService:Create(Icon,TweenInfo.new(timea),{Position=UDim2.new(0.25,0,0.5,0),BackgroundColor3=Color3.fromRGB(0, 174, 255)}):Play();
 					end
 				end
 
