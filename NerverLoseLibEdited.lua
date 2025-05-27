@@ -157,7 +157,7 @@ function NEVERLOSE:Theme(name)
 	end
 
 	if name == "dark" then
-		NEVERLOSE.Themes.BlackgroundColor = Color3.fromRGB(0, 0, 0)
+		NEVERLOSE.Themes.BlackgroundColor = Color3.fromRGB(37, 37, 37)
 		NEVERLOSE.Themes.BlackColor = Color3.fromRGB(8, 8, 8)
 		NEVERLOSE.Themes.HeaderColor = Color3.fromRGB(8, 8, 8)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
@@ -297,7 +297,7 @@ local framec = Instance.new("Frame")
 framec.Name = "CharacterFrame"
 framec.Size = UDim2.new(-0.001, 178, 0.3819, 128)
 framec.Position = UDim2.new(0.78, 0, 0.15, 2) -- Center roughly
-framec.BackgroundColor3 = Color3.new(0, 0, 0)
+framec.BackgroundColor3 = Color3.fromRGB(37, 37, 37)
 framec.Parent = ScreenGui
 framec.Active = true
 
@@ -309,7 +309,7 @@ corner.Parent = framec
 local viewportFrame = Instance.new("ViewportFrame")
 viewportFrame.Size = framec.Size
 viewportFrame.Position = UDim2.new(0, 0, 0, 0)
-viewportFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+viewportFrame.BackgroundColor3 = Color3.fromRGB(37, 37, 37)
 viewportFrame.BorderSizePixel = 0
 viewportFrame.Parent = framec
 
