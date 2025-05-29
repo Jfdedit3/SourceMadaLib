@@ -1,4 +1,4 @@
-local radius = UDim.new(0, 5)
+local radius = UDim.new(0, 1)
 
 -- ModuleScript: CommandUI
 local CommandUI = {}
@@ -43,9 +43,9 @@ function CommandUI:Create()
 
 	local Close = Instance.new("TextButton", TopBar)
 	Close.Size = UDim2.new(0, 26, 0.990, 0)
-	Close.Position = UDim2.new(1, -28, 0, 0)
+	Close.Position = UDim2.new(1, -28, 0, 2)
 	Close.Text = "X"
-        Close.BackgroundTransparency= 0.1
+        Close.BackgroundTransparency= 0.119
 	Close.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	Close.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Close.Font = Enum.Font.SourceSansBold
@@ -64,7 +64,7 @@ function CommandUI:Create()
 	InputBox.Position = UDim2.new(0, 10, 0, 34)
 	InputBox.PlaceholderText = "ENTER COMMAND"
 	InputBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-	InputBox.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+	InputBox.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
 	InputBox.BorderSizePixel = 0
 	InputBox.Font = Enum.Font.SourceSans
 	InputBox.TextSize = 15
@@ -77,7 +77,7 @@ u6.CornerRadius = radius
 	local CommandList = Instance.new("ScrollingFrame", MainFrame)
 	CommandList.Size = UDim2.new(1, -20, 1, -70)
 	CommandList.Position = UDim2.new(0, 10, 0, 64)
-	CommandList.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+	CommandList.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
 	CommandList.BorderSizePixel = 0
 	CommandList.CanvasSize = UDim2.new(0, 0, 0, 0)
 	CommandList.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -97,7 +97,7 @@ function CommandUI:AddList(text)
 	label.Size = UDim2.new(1, -5, 0, 22)
 	label.Text = text
 	label.Font = Enum.Font.SourceSans
-	label.TextSize = 14
+	label.TextSize = 15
 	label.BackgroundTransparency = 1
 	label.TextColor3 = Color3.fromRGB(200, 200, 200)
 	label.TextXAlignment = Enum.TextXAlignment.Left
