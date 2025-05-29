@@ -51,9 +51,9 @@ function CommandUI:Create()
 	Close.Font = Enum.Font.SourceSansBold
 	Close.TextSize = 16
 
-        local u5 = Instance.new("UICorner")
-        u5.Parent = Close
-        u5.CornerRadius = radius
+        local u20 = Instance.new("UICorner")
+        u20.CornerRadius = radius
+        u20.Parent = Close
 
 	Close.MouseButton1Click:Connect(function()
 		ScreenGui:Destroy()
