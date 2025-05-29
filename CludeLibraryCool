@@ -95,7 +95,7 @@ function CommandUI:AddList(text)
 if not uiElements.CommandList then return end
 local label = Instance.new("TextLabel", uiElements.CommandList)
 label.Size = UDim2.new(1, -5, 0, 22)
-label.Position = UDim2.new(0, 2, 0, 0)
+label.Position = UDim2.new(0, 5, 0, 0)
 label.Text = text
 label.Font = Enum.Font.SourceSans
 label.TextSize = 15
