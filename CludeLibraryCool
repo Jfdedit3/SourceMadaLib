@@ -1,157 +1,111 @@
--- CludeLibrary ModuleScript
-local Clude = {}
+-- ModuleScript named "CommandUI" inside ReplicatedStorage or similar
+local CommandUI = {}
 
-function Clude:CreateWindow(Option)
-    local size = UDim2.new(0.2000004, 289, 0.2000004, 235)
-    local gui = Instance.new("ScreenGui", game.Players.LocalPlayer:WaitForChild("PlayerGui"))
-    gui.ResetOnSpawn = true
+local commands = {}
+local uiElements = {}
 
-    local frame = Instance.new("Frame", gui)
-    frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-    frame.Size = size
-    frame.Position = UDim2.new(0.23, 0, 0.01, 0)
-    frame.Active = true
-    frame.Draggable = true
-    Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 7)
+function CommandUI:Create()
+	local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+	ScreenGui.Name = "ExploitCommandUI"
+	ScreenGui.ResetOnSpawn = false
 
-    local titleFrame = Instance.new("Frame", frame)
-    titleFrame.BackgroundTransparency = 1
-    titleFrame.Size = UDim2.new(0.987, 0, 0.08, 0)
-    titleFrame.Position = UDim2.new(0, 3, 0, 3)
+	local UIScale = Instance.new("UIScale", ScreenGui)
+	UIScale.Scale = 1
 
-    local title = Instance.new("TextLabel", titleFrame)
-    title.BackgroundTransparency = 1
-    title.Text = Option.Title or "Cludes Window"
-    title.Font = Enum.Font.SourceSansBold
-    title.TextXAlignment = Enum.TextXAlignment.Left
-    title.Position = UDim2.new(0, 1, 0, 6)
-    title.TextColor3 = Color3.fromRGB(255, 255, 255)
-    title.TextSize = 20
-    title.Size = titleFrame.Size
+	local MainFrame = Instance.new("Frame", ScreenGui)
+	MainFrame.Size = UDim2.new(0, 270, 0, 380)
+	MainFrame.Position = UDim2.new(0.5, -135, 0.5, -190)
+	MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+	MainFrame.BorderSizePixel = 0
 
-    local tabScroll = Instance.new("ScrollingFrame", frame)
-    tabScroll.Size = UDim2.new(0, 87, 0.82, 0)
-    tabScroll.Position = UDim2.new(0, 3, 0.07, 0)
-    tabScroll.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    tabScroll.BorderSizePixel = 0
-    tabScroll.ScrollBarThickness = 3
-    tabScroll.CanvasSize = UDim2.new(0, 0, 0, 0)
-    tabScroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
-    Instance.new("UICorner", tabScroll).CornerRadius = UDim.new(0, 7)
-    local tabList = Instance.new("UIListLayout", tabScroll)
-    tabList.SortOrder = Enum.SortOrder.LayoutOrder
-    tabList.Padding = UDim.new(0, 6)
-    local pad = Instance.new("UIPadding", tabScroll)
-    pad.PaddingTop = UDim.new(0, 8)
-    pad.PaddingLeft = UDim.new(0, 5)
-    pad.PaddingRight = UDim.new(0, 5)
+	local TopBar = Instance.new("Frame", MainFrame)
+	TopBar.Size = UDim2.new(1, 0, 0, 30)
+	TopBar.BackgroundColor3 = Color3.fromRGB(0, 110, 170)
 
-    local contentContainer = Instance.new("Frame", frame)
-    contentContainer.Name = "TabContentFrame"
-    contentContainer.Size = UDim2.new(1, -100, 0.82, 0)
-    contentContainer.Position = UDim2.new(0, 95, 0.07, 0)
-    contentContainer.BackgroundTransparency = 1
+	local Title = Instance.new("TextLabel", TopBar)
+	Title.Size = UDim2.new(1, 0, 1, 0)
+	Title.Text = "COMMANDS"
+	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Title.Font = Enum.Font.SourceSansBold
+	Title.TextSize = 20
+	Title.BackgroundTransparency = 1
 
-    local currentTab = nil
+	local Close = Instance.new("TextButton", TopBar)
+	Close.Size = UDim2.new(0, 30, 1, 0)
+	Close.Position = UDim2.new(1, -30, 0, 0)
+	Close.Text = "X"
+	Close.BackgroundColor3 = Color3.fromRGB(170, 50, 50)
+	Close.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Close.Font = Enum.Font.SourceSansBold
+	Close.TextSize = 18
 
-    local function CreatePage(name)
-        local page = Instance.new("Frame", contentContainer)
-        page.Name = name
-        page.Size = UDim2.new(1, 0, 1, 0)
-        page.BackgroundTransparency = 1
-        page.Visible = false
+	Close.MouseButton1Click:Connect(function()
+		ScreenGui:Destroy()
+	end)
 
-        local left = Instance.new("ScrollingFrame", page)
-        left.Name = "LeftColumn"
-        left.Size = UDim2.new(0.5, -6, 1, 0)
-        left.Position = UDim2.new(0, 0, 0, 0)
-        left.BackgroundTransparency = 1
-        left.BorderSizePixel = 0
-        left.ScrollBarThickness = 4
-        left.AutomaticCanvasSize = Enum.AutomaticSize.Y
-        left.CanvasSize = UDim2.new(0, 0, 0, 0)
-        Instance.new("UIListLayout", left).Padding = UDim.new(0, 6)
+	local InputBox = Instance.new("TextBox", MainFrame)
+	InputBox.Size = UDim2.new(1, -20, 0, 28)
+	InputBox.Position = UDim2.new(0, 10, 0, 35)
+	InputBox.PlaceholderText = "fly 100"
+	InputBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+	InputBox.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+	InputBox.Font = Enum.Font.SourceSans
+	InputBox.TextSize = 16
+	InputBox.ClearTextOnFocus = false
+	InputBox.Text = ""
 
-        local right = Instance.new("ScrollingFrame", page)
-        right.Name = "RightColumn"
-        right.Size = UDim2.new(0.5, -6, 1, 0)
-        right.Position = UDim2.new(0.5, 6, 0, 0)
-        right.BackgroundTransparency = 1
-        right.BorderSizePixel = 0
-        right.ScrollBarThickness = 4
-        right.AutomaticCanvasSize = Enum.AutomaticSize.Y
-        right.CanvasSize = UDim2.new(0, 0, 0, 0)
-        Instance.new("UIListLayout", right).Padding = UDim.new(0, 6)
+	local CommandList = Instance.new("ScrollingFrame", MainFrame)
+	CommandList.Size = UDim2.new(1, -20, 1, -75)
+	CommandList.Position = UDim2.new(0, 10, 0, 70)
+	CommandList.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+	CommandList.BorderSizePixel = 0
+	CommandList.CanvasSize = UDim2.new(0, 0, 0, 0)
+	CommandList.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	CommandList.ScrollBarThickness = 4
 
-        return page
-    end
+	local Layout = Instance.new("UIListLayout", CommandList)
+	Layout.SortOrder = Enum.SortOrder.LayoutOrder
+	Layout.Padding = UDim.new(0, 4)
 
-    local function AddTabButton(name, iconId, page)
-        local button = Instance.new("TextButton", tabScroll)
-        button.Size = UDim2.new(1, 0, 0, 30)
-        button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-        button.Text = ""
-        button.AutoButtonColor = false
-        Instance.new("UICorner", button).CornerRadius = UDim.new(0, 5)
-
-        local icon = Instance.new("ImageLabel", button)
-        icon.Size = UDim2.new(0, 18, 0, 18)
-        icon.Position = UDim2.new(0, 6, 0.5, -9)
-        icon.BackgroundTransparency = 1
-        icon.Image = iconId or "rbxassetid://6031071050"
-
-        local textLabel = Instance.new("TextLabel", button)
-        textLabel.Size = UDim2.new(1, -30, 1, 0)
-        textLabel.Position = UDim2.new(0, 26, 0, 0)
-        textLabel.BackgroundTransparency = 1
-        textLabel.Text = name
-        textLabel.Font = Enum.Font.SourceSansBold
-        textLabel.TextSize = 14
-        textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-        textLabel.TextXAlignment = Enum.TextXAlignment.Left
-
-        button.MouseButton1Click:Connect(function()
-            if currentTab then currentTab.Visible = false end
-            page.Visible = true
-            currentTab = page
-        end)
-    end
-
-    function Clude:CreateSectionTab(tabPage, titleText, column)
-        local targetColumn = tabPage:FindFirstChild(column .. "Column")
-        if not targetColumn then warn("Invalid column:", column) return end
-
-        local section = Instance.new("Frame", targetColumn)
-        section.Size = UDim2.new(1, 0, 0, 100)
-        section.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-        section.AutomaticSize = Enum.AutomaticSize.Y
-        section.Name = titleText or "Section"
-        Instance.new("UICorner", section).CornerRadius = UDim.new(0, 7)
-
-        local title = Instance.new("TextLabel", section)
-        title.Text = titleText or "Section"
-        title.Font = Enum.Font.SourceSansBold
-        title.TextSize = 16
-        title.TextColor3 = Color3.fromRGB(255, 255, 255)
-        title.TextXAlignment = Enum.TextXAlignment.Left
-        title.BackgroundTransparency = 1
-        title.Size = UDim2.new(1, -10, 0, 20)
-        title.Position = UDim2.new(0, 8, 0, 4)
-
-        local content = Instance.new("Frame", section)
-        content.Name = "Content"
-        content.Size = UDim2.new(1, -12, 0, 70)
-        content.Position = UDim2.new(0, 6, 0, 28)
-        content.BackgroundTransparency = 1
-
-        return content
-    end
-
-    return {
-        CreatePage = CreatePage,
-        AddTabButton = AddTabButton,
-        CreateSectionTab = function(...) return self:CreateSectionTab(...) end
-    }
+	uiElements.CommandList = CommandList
+	uiElements.InputBox = InputBox
 end
 
-return Clude
+-- Adds a visible command to the list
+function CommandUI:AddList(text)
+	if not uiElements.CommandList then return end
+	local label = Instance.new("TextLabel", uiElements.CommandList)
+	label.Size = UDim2.new(1, -5, 0, 24)
+	label.Text = text
+	label.Font = Enum.Font.SourceSans
+	label.TextSize = 16
+	label.BackgroundTransparency = 1
+	label.TextColor3 = Color3.fromRGB(200, 200, 200)
+	label.TextXAlignment = Enum.TextXAlignment.Left
+end
+
+-- Registers a command and callback
+function CommandUI:AddCommand(pattern, callback)
+	local cleaned = pattern:gsub("<%w+>", "(.+)")
+	table.insert(commands, {
+		pattern = pattern,
+		regex = "^" .. cleaned .. "$",
+		callback = callback
+	})
+
+	-- Hook listener only once
+	if not uiElements.InputBox:GetAttribute("Hooked") then
+		uiElements.InputBox:GetPropertyChangedSignal("Text"):Connect(function()
+			local text = uiElements.InputBox.Text
+			for _, cmd in ipairs(commands) do
+				local match = {string.match(text, cmd.regex)}
+				if #match > 0 then
+					cmd.callback(table.unpack(match))
+				end
+			end
+		end)
+		uiElements.InputBox:SetAttribute("Hooked", true)
+	end
+end
+
+return CommandUI
