@@ -49,7 +49,7 @@ function CommandUI:Create()
 	Close.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	Close.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Close.Font = Enum.Font.SourceSansBold
-	Close.TextSize = 16
+	Close.TextSize = 18
 
         local u20 = Instance.new("UICorner")
         u20.CornerRadius = radius
@@ -101,7 +101,7 @@ function CommandUI:AddList(text)
 	label.BackgroundTransparency = 1
 	label.TextColor3 = Color3.fromRGB(200, 200, 200)
 	label.TextXAlignment = Enum.TextXAlignment.Left
-	label.TextInset = Vector2.new(5, 0)  -- add left padding here
+	label.Position = UDim2.new(0, 2, 0, 0)
 end
 
 function CommandUI:AddCommand(pattern, callback)
