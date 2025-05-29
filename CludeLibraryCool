@@ -1,4 +1,4 @@
--- ModuleScript named "CommandUI" inside ReplicatedStorage or similar
+-- ModuleScript: CommandUI
 local CommandUI = {}
 
 local commands = {}
@@ -10,54 +10,55 @@ function CommandUI:Create()
 	ScreenGui.ResetOnSpawn = false
 
 	local UIScale = Instance.new("UIScale", ScreenGui)
-	UIScale.Scale = 1
+	UIScale.Scale = 0.9  -- Adjust this for mobile scaling
 
 	local MainFrame = Instance.new("Frame", ScreenGui)
-	MainFrame.Size = UDim2.new(0, 270, 0, 380)
-	MainFrame.Position = UDim2.new(0.5, -135, 0.5, -190)
-	MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+	MainFrame.Size = UDim2.new(0, 265, 0, 300) -- MATCHING the screenshot now
+	MainFrame.Position = UDim2.new(0.5, -132, 0.5, -150)
+	MainFrame.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
 	MainFrame.BorderSizePixel = 0
 
 	local TopBar = Instance.new("Frame", MainFrame)
-	TopBar.Size = UDim2.new(1, 0, 0, 30)
-	TopBar.BackgroundColor3 = Color3.fromRGB(0, 110, 170)
+	TopBar.Size = UDim2.new(1, 0, 0, 28)
+	TopBar.BackgroundColor3 = Color3.fromRGB(0, 120, 190)
 
 	local Title = Instance.new("TextLabel", TopBar)
 	Title.Size = UDim2.new(1, 0, 1, 0)
 	Title.Text = "COMMANDS"
 	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Title.Font = Enum.Font.SourceSansBold
-	Title.TextSize = 20
+	Title.TextSize = 18
 	Title.BackgroundTransparency = 1
 
 	local Close = Instance.new("TextButton", TopBar)
-	Close.Size = UDim2.new(0, 30, 1, 0)
-	Close.Position = UDim2.new(1, -30, 0, 0)
+	Close.Size = UDim2.new(0, 28, 1, 0)
+	Close.Position = UDim2.new(1, -28, 0, 0)
 	Close.Text = "X"
-	Close.BackgroundColor3 = Color3.fromRGB(170, 50, 50)
+	Close.BackgroundColor3 = Color3.fromRGB(180, 50, 50)
 	Close.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Close.Font = Enum.Font.SourceSansBold
-	Close.TextSize = 18
+	Close.TextSize = 16
 
 	Close.MouseButton1Click:Connect(function()
 		ScreenGui:Destroy()
 	end)
 
 	local InputBox = Instance.new("TextBox", MainFrame)
-	InputBox.Size = UDim2.new(1, -20, 0, 28)
-	InputBox.Position = UDim2.new(0, 10, 0, 35)
-	InputBox.PlaceholderText = "fly 100"
+	InputBox.Size = UDim2.new(1, -20, 0, 26)
+	InputBox.Position = UDim2.new(0, 10, 0, 34)
+	InputBox.PlaceholderText = "fly 50"
 	InputBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-	InputBox.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+	InputBox.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+	InputBox.BorderSizePixel = 0
 	InputBox.Font = Enum.Font.SourceSans
-	InputBox.TextSize = 16
+	InputBox.TextSize = 15
 	InputBox.ClearTextOnFocus = false
 	InputBox.Text = ""
 
 	local CommandList = Instance.new("ScrollingFrame", MainFrame)
-	CommandList.Size = UDim2.new(1, -20, 1, -75)
-	CommandList.Position = UDim2.new(0, 10, 0, 70)
-	CommandList.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+	CommandList.Size = UDim2.new(1, -20, 1, -70)
+	CommandList.Position = UDim2.new(0, 10, 0, 64)
+	CommandList.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
 	CommandList.BorderSizePixel = 0
 	CommandList.CanvasSize = UDim2.new(0, 0, 0, 0)
 	CommandList.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -65,26 +66,24 @@ function CommandUI:Create()
 
 	local Layout = Instance.new("UIListLayout", CommandList)
 	Layout.SortOrder = Enum.SortOrder.LayoutOrder
-	Layout.Padding = UDim.new(0, 4)
+	Layout.Padding = UDim.new(0, 3)
 
 	uiElements.CommandList = CommandList
 	uiElements.InputBox = InputBox
 end
 
--- Adds a visible command to the list
 function CommandUI:AddList(text)
 	if not uiElements.CommandList then return end
 	local label = Instance.new("TextLabel", uiElements.CommandList)
-	label.Size = UDim2.new(1, -5, 0, 24)
+	label.Size = UDim2.new(1, -5, 0, 22)
 	label.Text = text
 	label.Font = Enum.Font.SourceSans
-	label.TextSize = 16
+	label.TextSize = 14
 	label.BackgroundTransparency = 1
 	label.TextColor3 = Color3.fromRGB(200, 200, 200)
 	label.TextXAlignment = Enum.TextXAlignment.Left
 end
 
--- Registers a command and callback
 function CommandUI:AddCommand(pattern, callback)
 	local cleaned = pattern:gsub("<%w+>", "(.+)")
 	table.insert(commands, {
@@ -93,7 +92,6 @@ function CommandUI:AddCommand(pattern, callback)
 		callback = callback
 	})
 
-	-- Hook listener only once
 	if not uiElements.InputBox:GetAttribute("Hooked") then
 		uiElements.InputBox:GetPropertyChangedSignal("Text"):Connect(function()
 			local text = uiElements.InputBox.Text
