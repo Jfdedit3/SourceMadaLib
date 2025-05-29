@@ -1,4 +1,4 @@
-local radius = UDim.new(0, 1)
+local radius = UDim.new(0, 2)
 
 -- ModuleScript: CommandUI
 local CommandUI = {}
@@ -43,7 +43,7 @@ function CommandUI:Create()
 
 	local Close = Instance.new("TextButton", TopBar)
 	Close.Size = UDim2.new(0, 26, 0.990, 0)
-	Close.Position = UDim2.new(1, -28, 0, 2)
+	Close.Position = UDim2.new(1, -27, 0, 1)
 	Close.Text = "X"
         Close.BackgroundTransparency= 0.119
 	Close.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
