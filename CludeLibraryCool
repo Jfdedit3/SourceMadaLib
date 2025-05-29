@@ -42,7 +42,7 @@ function CommandUI:Create()
         u3.CornerRadius = radius
 
 	local Close = Instance.new("TextButton", TopBar)
-	Close.Size = UDim2.new(0, 26, 0.990, 0)
+	Close.Size = UDim2.new(0, 26, 0.990, -1)
 	Close.Position = UDim2.new(1, -27, 0, 1)
 	Close.Text = "X"
         Close.BackgroundTransparency= 0.119
@@ -92,16 +92,16 @@ u6.CornerRadius = radius
 end
 
 function CommandUI:AddList(text)
-	if not uiElements.CommandList then return end
-	local label = Instance.new("TextLabel", uiElements.CommandList)
-	label.Size = UDim2.new(1, -5, 0, 22)
-	label.Text = text
-	label.Font = Enum.Font.SourceSans
-	label.TextSize = 15
-	label.BackgroundTransparency = 1
-	label.TextColor3 = Color3.fromRGB(200, 200, 200)
-	label.TextXAlignment = Enum.TextXAlignment.Left
-	label.Position = UDim2.new(0, 2, 0, 0)
+if not uiElements.CommandList then return end
+local label = Instance.new("TextLabel", uiElements.CommandList)
+label.Size = UDim2.new(1, -5, 0, 22)
+label.Position = UDim2.new(0, 2, 0, 0)
+label.Text = text
+label.Font = Enum.Font.SourceSans
+label.TextSize = 15
+label.BackgroundTransparency = 1
+label.TextColor3 = Color3.fromRGB(200, 200, 200)
+label.TextXAlignment = Enum.TextXAlignment.Left
 end
 
 function CommandUI:AddCommand(pattern, callback)
