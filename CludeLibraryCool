@@ -51,7 +51,7 @@ function CommandUI:Create()
 	Close.Font = Enum.Font.SourceSansBold
 	Close.TextSize = 16
 
-        local u4 = Instance.new("UICorner")
+        local u5 = Instance.new("UICorner")
         u5.Parent = Close
         u5.CornerRadius = radius
 
