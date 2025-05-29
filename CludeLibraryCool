@@ -1,109 +1,115 @@
--- ModuleScript: CommandUI
-local CommandUI = {}
+local ExploitUI = {}
 
-local commands = {}
-local uiElements = {}
+local UIS = game:GetService("UserInputService")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
 
-function CommandUI:Create()
-	local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
-	ScreenGui.Name = "ExploitCommandUI"
-	ScreenGui.ResetOnSpawn = false
+-- Color Palette
+local COLORS = {
+	Header = Color3.fromRGB(183, 205, 219),
+	Panel = Color3.fromRGB(24, 53, 69),
+	TextBox = Color3.fromRGB(192, 225, 240),
+	Item = Color3.fromRGB(35, 35, 35),
+	Text = Color3.fromRGB(255, 255, 255),
+}
 
-	local UIScale = Instance.new("UIScale", ScreenGui)
-	UIScale.Scale = 0.9  -- Adjust this for mobile scaling
+-- Command system
+local CommandList = {}
+local CommandMap = {}
 
-	local MainFrame = Instance.new("Frame", ScreenGui)
-	MainFrame.Size = UDim2.new(0, 265, 0, 300) -- MATCHING the screenshot now
-	MainFrame.Position = UDim2.new(0.5, -132, 0.5, -150)
-	MainFrame.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
-	MainFrame.BorderSizePixel = 0
+function ExploitUI:CreateWindow(title)
+	local screen = Instance.new("ScreenGui", Player:WaitForChild("PlayerGui"))
+	screen.Name = "ExploitUI"
+	screen.ResetOnSpawn = false
 
-	local TopBar = Instance.new("Frame", MainFrame)
-	TopBar.Size = UDim2.new(1, 0, 0, 28)
-	TopBar.BackgroundColor3 = Color3.fromRGB(0, 120, 190)
+	local holder = Instance.new("Frame", screen)
+	holder.AnchorPoint = Vector2.new(0.5, 0.5)
+	holder.Position = UDim2.new(0.5, 0, 0.5, 0)
+	holder.Size = UDim2.new(0, 400, 0, 350)
+	holder.BackgroundColor3 = COLORS.Panel
+	holder.BorderSizePixel = 0
+	holder.Name = "MainHolder"
 
-	local Title = Instance.new("TextLabel", TopBar)
-	Title.Size = UDim2.new(1, 0, 1, 0)
-	Title.Text = "COMMANDS"
-	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Title.Font = Enum.Font.SourceSansBold
-	Title.TextSize = 18
-	Title.BackgroundTransparency = 1
+	local uicorner = Instance.new("UICorner", holder)
+	uicorner.CornerRadius = UDim.new(0, 6)
 
-	local Close = Instance.new("TextButton", TopBar)
-	Close.Size = UDim2.new(0, 28, 1, 0)
-	Close.Position = UDim2.new(1, -28, 0, 0)
-	Close.Text = "X"
-	Close.BackgroundColor3 = Color3.fromRGB(180, 50, 50)
-	Close.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Close.Font = Enum.Font.SourceSansBold
-	Close.TextSize = 16
+	local header = Instance.new("Frame", holder)
+	header.Size = UDim2.new(1, 0, 0, 40)
+	header.BackgroundColor3 = COLORS.Header
+	header.BorderSizePixel = 0
+	Instance.new("UICorner", header).CornerRadius = UDim.new(0, 6)
 
-	Close.MouseButton1Click:Connect(function()
-		ScreenGui:Destroy()
-	end)
+	local titleLabel = Instance.new("TextLabel", header)
+	titleLabel.Size = UDim2.new(1, 0, 1, 0)
+	titleLabel.BackgroundTransparency = 1
+	titleLabel.Text = title or "COMMANDS"
+	titleLabel.Font = Enum.Font.SourceSansBold
+	titleLabel.TextScaled = true
+	titleLabel.TextColor3 = COLORS.Text
 
-	local InputBox = Instance.new("TextBox", MainFrame)
-	InputBox.Size = UDim2.new(1, -20, 0, 26)
-	InputBox.Position = UDim2.new(0, 10, 0, 34)
-	InputBox.PlaceholderText = "fly 50"
-	InputBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-	InputBox.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-	InputBox.BorderSizePixel = 0
-	InputBox.Font = Enum.Font.SourceSans
-	InputBox.TextSize = 15
-	InputBox.ClearTextOnFocus = false
-	InputBox.Text = ""
+	local cmdBox = Instance.new("TextBox", holder)
+	cmdBox.PlaceholderText = "fly <speed>"
+	cmdBox.Text = ""
+	cmdBox.Size = UDim2.new(1, -20, 0, 30)
+	cmdBox.Position = UDim2.new(0, 10, 0, 50)
+	cmdBox.BackgroundColor3 = COLORS.TextBox
+	cmdBox.BorderSizePixel = 0
+	cmdBox.ClearTextOnFocus = false
+	cmdBox.TextColor3 = COLORS.Text
+	cmdBox.Font = Enum.Font.SourceSans
+	cmdBox.TextSize = 16
 
-	local CommandList = Instance.new("ScrollingFrame", MainFrame)
-	CommandList.Size = UDim2.new(1, -20, 1, -70)
-	CommandList.Position = UDim2.new(0, 10, 0, 64)
-	CommandList.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
-	CommandList.BorderSizePixel = 0
-	CommandList.CanvasSize = UDim2.new(0, 0, 0, 0)
-	CommandList.AutomaticCanvasSize = Enum.AutomaticSize.Y
-	CommandList.ScrollBarThickness = 4
+	local cmdList = Instance.new("ScrollingFrame", holder)
+	cmdList.Position = UDim2.new(0, 10, 0, 90)
+	cmdList.Size = UDim2.new(1, -20, 1, -100)
+	cmdList.BackgroundColor3 = COLORS.Panel
+	cmdList.BorderSizePixel = 0
+	cmdList.CanvasSize = UDim2.new(0, 0, 0, 0)
+	cmdList.ScrollBarThickness = 4
+	cmdList.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	cmdList.ClipsDescendants = true
 
-	local Layout = Instance.new("UIListLayout", CommandList)
-	Layout.SortOrder = Enum.SortOrder.LayoutOrder
-	Layout.Padding = UDim.new(0, 3)
+	local listLayout = Instance.new("UIListLayout", cmdList)
+	listLayout.Padding = UDim.new(0, 4)
 
-	uiElements.CommandList = CommandList
-	uiElements.InputBox = InputBox
-end
-
-function CommandUI:AddList(text)
-	if not uiElements.CommandList then return end
-	local label = Instance.new("TextLabel", uiElements.CommandList)
-	label.Size = UDim2.new(1, -5, 0, 22)
-	label.Text = text
-	label.Font = Enum.Font.SourceSans
-	label.TextSize = 14
-	label.BackgroundTransparency = 1
-	label.TextColor3 = Color3.fromRGB(200, 200, 200)
-	label.TextXAlignment = Enum.TextXAlignment.Left
-end
-
-function CommandUI:AddCommand(pattern, callback)
-	local cleaned = pattern:gsub("<%w+>", "(.+)")
-	table.insert(commands, {
-		pattern = pattern,
-		regex = "^" .. cleaned .. "$",
-		callback = callback
-	})
-
-	if not uiElements.InputBox:GetAttribute("Hooked") then
-		uiElements.InputBox:GetPropertyChangedSignal("Text"):Connect(function()
-			local text = uiElements.InputBox.Text
-			for _, cmd in ipairs(commands) do
-				local match = {string.match(text, cmd.regex)}
-				if #match > 0 then
-					cmd.callback(table.unpack(match))
+	-- Command activation
+	cmdBox.FocusLost:Connect(function(enter)
+		if enter then
+			local input = cmdBox.Text
+			for pattern, callback in pairs(CommandMap) do
+				local args = { string.match(input, pattern) }
+				if #args > 0 then
+					pcall(callback, unpack(args))
+					break
 				end
 			end
-		end)
-		uiElements.InputBox:SetAttribute("Hooked", true)
+		end
+	end)
+
+	-- Public API
+	function ExploitUI:AddList(cmd)
+		local item = Instance.new("TextLabel", cmdList)
+		item.Size = UDim2.new(1, -4, 0, 28)
+		item.BackgroundColor3 = COLORS.Item
+		item.TextColor3 = COLORS.Text
+		item.TextXAlignment = Enum.TextXAlignment.Left
+		item.Text = "  " .. cmd
+		item.Font = Enum.Font.SourceSans
+		item.TextSize = 18
+		item.BorderSizePixel = 0
+		Instance.new("UICorner", item).CornerRadius = UDim.new(0, 4)
+
+		table.insert(CommandList, cmd)
 	end
+
+	function ExploitUI:AddCommand(pattern, callback)
+		-- Convert 'fly <speed>' into proper Lua pattern
+		local luaPattern = pattern:gsub("<%w+>", "([%w%.]+)")
+		CommandMap[luaPattern] = callback
+		self:AddList(pattern)
+	end
+
+	return self
 end
 
-return CommandUI
+return ExploitUI
