@@ -101,6 +101,7 @@ function CommandUI:AddList(text)
 	label.BackgroundTransparency = 1
 	label.TextColor3 = Color3.fromRGB(200, 200, 200)
 	label.TextXAlignment = Enum.TextXAlignment.Left
+	label.TextInset = Vector2.new(5, 0)  -- add left padding here
 end
 
 function CommandUI:AddCommand(pattern, callback)
