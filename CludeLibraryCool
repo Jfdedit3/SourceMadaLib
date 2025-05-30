@@ -18,7 +18,7 @@ function CommandUI:Create()
 local imageButton = Instance.new("ImageButton")
 imageButton.Name = "cmdsOpenButton"
 imageButton.BackgroundTransparency = 1
-ImageButton.Image = "rbxassetid://106862526260246"
+imageButton.Image = "rbxassetid://106862526260246"
 imageButton.Size = UDim2.new(0.005, 50, 0.01, 50)
 imageButton.Position = UDim2.new(0.211792737, 0, 0.1, 34)
 imageButton.Draggable = true
