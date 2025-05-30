@@ -62,11 +62,6 @@ local uiCorner8 = Instance.new("UICorner")
 uiCorner8.CornerRadius = openradius
 uiCorner8.Parent = imageButton
 
-imageButton.MouseButton1Click:Connect(function()
-MainFrame.Visible = true
-imageButton.Visible = false
-end)
-
 	local Close = Instance.new("TextButton", TopBar)
 	Close.Size = UDim2.new(0, 26, 0.990, -1)
 	Close.Position = UDim2.new(1, -27, 0, 1)
@@ -81,10 +76,19 @@ end)
         u20.CornerRadius = radius
         u20.Parent = Close
 
-	Close.MouseButton1Click:Connect(function()
+imageButton.MouseButton1Click:Connect(function()
+	if MainFrame and imageButton then
+		MainFrame.Visible = true
+		imageButton.Visible = false
+	end
+end)
+
+Close.MouseButton1Click:Connect(function()
+	if MainFrame and imageButton then
 		MainFrame.Visible = false
-                imageButton.Visible = true
-	end)
+		imageButton.Visible = true
+	end
+end)
 
 	local InputBox = Instance.new("TextBox", MainFrame)
 	InputBox.Size = UDim2.new(1, -20, 0, 26)
