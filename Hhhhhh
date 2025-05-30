@@ -121,23 +121,6 @@ panel.InputEnded:Connect(function(input)
     end
 end)
 
-local k = Instance.new("TextButton")
-k.Parent = screenGui
-k.Size = UDim2.new(0.1,0,0.15)
-k.Position = UDim2.new(0.5,0,0.1)
-k.BackgroundColor3 = Color3.fromRGB(40,40,40)
-k.TextColor3 = Color3.fromRGB(255,255,255)
-k.BackgroundTransparency = 0.5
-k.Text = "S"
-k.Font = Enum.Font.Bangers
-k.TextScaled = true
-k.TextColor3 = Color3.new(1,1,1)
-k.Active = true
-k.Draggable = true
-k.Visible = false
-local kk = Instance.new("UICorner")
-kk.Parent = k
-kk.CornerRadius = UDim.new(1,0)
 local header = Instance.new("TextLabel")
 header.Size = UDim2.new(1,0,0.2)
 header.BackgroundColor3 = Color3.fromRGB(0, 120, 190)
@@ -162,15 +145,7 @@ closeButton.Parent = header
 closeButton.MouseButton1Click:Connect(function()
     screenGui:Destroy()
 end)
-local m = Instance.new("TextButton")
-m.Parent = header
-m.Size = UDim2.new(0.1,0,0.9)
-m.Position = UDim2.new(0.78,0,0.05)
-m.BackgroundColor3 = Color3.fromRGB(0, 120, 190)
-m.BorderSizePixel = 0
-m.TextColor3 = Color3.fromRGB(255,255,255)
-m.BackgroundTransparency = 0.5
-m.Text = "-"
+
 local Box = Instance.new("TextLabel")
 Box.Size = UDim2.new(0.9,0,0.25)
 Box.Position = UDim2.new(0.05,0,0.65)
@@ -205,14 +180,7 @@ flyButton.BorderSizePixel = 0
 flyButton.Font = Enum.Font.Highway
 flyButton.TextSize = 20
 flyButton.Parent = panel
-k.MouseButton1Click:Connect(function()
-panel.Visible = true
-k.Visible = false
-end)
-m.MouseButton1Click:Connect(function()
-panel.Visible = false
-k.Visible = true
-end)
+
 flyButton.MouseButton1Click:Connect(function()
     local newSpeed = tonumber(speedBox.Text)
     if newSpeed then
