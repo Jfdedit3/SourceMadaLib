@@ -25,6 +25,7 @@ imageButton.Draggable = true
 imageButton.Active = true
 imageButton.Selectable = true
 imageButton.Parent = ScreenGui
+imageButton.Visible = true
 
 local uiCorner8 = Instance.new("UICorner")
 uiCorner8.CornerRadius = radius
