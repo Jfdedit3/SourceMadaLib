@@ -35,7 +35,7 @@ function Library:CreateWindow(titleText)
 imageButton.Name = "cmdsOpenButton"
 imageButton.BackgroundTransparency = 1
 imageButton.Image = "rbxassetid://106862526260246"
-imageButton.Size = UDim2.new(0.005, 42, 0.01, 42)
+imageButton.Size = UDim2.new(0.005, 38, 0.01, 38)
 imageButton.Position = UDim2.new(0.211792737, 0, 0.1, 34)
 imageButton.Draggable = true
 imageButton.Active = true
@@ -44,7 +44,7 @@ imageButton.Parent = ScreenGui
 imageButton.Visible = true
 
 local uiCorner8 = Instance.new("UICorner")
-uiCorner8.CornerRadius = openradius
+uiCorner8.CornerRadius = UDim2.new(1, 0
 uiCorner8.Parent = imageButton
 
 	local closeBtn = Instance.new("TextButton", topBar)
