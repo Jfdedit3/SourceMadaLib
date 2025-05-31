@@ -44,7 +44,7 @@ imageButton.Parent = gui
 imageButton.Visible = true
 
 local uiCorner8 = Instance.new("UICorner")
-uiCorner8.CornerRadius = UDim2.new(1, 0)
+uiCorner8.CornerRadius = UDim.new(1, 0)
 uiCorner8.Parent = imageButton
 
 	local closeBtn = Instance.new("TextButton", topBar)
