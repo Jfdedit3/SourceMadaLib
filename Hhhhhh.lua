@@ -123,7 +123,7 @@ end)
 
 local header = Instance.new("TextLabel")
 header.Size = UDim2.new(1,0,0.2)
-header.BackgroundColor3 = Color3.fromRGB(0, 120, 190)
+header.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
 header.Text = " FLY"
 header.TextColor3 = Color3.new(1, 1, 1)
 header.BorderSizePixel = 0
