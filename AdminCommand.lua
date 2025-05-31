@@ -104,7 +104,12 @@ function Library:CreateWindow(titleText)
 	end
 
 	local function AddList(name)
-		local section = Instance.new("Frame", scroll)
+		local sectionContainer = Instance.new("Frame", scroll)
+		sectionContainer.Size = UDim2.new(1, 0, 0, 0)
+		sectionContainer.BackgroundTransparency = 1
+		sectionContainer.AutomaticSize = Enum.AutomaticSize.Y
+
+		local section = Instance.new("Frame", sectionContainer)
 		section.Size = UDim2.new(1, 0, 0, 28)
 		section.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 
@@ -117,10 +122,11 @@ function Library:CreateWindow(titleText)
 		header.BackgroundTransparency = 1
 		header.TextXAlignment = Enum.TextXAlignment.Left
 
-		local content = Instance.new("Frame", scroll)
+		local content = Instance.new("Frame", sectionContainer)
 		content.Size = UDim2.new(1, 0, 0, 0)
 		content.BackgroundTransparency = 1
 		content.Visible = false
+		content.AutomaticSize = Enum.AutomaticSize.Y
 
 		local contentLayout = Instance.new("UIListLayout", content)
 		contentLayout.SortOrder = Enum.SortOrder.LayoutOrder
