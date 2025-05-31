@@ -10,18 +10,14 @@ paulparasplaythis
 
 # booting the library and add frame window
 ```lua
-local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHub/SourceCludeLib/refs/heads/main/AdminCommand.lua"))():CreateWindow("COMMANDS")
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHub/SourceCludeLib/refs/heads/main/AdminCommand.lua"))()
+
+local UI = Library:CreateWindow("Command")
 ```
 
 # Creating the command on textbox
 ```lua
-UI.AddCommand("kill (%w+)", function(target)
-	local plr = game.Players:FindFirstChild(target)
-	if plr and plr.Character and plr.Character:FindFirstChild("Humanoid") then
-		plr.Character.Humanoid.Health = 0
-		print("Killed", target)
-	else
-		warn("Player not found:", target)
-	end
-end, killList)
+UI.AddCommand("fly (%d+)", function(speed)
+	print("Flying at speed:", speed)
+end)
 ```
