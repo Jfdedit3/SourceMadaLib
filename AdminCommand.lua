@@ -99,6 +99,7 @@ function Library:CreateWindow(titleText)
 		cmdLabel.TextSize = 12
 		cmdLabel.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
 		cmdLabel.TextXAlignment = Enum.TextXAlignment.Left
+		cmdLabel.BackgroundTransparency = 0
 		Instance.new("UICorner", cmdLabel).CornerRadius = UDim.new(0, 3)
 		cmdLabel.Parent = parent or scroll
 	end
@@ -109,24 +110,20 @@ function Library:CreateWindow(titleText)
 		sectionContainer.BackgroundTransparency = 1
 		sectionContainer.AutomaticSize = Enum.AutomaticSize.Y
 
-		local section = Instance.new("Frame", sectionContainer)
-		section.Size = UDim2.new(1, 0, 0, 28)
-		section.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-
-		local header = Instance.new("TextButton", section)
-		header.Size = UDim2.new(1, 0, 1, 0)
+		local header = Instance.new("TextButton", sectionContainer)
+		header.Size = UDim2.new(1, 0, 0, 28)
+		header.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 		header.Text = "  >  " .. name
 		header.TextColor3 = Color3.fromRGB(200, 200, 200)
 		header.Font = Enum.Font.Gotham
 		header.TextSize = 13
-		header.BackgroundTransparency = 1
 		header.TextXAlignment = Enum.TextXAlignment.Left
 
 		local content = Instance.new("Frame", sectionContainer)
 		content.Size = UDim2.new(1, 0, 0, 0)
 		content.BackgroundTransparency = 1
-		content.Visible = false
 		content.AutomaticSize = Enum.AutomaticSize.Y
+		content.Visible = false
 
 		local contentLayout = Instance.new("UIListLayout", content)
 		contentLayout.SortOrder = Enum.SortOrder.LayoutOrder
