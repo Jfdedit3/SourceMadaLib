@@ -1,17 +1,28 @@
+# HD Admin UI Library
+⚠️ It can ban you in the game so be careful how to fix:
+make sure your adding safe script that don't affect the game so much
+
+🇵🇭 Made in PH
+# Credit:
+CludeHub
+paulparasplaythis 
+
+
 # booting the library
 ```lua
-local CommandUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHub/SourceCludeLib/main/CludeLibraryCool"))()
+local Lib = require(path.to.ExploitUILib)
 ```
-# creating the window
+# Creating the window frame
 ```lua
-CommandUI:Create()
+local ui = Lib:CreateWindow("COMMANDS")
 ```
-# adding list
+# Creating the list
 ```lua
-CommandUI:AddList("walkspeed <speed>")
+local nonadmin = ui.AddList("NonAdmin")
 ```
-# adding command input
+# Creating the command on textbox
 ```lua
-CommandUI:AddCommand("walkspeed <speed>", function(speed)
-end)
+ui.AddCommand(";fly%s+(%d+)", function(msg)
+	print("Fly speed:", msg:match("%d+"))
+end, nonadmin)
 ```
