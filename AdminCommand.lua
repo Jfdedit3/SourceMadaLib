@@ -12,16 +12,17 @@ function Library:CreateWindow(titleText)
 	uiScale.Scale = game:GetService("UserInputService").TouchEnabled and 0.9 or 1
 
 	local main = Instance.new("Frame", gui)
-	main.Size = UDim2.new(0, 310, 0, 340)
-	main.Position = UDim2.new(0.5, -155, 0.5, -170)
-	main.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+	main.Size = UDim2.new(0, 310, 0, 380)
+	main.Position = UDim2.new(0.5, -155, 0.5, -190)
+	main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	main.BorderSizePixel = 0
 	main.Name = "MainPanel"
 	Instance.new("UICorner", main).CornerRadius = UDim.new(0, 6)
 
 	local topBar = Instance.new("Frame", main)
 	topBar.Size = UDim2.new(1, 0, 0, 32)
-	topBar.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+	topBar.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+	topBar.BorderSizePixel = 0
 
 	local title = Instance.new("TextLabel", topBar)
 	title.Size = UDim2.new(1, 0, 1, 0)
@@ -46,21 +47,22 @@ function Library:CreateWindow(titleText)
 	local inputBar = Instance.new("Frame", main)
 	inputBar.Size = UDim2.new(1, -20, 0, 26)
 	inputBar.Position = UDim2.new(0, 10, 0, 42)
-	inputBar.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+	inputBar.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+	inputBar.BorderSizePixel = 0
 	Instance.new("UICorner", inputBar).CornerRadius = UDim.new(0, 4)
 
 	local icon = Instance.new("TextLabel", inputBar)
 	icon.Size = UDim2.new(0, 20, 1, 0)
-	icon.Position = UDim2.new(0, 4, 0, 0)
+	icon.Position = UDim2.new(0, 5, 0, 0)
 	icon.BackgroundTransparency = 1
 	icon.Text = "💻"
-	icon.TextColor3 = Color3.fromRGB(160, 160, 160)
+	icon.TextColor3 = Color3.fromRGB(140, 140, 140)
 	icon.Font = Enum.Font.Gotham
 	icon.TextSize = 13
 
 	local inputBox = Instance.new("TextBox", inputBar)
 	inputBox.Size = UDim2.new(1, -30, 1, 0)
-	inputBox.Position = UDim2.new(0, 26, 0, 0)
+	inputBox.Position = UDim2.new(0, 28, 0, 0)
 	inputBox.BackgroundTransparency = 1
 	inputBox.Text = ""
 	inputBox.PlaceholderText = ";command <args>"
@@ -71,13 +73,13 @@ function Library:CreateWindow(titleText)
 	inputBox.ClearTextOnFocus = false
 
 	local scroll = Instance.new("ScrollingFrame", main)
-	scroll.Size = UDim2.new(1, -20, 1, -80)
-	scroll.Position = UDim2.new(0, 10, 0, 70)
-	scroll.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+	scroll.Size = UDim2.new(1, -20, 1, -84)
+	scroll.Position = UDim2.new(0, 10, 0, 74)
+	scroll.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	scroll.BorderSizePixel = 0
 	scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
 	scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
-	scroll.ScrollBarThickness = 5
+	scroll.ScrollBarThickness = 4
 
 	local layout = Instance.new("UIListLayout", scroll)
 	layout.Padding = UDim.new(0, 4)
@@ -94,13 +96,14 @@ function Library:CreateWindow(titleText)
 		local cmdLabel = Instance.new("TextLabel")
 		cmdLabel.Size = UDim2.new(1, -10, 0, 22)
 		cmdLabel.Text = pattern
-		cmdLabel.TextColor3 = Color3.fromRGB(210, 210, 210)
+		cmdLabel.TextColor3 = Color3.fromRGB(220, 220, 220)
 		cmdLabel.Font = Enum.Font.Gotham
 		cmdLabel.TextSize = 12
-		cmdLabel.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+		cmdLabel.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
 		cmdLabel.TextXAlignment = Enum.TextXAlignment.Left
-		Instance.new("UICorner", cmdLabel).CornerRadius = UDim.new(0, 3)
+		cmdLabel.BorderSizePixel = 0
 		cmdLabel.Parent = scroll
+		Instance.new("UICorner", cmdLabel).CornerRadius = UDim.new(0, 3)
 	end
 
 	inputBox.FocusLost:Connect(function(enter)
