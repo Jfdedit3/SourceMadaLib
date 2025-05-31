@@ -63,9 +63,11 @@ uiCorner8.Parent = imageButton
 	end
 end)
 	closeBtn.MouseButton1Click:Connect(function()
+        if main and imageButton then
 		main.Visible = false
 		imageButton.Visible = true
-	end)
+	end
+end)
 
 	local inputBar = Instance.new("Frame", main)
 	inputBar.Size = UDim2.new(1, -20, 0, 26)
