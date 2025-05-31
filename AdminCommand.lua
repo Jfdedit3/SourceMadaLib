@@ -100,17 +100,18 @@ function Library:CreateWindow(titleText)
 		cmdLabel.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
 		cmdLabel.TextXAlignment = Enum.TextXAlignment.Left
 		cmdLabel.BackgroundTransparency = 0
+		cmdLabel.BorderSizePixel = 0
 		Instance.new("UICorner", cmdLabel).CornerRadius = UDim.new(0, 3)
 		cmdLabel.Parent = parent or scroll
 	end
 
 	local function AddList(name)
-		local sectionContainer = Instance.new("Frame", scroll)
-		sectionContainer.Size = UDim2.new(1, 0, 0, 0)
-		sectionContainer.BackgroundTransparency = 1
-		sectionContainer.AutomaticSize = Enum.AutomaticSize.Y
+		local listContainer = Instance.new("Frame", scroll)
+		listContainer.Size = UDim2.new(1, 0, 0, 0)
+		listContainer.BackgroundTransparency = 1
+		listContainer.AutomaticSize = Enum.AutomaticSize.Y
 
-		local header = Instance.new("TextButton", sectionContainer)
+		local header = Instance.new("TextButton")
 		header.Size = UDim2.new(1, 0, 0, 28)
 		header.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 		header.Text = "  >  " .. name
@@ -118,12 +119,14 @@ function Library:CreateWindow(titleText)
 		header.Font = Enum.Font.Gotham
 		header.TextSize = 13
 		header.TextXAlignment = Enum.TextXAlignment.Left
+		header.Parent = listContainer
 
-		local content = Instance.new("Frame", sectionContainer)
+		local content = Instance.new("Frame")
 		content.Size = UDim2.new(1, 0, 0, 0)
 		content.BackgroundTransparency = 1
-		content.AutomaticSize = Enum.AutomaticSize.Y
 		content.Visible = false
+		content.AutomaticSize = Enum.AutomaticSize.Y
+		content.Parent = listContainer
 
 		local contentLayout = Instance.new("UIListLayout", content)
 		contentLayout.SortOrder = Enum.SortOrder.LayoutOrder
