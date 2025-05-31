@@ -12,10 +12,7 @@ paulparasplaythis
 ```lua
 local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHub/SourceCludeLib/refs/heads/main/AdminCommand.lua"))():CreateWindow("COMMANDS")
 ```
-# Creating the list
-```lua
-local killList = UI.AddList("kill <player>")
-```
+
 # Creating the command on textbox
 ```lua
 UI.AddCommand("kill (%w+)", function(target)
