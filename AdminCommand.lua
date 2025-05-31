@@ -86,7 +86,10 @@ function Library:CreateWindow(titleText)
 	local commandCallbacks = {}
 
 	local function AddCommand(pattern, callback, parent)
-		commandCallbacks[pattern] = callback
+		table.insert(commandCallbacks, {
+			pattern = pattern,
+			callback = callback
+		})
 
 		local cmdLabel = Instance.new("TextLabel")
 		cmdLabel.Size = UDim2.new(1, -10, 0, 22)
@@ -134,9 +137,10 @@ function Library:CreateWindow(titleText)
 	inputBox.FocusLost:Connect(function(enter)
 		if enter then
 			local input = inputBox.Text:lower()
-			for pattern, func in pairs(commandCallbacks) do
-				if input:match(pattern) then
-					func(input)
+			for _, cmd in ipairs(commandCallbacks) do
+				local args = {input:match(cmd.pattern)}
+				if #args > 0 then
+					cmd.callback(table.unpack(args))
 					break
 				end
 			end
