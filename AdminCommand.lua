@@ -31,6 +31,22 @@ function Library:CreateWindow(titleText)
 	title.TextSize = 14
 	title.BackgroundTransparency = 1
 
+	local imageButton = Instance.new("ImageButton")
+imageButton.Name = "cmdsOpenButton"
+imageButton.BackgroundTransparency = 1
+imageButton.Image = "rbxassetid://106862526260246"
+imageButton.Size = UDim2.new(0.005, 42, 0.01, 42)
+imageButton.Position = UDim2.new(0.211792737, 0, 0.1, 34)
+imageButton.Draggable = true
+imageButton.Active = true
+imageButton.Selectable = true
+imageButton.Parent = ScreenGui
+imageButton.Visible = true
+
+local uiCorner8 = Instance.new("UICorner")
+uiCorner8.CornerRadius = openradius
+uiCorner8.Parent = imageButton
+
 	local closeBtn = Instance.new("TextButton", topBar)
 	closeBtn.Size = UDim2.new(0, 28, 1, 0)
 	closeBtn.Position = UDim2.new(1, -28, 0, 0)
@@ -41,6 +57,7 @@ function Library:CreateWindow(titleText)
 	closeBtn.BackgroundTransparency = 1
 	closeBtn.MouseButton1Click:Connect(function()
 		main.Visible = false
+		imageButton.Visible = true
 	end)
 
 	local inputBar = Instance.new("Frame", main)
