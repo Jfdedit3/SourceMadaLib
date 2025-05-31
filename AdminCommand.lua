@@ -1,163 +1,180 @@
-local Library = {}
+local NebulaUI = {}
 
-function Library:CreateWindow(titleText)
-	local player = game.Players.LocalPlayer
+function NebulaUI:CreateWindow(title)
+	local ScreenGui = Instance.new("ScreenGui", game:GetService("CoreGui"))
+	ScreenGui.Name = "NebulaUI"
+	ScreenGui.ResetOnSpawn = false
 
-	local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-	gui.IgnoreGuiInset = true
-	gui.ResetOnSpawn = false
-	gui.Name = "ExploitUI"
+	local Main = Instance.new("Frame", ScreenGui)
+	Main.Size = UDim2.new(0, 700, 0, 450)
+	Main.Position = UDim2.new(0.5, -350, 0.5, -225)
+	Main.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+	Main.BorderSizePixel = 0
 
-	local uiScale = Instance.new("UIScale", gui)
-	uiScale.Scale = game:GetService("UserInputService").TouchEnabled and 0.9 or 1
+	local UIScale = Instance.new("UIScale", Main)
+	UIScale.Scale = 0.9
 
-	local main = Instance.new("Frame", gui)
-	main.Size = UDim2.new(0, 310, 0, 340)
-	main.Position = UDim2.new(0.5, -155, 0.5, -170)
-	main.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-	main.BorderSizePixel = 0
-	main.Name = "MainPanel"
-	Instance.new("UICorner", main).CornerRadius = UDim.new(0, 6)
+	local Tabs = Instance.new("Frame", Main)
+	Tabs.Size = UDim2.new(1, 0, 0, 35)
+	Tabs.BackgroundTransparency = 1
 
-	local topBar = Instance.new("Frame", main)
-	topBar.Size = UDim2.new(1, 0, 0, 32)
-	topBar.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+	local TabLayout = Instance.new("UIListLayout", Tabs)
+	TabLayout.FillDirection = Enum.FillDirection.Horizontal
+	TabLayout.Padding = UDim.new(0, 8)
 
-	local title = Instance.new("TextLabel", topBar)
-	title.Size = UDim2.new(1, 0, 1, 0)
-	title.Text = titleText or "COMMANDS"
-	title.TextColor3 = Color3.fromRGB(255, 255, 255)
-	title.Font = Enum.Font.GothamBold
-	title.TextSize = 14
-	title.BackgroundTransparency = 1
+	local ContentFrame = Instance.new("Frame", Main)
+	ContentFrame.Position = UDim2.new(0, 0, 0, 35)
+	ContentFrame.Size = UDim2.new(1, 0, 1, -35)
+	ContentFrame.BackgroundTransparency = 1
 
-	local closeBtn = Instance.new("TextButton", topBar)
-	closeBtn.Size = UDim2.new(0, 28, 1, 0)
-	closeBtn.Position = UDim2.new(1, -28, 0, 0)
-	closeBtn.Text = "X"
-	closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-	closeBtn.Font = Enum.Font.GothamBold
-	closeBtn.TextSize = 14
-	closeBtn.BackgroundTransparency = 1
-	closeBtn.MouseButton1Click:Connect(function()
-		main.Visible = false
-	end)
+	local allTabs = {}
 
-	local inputBar = Instance.new("Frame", main)
-	inputBar.Size = UDim2.new(1, -20, 0, 26)
-	inputBar.Position = UDim2.new(0, 10, 0, 42)
-	inputBar.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
-	Instance.new("UICorner", inputBar).CornerRadius = UDim.new(0, 4)
+	function NebulaUI:CreateTab(tabName)
+		local Button = Instance.new("TextButton", Tabs)
+		Button.Text = tabName
+		Button.Size = UDim2.new(0, 100, 1, 0)
+		Button.BackgroundColor3 = Color3.fromRGB(40, 40, 48)
+		Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Button.Font = Enum.Font.GothamSemibold
+		Button.TextSize = 14
+		Button.AutoButtonColor = false
 
-	local icon = Instance.new("TextLabel", inputBar)
-	icon.Size = UDim2.new(0, 20, 1, 0)
-	icon.Position = UDim2.new(0, 4, 0, 0)
-	icon.BackgroundTransparency = 1
-	icon.Text = "💻"
-	icon.TextColor3 = Color3.fromRGB(160, 160, 160)
-	icon.Font = Enum.Font.Gotham
-	icon.TextSize = 13
+		local TabFrame = Instance.new("Frame", ContentFrame)
+		TabFrame.Size = UDim2.new(1, 0, 1, 0)
+		TabFrame.Visible = false
+		TabFrame.BackgroundTransparency = 1
 
-	local inputBox = Instance.new("TextBox", inputBar)
-	inputBox.Size = UDim2.new(1, -30, 1, 0)
-	inputBox.Position = UDim2.new(0, 26, 0, 0)
-	inputBox.BackgroundTransparency = 1
-	inputBox.Text = ""
-	inputBox.PlaceholderText = ";command <args>"
-	inputBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-	inputBox.Font = Enum.Font.Gotham
-	inputBox.TextSize = 13
-	inputBox.TextXAlignment = Enum.TextXAlignment.Left
-	inputBox.ClearTextOnFocus = false
+		local Left = Instance.new("Frame", TabFrame)
+		Left.Position = UDim2.new(0, 0, 0, 0)
+		Left.Size = UDim2.new(0.5, -10, 1, 0)
+		Left.BackgroundTransparency = 1
 
-	local scroll = Instance.new("ScrollingFrame", main)
-	scroll.Size = UDim2.new(1, -20, 1, -80)
-	scroll.Position = UDim2.new(0, 10, 0, 70)
-	scroll.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-	scroll.BorderSizePixel = 0
-	scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
-	scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
-	scroll.ScrollBarThickness = 5
+		local Right = Instance.new("Frame", TabFrame)
+		Right.Position = UDim2.new(0.5, 10, 0, 0)
+		Right.Size = UDim2.new(0.5, -10, 1, 0)
+		Right.BackgroundTransparency = 1
 
-	local layout = Instance.new("UIListLayout", scroll)
-	layout.Padding = UDim.new(0, 4)
-	layout.SortOrder = Enum.SortOrder.LayoutOrder
+		local LeftLayout = Instance.new("UIListLayout", Left)
+		LeftLayout.Padding = UDim.new(0, 10)
 
-	local commandCallbacks = {}
+		local RightLayout = Instance.new("UIListLayout", Right)
+		RightLayout.Padding = UDim.new(0, 10)
 
-	local function AddCommand(pattern, callback, parent)
-		table.insert(commandCallbacks, {
-			pattern = pattern,
-			callback = callback
-		})
+		table.insert(allTabs, TabFrame)
 
-		local cmdLabel = Instance.new("TextLabel")
-		cmdLabel.Size = UDim2.new(1, -10, 0, 22)
-		cmdLabel.Text = pattern
-		cmdLabel.TextColor3 = Color3.fromRGB(210, 210, 210)
-		cmdLabel.Font = Enum.Font.Gotham
-		cmdLabel.TextSize = 12
-		cmdLabel.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
-		cmdLabel.TextXAlignment = Enum.TextXAlignment.Left
-		cmdLabel.BackgroundTransparency = 0
-		cmdLabel.BorderSizePixel = 0
-		Instance.new("UICorner", cmdLabel).CornerRadius = UDim.new(0, 3)
-		cmdLabel.Parent = parent or scroll
-	end
-
-	local function AddList(name)
-		local listContainer = Instance.new("Frame", scroll)
-		listContainer.Size = UDim2.new(1, 0, 0, 0)
-		listContainer.BackgroundTransparency = 1
-		listContainer.AutomaticSize = Enum.AutomaticSize.Y
-
-		local header = Instance.new("TextButton")
-		header.Size = UDim2.new(1, 0, 0, 28)
-		header.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-		header.Text = "  >  " .. name
-		header.TextColor3 = Color3.fromRGB(200, 200, 200)
-		header.Font = Enum.Font.Gotham
-		header.TextSize = 13
-		header.TextXAlignment = Enum.TextXAlignment.Left
-		header.Parent = listContainer
-
-		local content = Instance.new("Frame")
-		content.Size = UDim2.new(1, 0, 0, 0)
-		content.BackgroundTransparency = 1
-		content.Visible = false
-		content.AutomaticSize = Enum.AutomaticSize.Y
-		content.Parent = listContainer
-
-		local contentLayout = Instance.new("UIListLayout", content)
-		contentLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		contentLayout.Padding = UDim.new(0, 4)
-
-		header.MouseButton1Click:Connect(function()
-			content.Visible = not content.Visible
-			header.Text = (content.Visible and "  v  " or "  >  ") .. name
+		Button.MouseButton1Click:Connect(function()
+			for _, tab in pairs(allTabs) do tab.Visible = false end
+			TabFrame.Visible = true
 		end)
 
-		return content
+		local tabAPI = {}
+
+		local function createSection(parent, title)
+			local Section = Instance.new("Frame", parent)
+			Section.Size = UDim2.new(1, 0, 0, 150)
+			Section.BackgroundColor3 = Color3.fromRGB(30, 30, 36)
+			Section.BorderSizePixel = 0
+
+			local Label = Instance.new("TextLabel", Section)
+			Label.Text = title
+			Label.Font = Enum.Font.GothamBold
+			Label.TextSize = 14
+			Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Label.Size = UDim2.new(1, -10, 0, 20)
+			Label.Position = UDim2.new(0, 10, 0, 5)
+			Label.BackgroundTransparency = 1
+			Label.TextXAlignment = Enum.TextXAlignment.Left
+
+			local Layout = Instance.new("UIListLayout", Section)
+			Layout.SortOrder = Enum.SortOrder.LayoutOrder
+			Layout.Padding = UDim.new(0, 5)
+
+			local sectionAPI = {}
+
+			function sectionAPI:AddToggle(label, default, callback)
+				local Toggle = Instance.new("TextButton", Section)
+				Toggle.Size = UDim2.new(1, -20, 0, 25)
+				Toggle.Position = UDim2.new(0, 10, 0, 25)
+				Toggle.BackgroundColor3 = Color3.fromRGB(40, 40, 48)
+				Toggle.Text = ""
+
+				local Text = Instance.new("TextLabel", Toggle)
+				Text.Text = label
+				Text.Font = Enum.Font.Gotham
+				Text.TextSize = 13
+				Text.TextColor3 = Color3.fromRGB(255, 255, 255)
+				Text.Size = UDim2.new(1, -30, 1, 0)
+				Text.Position = UDim2.new(0, 5, 0, 0)
+				Text.BackgroundTransparency = 1
+				Text.TextXAlignment = Enum.TextXAlignment.Left
+
+				local Box = Instance.new("Frame", Toggle)
+				Box.Size = UDim2.new(0, 20, 0, 20)
+				Box.Position = UDim2.new(1, -25, 0.5, -10)
+				Box.BackgroundColor3 = default and Color3.fromRGB(130, 85, 255) or Color3.fromRGB(50, 50, 60)
+
+				local state = default
+
+				Toggle.MouseButton1Click:Connect(function()
+					state = not state
+					Box.BackgroundColor3 = state and Color3.fromRGB(130, 85, 255) or Color3.fromRGB(50, 50, 60)
+					pcall(callback, state)
+				end)
+			end
+
+			function sectionAPI:AddDropdown(label, options, callback)
+				local Drop = Instance.new("TextButton", Section)
+				Drop.Size = UDim2.new(1, -20, 0, 25)
+				Drop.BackgroundColor3 = Color3.fromRGB(40, 40, 48)
+				Drop.Text = label .. " ▼"
+				Drop.Font = Enum.Font.Gotham
+				Drop.TextSize = 13
+				Drop.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+				local Open = false
+
+				Drop.MouseButton1Click:Connect(function()
+					if Open then return end
+					Open = true
+
+					for _, opt in ipairs(options) do
+						local OptBtn = Instance.new("TextButton", Section)
+						OptBtn.Size = UDim2.new(1, -20, 0, 25)
+						OptBtn.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+						OptBtn.Text = opt
+						OptBtn.Font = Enum.Font.Gotham
+						OptBtn.TextSize = 13
+						OptBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+						OptBtn.MouseButton1Click:Connect(function()
+							Drop.Text = label .. ": " .. opt
+							callback(opt)
+							Open = false
+							for _, child in ipairs(Section:GetChildren()) do
+								if child:IsA("TextButton") and child ~= Drop then
+									child:Destroy()
+								end
+							end
+						end)
+					end
+				end)
+			end
+
+			return sectionAPI
+		end
+
+		function tabAPI:AddLeftSection(title)
+			return createSection(Left, title)
+		end
+
+		function tabAPI:AddRightSection(title)
+			return createSection(Right, title)
+		end
+
+		return tabAPI
 	end
 
-	inputBox.FocusLost:Connect(function(enter)
-		if enter then
-			local input = inputBox.Text:lower()
-			for _, cmd in ipairs(commandCallbacks) do
-				local args = {input:match(cmd.pattern)}
-				if #args > 0 then
-					cmd.callback(table.unpack(args))
-					break
-				end
-			end
-			inputBox.Text = ""
-		end
-	end)
-
-	return {
-		AddList = AddList,
-		AddCommand = AddCommand
-	}
+	return NebulaUI
 end
 
-return Library
+return NebulaUI
