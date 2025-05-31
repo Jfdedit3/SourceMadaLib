@@ -40,7 +40,7 @@ imageButton.Position = UDim2.new(0.211792737, 0, 0.1, 34)
 imageButton.Draggable = true
 imageButton.Active = true
 imageButton.Selectable = true
-imageButton.Parent = ScreenGui
+imageButton.Parent = gui
 imageButton.Visible = true
 
 local uiCorner8 = Instance.new("UICorner")
