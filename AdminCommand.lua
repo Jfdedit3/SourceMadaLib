@@ -55,6 +55,13 @@ uiCorner8.Parent = imageButton
 	closeBtn.Font = Enum.Font.GothamBold
 	closeBtn.TextSize = 14
 	closeBtn.BackgroundTransparency = 1
+
+	imageButton.MouseButton1Click:Connect(function()
+	if main and imageButton then
+		main.Visible = true
+		imageButton.Visible = false
+	end
+end)
 	closeBtn.MouseButton1Click:Connect(function()
 		main.Visible = false
 		imageButton.Visible = true
