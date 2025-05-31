@@ -12,8 +12,8 @@ function Library:CreateWindow(titleText)
 	uiScale.Scale = game:GetService("UserInputService").TouchEnabled and 0.9 or 1
 
 	local main = Instance.new("Frame", gui)
-	main.Size = UDim2.new(0, 310, 0, 420)
-	main.Position = UDim2.new(0.5, -155, 0.5, -210)
+	main.Size = UDim2.new(0, 310, 0, 340)
+	main.Position = UDim2.new(0.5, -155, 0.5, -170)
 	main.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
 	main.BorderSizePixel = 0
 	main.Name = "MainPanel"
@@ -71,8 +71,8 @@ function Library:CreateWindow(titleText)
 	inputBox.ClearTextOnFocus = false
 
 	local scroll = Instance.new("ScrollingFrame", main)
-	scroll.Size = UDim2.new(1, -20, 1, -90)
-	scroll.Position = UDim2.new(0, 10, 0, 80)
+	scroll.Size = UDim2.new(1, -20, 1, -80)
+	scroll.Position = UDim2.new(0, 10, 0, 70)
 	scroll.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
 	scroll.BorderSizePixel = 0
 	scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
