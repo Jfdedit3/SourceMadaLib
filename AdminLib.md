@@ -10,7 +10,7 @@ paulparasplaythis
 
 # booting the library
 ```lua
-local Lib = require(path.to.ExploitUILib)
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHub/SourceCludeLib/refs/heads/main/AdminCommand.lua"))()
 ```
 # Creating the window frame
 ```lua
