@@ -1,187 +1,177 @@
-local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
+local CommandUILib = {}
 
-local Library = {}
+function CommandUILib:Create()
+	local Players = game:GetService("Players")
+	local LocalPlayer = Players.LocalPlayer
 
-function Library:CreateWindow(titleText)
-	local player = Players.LocalPlayer
-	local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-	gui.IgnoreGuiInset = true
+	local gui = Instance.new("ScreenGui", LocalPlayer:WaitForChild("PlayerGui"))
+	gui.Name = "CommandUI"
 	gui.ResetOnSpawn = false
-	gui.Name = "HDAdminStyleUI"
 
-	local scale = Instance.new("UIScale", gui)
-	scale.Scale = UserInputService.TouchEnabled and 0.9 or 1
+	local commands = {}
 
-	local main = Instance.new("Frame", gui)
-	main.Size = UDim2.new(0, 360, 0, 380)
-	main.Position = UDim2.new(0.5, -180, 0.5, -190)
-	main.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-	main.BorderSizePixel = 0
-	main.Name = "MainPanel"
-	Instance.new("UICorner", main).CornerRadius = UDim.new(0, 6)
+	-- UI Elements
+	local mainFrame = Instance.new("Frame", gui)
+	mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+	mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+	mainFrame.Size = UDim2.new(0.85, 0, 0.6, 0)
+	mainFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 
-	local topBar = Instance.new("Frame", main)
-	topBar.Size = UDim2.new(1, 0, 0, 32)
-	topBar.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-	topBar.BorderSizePixel = 0
+	-- TopBar
+	local topBar = Instance.new("Frame", mainFrame)
+	topBar.Size = UDim2.new(1, 0, 0.1, 0)
+	topBar.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
+
+	local minus = Instance.new("TextButton", topBar)
+	minus.Text = "-"
+	minus.Font = Enum.Font.SourceSansBold
+	minus.TextColor3 = Color3.new(0, 0, 0)
+	minus.Size = UDim2.new(0, 30, 1, 0)
+	minus.BackgroundTransparency = 0.5
+	minus.BackgroundColor3 = Color3.new(1, 1, 1)
+
+	local close = Instance.new("TextButton", topBar)
+	close.Text = "X"
+	close.Font = Enum.Font.SourceSansBold
+	close.TextColor3 = Color3.new(0, 0, 0)
+	close.Size = UDim2.new(0, 30, 1, 0)
+	close.Position = UDim2.new(0, 30, 0, 0)
+	close.BackgroundTransparency = 0.5
+	close.BackgroundColor3 = Color3.new(1, 1, 1)
 
 	local title = Instance.new("TextLabel", topBar)
-	title.Size = UDim2.new(1, 0, 1, 0)
-	title.Text = titleText or "HD Admin"
-	title.TextColor3 = Color3.fromRGB(0, 170, 255)
-	title.Font = Enum.Font.GothamBold
-	title.TextSize = 14
+	title.Text = "Command"
+	title.Font = Enum.Font.SourceSansBold
+	title.TextColor3 = Color3.new(1, 1, 1)
+	title.TextXAlignment = Enum.TextXAlignment.Left
+	title.Size = UDim2.new(1, -60, 1, 0)
+	title.Position = UDim2.new(0, 60, 0, 0)
 	title.BackgroundTransparency = 1
 
-	local closeBtn = Instance.new("TextButton", topBar)
-	closeBtn.Size = UDim2.new(0, 28, 1, 0)
-	closeBtn.Position = UDim2.new(1, -28, 0, 0)
-	closeBtn.Text = "X"
-	closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-	closeBtn.Font = Enum.Font.GothamBold
-	closeBtn.TextSize = 14
-	closeBtn.BackgroundTransparency = 1
-	closeBtn.MouseButton1Click:Connect(function()
-		main.Visible = false
-	end)
+	-- Header
+	local header = Instance.new("Frame", mainFrame)
+	header.Size = UDim2.new(1, 0, 0.08, 0)
+	header.Position = UDim2.new(0, 0, 0.1, 0)
+	header.BackgroundColor3 = topBar.BackgroundColor3
+	header.BackgroundTransparency = 0.4
 
-	-- Sidebar
-	local sidebar = Instance.new("Frame", main)
-	sidebar.Size = UDim2.new(0, 90, 1, -32)
-	sidebar.Position = UDim2.new(0, 0, 0, 32)
-	sidebar.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-	Instance.new("UICorner", sidebar).CornerRadius = UDim.new(0, 4)
+	local leftBtn = Instance.new("TextButton", header)
+	leftBtn.Text = "<"
+	leftBtn.Size = UDim2.new(0, 30, 1, 0)
+	leftBtn.BackgroundTransparency = 1
+	leftBtn.TextColor3 = Color3.new(1, 1, 1)
 
-	local tabButtons = {}
-	local contentFrames = {}
+	local rightBtn = Instance.new("TextButton", header)
+	rightBtn.Text = ">"
+	rightBtn.Size = UDim2.new(0, 30, 1, 0)
+	rightBtn.Position = UDim2.new(1, -30, 0, 0)
+	rightBtn.BackgroundTransparency = 1
+	rightBtn.TextColor3 = Color3.new(1, 1, 1)
 
-	local function createTab(name)
-		local btn = Instance.new("TextButton", sidebar)
-		btn.Size = UDim2.new(1, 0, 0, 32)
+	local centerTitle = Instance.new("TextLabel", header)
+	centerTitle.Text = "Commands"
+	centerTitle.Font = Enum.Font.SourceSansBold
+	centerTitle.TextColor3 = Color3.new(1, 1, 1)
+	centerTitle.TextScaled = true
+	centerTitle.Size = UDim2.new(0.6, 0, 1, 0)
+	centerTitle.Position = UDim2.new(0.2, 0, 0, 0)
+	centerTitle.BackgroundTransparency = 1
+
+	-- Textbox
+	local textbox = Instance.new("TextBox", mainFrame)
+	textbox.Size = UDim2.new(1, 0, 0.08, 0)
+	textbox.Position = UDim2.new(0, 0, 0.18, 0)
+	textbox.BackgroundColor3 = topBar.BackgroundColor3
+	textbox.BackgroundTransparency = 0.6
+	textbox.PlaceholderText = "Enter command..."
+	textbox.TextColor3 = Color3.new(1, 1, 1)
+	textbox.Font = Enum.Font.SourceSans
+	textbox.TextScaled = true
+
+	-- ScrollFrame
+	local scroll = Instance.new("ScrollingFrame", mainFrame)
+	scroll.Position = UDim2.new(0, 0, 0.26, 0)
+	scroll.Size = UDim2.new(1, 0, 0.74, 0)
+	scroll.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+	scroll.ScrollBarThickness = 6
+	scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	scroll.ScrollingDirection = Enum.ScrollingDirection.Y
+
+	local layout = Instance.new("UIListLayout", scroll)
+	layout.Padding = UDim.new(0, 5)
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+
+	-- Command Functions
+	local function AddCommand(name, func)
+		local btn = Instance.new("TextButton")
 		btn.Text = name
-		btn.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-		btn.TextColor3 = Color3.fromRGB(255, 255, 255)
-		btn.Font = Enum.Font.GothamBold
-		btn.TextSize = 13
-		table.insert(tabButtons, btn)
-
-		local frame = Instance.new("ScrollingFrame", main)
-		frame.Size = UDim2.new(1, -100, 1, -84)
-		frame.Position = UDim2.new(0, 100, 0, 74)
-		frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-		frame.BorderSizePixel = 0
-		frame.Visible = false
-		frame.ScrollBarThickness = 5
-		frame.CanvasSize = UDim2.new(0, 0, 0, 0)
-		frame.AutomaticCanvasSize = Enum.AutomaticSize.Y
-		local layout = Instance.new("UIListLayout", frame)
-		layout.Padding = UDim.new(0, 6)
-		layout.SortOrder = Enum.SortOrder.LayoutOrder
-
-		contentFrames[name] = frame
-
-		btn.MouseButton1Click:Connect(function()
-			for _, tab in pairs(contentFrames) do
-				tab.Visible = false
-			end
-			for _, b in pairs(tabButtons) do
-				b.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-			end
-			frame.Visible = true
-			btn.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
-		end)
-
-		return frame
+		btn.Size = UDim2.new(1, -10, 0, 30)
+		btn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+		btn.TextColor3 = Color3.new(1, 1, 1)
+		btn.Font = Enum.Font.SourceSans
+		btn.TextScaled = true
+		btn.Parent = scroll
+		commands[name:lower()] = func
 	end
 
-	local commandsTab = createTab("Commands")
-	local playersTab = createTab("Players")
-
-	-- Input bar
-	local inputBar = Instance.new("Frame", main)
-	inputBar.Size = UDim2.new(1, -100, 0, 28)
-	inputBar.Position = UDim2.new(0, 100, 0, 40)
-	inputBar.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-	Instance.new("UICorner", inputBar).CornerRadius = UDim.new(0, 4)
-
-	local input = Instance.new("TextBox", inputBar)
-	input.Size = UDim2.new(1, -10, 1, 0)
-	input.Position = UDim2.new(0, 5, 0, 0)
-	input.PlaceholderText = ";command <args>"
-	input.Text = ""
-	input.BackgroundTransparency = 1
-	input.TextColor3 = Color3.fromRGB(255, 255, 255)
-	input.Font = Enum.Font.Gotham
-	input.TextSize = 13
-	input.TextXAlignment = Enum.TextXAlignment.Left
-
-	local commandCallbacks = {}
-
-	local function AddCommand(pattern, callback)
-		table.insert(commandCallbacks, {pattern = pattern, callback = callback})
-
-		local label = Instance.new("TextLabel", commandsTab)
-		label.Size = UDim2.new(1, -10, 0, 22)
-		label.Text = pattern
-		label.TextColor3 = Color3.fromRGB(230, 230, 230)
-		label.Font = Enum.Font.Gotham
-		label.TextSize = 13
-		label.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-		label.TextXAlignment = Enum.TextXAlignment.Left
-		label.BackgroundTransparency = 0
-		Instance.new("UICorner", label).CornerRadius = UDim.new(0, 4)
+	local function RefreshCommandList()
+		scroll:ClearAllChildren()
+		layout.Parent = scroll
+		for name in pairs(commands) do
+			local btn = Instance.new("TextButton")
+			btn.Text = name
+			btn.Size = UDim2.new(1, -10, 0, 30)
+			btn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+			btn.TextColor3 = Color3.new(1, 1, 1)
+			btn.Font = Enum.Font.SourceSans
+			btn.TextScaled = true
+			btn.Parent = scroll
+		end
 	end
 
-	input.FocusLost:Connect(function(enter)
+	-- Command Trigger
+	textbox.FocusLost:Connect(function(enter)
 		if enter then
-			local txt = input.Text:lower()
-			for _, cmd in pairs(commandCallbacks) do
-				local args = {txt:match(cmd.pattern)}
-				if #args > 0 then
-					cmd.callback(table.unpack(args))
-					break
-				end
+			local input = textbox.Text:lower()
+			if commands[input] then
+				commands[input]()
 			end
-			input.Text = ""
+			textbox.Text = ""
 		end
 	end)
 
-	-- Static players: PaulParasPlayThis, CludeHub
-	local staticPlayers = {
-		{userId = 1, name = "PaulParasPlayThis"},
-		{userId = 2, name = "CludeHub"},
-	}
+	-- Tab Buttons
+	rightBtn.MouseButton1Click:Connect(function()
+		scroll:ClearAllChildren()
+		layout.Parent = scroll
+		for _, name in pairs({"clude80", "paulparasplaythis"}) do
+			local id = Players:GetUserIdFromNameAsync(name)
+			local thumb = Players:GetUserThumbnailAsync(id, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
+			local img = Instance.new("ImageLabel")
+			img.Image = thumb
+			img.Size = UDim2.new(0, 100, 0, 100)
+			img.BackgroundTransparency = 1
+			img.Parent = scroll
+		end
+	end)
 
-	for _, p in pairs(staticPlayers) do
-		local holder = Instance.new("Frame", playersTab)
-		holder.Size = UDim2.new(1, -10, 0, 50)
-		holder.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
-		Instance.new("UICorner", holder).CornerRadius = UDim.new(0, 4)
+	leftBtn.MouseButton1Click:Connect(function()
+		RefreshCommandList()
+	end)
 
-		local img = Instance.new("ImageLabel", holder)
-		img.Size = UDim2.new(0, 40, 0, 40)
-		img.Position = UDim2.new(0, 5, 0.5, -20)
-		img.BackgroundTransparency = 1
-		img.Image = "rbxthumb://type=AvatarHeadShot&id=" .. tostring(p.userId) .. "&w=150&h=150"
+	-- Close/Minimize
+	close.MouseButton1Click:Connect(function()
+		gui:Destroy()
+	end)
+	minus.MouseButton1Click:Connect(function()
+		mainFrame.Visible = not mainFrame.Visible
+	end)
 
-		local name = Instance.new("TextLabel", holder)
-		name.Size = UDim2.new(1, -50, 1, 0)
-		name.Position = UDim2.new(0, 50, 0, 0)
-		name.Text = p.name
-		name.TextColor3 = Color3.fromRGB(255, 255, 255)
-		name.Font = Enum.Font.GothamBold
-		name.TextSize = 14
-		name.TextXAlignment = Enum.TextXAlignment.Left
-		name.BackgroundTransparency = 1
-	end
-
-	-- Open default tab
-	tabButtons[1].MouseButton1Click:Fire()
-
+	-- Return API
 	return {
-		AddCommand = AddCommand
+		AddCommand = AddCommand,
+		Refresh = RefreshCommandList
 	}
 end
 
-return Library
+return CommandUILib
