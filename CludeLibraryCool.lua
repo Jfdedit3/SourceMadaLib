@@ -1,279 +1,214 @@
 local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
 
-local AdminUI = {}
+local UILibrary = {}
+UILibrary.__index = UILibrary
 
--- Create main GUI container
-local gui = Instance.new("ScreenGui")
-gui.Name = "AdminGui"
-gui.ResetOnSpawn = false
-gui.Parent = game:GetService("CoreGui")
+function UILibrary.new()
+    local self = setmetatable({}, UILibrary)
 
--- Main Frame
-local mainFrame = Instance.new("Frame")
-mainFrame.Name = "MainFrame"
-mainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-mainFrame.Size = UDim2.new(0, 600, 0, 380)
-mainFrame.Position = UDim2.new(0.5, -300, 0.5, -190)
-mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-mainFrame.BorderSizePixel = 0
-mainFrame.Parent = gui
+    -- Create ScreenGui
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "AdminGui"
+    gui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
+    gui.ResetOnSpawn = false
+    gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local mainCorner = Instance.new("UICorner")
-mainCorner.Parent = mainFrame
+    -- MainFrame
+    local mainFrame = Instance.new("Frame", gui)
+    mainFrame.Name = "MainFrame"
+    mainFrame.AnchorPoint = Vector2.new(0, 0)
+    mainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    mainFrame.BackgroundTransparency = 0
+    mainFrame.BorderSizePixel = 0
+    mainFrame.Size = UDim2.new(0, 340, 0, 300)
+    mainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)
+    mainFrame.ClipsDescendants = false
 
--- Title
-local titleLabel = Instance.new("TextLabel")
-titleLabel.Name = "TitleLabel"
-titleLabel.Text = "Admin Panel"
-titleLabel.Font = Enum.Font.FredokaOne
-titleLabel.TextSize = 28
-titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-titleLabel.BackgroundTransparency = 1
-titleLabel.Position = UDim2.new(0.05, 0, 0, 10)
-titleLabel.Size = UDim2.new(0.6, 0, 0, 40)
-titleLabel.TextXAlignment = Enum.TextXAlignment.Left
-titleLabel.Parent = mainFrame
+    local mainCorner = Instance.new("UICorner", mainFrame)
+    mainCorner.Name = "UICorner"
 
--- Close Button
-local closeBtn = Instance.new("TextButton")
-closeBtn.Name = "CloseButton"
-closeBtn.Text = "X"
-closeBtn.Font = Enum.Font.FredokaOne
-closeBtn.TextSize = 28
-closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-closeBtn.BackgroundTransparency = 1
-closeBtn.Position = UDim2.new(1, -50, 0, 10)
-closeBtn.Size = UDim2.new(0, 40, 0, 40)
-closeBtn.AnchorPoint = Vector2.new(0, 0)
-closeBtn.Parent = mainFrame
+    -- Title Label
+    local titleLabel = Instance.new("TextLabel", mainFrame)
+    titleLabel.Name = "TitleLabel"
+    titleLabel.Text = "Admin Panel"
+    titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    titleLabel.TextSize = 28
+    titleLabel.Font = Enum.Font.FredokaOne
+    titleLabel.BackgroundTransparency = 1
+    titleLabel.Position = UDim2.new(0, 10, 0, 5)
+    titleLabel.Size = UDim2.new(0, 200, 0, 40)
+    titleLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-closeBtn.MouseButton1Click:Connect(function()
-    gui.Enabled = false
-end)
-
--- Left Panel: Player Selection
-local playerPanel = Instance.new("Frame")
-playerPanel.Name = "PlayerPanel"
-playerPanel.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-playerPanel.Position = UDim2.new(0, 10, 0, 60)
-playerPanel.Size = UDim2.new(0, 280, 0, 310)
-playerPanel.Parent = mainFrame
-
-local playerPanelCorner = Instance.new("UICorner")
-playerPanelCorner.Parent = playerPanel
-
-local playerList = Instance.new("ScrollingFrame")
-playerList.Name = "PlayerList"
-playerList.BackgroundTransparency = 1
-playerList.Size = UDim2.new(1, -10, 1, -10)
-playerList.Position = UDim2.new(0, 5, 0, 5)
-playerList.CanvasSize = UDim2.new(0, 0, 0, 0)
-playerList.ScrollBarThickness = 6
-playerList.Parent = playerPanel
-
-local playerListLayout = Instance.new("UIListLayout")
-playerListLayout.Parent = playerList
-playerListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-playerListLayout.Padding = UDim.new(0, 5)
-
--- Right Panel: Selected Player Info + Actions
-local infoPanel = Instance.new("Frame")
-infoPanel.Name = "InfoPanel"
-infoPanel.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-infoPanel.Position = UDim2.new(0, 310, 0, 60)
-infoPanel.Size = UDim2.new(0, 280, 0, 310)
-infoPanel.Parent = mainFrame
-
-local infoPanelCorner = Instance.new("UICorner")
-infoPanelCorner.Parent = infoPanel
-
--- Player Avatar
-local avatarImg = Instance.new("ImageLabel")
-avatarImg.Name = "Avatar"
-avatarImg.Size = UDim2.new(0, 100, 0, 100)
-avatarImg.Position = UDim2.new(0.5, -50, 0, 10)
-avatarImg.BackgroundTransparency = 1
-avatarImg.Parent = infoPanel
-
-local avatarCorner = Instance.new("UICorner")
-avatarCorner.CornerRadius = UDim.new(1, 0)
-avatarCorner.Parent = avatarImg
-
--- Player Name Label
-local playerNameLabel = Instance.new("TextLabel")
-playerNameLabel.Name = "PlayerName"
-playerNameLabel.Text = "Select a player"
-playerNameLabel.Font = Enum.Font.FredokaOne
-playerNameLabel.TextSize = 24
-playerNameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-playerNameLabel.BackgroundTransparency = 1
-playerNameLabel.Position = UDim2.new(0, 0, 0, 120)
-playerNameLabel.Size = UDim2.new(1, 0, 0, 30)
-playerNameLabel.TextScaled = true
-playerNameLabel.Parent = infoPanel
-
--- Player Health Label
-local healthLabel = Instance.new("TextLabel")
-healthLabel.Name = "HealthLabel"
-healthLabel.Text = "Health: N/A"
-healthLabel.Font = Enum.Font.FredokaOne
-healthLabel.TextSize = 22
-healthLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-healthLabel.BackgroundTransparency = 1
-healthLabel.Position = UDim2.new(0, 0, 0, 160)
-healthLabel.Size = UDim2.new(1, 0, 0, 30)
-healthLabel.TextScaled = true
-healthLabel.Parent = infoPanel
-
--- Actions Container
-local actionsContainer = Instance.new("Frame")
-actionsContainer.Name = "ActionsContainer"
-actionsContainer.BackgroundTransparency = 1
-actionsContainer.Position = UDim2.new(0, 10, 0, 200)
-actionsContainer.Size = UDim2.new(1, -20, 0, 100)
-actionsContainer.Parent = infoPanel
-
-local actionsLayout = Instance.new("UIListLayout")
-actionsLayout.Parent = actionsContainer
-actionsLayout.SortOrder = Enum.SortOrder.LayoutOrder
-actionsLayout.Padding = UDim.new(0, 8)
-
--- Internal variables
-local selectedPlayer = nil
-local playerButtons = {}
-
--- Update Selected Player Info
-local function UpdateSelectedPlayer(player)
-    selectedPlayer = player
-    if player then
-        playerNameLabel.Text = player.Name
-        -- Use Roblox thumbnail API
-        local thumbId, isReady = Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
-        avatarImg.Image = thumbId
-
-        -- Update health if character and humanoid exists
-        local character = player.Character
-        local humanoid = character and character:FindFirstChildOfClass("Humanoid")
-        if humanoid then
-            healthLabel.Text = "Health: " .. math.floor(humanoid.Health)
-            -- Update health dynamically
-            local conn
-            conn = humanoid.HealthChanged:Connect(function(hp)
-                healthLabel.Text = "Health: " .. math.floor(hp)
-                if humanoid.Health <= 0 then
-                    healthLabel.Text = "Health: DEAD"
-                    if conn then
-                        conn:Disconnect()
-                    end
-                end
-            end)
-        else
-            healthLabel.Text = "Health: N/A"
-        end
-    else
-        playerNameLabel.Text = "Select a player"
-        avatarImg.Image = ""
-        healthLabel.Text = "Health: N/A"
-    end
-end
-
--- Create Player Button
-local function CreatePlayerButton(player)
-    local btn = Instance.new("TextButton")
-    btn.Size = UDim2.new(1, 0, 0, 40)
-    btn.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    btn.TextColor3 = Color3.new(1, 1, 1)
-    btn.Font = Enum.Font.FredokaOne
-    btn.TextSize = 20
-    btn.Text = player.Name
-    btn.AutoButtonColor = true
-    btn.Parent = playerList
-
-    local btnCorner = Instance.new("UICorner")
-    btnCorner.Parent = btn
-
-    btn.MouseButton1Click:Connect(function()
-        UpdateSelectedPlayer(player)
-        -- Highlight selected button
-        for _, b in pairs(playerButtons) do
-            b.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-        end
-        btn.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+    -- Close Button
+    local closeBtn = Instance.new("TextButton", mainFrame)
+    closeBtn.Name = "CloseButton"
+    closeBtn.Text = "X"
+    closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    closeBtn.Font = Enum.Font.FredokaOne
+    closeBtn.TextScaled = true
+    closeBtn.BackgroundTransparency = 1
+    closeBtn.Position = UDim2.new(1, -40, 0, 5)
+    closeBtn.Size = UDim2.new(0, 35, 0, 35)
+    closeBtn.MouseButton1Click:Connect(function()
+        gui.Enabled = false
     end)
 
-    return btn
-end
+    -- Avatar Image
+    local avatarImg = Instance.new("ImageLabel", mainFrame)
+    avatarImg.Name = "AvatarImage"
+    avatarImg.Size = UDim2.new(0, 80, 0, 80)
+    avatarImg.Position = UDim2.new(0, 10, 0, 50)
+    avatarImg.BackgroundTransparency = 1
+    avatarImg.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+    local avatarCorner = Instance.new("UICorner", avatarImg)
+    avatarCorner.CornerRadius = UDim.new(1, 0)
 
--- Add all current players
-for _, p in pairs(Players:GetPlayers()) do
-    playerButtons[p] = CreatePlayerButton(p)
-end
+    -- Health Label
+    local healthLabel = Instance.new("TextLabel", mainFrame)
+    healthLabel.Name = "HealthLabel"
+    healthLabel.Text = "Health: N/A"
+    healthLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    healthLabel.Font = Enum.Font.FredokaOne
+    healthLabel.TextSize = 24
+    healthLabel.BackgroundTransparency = 1
+    healthLabel.Position = UDim2.new(0, 100, 0, 70)
+    healthLabel.Size = UDim2.new(0, 200, 0, 40)
+    healthLabel.TextXAlignment = Enum.TextXAlignment.Left
 
--- Listen for new players
-Players.PlayerAdded:Connect(function(player)
-    playerButtons[player] = CreatePlayerButton(player)
-    playerList.CanvasSize = UDim2.new(0, 0, 0, playerListLayout.AbsoluteContentSize.Y + 10)
-end)
+    -- Player Selection Container
+    local playerSelectionFrame = Instance.new("ScrollingFrame", mainFrame)
+    playerSelectionFrame.Name = "PlayerSelection"
+    playerSelectionFrame.Size = UDim2.new(1, -20, 0, 120)
+    playerSelectionFrame.Position = UDim2.new(0, 10, 0, 140)
+    playerSelectionFrame.BackgroundTransparency = 1
+    playerSelectionFrame.BorderSizePixel = 0
+    playerSelectionFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+    playerSelectionFrame.ScrollBarThickness = 5
 
--- Remove buttons for leaving players
-Players.PlayerRemoving:Connect(function(player)
-    if playerButtons[player] then
-        playerButtons[player]:Destroy()
-        playerButtons[player] = nil
-        if selectedPlayer == player then
-            UpdateSelectedPlayer(nil)
+    local playerListLayout = Instance.new("UIListLayout", playerSelectionFrame)
+    playerListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    playerListLayout.Padding = UDim.new(0, 5)
+
+    -- Action Buttons Container
+    local actionButtonsFrame = Instance.new("Frame", mainFrame)
+    actionButtonsFrame.Name = "ActionButtons"
+    actionButtonsFrame.Size = UDim2.new(1, -20, 0, 50)
+    actionButtonsFrame.Position = UDim2.new(0, 10, 1, -60)
+    actionButtonsFrame.BackgroundTransparency = 1
+
+    local actionListLayout = Instance.new("UIListLayout", actionButtonsFrame)
+    actionListLayout.FillDirection = Enum.FillDirection.Horizontal
+    actionListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
+    actionListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    actionListLayout.Padding = UDim.new(0, 10)
+
+    -- Store references
+    self.gui = gui
+    self.mainFrame = mainFrame
+    self.avatarImg = avatarImg
+    self.healthLabel = healthLabel
+    self.playerSelectionFrame = playerSelectionFrame
+    self.actionButtonsFrame = actionButtonsFrame
+
+    self.selectedPlayer = nil
+    self.playerButtons = {}
+
+    -- Update canvas size for player selection frame
+    local function updateCanvasSize()
+        local totalHeight = 0
+        for _, btn in pairs(self.playerButtons) do
+            totalHeight = totalHeight + btn.Size.Y.Offset + 5
         end
-        playerList.CanvasSize = UDim2.new(0, 0, 0, playerListLayout.AbsoluteContentSize.Y + 10)
+        self.playerSelectionFrame.CanvasSize = UDim2.new(0, 0, 0, totalHeight)
     end
-end)
+    self.updateCanvasSize = updateCanvasSize
 
--- Update canvas size when layout changes
-playerListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-    playerList.CanvasSize = UDim2.new(0, 0, 0, playerListLayout.AbsoluteContentSize.Y + 10)
-end)
+    -- Function to select a player
+    function self:SetSelectedPlayer(player)
+        if typeof(player) == "Instance" and player:IsA("Player") then
+            self.selectedPlayer = player
+            self.avatarImg.Image = Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size80x80)
+            local character = player.Character
+            local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                self.healthLabel.Text = "Health: " .. math.floor(humanoid.Health)
+            else
+                self.healthLabel.Text = "Health: N/A"
+            end
+            -- Update buttons' selected state
+            for _, btn in pairs(self.playerButtons) do
+                btn.BackgroundColor3 = (btn.player == player) and Color3.fromRGB(80, 80, 80) or Color3.fromRGB(21, 21, 21)
+            end
+        else
+            self.selectedPlayer = nil
+            self.avatarImg.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+            self.healthLabel.Text = "Health: N/A"
+            for _, btn in pairs(self.playerButtons) do
+                btn.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+            end
+        end
+    end
 
--- Actions Buttons list
-local actionButtons = {}
+    -- Connect health updates for selected player
+    local function onHealthChanged()
+        if self.selectedPlayer then
+            local char = self.selectedPlayer.Character
+            if char then
+                local humanoid = char:FindFirstChildOfClass("Humanoid")
+                if humanoid then
+                    self.healthLabel.Text = "Health: " .. math.floor(humanoid.Health)
+                end
+            end
+        end
+    end
+    self.onHealthChanged = onHealthChanged
 
--- API to add action buttons
-function AdminUI.AddActionButton(name, callback)
+    return self
+end
+
+-- Adds a player button for selection
+function UILibrary:AddPlayerButton(player)
     local btn = Instance.new("TextButton")
+    btn.Name = "PlayerButton"
     btn.Size = UDim2.new(1, 0, 0, 40)
-    btn.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    btn.TextColor3 = Color3.new(1, 1, 1)
+    btn.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+    btn.BorderSizePixel = 0
     btn.Font = Enum.Font.FredokaOne
-    btn.TextSize = 20
-    btn.Text = name
-    btn.AutoButtonColor = true
-    btn.Parent = actionsContainer
-
-    local btnCorner = Instance.new("UICorner")
-    btnCorner.Parent = btn
+    btn.TextSize = 24
+    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    btn.Text = player.Name
+    btn.LayoutOrder = #self.playerButtons + 1
+    btn.Parent = self.playerSelectionFrame
+    btn.player = player
 
     btn.MouseButton1Click:Connect(function()
-        if selectedPlayer then
-            callback(selectedPlayer)
+        self:SetSelectedPlayer(player)
+    end)
+
+    table.insert(self.playerButtons, btn)
+    self:updateCanvasSize()
+end
+
+-- Adds an action button (e.g., Kill) that acts on selected player
+function UILibrary:AddActionButton(name, callback)
+    local btn = Instance.new("TextButton")
+    btn.Name = name .. "Button"
+    btn.Size = UDim2.new(0, 100, 1, 0)
+    btn.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+    btn.BorderSizePixel = 0
+    btn.Font = Enum.Font.FredokaOne
+    btn.TextSize = 24
+    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    btn.Text = name
+    btn.Parent = self.actionButtonsFrame
+
+    btn.MouseButton1Click:Connect(function()
+        if self.selectedPlayer then
+            callback(self.selectedPlayer)
         else
             warn("No player selected!")
         end
     end)
-
-    table.insert(actionButtons, btn)
-    return btn
 end
 
--- Show the GUI
-function AdminUI.Show()
-    gui.Enabled = true
-end
-
--- Hide the GUI
-function AdminUI.Hide()
-    gui.Enabled = false
-end
-
--- Initialize hidden
-gui.Enabled = true
-
-return AdminUI
+return UILibrary
