@@ -11,14 +11,20 @@ function CludeLib:CreateWindow(name)
 	Frame.Size = UDim2.new(0, 550, 0, 400)
 	Frame.AnchorPoint = Vector2.new(0.5, 0.5)
 	Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-	Frame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+	Frame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
 	Frame.BorderSizePixel = 0
 	Frame.Active = true
 	Frame.Draggable = true
 	Frame.Selectable = true
 	Frame.Parent = gui
-
 	Instance.new("UICorner", Frame)
+
+	local function addTextStroke(textObject)
+		local stroke = Instance.new("UIStroke")
+		stroke.Color = Color3.fromRGB(162, 162, 162)
+		stroke.Thickness = 1
+		stroke.Parent = textObject
+	end
 
 	local Title = Instance.new("TextLabel")
 	Title.Name = "Title"
@@ -31,10 +37,11 @@ function CludeLib:CreateWindow(name)
 	Title.Position = UDim2.new(0, 13, 0, 0)
 	Title.TextXAlignment = Enum.TextXAlignment.Left
 	Title.Parent = Frame
+	addTextStroke(Title)
 
 	local TitleLine = Instance.new("Frame", Frame)
 	TitleLine.Name = "TitleLine"
-	TitleLine.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	TitleLine.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 	TitleLine.Size = UDim2.new(1, 0, 0, 1)
 	TitleLine.Position = UDim2.new(0, 0, 0, 24)
 	TitleLine.BorderSizePixel = 0
@@ -56,7 +63,7 @@ function CludeLib:CreateWindow(name)
 
 	local TabLine = Instance.new("Frame", Frame)
 	TabLine.Name = "TabLine"
-	TabLine.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	TabLine.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 	TabLine.Position = UDim2.new(0, 119, 0, 25)
 	TabLine.Size = UDim2.new(0, 1, 1, -25)
 	TabLine.BorderSizePixel = 0
@@ -69,7 +76,6 @@ function CludeLib:CreateWindow(name)
 	TabContainers.Parent = Frame
 
 	local Tabs = {}
-
 	local Window = {}
 
 	function Window:CreateTab(tabName)
@@ -80,10 +86,11 @@ function CludeLib:CreateWindow(name)
 		TabButton.TextColor3 = Color3.new(1, 1, 1)
 		TabButton.TextSize = 18
 		TabButton.Size = UDim2.new(1, -1, 0, 30)
-		TabButton.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+		TabButton.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
 		TabButton.BorderSizePixel = 0
 		TabButton.Parent = TabHolder
 		Instance.new("UICorner", TabButton)
+		addTextStroke(TabButton)
 
 		local TabContent = Instance.new("Frame")
 		TabContent.Name = tabName .. "Content"
@@ -109,7 +116,7 @@ function CludeLib:CreateWindow(name)
 
 		local Divider = Instance.new("Frame")
 		Divider.Name = "Divider"
-		Divider.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+		Divider.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 		Divider.Size = UDim2.new(0, 1, 1, 0)
 		Divider.Position = UDim2.new(0.5, 0, 0, 0)
 		Divider.BorderSizePixel = 0
@@ -147,10 +154,11 @@ function CludeLib:CreateWindow(name)
 			Section.Size = UDim2.new(1, 0, 0, 30)
 			Section.TextSize = 18
 			Section.Font = Enum.Font.SourceSans
-			Section.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+			Section.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
 			Section.TextColor3 = Color3.new(1, 1, 1)
 			Section.BorderSizePixel = 0
 			Instance.new("UICorner", Section)
+			addTextStroke(Section)
 
 			if side == "left" then
 				Section.Parent = LeftContainer
