@@ -1,175 +1,157 @@
 local CludeLib = {}
 
-function CludeLib:CreateWindow()
-    local ScreenGui = Instance.new("ScreenGui")
-    ScreenGui.Name = "CludeLib"
-    ScreenGui.Parent = game:GetService("CoreGui")
+function CludeLib:CreateWindow(name)
+	local gui = Instance.new("ScreenGui")
+	gui.Name = "CludeLib"
+	gui.Parent = game:GetService("CoreGui")
 
-    local Frame = Instance.new("Frame")
-    Frame.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
-    Frame.Size = UDim2.new(0.20000000298023224, 275, 0.20000000298023224, 290)
-    Frame.BorderSizePixel = 0
-    Frame.Parent = ScreenGui
+	local Frame = Instance.new("Frame")
+	Frame.Name = "MainFrame"
+	Frame.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
+	Frame.Size = UDim2.new(0, 550, 0, 400)
+	Frame.Position = UDim2.new(0.5, -275, 0.5, -200)
+	Frame.BorderSizePixel = 0
+	Frame.Parent = gui
 
-    local UICorner = Instance.new("UICorner")
-    UICorner.Parent = Frame
+	local UICorner = Instance.new("UICorner", Frame)
 
-    local TabLine = Instance.new("Frame")
-    TabLine.Name = "TabLine"
-    TabLine.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
-    TabLine.Size = UDim2.new(0, 1, 1, -24)
-    TabLine.Position = UDim2.new(0, 121, 0, 24)
-    TabLine.BorderSizePixel = 0
-    TabLine.Parent = Frame
+	local Title = Instance.new("TextLabel")
+	Title.Name = "Title"
+	Title.Text = name or "CludeHub"
+	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Title.TextSize = 24
+	Title.Font = Enum.Font.SourceSansBold
+	Title.BackgroundTransparency = 1
+	Title.Size = UDim2.new(1, -13, 0, 28)
+	Title.Position = UDim2.new(0, 13, 0, 0)
+	Title.TextXAlignment = Enum.TextXAlignment.Left
+	Title.Parent = Frame
 
-    local TitleLine = Instance.new("Frame")
-    TitleLine.Name = "TitleLine"
-    TitleLine.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
-    TitleLine.Size = UDim2.new(1, 0, 0, 1)
-    TitleLine.Position = UDim2.new(0, 0, 0, 24)
-    TitleLine.BorderSizePixel = 0
-    TitleLine.Parent = Frame
+	local TitleLine = Instance.new("Frame", Frame)
+	TitleLine.Name = "TitleLine"
+	TitleLine.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+	TitleLine.Size = UDim2.new(1, 0, 0, 1)
+	TitleLine.Position = UDim2.new(0, 0, 0, 24)
+	TitleLine.BorderSizePixel = 0
 
-    local TabHolder = Instance.new("ScrollingFrame")
-    TabHolder.Name = "TabHolder"
-    TabHolder.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
-    TabHolder.BackgroundTransparency = 1
-    TabHolder.Size = UDim2.new(0, 119, 0, 351)
-    TabHolder.Position = UDim2.new(0, 0, 0, 25)
-    TabHolder.ScrollBarThickness = 1
-    TabHolder.Parent = Frame
+	local TabHolder = Instance.new("ScrollingFrame")
+	TabHolder.Name = "TabHolder"
+	TabHolder.BackgroundTransparency = 1
+	TabHolder.Position = UDim2.new(0, 0, 0, 25)
+	TabHolder.Size = UDim2.new(0, 119, 1, -25)
+	TabHolder.ScrollBarThickness = 1
+	TabHolder.Parent = Frame
 
-    local UIListLayout = Instance.new("UIListLayout")
-    UIListLayout.FillDirection = Enum.FillDirection.Vertical
-    UIListLayout.Parent = TabHolder
+	local TabList = Instance.new("UIListLayout")
+	TabList.Parent = TabHolder
+	TabList.SortOrder = Enum.SortOrder.LayoutOrder
 
-    local Title = Instance.new("TextLabel")
-    Title.Name = "Title"
-    Title.Text = "CludeHub"
-    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Title.TextSize = 24
-    Title.Font = Enum.Font.SourceSansBold
-    Title.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
-    Title.BackgroundTransparency = 1
-    Title.Size = UDim2.new(1, -13, 0, 28)
-    Title.Position = UDim2.new(0, 13, 0, 0)
-    Title.TextWrapped = true
-    Title.TextXAlignment = Enum.TextXAlignment.Left
-    Title.Parent = Frame
+	local TabLine = Instance.new("Frame", Frame)
+	TabLine.Name = "TabLine"
+	TabLine.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+	TabLine.Position = UDim2.new(0, 119, 0, 25)
+	TabLine.Size = UDim2.new(0, 1, 1, -25)
+	TabLine.BorderSizePixel = 0
 
-    local ContentHolder = Instance.new("Frame")
-    ContentHolder.Name = "ContentHolder"
-    ContentHolder.BackgroundTransparency = 1
-    ContentHolder.Position = UDim2.new(0, 122, 0, 25)
-    ContentHolder.Size = UDim2.new(1, -122, 1, -25)
-    ContentHolder.Parent = Frame
+	local TabContainers = Instance.new("Frame")
+	TabContainers.Name = "TabContainers"
+	TabContainers.Position = UDim2.new(0, 120, 0, 25)
+	TabContainers.Size = UDim2.new(1, -120, 1, -25)
+	TabContainers.BackgroundTransparency = 1
+	TabContainers.Parent = Frame
 
-    local Tabs = {}
+	local Tabs = {}
 
-    local Window = {}
+	local Window = {}
 
-    function Window:CreateTab(tabName)
-        local TabButton = Instance.new("TextButton")
-        TabButton.Name = "TabButton"
-        TabButton.Text = tabName
-        TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        TabButton.TextSize = 18
-        TabButton.Font = Enum.Font.SourceSansBold
-        TabButton.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
-        TabButton.Size = UDim2.new(0, 118, 0, 29)
-        TabButton.BorderSizePixel = 0
+	function Window:CreateTab(tabName)
+		local TabButton = Instance.new("TextButton")
+		TabButton.Name = tabName .. "Tab"
+		TabButton.Text = tabName
+		TabButton.Font = Enum.Font.SourceSansBold
+		TabButton.TextColor3 = Color3.new(1, 1, 1)
+		TabButton.TextSize = 18
+		TabButton.Size = UDim2.new(1, -1, 0, 30)
+		TabButton.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+		TabButton.BorderSizePixel = 0
+		TabButton.Parent = TabHolder
 
-        local UICorner = Instance.new("UICorner")
-        UICorner.Parent = TabButton
+		local UICorner = Instance.new("UICorner", TabButton)
 
-        TabButton.Parent = TabHolder
+		local TabContent = Instance.new("Frame")
+		TabContent.Name = tabName .. "Content"
+		TabContent.Size = UDim2.new(1, 0, 1, 0)
+		TabContent.BackgroundTransparency = 1
+		TabContent.Visible = false
+		TabContent.Parent = TabContainers
 
-        local TabFrame = Instance.new("Frame")
-        TabFrame.Name = tabName .. "_Frame"
-        TabFrame.Size = UDim2.new(1, 0, 1, 0)
-        TabFrame.BackgroundTransparency = 1
-        TabFrame.Visible = false
-        TabFrame.Parent = ContentHolder
+		local LeftContainer = Instance.new("ScrollingFrame")
+		LeftContainer.Name = "Left"
+		LeftContainer.Size = UDim2.new(0.5, -5, 1, 0)
+		LeftContainer.Position = UDim2.new(0, 0, 0, 0)
+		LeftContainer.BackgroundTransparency = 1
+		LeftContainer.ScrollBarThickness = 1
+		LeftContainer.AutomaticCanvasSize = Enum.AutomaticSize.Y
+		LeftContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
+		LeftContainer.Parent = TabContent
 
-        -- Left and right sections as ScrollingFrames
-        local Left = Instance.new("ScrollingFrame")
-        Left.Name = "Left"
-        Left.BackgroundTransparency = 1
-        Left.Position = UDim2.new(0, 0, 0, 0)
-        Left.Size = UDim2.new(0.5, -5, 1, 0)
-        Left.CanvasSize = UDim2.new(0, 0, 0, 0)
-        Left.AutomaticCanvasSize = Enum.AutomaticSize.Y
-        Left.ScrollBarThickness = 1
-        Left.Parent = TabFrame
+		local LeftLayout = Instance.new("UIListLayout")
+		LeftLayout.Parent = LeftContainer
+		LeftLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		LeftLayout.Padding = UDim.new(0, 4)
 
-        local LeftLayout = Instance.new("UIListLayout")
-        LeftLayout.SortOrder = Enum.SortOrder.LayoutOrder
-        LeftLayout.Padding = UDim.new(0, 5)
-        LeftLayout.Parent = Left
+		local RightContainer = Instance.new("ScrollingFrame")
+		RightContainer.Name = "Right"
+		RightContainer.Size = UDim2.new(0.5, -5, 1, 0)
+		RightContainer.Position = UDim2.new(0.5, 5, 0, 0)
+		RightContainer.BackgroundTransparency = 1
+		RightContainer.ScrollBarThickness = 1
+		RightContainer.AutomaticCanvasSize = Enum.AutomaticSize.Y
+		RightContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
+		RightContainer.Parent = TabContent
 
-        local Right = Instance.new("ScrollingFrame")
-        Right.Name = "Right"
-        Right.BackgroundTransparency = 1
-        Right.Position = UDim2.new(0.5, 5, 0, 0)
-        Right.Size = UDim2.new(0.5, -5, 1, 0)
-        Right.CanvasSize = UDim2.new(0, 0, 0, 0)
-        Right.AutomaticCanvasSize = Enum.AutomaticSize.Y
-        Right.ScrollBarThickness = 1
-        Right.Parent = TabFrame
+		local RightLayout = Instance.new("UIListLayout")
+		RightLayout.Parent = RightContainer
+		RightLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		RightLayout.Padding = UDim.new(0, 4)
 
-        local RightLayout = Instance.new("UIListLayout")
-        RightLayout.SortOrder = Enum.SortOrder.LayoutOrder
-        RightLayout.Padding = UDim.new(0, 5)
-        RightLayout.Parent = Right
+		-- Tab button logic
+		TabButton.MouseButton1Click:Connect(function()
+			for _, t in pairs(TabContainers:GetChildren()) do
+				t.Visible = false
+			end
+			TabContent.Visible = true
+		end)
 
-        Tabs[tabName] = {TabFrame = TabFrame, Left = Left, Right = Right, Button = TabButton}
+		local Tab = {}
 
-        TabButton.MouseButton1Click:Connect(function()
-            for _, v in pairs(Tabs) do
-                v.TabFrame.Visible = false
-                v.Button.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
-            end
-            Tabs[tabName].TabFrame.Visible = true
-            TabButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-        end)
+		function Tab:AddSection(text, side)
+			side = side:lower()
+			local Section = Instance.new("TextLabel")
+			Section.Text = text
+			Section.Size = UDim2.new(1, 0, 0, 30)
+			Section.TextSize = 18
+			Section.Font = Enum.Font.SourceSans
+			Section.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+			Section.TextColor3 = Color3.new(1, 1, 1)
+			Section.BorderSizePixel = 0
 
-        -- Show first tab by default
-        if #TabHolder:GetChildren() == 1 then
-            TabButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-            TabFrame.Visible = true
-        end
+			local UICorner = Instance.new("UICorner", Section)
 
-        function Tabs[tabName].AddSection(text, side)
-            local Section = Instance.new("Frame")
-            Section.Size = UDim2.new(1, 0, 0, 50)
-            Section.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-            Section.BorderSizePixel = 0
-            local corner = Instance.new("UICorner", Section)
+			if side == "left" then
+				Section.Parent = LeftContainer
+			elseif side == "right" then
+				Section.Parent = RightContainer
+			else
+				warn("Invalid side: use 'left' or 'right'")
+			end
+		end
 
-            local Label = Instance.new("TextLabel")
-            Label.Size = UDim2.new(1, -10, 1, 0)
-            Label.Position = UDim2.new(0, 5, 0, 0)
-            Label.BackgroundTransparency = 1
-            Label.Text = text
-            Label.TextColor3 = Color3.fromRGB(255, 255, 255)
-            Label.Font = Enum.Font.SourceSans
-            Label.TextSize = 18
-            Label.TextXAlignment = Enum.TextXAlignment.Left
-            Label.Parent = Section
+		table.insert(Tabs, Tab)
+		return Tab
+	end
 
-            if side == "left" then
-                Section.Parent = Tabs[tabName].Left
-            elseif side == "right" then
-                Section.Parent = Tabs[tabName].Right
-            else
-                Section.Parent = Tabs[tabName].Left -- default left if invalid
-            end
-        end
-
-        return Tabs[tabName]
-    end
-
-    return Window
+	return Window
 end
 
 return CludeLib
