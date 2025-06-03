@@ -156,4 +156,4 @@ function CludeLib:CreateWindow(titleText)
 	return Window
 end
 
-return Clude
+return CludeLib
