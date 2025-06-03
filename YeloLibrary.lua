@@ -8,7 +8,7 @@ function CludeLib:CreateWindow(name)
 
     local Frame = Instance.new("Frame")
     Frame.Name = "MainFrame"
-    Frame.Size = UDim2.new(0, 490, 0, 340)
+    Frame.Size = UDim2.new(0, 490, 0, 340) -- Smaller size to fit UI
     Frame.AnchorPoint = Vector2.new(0.5, 0.5)
     Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
     Frame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
@@ -75,7 +75,6 @@ function CludeLib:CreateWindow(name)
     TabContainers.Parent = Frame
 
     local Tabs = {}
-
     local Window = {}
 
     function Window:CreateTab(tabName)
@@ -99,7 +98,6 @@ function CludeLib:CreateWindow(name)
         TabContent.Visible = false
         TabContent.Parent = TabContainers
 
-        -- Divider line in the middle
         local Divider = Instance.new("Frame")
         Divider.Name = "Divider"
         Divider.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
@@ -109,7 +107,6 @@ function CludeLib:CreateWindow(name)
         Divider.ZIndex = 2
         Divider.Parent = TabContent
 
-        -- Left container (half width minus half divider)
         local LeftContainer = Instance.new("ScrollingFrame")
         LeftContainer.Name = "Left"
         LeftContainer.Size = UDim2.new(0.5, -0.5, 1, 0)
@@ -117,7 +114,6 @@ function CludeLib:CreateWindow(name)
         LeftContainer.BackgroundTransparency = 1
         LeftContainer.ScrollBarThickness = 1
         LeftContainer.AutomaticCanvasSize = Enum.AutomaticSize.Y
-        LeftContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
         LeftContainer.Parent = TabContent
 
         local LeftLayout = Instance.new("UIListLayout")
@@ -125,15 +121,13 @@ function CludeLib:CreateWindow(name)
         LeftLayout.SortOrder = Enum.SortOrder.LayoutOrder
         LeftLayout.Padding = UDim.new(0, 4)
 
-        -- Right container (half width minus half divider)
         local RightContainer = Instance.new("ScrollingFrame")
         RightContainer.Name = "Right"
         RightContainer.Size = UDim2.new(0.5, -0.5, 1, 0)
-        RightContainer.Position = UDim2.new(0.5, 1, 0, 0) -- 1 pixel right of divider
+        RightContainer.Position = UDim2.new(0.5, 1, 0, 0)
         RightContainer.BackgroundTransparency = 1
         RightContainer.ScrollBarThickness = 1
         RightContainer.AutomaticCanvasSize = Enum.AutomaticSize.Y
-        RightContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
         RightContainer.Parent = TabContent
 
         local RightLayout = Instance.new("UIListLayout")
@@ -152,7 +146,6 @@ function CludeLib:CreateWindow(name)
 
         function Tab:AddSection(text, side)
             side = side:lower()
-
             local Section = Instance.new("TextLabel")
             Section.Text = text
             Section.Size = UDim2.new(1, 0, 0, 24)
@@ -160,40 +153,35 @@ function CludeLib:CreateWindow(name)
             Section.Font = Enum.Font.SourceSans
             Section.BackgroundTransparency = 1
             Section.TextColor3 = Color3.new(1, 1, 1)
-            Section.BorderSizePixel = 0
             Section.TextXAlignment = Enum.TextXAlignment.Left
             addTextStroke(Section)
 
-            local parentContainer
             if side == "left" then
-                parentContainer = LeftContainer
+                Section.Parent = LeftContainer
             elseif side == "right" then
-                parentContainer = RightContainer
+                Section.Parent = RightContainer
             else
                 warn("Invalid side: use 'left' or 'right'")
-                parentContainer = LeftContainer
+                return nil
             end
 
-            Section.Parent = parentContainer
-
-            local sectionObj = {}
-
-            function sectionObj:AddButton(buttonText, callback)
+            function Section:AddButton(buttonText, callback)
                 local AddButton = Instance.new("TextButton")
                 AddButton.Name = "AddButton"
                 AddButton.Text = buttonText or "Button"
                 AddButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-                AddButton.TextSize = 24
+                AddButton.TextSize = 20
                 AddButton.Font = Enum.Font.SourceSansBold
-                AddButton.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
-                AddButton.Size = UDim2.new(1, 0, 0, 50)
+                AddButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- nightly dark bg
+                AddButton.Size = UDim2.new(1, 0, 0, 35) -- smaller height
                 AddButton.TextWrapped = true
+                AddButton.BorderSizePixel = 0
 
                 local TopLine = Instance.new("Frame")
                 TopLine.Name = "ButtonLineTop"
                 TopLine.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
                 TopLine.Size = UDim2.new(1, 0, 0, 1)
-                TopLine.Position = UDim2.new(0, 0, 0, 2)
+                TopLine.Position = UDim2.new(0, 0, 0, 0)
                 TopLine.BorderSizePixel = 0
                 TopLine.Parent = AddButton
 
@@ -201,23 +189,25 @@ function CludeLib:CreateWindow(name)
                 BottomLine.Name = "ButtonLineBottom"
                 BottomLine.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
                 BottomLine.Size = UDim2.new(1, 0, 0, 1)
-                BottomLine.Position = UDim2.new(0, 0, 0, 48)
+                BottomLine.Position = UDim2.new(0, 0, 1, -1)
                 BottomLine.BorderSizePixel = 0
                 BottomLine.Parent = AddButton
 
                 local UICorner = Instance.new("UICorner")
                 UICorner.Parent = AddButton
 
-                AddButton.Parent = parentContainer
+                AddButton.Parent = Section.Parent
 
-                if callback and type(callback) == "function" then
-                    AddButton.MouseButton1Click:Connect(callback)
-                end
+                AddButton.MouseButton1Click:Connect(function()
+                    if callback then
+                        callback()
+                    end
+                end)
 
                 return AddButton
             end
 
-            return sectionObj
+            return Section
         end
 
         return Tab
