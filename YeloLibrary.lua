@@ -9,8 +9,7 @@ function CludeLib:CreateWindow(titleText)
 	Frame.Name = "Main"
 	Frame.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
 	Frame.Size = UDim2.new(0, 550, 0, 400)
-	Frame.Position = UDim2.new(0.5, -275, 0.5, -200)
-        Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+	Frame.Position = UDim2.new(0.3, -30, 0.001, 0)
 	Frame.BorderSizePixel = 0
 	Frame.AnchorPoint = Vector2.new(0.5, 0.5)
 	Frame.Parent = ScreenGui
