@@ -151,13 +151,13 @@ function CludeLib:CreateWindow(name)
 			side = side:lower()
 			local Section = Instance.new("TextLabel")
 			Section.Text = text
-			Section.Size = UDim2.new(1, 0, 0, 30)
+			Section.Size = UDim2.new(1, 0, 0, 24)
 			Section.TextSize = 18
 			Section.Font = Enum.Font.SourceSans
-			Section.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+			Section.BackgroundTransparency = 1
 			Section.TextColor3 = Color3.new(1, 1, 1)
 			Section.BorderSizePixel = 0
-			Instance.new("UICorner", Section)
+			Section.TextXAlignment = Enum.TextXAlignment.Left
 			addTextStroke(Section)
 
 			if side == "left" then
