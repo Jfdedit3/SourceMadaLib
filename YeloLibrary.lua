@@ -7,20 +7,19 @@ function CludeLib:CreateWindow(name)
 
 	local Frame = Instance.new("Frame")
 	Frame.Name = "MainFrame"
-	Frame.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
 	Frame.Size = UDim2.new(0, 550, 0, 400)
 	Frame.AnchorPoint = Vector2.new(0.5, 0.5)
-        Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-        Frame.Size = UDim2.new(0, 550, 0, 400)
+	Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+	Frame.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
 	Frame.BorderSizePixel = 0
 	Frame.Parent = gui
 
-	local UICorner = Instance.new("UICorner", Frame)
+	Instance.new("UICorner", Frame)
 
 	local Title = Instance.new("TextLabel")
 	Title.Name = "Title"
 	Title.Text = name or "CludeHub"
-	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Title.TextColor3 = Color3.new(1, 1, 1)
 	Title.TextSize = 24
 	Title.Font = Enum.Font.SourceSansBold
 	Title.BackgroundTransparency = 1
@@ -45,8 +44,9 @@ function CludeLib:CreateWindow(name)
 	TabHolder.Parent = Frame
 
 	local TabList = Instance.new("UIListLayout")
-	TabList.Parent = TabHolder
+	TabList.Padding = UDim.new(0, 3) -- ✅ Padding set to (0, 3)
 	TabList.SortOrder = Enum.SortOrder.LayoutOrder
+	TabList.Parent = TabHolder
 
 	local TabLine = Instance.new("Frame", Frame)
 	TabLine.Name = "TabLine"
@@ -77,8 +77,7 @@ function CludeLib:CreateWindow(name)
 		TabButton.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
 		TabButton.BorderSizePixel = 0
 		TabButton.Parent = TabHolder
-
-		local UICorner = Instance.new("UICorner", TabButton)
+		Instance.new("UICorner", TabButton)
 
 		local TabContent = Instance.new("Frame")
 		TabContent.Name = tabName .. "Content"
@@ -89,9 +88,9 @@ function CludeLib:CreateWindow(name)
 
 		local LeftContainer = Instance.new("ScrollingFrame")
 		LeftContainer.Name = "Left"
-		LeftContainer.Size = UDim2.new(0.5, -5, 1, 0)
+		LeftContainer.Size = UDim2.new(0.5, -3, 1, 0)
 		LeftContainer.Position = UDim2.new(0, 0, 0, 0)
-		LeftContainer.BackgroundTransparency = 1
+		LeftContainer.BackgroundTransparency = 1 -- ✅ Transparent container
 		LeftContainer.ScrollBarThickness = 1
 		LeftContainer.AutomaticCanvasSize = Enum.AutomaticSize.Y
 		LeftContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
@@ -102,11 +101,21 @@ function CludeLib:CreateWindow(name)
 		LeftLayout.SortOrder = Enum.SortOrder.LayoutOrder
 		LeftLayout.Padding = UDim.new(0, 4)
 
+		-- ✅ Middle line between Left & Right
+		local Divider = Instance.new("Frame")
+		Divider.Name = "Divider"
+		Divider.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+		Divider.Size = UDim2.new(0, 1, 1, 0)
+		Divider.Position = UDim2.new(0.5, 0, 0, 0)
+		Divider.BorderSizePixel = 0
+		Divider.ZIndex = 2
+		Divider.Parent = TabContent
+
 		local RightContainer = Instance.new("ScrollingFrame")
 		RightContainer.Name = "Right"
-		RightContainer.Size = UDim2.new(0.5, -5, 1, 0)
-		RightContainer.Position = UDim2.new(0.5, 5, 0, 0)
-		RightContainer.BackgroundTransparency = 1
+		RightContainer.Size = UDim2.new(0.5, -3, 1, 0)
+		RightContainer.Position = UDim2.new(0.5, 3, 0, 0)
+		RightContainer.BackgroundTransparency = 1 -- ✅ Transparent container
 		RightContainer.ScrollBarThickness = 1
 		RightContainer.AutomaticCanvasSize = Enum.AutomaticSize.Y
 		RightContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
@@ -117,7 +126,6 @@ function CludeLib:CreateWindow(name)
 		RightLayout.SortOrder = Enum.SortOrder.LayoutOrder
 		RightLayout.Padding = UDim.new(0, 4)
 
-		-- Tab button logic
 		TabButton.MouseButton1Click:Connect(function()
 			for _, t in pairs(TabContainers:GetChildren()) do
 				t.Visible = false
@@ -137,8 +145,7 @@ function CludeLib:CreateWindow(name)
 			Section.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 			Section.TextColor3 = Color3.new(1, 1, 1)
 			Section.BorderSizePixel = 0
-
-			local UICorner = Instance.new("UICorner", Section)
+			Instance.new("UICorner", Section)
 
 			if side == "left" then
 				Section.Parent = LeftContainer
