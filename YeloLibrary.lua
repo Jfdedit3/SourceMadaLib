@@ -9,7 +9,7 @@ function CludeLib:CreateWindow(name)
 	Frame.Name = "MainFrame"
 	Frame.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
 	Frame.Size = UDim2.new(0, 550, 0, 400)
-	Frame.Position = UDim2.new(0.5, -275, 0.5, -560)
+	Frame.Position = UDim2.new(0.5, -275, 0.4, -590)
 	Frame.BorderSizePixel = 0
 	Frame.Parent = gui
 
