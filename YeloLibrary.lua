@@ -8,7 +8,7 @@ function CludeLib:CreateWindow(name)
 
 	local Frame = Instance.new("Frame")
 	Frame.Name = "MainFrame"
-	Frame.Size = UDim2.new(0, 550, 0, 400)
+	Frame.Size = UDim2.new(0, 490, 0, 340) -- Smaller size
 	Frame.AnchorPoint = Vector2.new(0.5, 0.5)
 	Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
 	Frame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
