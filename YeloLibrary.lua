@@ -52,7 +52,6 @@ function CludeLib:CreateWindow(name)
 	TabHolder.Position = UDim2.new(0, 0, 0, 25)
 	TabHolder.Size = UDim2.new(0, 119, 1, -25)
 	TabHolder.ScrollBarThickness = 1
-	TabHolder.CanvasSize = UDim2.new(0, 0, 0, 0)
 	TabHolder.AutomaticCanvasSize = Enum.AutomaticSize.Y
 	TabHolder.Parent = Frame
 
@@ -99,9 +98,20 @@ function CludeLib:CreateWindow(name)
 		TabContent.Visible = false
 		TabContent.Parent = TabContainers
 
+		-- Divider line in the middle
+		local Divider = Instance.new("Frame")
+		Divider.Name = "Divider"
+		Divider.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+		Divider.Size = UDim2.new(0, 1, 1, 0)
+		Divider.Position = UDim2.new(0.5, 0, 0, 0)
+		Divider.BorderSizePixel = 0
+		Divider.ZIndex = 2
+		Divider.Parent = TabContent
+
+		-- Left container (half width minus half divider)
 		local LeftContainer = Instance.new("ScrollingFrame")
 		LeftContainer.Name = "Left"
-		LeftContainer.Size = UDim2.new(0.5, -3, 1, 0)
+		LeftContainer.Size = UDim2.new(0.5, -0.5, 1, 0)
 		LeftContainer.Position = UDim2.new(0, 0, 0, 0)
 		LeftContainer.BackgroundTransparency = 1
 		LeftContainer.ScrollBarThickness = 1
@@ -114,19 +124,11 @@ function CludeLib:CreateWindow(name)
 		LeftLayout.SortOrder = Enum.SortOrder.LayoutOrder
 		LeftLayout.Padding = UDim.new(0, 4)
 
-		local Divider = Instance.new("Frame")
-		Divider.Name = "Divider"
-		Divider.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-		Divider.Size = UDim2.new(0, 1, 1, 0)
-		Divider.Position = UDim2.new(0.5, 0, 0, 0)
-		Divider.BorderSizePixel = 0
-		Divider.ZIndex = 2
-		Divider.Parent = TabContent
-
+		-- Right container (half width minus half divider)
 		local RightContainer = Instance.new("ScrollingFrame")
 		RightContainer.Name = "Right"
-		RightContainer.Size = UDim2.new(0.5, -3, 1, 0)
-		RightContainer.Position = UDim2.new(0.5, 3, 0, 0)
+		RightContainer.Size = UDim2.new(0.5, -0.5, 1, 0)
+		RightContainer.Position = UDim2.new(0.5, 1, 0, 0) -- 1 pixel to the right of divider
 		RightContainer.BackgroundTransparency = 1
 		RightContainer.ScrollBarThickness = 1
 		RightContainer.AutomaticCanvasSize = Enum.AutomaticSize.Y
