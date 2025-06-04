@@ -1,247 +1,250 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local localPlayer = Players.LocalPlayer
+
 local AdminGui = {}
 
 function AdminGui:CreateWindow(title)
+    -- Create main frame
     local Frame = Instance.new("Frame")
     Frame.Name = "AddWindow"
     Frame.BackgroundColor3 = Color3.fromRGB(26, 18, 30)
-    Frame.Size = UDim2.new(0.202, 275, 0.202, 290)
-    Frame.Position = UDim2.new(0.2, 0, 0, 0)
-
-    local ImageLabel = Instance.new("ImageLabel")
-    ImageLabel.Name = "ProfileImage"
-    ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    ImageLabel.Size = UDim2.new(0, 50, 0, 50)
-    ImageLabel.Position = UDim2.new(0, 3, 0, 30)
-    local UICorner = Instance.new("UICorner")
-    UICorner.Parent = ImageLabel
-    ImageLabel.Parent = Frame
-
-    local TitleLine = Instance.new("Frame")
-    TitleLine.Name = "TitleLine"
-    TitleLine.BackgroundColor3 = Color3.fromRGB(54, 46, 63)
-    TitleLine.Size = UDim2.new(1, 0, 0, 1)
-    TitleLine.Position = UDim2.new(0, 0, 0, 30)
-    TitleLine.BorderSizePixel = 0
-    TitleLine.Parent = Frame
-
-    local JumpLabel = Instance.new("TextLabel")
-    JumpLabel.Name = "JumpLabel"
-    JumpLabel.Text = "JumpPower:"
-    JumpLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    JumpLabel.TextSize = 18
-    JumpLabel.Font = Enum.Font.SourceSansBold
-    JumpLabel.BackgroundTransparency = 1
-    JumpLabel.Size = UDim2.new(0, 120, 0, 29)
-    JumpLabel.Position = UDim2.new(0, 3, 0, 138)
-    JumpLabel.TextWrapped = true
-    JumpLabel.TextXAlignment = Enum.TextXAlignment.Left
-    JumpLabel.Parent = Frame
-
-    local SpeedLabel = Instance.new("TextLabel")
-    SpeedLabel.Name = "SpeedLabel"
-    SpeedLabel.Text = "WalkSpeed:"
-    SpeedLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    SpeedLabel.TextSize = 18
-    SpeedLabel.Font = Enum.Font.SourceSansBold
-    SpeedLabel.BackgroundTransparency = 1
-    SpeedLabel.Size = UDim2.new(0, 120, 0, 29)
-    SpeedLabel.Position = UDim2.new(0, 3, 0, 121)
-    SpeedLabel.TextWrapped = true
-    SpeedLabel.TextXAlignment = Enum.TextXAlignment.Left
-    SpeedLabel.Parent = Frame
-
-    local DistanceLabel = Instance.new("TextLabel")
-    DistanceLabel.Name = "DistanceLabel"
-    DistanceLabel.Text = "Distance:"
-    DistanceLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    DistanceLabel.TextSize = 18
-    DistanceLabel.Font = Enum.Font.SourceSansBold
-    DistanceLabel.BackgroundTransparency = 1
-    DistanceLabel.Size = UDim2.new(0, 120, 0, 29)
-    DistanceLabel.Position = UDim2.new(0, 3, 0, 101)
-    DistanceLabel.TextWrapped = true
-    DistanceLabel.TextXAlignment = Enum.TextXAlignment.Left
-    DistanceLabel.Parent = Frame
-
-    local Line = Instance.new("Frame")
-    Line.Name = "Line"
-    Line.BackgroundColor3 = Color3.fromRGB(54, 46, 62)
-    Line.Size = UDim2.new(1, 0, 0, 1)
-    Line.Position = UDim2.new(0, 0, 0, 190)
-    Line.BorderSizePixel = 0
-    Line.Parent = Frame
-
-    local UsernameLabel = Instance.new("TextLabel")
-    UsernameLabel.Name = "UsernameLabel"
-    UsernameLabel.Text = ""
-    UsernameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    UsernameLabel.TextSize = 18
-    UsernameLabel.Font = Enum.Font.SourceSansBold
-    UsernameLabel.BackgroundTransparency = 1
-    UsernameLabel.Size = UDim2.new(0, 220, 0, 29)
-    UsernameLabel.Position = UDim2.new(0, 67, 0, 40)
-    UsernameLabel.TextWrapped = true
-    UsernameLabel.TextXAlignment = Enum.TextXAlignment.Left
-    UsernameLabel.Parent = Frame
+    Frame.Size = UDim2.new(0, 420, 0, 320)
+    Frame.Position = UDim2.new(0.5, -210, 0.5, -160)
+    Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+    Frame.Parent = localPlayer:WaitForChild("PlayerGui")
 
     local UICornerFrame = Instance.new("UICorner")
     UICornerFrame.Parent = Frame
 
-    local UsernameSelection = Instance.new("ScrollingFrame")
-    UsernameSelection.Name = "UsernameSelection"
-    UsernameSelection.BackgroundColor3 = Color3.fromRGB(25, 17, 29)
-    UsernameSelection.Size = UDim2.new(0, 156, 0, 157)
-    UsernameSelection.Position = UDim2.new(0.2, 149, 0, 29)
-    UsernameSelection.CanvasSize = UDim2.new(0, 0, 0, 0)
-    UsernameSelection.ScrollBarThickness = 6
-    UsernameSelection.Parent = Frame
+    -- Title label
+    local TitleLabel = Instance.new("TextLabel")
+    TitleLabel.Text = title or "Admin Panel"
+    TitleLabel.Size = UDim2.new(1, 0, 0, 30)
+    TitleLabel.BackgroundTransparency = 1
+    TitleLabel.TextColor3 = Color3.new(1,1,1)
+    TitleLabel.Font = Enum.Font.SourceSansBold
+    TitleLabel.TextSize = 24
+    TitleLabel.Parent = Frame
 
-    local UICornerUsername = Instance.new("UICorner")
-    UICornerUsername.Parent = UsernameSelection
+    -- Profile Image
+    local ProfileImage = Instance.new("ImageLabel")
+    ProfileImage.Name = "ProfileImage"
+    ProfileImage.Size = UDim2.new(0, 60, 0, 60)
+    ProfileImage.Position = UDim2.new(0, 10, 0, 40)
+    ProfileImage.BackgroundColor3 = Color3.fromRGB(255,255,255)
+    ProfileImage.Parent = Frame
+    Instance.new("UICorner", ProfileImage)
 
-    local UsernameListLayout = Instance.new("UIListLayout")
-    UsernameListLayout.FillDirection = Enum.FillDirection.Vertical
-    UsernameListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    UsernameListLayout.Padding = UDim.new(0, 2)
-    UsernameListLayout.Parent = UsernameSelection
+    -- Username label
+    local UsernameLabel = Instance.new("TextLabel")
+    UsernameLabel.Name = "UsernameLabel"
+    UsernameLabel.Position = UDim2.new(0, 80, 0, 50)
+    UsernameLabel.Size = UDim2.new(0, 200, 0, 30)
+    UsernameLabel.TextColor3 = Color3.new(1,1,1)
+    UsernameLabel.BackgroundTransparency = 1
+    UsernameLabel.Font = Enum.Font.SourceSansBold
+    UsernameLabel.TextSize = 22
+    UsernameLabel.TextXAlignment = Enum.TextXAlignment.Left
+    UsernameLabel.Text = "Select a player"
+    UsernameLabel.Parent = Frame
 
-    local Title = Instance.new("TextLabel")
-    Title.Name = "Title"
-    Title.Text = title or "Title"
-    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Title.TextSize = 28
-    Title.TextScaled = true
-    Title.Font = Enum.Font.SourceSansBold
-    Title.BackgroundTransparency = 1
-    Title.Size = UDim2.new(1, -60, 0, 29)
-    Title.Position = UDim2.new(0, 19, 0, 0)
-    Title.TextWrapped = true
-    Title.TextXAlignment = Enum.TextXAlignment.Left
-    Title.Parent = Frame
+    -- WalkSpeed label
+    local SpeedLabel = Instance.new("TextLabel")
+    SpeedLabel.Name = "SpeedLabel"
+    SpeedLabel.Position = UDim2.new(0, 10, 0, 110)
+    SpeedLabel.Size = UDim2.new(0, 150, 0, 25)
+    SpeedLabel.TextColor3 = Color3.new(1,1,1)
+    SpeedLabel.BackgroundTransparency = 1
+    SpeedLabel.Font = Enum.Font.SourceSansBold
+    SpeedLabel.TextSize = 18
+    SpeedLabel.Text = "WalkSpeed: "
+    SpeedLabel.TextXAlignment = Enum.TextXAlignment.Left
+    SpeedLabel.Parent = Frame
 
-    local Container = Instance.new("ScrollingFrame")
-    Container.Name = "Container"
-    Container.BackgroundTransparency = 1
-    Container.Size = UDim2.new(0, 394, 0, 184)
-    Container.Position = UDim2.new(0, 3, 0, 192)
-    Container.CanvasSize = UDim2.new(0, 0, 0, 0)
-    Container.ScrollBarThickness = 6
-    Container.Parent = Frame
+    -- JumpPower label
+    local JumpLabel = Instance.new("TextLabel")
+    JumpLabel.Name = "JumpLabel"
+    JumpLabel.Position = UDim2.new(0, 10, 0, 135)
+    JumpLabel.Size = UDim2.new(0, 150, 0, 25)
+    JumpLabel.TextColor3 = Color3.new(1,1,1)
+    JumpLabel.BackgroundTransparency = 1
+    JumpLabel.Font = Enum.Font.SourceSansBold
+    JumpLabel.TextSize = 18
+    JumpLabel.Text = "JumpPower: "
+    JumpLabel.TextXAlignment = Enum.TextXAlignment.Left
+    JumpLabel.Parent = Frame
 
-    local ContainerListLayout = Instance.new("UIListLayout")
-    ContainerListLayout.FillDirection = Enum.FillDirection.Horizontal
-    ContainerListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    ContainerListLayout.Padding = UDim.new(0, 6)
-    ContainerListLayout.Parent = Container
+    -- Distance label
+    local DistanceLabel = Instance.new("TextLabel")
+    DistanceLabel.Name = "DistanceLabel"
+    DistanceLabel.Position = UDim2.new(0, 10, 0, 160)
+    DistanceLabel.Size = UDim2.new(0, 150, 0, 25)
+    DistanceLabel.TextColor3 = Color3.new(1,1,1)
+    DistanceLabel.BackgroundTransparency = 1
+    DistanceLabel.Font = Enum.Font.SourceSansBold
+    DistanceLabel.TextSize = 18
+    DistanceLabel.Text = "Distance: "
+    DistanceLabel.TextXAlignment = Enum.TextXAlignment.Left
+    DistanceLabel.Parent = Frame
 
+    -- Health label
     local HealthLabel = Instance.new("TextLabel")
     HealthLabel.Name = "HealthLabel"
-    HealthLabel.Text = "Health: 100"
-    HealthLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    HealthLabel.TextSize = 18
-    HealthLabel.Font = Enum.Font.SourceSansBold
+    HealthLabel.Position = UDim2.new(0, 10, 0, 185)
+    HealthLabel.Size = UDim2.new(0, 150, 0, 25)
+    HealthLabel.TextColor3 = Color3.new(1,1,1)
     HealthLabel.BackgroundTransparency = 1
-    HealthLabel.Size = UDim2.new(0, 190, 0, 29)
-    HealthLabel.Position = UDim2.new(0, 3, 0, 80)
+    HealthLabel.Font = Enum.Font.SourceSansBold
+    HealthLabel.TextSize = 18
+    HealthLabel.Text = "Health: "
     HealthLabel.TextXAlignment = Enum.TextXAlignment.Left
     HealthLabel.Parent = Frame
 
-    local Players = game:GetService("Players")
-    local localPlayer = Players.LocalPlayer
+    -- Line divider top
+    local LineTop = Instance.new("Frame")
+    LineTop.Size = UDim2.new(1, 0, 0, 1)
+    LineTop.Position = UDim2.new(0, 0, 0, 30)
+    LineTop.BackgroundColor3 = Color3.fromRGB(54, 46, 63)
+    LineTop.BorderSizePixel = 0
+    LineTop.Parent = Frame
 
+    -- Line divider bottom
+    local LineBottom = Instance.new("Frame")
+    LineBottom.Size = UDim2.new(1, 0, 0, 1)
+    LineBottom.Position = UDim2.new(0, 0, 0, 215)
+    LineBottom.BackgroundColor3 = Color3.fromRGB(54, 46, 63)
+    LineBottom.BorderSizePixel = 0
+    LineBottom.Parent = Frame
+
+    -- Username Selection ScrollingFrame
+    local UsernameSelection = Instance.new("ScrollingFrame")
+    UsernameSelection.Name = "UsernameSelection"
+    UsernameSelection.Size = UDim2.new(0, 150, 0, 180)
+    UsernameSelection.Position = UDim2.new(0, 260, 0, 40)
+    UsernameSelection.BackgroundColor3 = Color3.fromRGB(25, 17, 29)
+    UsernameSelection.ScrollBarThickness = 6
+    UsernameSelection.Parent = Frame
+    Instance.new("UICorner", UsernameSelection)
+
+    local UIListLayout = Instance.new("UIListLayout")
+    UIListLayout.FillDirection = Enum.FillDirection.Vertical
+    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    UIListLayout.Parent = UsernameSelection
+
+    -- Container for action buttons
+    local Container = Instance.new("ScrollingFrame")
+    Container.Name = "Container"
+    Container.Size = UDim2.new(0, 400, 0, 90)
+    Container.Position = UDim2.new(0, 10, 0, 220)
+    Container.BackgroundTransparency = 1
+    Container.ScrollBarThickness = 6
+    Container.Parent = Frame
+
+    local ContainerLayout = Instance.new("UIListLayout")
+    ContainerLayout.FillDirection = Enum.FillDirection.Horizontal
+    ContainerLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
+    ContainerLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    ContainerLayout.Parent = Container
+
+    -- Selected player variable
     local selectedPlayer = nil
 
-    -- Function to update all stats UI labels
-    local function updateUI(player)
-        if not player then return end
-        selectedPlayer = player
-
-        UsernameLabel.Text = player.Name
-
-        -- Update Profile Image
-        pcall(function()
-            local thumbUrl = Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
-            ImageLabel.Image = thumbUrl
-        end)
-
-        local character = player.Character
-        local humanoid = character and character:FindFirstChildOfClass("Humanoid")
-        local hrp = character and character:FindFirstChild("HumanoidRootPart")
-
-        if humanoid then
-            SpeedLabel.Text = "WalkSpeed: " .. tostring(humanoid.WalkSpeed)
-            JumpLabel.Text = "JumpPower: " .. tostring(humanoid.JumpPower)
-            HealthLabel.Text = "Health: " .. tostring(math.floor(humanoid.Health))
-        else
-            SpeedLabel.Text = "WalkSpeed: N/A"
-            JumpLabel.Text = "JumpPower: N/A"
-            HealthLabel.Text = "Health: N/A"
+    -- Update display function
+    local function UpdatePlayerDisplay(plr)
+        if not plr or not plr.Character or not plr.Character:FindFirstChild("Humanoid") then
+            ProfileImage.Image = ""
+            UsernameLabel.Text = "Select a player"
+            SpeedLabel.Text = "WalkSpeed: "
+            JumpLabel.Text = "JumpPower: "
+            DistanceLabel.Text = "Distance: "
+            HealthLabel.Text = "Health: "
+            selectedPlayer = nil
+            return
         end
+        selectedPlayer = plr
 
-        if hrp then
-            local dist = (hrp.Position - localPlayer.Character.HumanoidRootPart.Position).Magnitude
-            DistanceLabel.Text = string.format("Distance: %.2f", dist)
-        else
-            DistanceLabel.Text = "Distance: N/A"
-        end
+        -- Update profile image using Player Thumbnail
+        local userId = plr.UserId
+        local thumbType = Enum.ThumbnailType.HeadShot
+        local thumbSize = Enum.ThumbnailSize.Size100x100
+        local content, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+        ProfileImage.Image = content
+
+        UsernameLabel.Text = plr.Name
+
+        local humanoid = plr.Character:FindFirstChildOfClass("Humanoid")
+        SpeedLabel.Text = "WalkSpeed: " .. tostring(humanoid.WalkSpeed)
+        JumpLabel.Text = "JumpPower: " .. tostring(humanoid.JumpPower)
+
+        local dist = (localPlayer.Character and localPlayer.Character:FindFirstChild("HumanoidRootPart") and plr.Character:FindFirstChild("HumanoidRootPart")) and
+                     (localPlayer.Character.HumanoidRootPart.Position - plr.Character.HumanoidRootPart.Position).Magnitude or 0
+        DistanceLabel.Text = string.format("Distance: %.2f", dist)
+
+        HealthLabel.Text = "Health: " .. tostring(math.floor(humanoid.Health))
     end
 
-    -- Fill UsernameSelection with buttons for all players
-    local function refreshPlayerButtons()
+    -- Populate UsernameSelection with player buttons
+    local function PopulatePlayers()
         UsernameSelection:ClearAllChildren()
-        UsernameListLayout.Parent = UsernameSelection -- Reset layout
+        UIListLayout.Parent = UsernameSelection -- Re-parent so layout updates after clearing
 
-        for _, player in pairs(Players:GetPlayers()) do
-            local button = Instance.new("TextButton")
-            button.Text = player.Name
-            button.Size = UDim2.new(1, -10, 0, 30)
-            button.BackgroundColor3 = Color3.fromRGB(50, 35, 60)
-            button.TextColor3 = Color3.fromRGB(255, 255, 255)
-            button.Font = Enum.Font.SourceSansBold
-            button.TextSize = 18
-            button.AutoButtonColor = true
-            button.Parent = UsernameSelection
+        for _, plr in ipairs(Players:GetPlayers()) do
+            local btn = Instance.new("TextButton")
+            btn.Size = UDim2.new(1, -10, 0, 30)
+            btn.BackgroundColor3 = Color3.fromRGB(46, 39, 57)
+            btn.TextColor3 = Color3.new(1, 1, 1)
+            btn.Font = Enum.Font.SourceSansBold
+            btn.TextSize = 18
+            btn.Text = plr.Name
+            btn.Parent = UsernameSelection
+            Instance.new("UICorner", btn)
 
-            local buttonUICorner = Instance.new("UICorner")
-            buttonUICorner.Parent = button
-
-            button.MouseButton1Click:Connect(function()
-                updateUI(player)
+            btn.MouseButton1Click:Connect(function()
+                UpdatePlayerDisplay(plr)
             end)
         end
-
-        wait() -- wait a frame for layout to update
-        UsernameSelection.CanvasSize = UDim2.new(0, 0, 0, UsernameListLayout.AbsoluteContentSize.Y)
     end
 
-    refreshPlayerButtons()
+    PopulatePlayers()
 
-    -- AddButton function, adds a button to Container that acts on selectedPlayer
-    function Frame:AddButton(labelText, callback)
-        local btn = Instance.new("TextButton")
-        btn.Text = labelText
-        btn.Size = UDim2.new(0, 100, 0, 30)
-        btn.BackgroundColor3 = Color3.fromRGB(50, 35, 60)
-        btn.TextColor3 = Color3.fromRGB(255, 255, 255)
-        btn.Font = Enum.Font.SourceSansBold
-        btn.TextSize = 18
-        btn.Parent = Container
+    -- Keep updating distance and health of selected player every frame
+    RunService.Heartbeat:Connect(function()
+        if selectedPlayer and selectedPlayer.Character and selectedPlayer.Character:FindFirstChildOfClass("Humanoid") then
+            local humanoid = selectedPlayer.Character:FindFirstChildOfClass("Humanoid")
+            SpeedLabel.Text = "WalkSpeed: " .. tostring(humanoid.WalkSpeed)
+            JumpLabel.Text = "JumpPower: " .. tostring(humanoid.JumpPower)
 
-        local btnUICorner = Instance.new("UICorner")
-        btnUICorner.Parent = btn
+            local dist = (localPlayer.Character and localPlayer.Character:FindFirstChild("HumanoidRootPart") and selectedPlayer.Character:FindFirstChild("HumanoidRootPart")) and
+                         (localPlayer.Character.HumanoidRootPart.Position - selectedPlayer.Character.HumanoidRootPart.Position).Magnitude or 0
+            DistanceLabel.Text = string.format("Distance: %.2f", dist)
 
-        btn.MouseButton1Click:Connect(function()
-            if selectedPlayer and callback then
+            HealthLabel.Text = "Health: " .. tostring(math.floor(humanoid.Health))
+        end
+    end)
+
+    -- AddButton function for Container
+    function Frame:AddButton(name, callback)
+        local button = Instance.new("TextButton")
+        button.Size = UDim2.new(0, 120, 0, 35)
+        button.BackgroundColor3 = Color3.fromRGB(38, 31, 50)
+        button.TextColor3 = Color3.new(1, 1, 1)
+        button.Font = Enum.Font.SourceSansBold
+        button.TextSize = 18
+        button.Text = name
+        button.Parent = Container
+        Instance.new("UICorner", button)
+
+        button.MouseButton1Click:Connect(function()
+            if selectedPlayer then
                 callback(selectedPlayer)
-                updateUI(selectedPlayer) -- refresh stats in case changed
+            else
+                warn("No player selected!")
             end
         end)
-
-        wait() -- wait a frame to update layout
-        Container.CanvasSize = UDim2.new(0, ContainerListLayout.AbsoluteContentSize.X, 0, 0)
     end
 
-    -- Return the Frame (window) so user can call AddButton on it
     return Frame
 end
 
