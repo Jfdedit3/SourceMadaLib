@@ -1,209 +1,208 @@
-local Players = game:GetService("Players")
-
 local AdminGui = {}
-local selectedPlayer = nil
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
 function AdminGui:CreateWindow(title)
-    local ScreenGui = Instance.new("ScreenGui")
-    ScreenGui.Name = "AdminGui"
-    ScreenGui.ResetOnSpawn = false
-    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	local ScreenGui = Instance.new("ScreenGui")
+	ScreenGui.Name = "AdminGui"
+	ScreenGui.ResetOnSpawn = false
+	ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 
-    local Frame = Instance.new("Frame")
-    Frame.Name = "AddWindow"
-    Frame.BackgroundColor3 = Color3.fromRGB(26, 18, 30)
-    Frame.Size = UDim2.new(0.20200000703334808, 275, 0.20200000703334808, 290)
-    Frame.Position = UDim2.new(0.20000000298023224, 0, 0, 0)
-    Frame.Parent = ScreenGui
+	local Frame = Instance.new("Frame")
+	Frame.Name = "AddWindow"
+	Frame.BackgroundColor3 = Color3.fromRGB(18, 12, 21)
+	Frame.Size = UDim2.new(0.202, 275, 0.202, 290)
+	Frame.Position = UDim2.new(0.2, 0, 0, 0)
+	Frame.Parent = ScreenGui
 
-    local UICorner1 = Instance.new("UICorner")
-    UICorner1.Parent = Frame
+	local UICorner = Instance.new("UICorner", Frame)
 
-    local ProfileImage = Instance.new("ImageLabel")
-    ProfileImage.Name = "ProfileImage"
-    ProfileImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    ProfileImage.Size = UDim2.new(0, 50, 0, 50)
-    ProfileImage.Position = UDim2.new(0, 3, 0, 30)
-    ProfileImage.Image = ""
-    ProfileImage.Parent = Frame
+	local Title = Instance.new("TextLabel")
+	Title.Name = "Title"
+	Title.Text = title or "Title"
+	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Title.TextStrokeColor3 = Color3.fromRGB(127, 127, 127)
+	Title.TextStrokeTransparency = 0
+	Title.TextSize = 28
+	Title.TextScaled = true
+	Title.Font = Enum.Font.SourceSansBold
+	Title.BackgroundTransparency = 1
+	Title.Size = UDim2.new(1, -60, 0, 29)
+	Title.Position = UDim2.new(0, 19, 0, 0)
+	Title.TextXAlignment = Enum.TextXAlignment.Left
+	Title.Parent = Frame
 
-    local UICornerPI = Instance.new("UICorner")
-    UICornerPI.Parent = ProfileImage
+	local Line = Instance.new("Frame")
+	Line.Name = "TitleLine"
+	Line.BackgroundColor3 = Color3.fromRGB(38, 32, 47)
+	Line.Size = UDim2.new(1, 0, 0, 1)
+	Line.Position = UDim2.new(0, 0, 0, 30)
+	Line.BorderSizePixel = 0
+	Line.Parent = Frame
 
-    local TitleLine = Instance.new("Frame")
-    TitleLine.Name = "TitleLine"
-    TitleLine.BackgroundColor3 = Color3.fromRGB(54, 46, 63)
-    TitleLine.Size = UDim2.new(1, 0, 0, 1)
-    TitleLine.Position = UDim2.new(0, 0, 0, 30)
-    TitleLine.BorderSizePixel = 0
-    TitleLine.Parent = Frame
+	local ProfileImage = Instance.new("ImageLabel")
+	ProfileImage.Name = "ProfileImage"
+	ProfileImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ProfileImage.Size = UDim2.new(0, 50, 0, 50)
+	ProfileImage.Position = UDim2.new(0, 3, 0, 30)
+	ProfileImage.Image = ""
+	ProfileImage.Parent = Frame
+	Instance.new("UICorner", ProfileImage)
 
-    local function createLabel(name, text, y)
-        local label = Instance.new("TextLabel")
-        label.Name = name
-        label.Text = text
-        label.TextColor3 = Color3.fromRGB(255, 255, 255)
-        label.TextStrokeColor3 = Color3.fromRGB(127, 127, 127)
-        label.TextStrokeTransparency = 0
-        label.TextSize = 18
-        label.Font = Enum.Font.SourceSansBold
-        label.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
-        label.BackgroundTransparency = 1
-        label.Size = UDim2.new(0, 120, 0, 29)
-        label.Position = UDim2.new(0, 3, 0, y)
-        label.TextWrapped = true
-        label.TextXAlignment = Enum.TextXAlignment.Left
-        label.Parent = Frame
-        return label
-    end
+	local UsernameLabel = Instance.new("TextLabel")
+	UsernameLabel.Name = "UsernameLabel"
+	UsernameLabel.Text = "Username"
+	UsernameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	UsernameLabel.TextStrokeColor3 = Color3.fromRGB(127, 127, 127)
+	UsernameLabel.TextStrokeTransparency = 0
+	UsernameLabel.TextSize = 18
+	UsernameLabel.Font = Enum.Font.SourceSansBold
+	UsernameLabel.BackgroundTransparency = 1
+	UsernameLabel.Size = UDim2.new(0, 220, 0, 29)
+	UsernameLabel.Position = UDim2.new(0, 67, 0, 40)
+	UsernameLabel.TextXAlignment = Enum.TextXAlignment.Left
+	UsernameLabel.Parent = Frame
 
-    local DistanceLabel = createLabel("DistanceLabel", "Distance:", 101)
-    local SpeedLabel = createLabel("SpeedLabel", "WalkSpeed:", 121)
-    local JumpLabel = createLabel("JumpLabel", "JumpPower:", 138)
-    local HealthLabel = createLabel("HealthLabel", "Health: 100", 80)
+	local function createStatLabel(name, text, yPos)
+		local lbl = Instance.new("TextLabel")
+		lbl.Name = name
+		lbl.Text = text
+		lbl.TextColor3 = Color3.fromRGB(255, 255, 255)
+		lbl.TextStrokeColor3 = Color3.fromRGB(127, 127, 127)
+		lbl.TextStrokeTransparency = 0
+		lbl.TextSize = 18
+		lbl.Font = Enum.Font.SourceSansBold
+		lbl.BackgroundTransparency = 1
+		lbl.Size = UDim2.new(0, 120, 0, 29)
+		lbl.Position = UDim2.new(0, 3, 0, yPos)
+		lbl.TextXAlignment = Enum.TextXAlignment.Left
+		lbl.TextWrapped = true
+		lbl.Parent = Frame
+		return lbl
+	end
 
-    local Line = Instance.new("Frame")
-    Line.Name = "Line"
-    Line.BackgroundColor3 = Color3.fromRGB(54, 46, 62)
-    Line.Size = UDim2.new(1, 0, 0, 1)
-    Line.Position = UDim2.new(0, 0, 0, 190)
-    Line.BorderSizePixel = 0
-    Line.Parent = Frame
+	local HealthLabel = createStatLabel("HealthLabel", "Health: 100", 80)
+	local DistanceLabel = createStatLabel("DistanceLabel", "Distance:", 101)
+	local SpeedLabel = createStatLabel("SpeedLabel", "WalkSpeed:", 121)
+	local JumpLabel = createStatLabel("JumpLabel", "JumpPower:", 138)
 
-    local UsernameLabel = Instance.new("TextLabel")
-    UsernameLabel.Name = "UsernameLabel"
-    UsernameLabel.Text = "Username"
-    UsernameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    UsernameLabel.TextStrokeColor3 = Color3.fromRGB(127, 127, 127)
-    UsernameLabel.TextStrokeTransparency = 0
-    UsernameLabel.TextSize = 18
-    UsernameLabel.Font = Enum.Font.SourceSansBold
-    UsernameLabel.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
-    UsernameLabel.BackgroundTransparency = 1
-    UsernameLabel.Size = UDim2.new(0, 220, 0, 29)
-    UsernameLabel.Position = UDim2.new(0, 67, 0, 40)
-    UsernameLabel.TextWrapped = true
-    UsernameLabel.TextXAlignment = Enum.TextXAlignment.Left
-    UsernameLabel.Parent = Frame
+	local Line2 = Instance.new("Frame")
+	Line2.Name = "Line"
+	Line2.BackgroundColor3 = Color3.fromRGB(38, 32, 47)
+	Line2.Size = UDim2.new(1, 0, 0, 1)
+	Line2.Position = UDim2.new(0, 0, 0, 190)
+	Line2.BorderSizePixel = 0
+	Line2.Parent = Frame
 
-    local Title = Instance.new("TextLabel")
-    Title.Name = "Title"
-    Title.Text = title or "Title"
-    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Title.TextStrokeColor3 = Color3.fromRGB(127, 127, 127)
-    Title.TextStrokeTransparency = 0
-    Title.TextSize = 28
-    Title.TextScaled = true
-    Title.Font = Enum.Font.SourceSansBold
-    Title.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
-    Title.BackgroundTransparency = 1
-    Title.Size = UDim2.new(1, -60, 0, 29)
-    Title.Position = UDim2.new(0, 19, 0, 0)
-    Title.BorderSizePixel = 0
-    Title.TextWrapped = true
-    Title.TextXAlignment = Enum.TextXAlignment.Left
-    Title.Parent = Frame
+	local UsernameSelection = Instance.new("ScrollingFrame")
+	UsernameSelection.Name = "UsernameSelection"
+	UsernameSelection.BackgroundColor3 = Color3.fromRGB(17, 12, 21)
+	UsernameSelection.Size = UDim2.new(0.1, 156, 0, 157)
+	UsernameSelection.Position = UDim2.new(0.2, 149, 0, 29)
+	UsernameSelection.BorderSizePixel = 0
+	UsernameSelection.ScrollBarThickness = 0
+	UsernameSelection.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	UsernameSelection.CanvasSize = UDim2.new(0, 0, 0, 0)
+	UsernameSelection.Parent = Frame
 
-    local UsernameSelection = Instance.new("ScrollingFrame")
-    UsernameSelection.Name = "UsernameSelection"
-    UsernameSelection.BackgroundColor3 = Color3.fromRGB(25, 17, 29)
-    UsernameSelection.Size = UDim2.new(0.10000000149011612, 156, 0, 157)
-    UsernameSelection.Position = UDim2.new(0.20000000298023224, 149, 0, 29)
-    UsernameSelection.BorderSizePixel = 0
-    UsernameSelection.ScrollBarThickness = 0
-    UsernameSelection.Parent = Frame
+	local UIListLayout1 = Instance.new("UIListLayout", UsernameSelection)
+	UIListLayout1.SortOrder = Enum.SortOrder.LayoutOrder
+	UIListLayout1.Padding = UDim.new(0, 4)
 
-    local UIStroke = Instance.new("UIStroke")
-    UIStroke.Color = Color3.fromRGB(54, 46, 62)
-    UIStroke.Thickness = 1
-    UIStroke.Parent = UsernameSelection
+	local Stroke1 = Instance.new("UIStroke", UsernameSelection)
+	Stroke1.Color = Color3.fromRGB(90, 80, 100)
+	Stroke1.Thickness = 1
+	Instance.new("UICorner", UsernameSelection)
 
-    local UICorner = Instance.new("UICorner")
-    UICorner.Parent = UsernameSelection
+	local Container = Instance.new("ScrollingFrame")
+	Container.Name = "Container"
+	Container.BackgroundTransparency = 1
+	Container.Size = UDim2.new(0.1, 394, 0, 184)
+	Container.Position = UDim2.new(0, 3, 0, 192)
+	Container.ScrollBarThickness = 0
+	Container.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	Container.CanvasSize = UDim2.new(0, 0, 0, 0)
+	Container.Parent = Frame
 
-    local UIListLayout = Instance.new("UIListLayout")
-    UIListLayout.FillDirection = Enum.FillDirection.Vertical
-    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    UIListLayout.Padding = UDim.new(0, 2)
-    UIListLayout.Parent = UsernameSelection
+	local UIListLayout2 = Instance.new("UIListLayout", Container)
+	UIListLayout2.SortOrder = Enum.SortOrder.LayoutOrder
+	UIListLayout2.Padding = UDim.new(0, 4)
 
-    for _, player in ipairs(Players:GetPlayers()) do
-        local button = Instance.new("TextButton")
-        button.Name = "UsernameButton"
-        button.Text = player.Name
-        button.TextColor3 = Color3.fromRGB(255, 255, 255)
-        button.TextSize = 18
-        button.Font = Enum.Font.SourceSansBold
-        button.BackgroundColor3 = Color3.fromRGB(46, 39, 57)
-        button.Size = UDim2.new(1, -4, 0, 29)
-        button.BorderSizePixel = 0
-        button.Parent = UsernameSelection
+	local selectedPlayer = nil
 
-        local buttonCorner = Instance.new("UICorner")
-        buttonCorner.Parent = button
+	for _, player in pairs(Players:GetPlayers()) do
+		if player ~= LocalPlayer then
+			local btn = Instance.new("TextButton")
+			btn.Name = "UsernameButton"
+			btn.Text = player.Name
+			btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+			btn.TextStrokeColor3 = Color3.fromRGB(127, 127, 127)
+			btn.TextStrokeTransparency = 0
+			btn.TextSize = 18
+			btn.Font = Enum.Font.SourceSansBold
+			btn.BackgroundColor3 = Color3.fromRGB(32, 26, 40)
+			btn.Size = UDim2.new(1, -10, 0, 29)
+			btn.BorderSizePixel = 0
+			btn.Parent = UsernameSelection
+			Instance.new("UICorner", btn)
 
-        button.MouseButton1Click:Connect(function()
-            selectedPlayer = player
-            UsernameLabel.Text = player.Name
-            ProfileImage.Image = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=420&height=420&format=png"
+			btn.MouseButton1Click:Connect(function()
+				selectedPlayer = player
+				UsernameLabel.Text = player.Name
+				local userId = player.UserId
+				ProfileImage.Image = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. userId .. "&width=420&height=420&format=png"
 
-            local character = player.Character
-            if character then
-                local humanoid = character:FindFirstChildOfClass("Humanoid")
-                local root = character:FindFirstChild("HumanoidRootPart")
-                if humanoid and root then
-                    HealthLabel.Text = "Health: " .. math.floor(humanoid.Health)
-                    SpeedLabel.Text = "WalkSpeed: " .. humanoid.WalkSpeed
-                    JumpLabel.Text = "JumpPower: " .. humanoid.JumpPower
-                    DistanceLabel.Text = "Distance: " .. math.floor((root.Position - game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude)
-                end
-            end
-        end)
-    end
+				if player.Character then
+					local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
+					if humanoid then
+						HealthLabel.Text = "Health: " .. math.floor(humanoid.Health)
+						SpeedLabel.Text = "WalkSpeed: " .. humanoid.WalkSpeed
+						JumpLabel.Text = "JumpPower: " .. humanoid.JumpPower
+					end
+					local distance = (player.Character:GetPivot().Position - LocalPlayer.Character:GetPivot().Position).Magnitude
+					DistanceLabel.Text = "Distance: " .. math.floor(distance)
+				end
+			end)
+		end
+	end
 
-    local Container = Instance.new("ScrollingFrame")
-    Container.Name = "Container"
-    Container.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
-    Container.BackgroundTransparency = 1
-    Container.Size = UDim2.new(0.10000000149011612, 394, 0, 184)
-    Container.Position = UDim2.new(0, 3, 0, 192)
-    Container.ScrollBarThickness = 0
-    Container.Parent = Frame
+	Frame:GetPropertyChangedSignal("Parent"):Connect(function()
+		Container.CanvasSize = UDim2.new(0, 0, 0, UIListLayout2.AbsoluteContentSize.Y)
+	end)
 
-    local UIListLayout2 = Instance.new("UIListLayout")
-    UIListLayout2.FillDirection = Enum.FillDirection.Horizontal
-    UIListLayout2.SortOrder = Enum.SortOrder.LayoutOrder
-    UIListLayout2.Parent = Container
-
-    Frame:SetAttribute("Container", Container)
-
-    return Frame
+	return Frame
 end
 
-function AdminGui:AddButton(frame, text, callback)
-    local container = frame:GetAttribute("Container")
-    if not container then return end
+function AdminGui:AddButton(window, label, callback)
+	local container = window:FindFirstChild("Container")
+	if not container then return end
 
-    local button = Instance.new("TextButton")
-    button.Name = "AddButton"
-    button.Text = text
-    button.TextColor3 = Color3.fromRGB(255, 255, 255)
-    button.TextSize = 18
-    button.Font = Enum.Font.SourceSansBold
-    button.BackgroundColor3 = Color3.fromRGB(38, 31, 50)
-    button.Size = UDim2.new(0, 143, 0, 34)
-    button.TextWrapped = true
-    button.Parent = container
+	local btn = Instance.new("TextButton")
+	btn.Name = "AddButton"
+	btn.Text = label
+	btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+	btn.TextStrokeColor3 = Color3.fromRGB(127, 127, 127)
+	btn.TextStrokeTransparency = 0
+	btn.TextSize = 18
+	btn.Font = Enum.Font.SourceSansBold
+	btn.BackgroundColor3 = Color3.fromRGB(28, 22, 36)
+	btn.Size = UDim2.new(0, 143, 0, 34)
+	btn.TextWrapped = true
+	btn.Parent = container
+	Instance.new("UICorner", btn)
 
-    local buttonCorner = Instance.new("UICorner")
-    buttonCorner.Parent = button
-
-    button.MouseButton1Click:Connect(function()
-        if selectedPlayer then
-            callback(selectedPlayer)
-        end
-    end)
+	btn.MouseButton1Click:Connect(function()
+		if callback and typeof(callback) == "function" then
+			local selectedLabel = window:FindFirstChild("UsernameLabel")
+			if selectedLabel then
+				local target = Players:FindFirstChild(selectedLabel.Text)
+				if target then
+					callback(target)
+				end
+			end
+		end
+	end)
 end
 
 return AdminGui
