@@ -112,6 +112,14 @@ local function GetImageData(name:string,image:ImageLabel)
 	if name == "user" then
 		image.Image = "rbxassetid://10494577250"
 	end
+
+	if name == "combat" then
+		image.Image = "rbxassetid://82635240213192"
+	end
+
+	if name == "gear" then
+	        image.Image = "rbxassetid://134488580093972"
+	end
 end
 
 local NEVERLOSE = {
