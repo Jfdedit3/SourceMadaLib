@@ -130,33 +130,30 @@ local NEVERLOSE = {
 	_Version="10.C",
 	_Name="NEVERLOSE"
 }
-
-print(NEVERLOSE._Name..":",NEVERLOSE._Version..':',[[https://neverlose.cc/]],": UI BY OWNER BEDOL HUB","__ui")
-
 function NEVERLOSE:Theme(name)
 	name = tostring(name or "dark"):lower()
 	if name == "original" then
-		NEVERLOSE.Themes.BlackgroundColor = Color3.fromRGB(1, 17, 33)
-		NEVERLOSE.Themes.BlackColor = Color3.fromRGB(9, 9, 19)
-		NEVERLOSE.Themes.HeaderColor = Color3.fromRGB(7, 7, 17)
-		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(0, 34, 44)
-		NEVERLOSE.Themes.MainColor = Color3.fromRGB(19, 176, 243)
-	        NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
-		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(0, 17, 35)
-		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(3, 35, 50)
-		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(2, 5, 22)
+		NEVERLOSE.Themes.BlackgroundColor = Color3.fromRGB(37, 37, 37)
+		NEVERLOSE.Themes.BlackColor = Color3.fromRGB(8, 8, 8)
+		NEVERLOSE.Themes.HeaderColor = Color3.fromRGB(8, 8, 8)
+		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
+		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
+		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(13, 13, 13)
+		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
+		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	end
 
 	if name == "nightly" then
-		NEVERLOSE.Themes.BlackgroundColor = Color3.fromRGB(43, 43, 43)
-		NEVERLOSE.Themes.BlackColor = Color3.fromRGB(16, 16, 16)
-		NEVERLOSE.Themes.HeaderColor = Color3.fromRGB(47, 47, 47)
-		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(100, 100, 100)
-		NEVERLOSE.Themes.MainColor = Color3.fromRGB(255, 140, 0)
-		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(65, 54, 31)
-		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(26, 26, 26)
-		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(50, 50, 50)
-		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(26, 26, 26)
+		NEVERLOSE.Themes.BlackgroundColor = Color3.fromRGB(37, 37, 37)
+		NEVERLOSE.Themes.BlackColor = Color3.fromRGB(8, 8, 8)
+		NEVERLOSE.Themes.HeaderColor = Color3.fromRGB(8, 8, 8)
+		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
+		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
+		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(13, 13, 13)
+		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
+		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	end
 
 	if name == "dark" then
