@@ -175,7 +175,7 @@ end
 function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	local WindowFunctinos={}
 	local ToggleUI=false
-	local ooldsize=UICustomSize or UDim2.new(0.224, 310, 0.284, 275)
+	local ooldsize=UICustomSize or UDim2.new(0.224000000, 310, 0.294000000, 278)
 	local Tabs={}
 
 	local ScreenGui = Instance.new("ScreenGui")
@@ -1123,7 +1123,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 					if val then
 						TweenService:Create(LabelText,TweenInfo.new(timea),{TextTransparency=0}):Play()
 						TweenService:Create(Icon,TweenInfo.new(timea),{Position=UDim2.new(0.75,0,0.5,0),BackgroundColor3=NEVERLOSE.Themes.MainColor}):Play();
-						Effect.BackgroundColor3 = Color3.fromRGB(12, 56, 20)
+						Effect.BackgroundColor3 = Color3.fromRGB(12, 18, 50)
 					else
 						TweenService:Create(LabelText,TweenInfo.new(timea),{TextTransparency=0.3}):Play()
 						TweenService:Create(Icon,TweenInfo.new(timea),{Position=UDim2.new(0.25,0,0.5,0),BackgroundColor3=Color3.fromRGB(194, 194, 194)}):Play();
