@@ -392,7 +392,7 @@ local userId = player.UserId
 -- Create main frame
 local framec = Instance.new("Frame")
 framec.Size = UDim2.new(0.0001, 230, 0.000001, 420)
-framec.Position = UDim2.new(0.5, 198, 0, 0) -- Center roughly
+framec.Position = UDim2.new(0.5, 198, 0.000001, 56) -- Center roughly
 framec.BackgroundColor3 = Color3.new(0, 0, 0)
 framec.Parent = ScreenGui
 
@@ -600,7 +600,7 @@ ob.Parent = ScreenGui
 ob.BackgroundTransparency = 1
 ob.Image = "rbxassetid://132926238025459"
 ob.Size = UDim2.new(0.1, -30, 0.12, 0)
-ob.Position = UDim2.new(0.4600000, 137, 0.14000000000, 0)
+ob.Position = UDim2.new(1, -117, 0.14000000000, 0)
 ob.Active = true
 ob.Draggable = true
 ob.ZIndex = 5000
