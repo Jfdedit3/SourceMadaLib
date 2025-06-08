@@ -5,7 +5,7 @@
 # By: **C-A-T-S-U-S*
 # Edited by: **CludeHub*
 
-![bfca45da0a0086cb167be4c180410d5920b26230.png](images/IMG_20250608_223018.png)
+![image-alt](https://github.com/CludeHub/SourceCludeLib/blob/1826965946643c38b68f67b2dbaa0c8c67b60a90/bfca45da0a0086cb167be4c180410d5920b26230.png)
 ## # Load NEVERLOSE UI Library
 ```lua
 local NEVERLOSE = loadstring(game:HttpGet("https://raw.githubusercontent.com/CludeHub/SourceCludeLib/refs/heads/main/NerverLoseLibEdited.lua"))()
