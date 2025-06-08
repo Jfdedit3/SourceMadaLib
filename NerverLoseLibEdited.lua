@@ -342,7 +342,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 		Frame.InputBegan:Connect(function(input)
 			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and not toggle_valu then 
-				dragToggle = true
+				dragToggle = false
 				dragStart = input.Position
 				startPos = Frame.Position
 				input.Changed:Connect(function()
@@ -1871,7 +1871,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	Frame_3.InputBegan:Connect(function(input)
 		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
-			dragToggle = true
+			dragToggle = false
 			dragStart = input.Position
 			startPos = Frame.Position
 			input.Changed:Connect(function()
@@ -2093,7 +2093,7 @@ function NEVERLOSE:KeySystem(TitleName,LinkKey,callback)
 
 		Frame.InputBegan:Connect(function(input)
 			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and not toggle_valu then 
-				dragToggle = true
+				dragToggle = false
 				dragStart = input.Position
 				startPos = Frame.Position
 				input.Changed:Connect(function()
