@@ -363,6 +363,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	end)
 
 	ScreenGui.Parent = CoreGui
+	ScreenGui.Name = "NEVERLOSE"
 	ScreenGui.ResetOnSpawn = false
 	ScreenGui.IgnoreGuiInset = true
 	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
