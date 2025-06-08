@@ -385,6 +385,87 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	UICorner.Parent = Frame
 
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local userId = player.UserId
+	
+-- Create main frame
+local framec = Instance.new("Frame")
+framec.Size = UDim2.new(0.0001, 230, 0.000001, 420)
+framec.Position = UDim2.new(0.5, 198, 0, 0) -- Center roughly
+framec.BackgroundColor3 = Color3.new(0, 0, 0)
+framec.Parent = ScreenGui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 9)
+corner.Parent = framec
+
+-- Create ViewportFrame inside the frame
+local viewportFrame = Instance.new("ViewportFrame")
+viewportFrame.Size = frame.Size
+viewportFrame.BackgroundTransparency = 1
+viewportFrame.Position = UDim2.new(0, 0, 0, -34)
+viewportFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+viewportFrame.BorderSizePixel = 0
+viewportFrame.Parent = framec
+
+-- Create WorldModel container
+local worldModel = Instance.new("WorldModel")
+worldModel.Parent = viewportFrame
+
+-- Camera setup
+local cam = Instance.new("Camera")
+cam.Parent = viewportFrame
+viewportFrame.CurrentCamera = cam
+cam.CFrame = CFrame.new(0, 0, 0)
+
+-- Wait until player character is loaded
+local char = player.Character or player.CharacterAdded:Wait()
+char.Archivable = true
+
+local clonedChar = char:Clone()
+clonedChar.Parent = worldModel
+clonedChar.Humanoid.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+clonedChar:SetPrimaryPartCFrame(CFrame.new(Vector3.new(0,0,-9.5), Vector3.new(0,0,0)))
+
+local UserInputService = game:GetService("UserInputService")
+
+local mouseInViewport = false
+local holdInViewport = false
+local lastX = nil
+
+UserInputService.InputBegan:Connect(function(input)
+	if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and mouseInViewport then
+		holdInViewport = true
+		lastX = nil
+	end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		holdInViewport = false
+	end
+end)
+
+viewportFrame.MouseMoved:Connect(function(x, y)
+	if not holdInViewport then return end
+	if lastX then
+		local delta = (x - lastX) * 0.025
+		local prim = clonedChar.PrimaryPart
+		prim.CFrame = prim.CFrame * CFrame.Angles(0, delta, 0)
+	end
+	lastX = x
+end)
+
+viewportFrame.MouseEnter:Connect(function()
+	mouseInViewport = true
+end)
+
+viewportFrame.MouseLeave:Connect(function()
+	mouseInViewport = false
+	holdInViewport = false
+end)
+	
 	Frame_2.Parent = Frame
 	Frame_2.BackgroundColor3 = NEVERLOSE.Themes.BlackColor
 	Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -512,6 +593,33 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	UICorner_6.CornerRadius = UDim.new(0, 4)
 	UICorner_6.Parent = outlo_3
+
+	local ob = Instance.new("ImageButton")
+ob.Name = "OpenButton"
+ob.Parent = ScreenGui
+ob.BackgroundTransparency = 1
+ob.Image = "rbxassetid://132926238025459"
+ob.Size = UDim2.new(0.1, -30, 0.12, 0)
+ob.Position = UDim2.new(0.16, 187, 0.14, 0)
+ob.Active = true
+ob.Draggable = true
+ob.ZIndex = 5000
+
+	local obcorner = Instance.new("UICorner")
+	obcorner.CornerRadius = UDim.new(0, 8)
+	obcorner.Parent = ob
+
+ob.MouseButton1Click:Connect(function()
+    Frame.Visible = not Frame.Visible
+    Frame_2.Visible = not Frame_2.Visible
+    Frame_3.Visible = not Frame_3.Visible
+    TabHose.Visible = not TabHose.Visible
+    outlo.Visible = not outlo.Visible
+    outlo_2.Visible = not outlo_2.Visible
+    outlo_3.Visible = not outlo_3.Visible
+    UserData.Visible = not UserData.Visible
+    framec.Visible = not framec.Visible
+end)
 
 	UserData.Name = "UserData"
 	UserData.Parent = Frame
