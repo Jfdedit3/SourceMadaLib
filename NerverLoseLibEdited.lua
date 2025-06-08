@@ -2359,21 +2359,6 @@ function NEVERLOSE:Notification()
 		Countdown.ZIndex = 6
 		Countdown.BackgroundTransparency=1
 
-		CloseButton.Name = "CloseButton"
-		CloseButton.Parent = Notify
-		CloseButton.AnchorPoint = Vector2.new(0.5, 0.5)
-		CloseButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		CloseButton.BackgroundTransparency = 1.000
-		CloseButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		CloseButton.BorderSizePixel = 0
-		CloseButton.Position = UDim2.new(0.939999998, 0, 0.5, 0)
-		CloseButton.Size = UDim2.new(0.550000012, 0, 0.550000012, 0)
-		CloseButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
-		CloseButton.ZIndex = 5
-		CloseButton.Image = "rbxassetid://9127564477"
-		CloseButton.ScaleType = Enum.ScaleType.Fit
-		CloseButton.ImageTransparency=1
-		
 		local currenttime = 0.3
 		local function start_vu()
 			TweenService:Create(Notify,TweenInfo.new(currenttime/2,Enum.EasingStyle.Quint),{Size=UDim2.new(0.99,0,0.75,0)}):Play()
