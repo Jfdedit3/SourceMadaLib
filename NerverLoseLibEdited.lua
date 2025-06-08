@@ -180,7 +180,7 @@ end
 function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	local WindowFunctinos={}
 	local ToggleUI=false
-	local ooldsize=UICustomSize or UDim2.new(0.224000000, 310, 0.294000000, 278)
+	local ooldsize=UICustomSize or UDim2.new(0.224000000, 310, 0.294000000, 283)
 	local Tabs={}
 
 	local ScreenGui = Instance.new("ScreenGui")
@@ -329,7 +329,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	task.spawn(function()
 		local dragToggle = nil
-		local dragSpeed = 0.15
+		local dragSpeed = 0
 		local dragStart = nil
 		local startPos = nil
 
@@ -371,12 +371,12 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	Frame.Parent = ScreenGui
 	Frame.Active = true
-	Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+	Frame.AnchorPoint = Vector2.new(0.3, 0.5)
 	Frame.BackgroundColor3 = NEVERLOSE.Themes.BlackgroundColor
 	Frame.BackgroundTransparency = 0.200
 	Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Frame.BorderSizePixel = 0
-	Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+	Frame.Position = UDim2.new(0.3, 0, 0.5, 0)
 	Frame.Size = UDim2.new(0,0,0,0)
 	Frame.ZIndex = 2
 	Frame.ClipsDescendants=true
