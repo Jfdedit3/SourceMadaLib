@@ -329,7 +329,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	task.spawn(function()
 		local dragToggle = nil
-		local dragSpeed = 0
+		local dragSpeed = 0.15
 		local dragStart = nil
 		local startPos = nil
 
@@ -1858,8 +1858,8 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	end
 
 	local dragToggle = nil
-	local dragSpeed = 0
-	local dragStart = nil.1
+	local dragSpeed = 0.1
+	local dragStart = nil
 	local startPos = nil
 
 	local function updateInput(input)
@@ -2080,7 +2080,7 @@ function NEVERLOSE:KeySystem(TitleName,LinkKey,callback)
 
 	task.spawn(function()
 		local dragToggle = nil
-		local dragSpeed = 0
+		local dragSpeed = 0.2
 		local dragStart = nil
 		local startPos = nil
 
