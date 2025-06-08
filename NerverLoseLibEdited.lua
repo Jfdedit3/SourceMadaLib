@@ -6,7 +6,7 @@
 		original Neverlose
 		
 		[https://neverlose.cc/] - csgo cheat
-   Resized by Cludeshit madapaker
+   Edited by Cludeshit madapaker
 ]]
 
 local LocalPlayer = game:GetService('Players').LocalPlayer;
@@ -1858,7 +1858,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	end
 
 	local dragToggle = nil
-	local dragSpeed = 0.1
+	local dragSpeed = 0
 	local dragStart = nil
 	local startPos = nil
 
@@ -1871,7 +1871,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	Frame_3.InputBegan:Connect(function(input)
 		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
-			dragToggle = true
+			dragToggle = false
 			dragStart = input.Position
 			startPos = Frame.Position
 			input.Changed:Connect(function()
