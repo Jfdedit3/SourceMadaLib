@@ -329,7 +329,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	task.spawn(function()
 		local dragToggle = nil
-		local dragSpeed = 0
+		local dragSpeed = 0.14
 		local dragStart = nil
 		local startPos = nil
 
@@ -342,7 +342,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 		Frame.InputBegan:Connect(function(input)
 			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and not toggle_valu then 
-				dragToggle = false
+				dragToggle = true
 				dragStart = input.Position
 				startPos = Frame.Position
 				input.Changed:Connect(function()
