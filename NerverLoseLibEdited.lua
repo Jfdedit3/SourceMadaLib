@@ -125,15 +125,15 @@ end
 local NEVERLOSE = {
 	auto_function = {},
 	Themes = {
-		BlackgroundColor = Color3.fromRGB(43, 43, 43),
-		BlackColor = Color3.fromRGB(16, 16, 16),
-		HeaderColor = Color3.fromRGB(47, 47, 47),
-		TraceColor = Color3.fromRGB(100, 100, 100),
-		MainColor = Color3.fromRGB(255, 140, 0),
-		MainColorDrop = Color3.fromRGB(65, 54, 31),
-		SectionColor = Color3.fromRGB(26, 26, 26),
-		StrokeColor = Color3.fromRGB(50, 50, 50),
-		ButtonBlackgroundColor = Color3.fromRGB(26, 26, 26)
+		NEVERLOSE.Themes.BlackgroundColor = Color3.fromRGB(37, 37, 37)
+		NEVERLOSE.Themes.BlackColor = Color3.fromRGB(8, 8, 8)
+		NEVERLOSE.Themes.HeaderColor = Color3.fromRGB(8, 8, 8)
+		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
+		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
+		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(10, 11, 13)
+		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
+		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	},
 	_Version="69.C",
 	_Name="NEVERLOSE"
