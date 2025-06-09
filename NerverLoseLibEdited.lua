@@ -125,15 +125,15 @@ end
 local NEVERLOSE = {
 	auto_function = {},
 	Themes = {
-		BlackgroundColor = Color3.fromRGB(37, 37, 37),
-		BlackColor = Color3.fromRGB(8, 8, 8),
-		HeaderColor = Color3.fromRGB(8, 8, 8),
-		TraceColor = Color3.fromRGB(25, 25, 25),
-		MainColor = Color3.fromRGB(0, 172, 247),
-		MainColorDrop = Color3.fromRGB(64, 65, 67),
-		SectionColor = Color3.fromRGB(10, 11, 13),
-		StrokeColor = Color3.fromRGB(28, 28, 28),
-		ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
+		BlackgroundColor = Color3.fromRGB(43, 43, 43),
+		BlackColor = Color3.fromRGB(16, 16, 16),
+		HeaderColor = Color3.fromRGB(47, 47, 47),
+		TraceColor = Color3.fromRGB(100, 100, 100),
+		MainColor = Color3.fromRGB(255, 140, 0),
+		MainColorDrop = Color3.fromRGB(65, 54, 31),
+		SectionColor = Color3.fromRGB(26, 26, 26),
+		StrokeColor = Color3.fromRGB(50, 50, 50),
+		ButtonBlackgroundColor = Color3.fromRGB(26, 26, 26)
 	},
 	_Version="69.C",
 	_Name="NEVERLOSE"
@@ -180,7 +180,7 @@ end
 function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	local WindowFunctinos={}
 	local ToggleUI=false
-	local ooldsize=UICustomSize or UDim2.new(0.224000000, 370, 0.294000000, 297)
+	local ooldsize=UICustomSize or UDim2.new(0.224000000, 360, 0.294000000, 297)
 	local Tabs={}
 
 	local ScreenGui = Instance.new("ScreenGui")
@@ -416,7 +416,7 @@ character.BackgroundTransparency = 1.000
 character.BorderColor3 = Color3.fromRGB(0, 0, 0)
 character.BorderSizePixel = 0
 character.Position = UDim2.new(0.908723712, 0, 0.0239103697, 0)
-character.Size = UDim2.new(0.0900000036, -20, 0.0900000036, -20)
+character.Size = UDim2.new(0.0900000036, 0, 0.0900000036, 0)
 character.SizeConstraint = Enum.SizeConstraint.RelativeYY
 character.ZIndex = 4
 character.Image = "rbxassetid://123112467890707"
