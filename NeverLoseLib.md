@@ -18,7 +18,7 @@ Guide: This loads the NEVERLOSE UI library from the GitHub repository.
 
 # Set Theme
 ```lua
-NEVERLOSE:Theme("dark") -- Options: "dark", "nightly", "original"
+NEVERLOSE:Theme("dark")
 ```
 Guide: Sets the UI theme. You can change the theme between "dark", "nightly", or "original."
 
@@ -52,8 +52,7 @@ Guide: This adds a label to the window, marking the first tab as "Home."
 
 # Create Tabs
 ```lua
-local ExampleTab = Window:AddTab('Example Tab','earth') -- [ads , list , folder , earth , locked , home , mouse , user]
-local MainTab = Window:AddTab('Test','ads')
+local ExampleTab = Window:AddTab('Example Tab','ads')
 ```
 
 Guide: Adds tabs to the window. The tabs can be customized with icons (like 'earth', 'ads', etc.) and titles.
