@@ -180,7 +180,7 @@ end
 function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	local WindowFunctinos={}
 	local ToggleUI=false
-	local ooldsize=UICustomSize or UDim2.new(0.224000000, 360, 0.294000000, 297)
+	local ooldsize=UICustomSize or UDim2.new(0.224000000, 370, 0.294000000, 297)
 	local Tabs={}
 
 	local ScreenGui = Instance.new("ScreenGui")
@@ -416,7 +416,7 @@ character.BackgroundTransparency = 1.000
 character.BorderColor3 = Color3.fromRGB(0, 0, 0)
 character.BorderSizePixel = 0
 character.Position = UDim2.new(0.908723712, 0, 0.0239103697, 0)
-character.Size = UDim2.new(0.0900000036, 0, 0.0900000036, 0)
+character.Size = UDim2.new(0.0900000036, -20, 0.0900000036, -20)
 character.SizeConstraint = Enum.SizeConstraint.RelativeYY
 character.ZIndex = 4
 character.Image = "rbxassetid://123112467890707"
