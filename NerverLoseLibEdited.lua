@@ -180,7 +180,7 @@ end
 function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	local WindowFunctinos={}
 	local ToggleUI=false
-	local ooldsize=UICustomSize or UDim2.new(0.224000000, 369, 0.294000000, 333)
+	local ooldsize=UICustomSize or UDim2.new(0.224000000, 369, 0.294000000, 347)
 	local Tabs={}
 
 	local ScreenGui = Instance.new("ScreenGui")
