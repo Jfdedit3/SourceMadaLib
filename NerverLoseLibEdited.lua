@@ -180,7 +180,7 @@ end
 function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	local WindowFunctinos={}
 	local ToggleUI=false
-	local ooldsize=UICustomSize or UDim2.new(0.224000000, 360, 0.294000000, 317)
+	local ooldsize=UICustomSize or UDim2.new(0.224000000, 369, 0.294000000, 333)
 	local Tabs={}
 
 	local ScreenGui = Instance.new("ScreenGui")
@@ -380,7 +380,7 @@ local userId = player.UserId
 -- Create main frame
 local framec = Instance.new("Frame")
 framec.Size = UDim2.new(0.0001, 230, 0.000001, 420)
-framec.Position = UDim2.new(0.5, 224, 0.000001, 56) -- Center roughly
+framec.Position = UDim2.new(0.5, 234, 0.000001, 56) -- Center roughly
 framec.BackgroundColor3 = Color3.new(0, 0, 0)
 framec.Parent = ScreenGui
 framec.Visible = false
