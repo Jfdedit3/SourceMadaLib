@@ -135,7 +135,7 @@ local NEVERLOSE = {
 		StrokeColor = Color3.fromRGB(50, 50, 50),
 		ButtonBlackgroundColor = Color3.fromRGB(26, 26, 26)
 	},
-	_Version="10.C",
+	_Version="69.C",
 	_Name="NEVERLOSE"
 }
 function NEVERLOSE:Theme(name)
@@ -147,7 +147,7 @@ function NEVERLOSE:Theme(name)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
 		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
 		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
-		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(11, 11, 15)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(12, 18, 21)
 		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
 		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	end
@@ -159,7 +159,7 @@ function NEVERLOSE:Theme(name)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
 		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
 		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
-		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(11, 11, 15)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(12, 18, 21)
 		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
 		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	end
@@ -171,7 +171,7 @@ function NEVERLOSE:Theme(name)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
 		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
 		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
-		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(11, 11, 15)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(12, 18, 21)
 		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
 		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	end
