@@ -147,7 +147,7 @@ function NEVERLOSE:Theme(name)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
 		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
 		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
-		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(26, 36, 26)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(11, 11, 15)
 		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
 		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	end
@@ -159,7 +159,7 @@ function NEVERLOSE:Theme(name)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
 		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
 		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
-		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(26, 26, 26)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(11, 11, 15)
 		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
 		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	end
@@ -171,7 +171,7 @@ function NEVERLOSE:Theme(name)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
 		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
 		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
-		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(26, 26, 26)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(11, 11, 15)
 		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
 		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	end
@@ -180,7 +180,7 @@ end
 function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	local WindowFunctinos={}
 	local ToggleUI=false
-	local ooldsize=UICustomSize or UDim2.new(0.224000000, 310, 0.294000000, 283)
+	local ooldsize=UICustomSize or UDim2.new(0.224000000, 310, 0.294000000, 297)
 	local Tabs={}
 
 	local ScreenGui = Instance.new("ScreenGui")
@@ -380,7 +380,7 @@ local userId = player.UserId
 -- Create main frame
 local framec = Instance.new("Frame")
 framec.Size = UDim2.new(0.0001, 230, 0.000001, 420)
-framec.Position = UDim2.new(0.5, 198, 0.000001, 56) -- Center roughly
+framec.Position = UDim2.new(0.5, 224, 0.000001, 56) -- Center roughly
 framec.BackgroundColor3 = Color3.new(0, 0, 0)
 framec.Parent = ScreenGui
 
