@@ -13,16 +13,6 @@ local NEVERLOSE = loadstring(game:HttpGet("https://raw.githubusercontent.com/Clu
 
 Guide: This loads the NEVERLOSE UI library from the GitHub repository.
 
-
----
-
-# Set Theme
-```lua
-NEVERLOSE:Theme("dark")
-```
-Guide: Sets the UI theme. You can change the theme between "dark", "nightly", or "original."
-
-
 ---
 
 # Create Main Window and Notification System
