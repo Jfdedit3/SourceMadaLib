@@ -373,24 +373,6 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	UICorner.Parent = Frame
 
-			local character = Instance.new("ImageButton")
-
-character.Parent = Frame
-character.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-character.BackgroundTransparency = 1.000
-character.BorderColor3 = Color3.fromRGB(0, 0, 0)
-character.BorderSizePixel = 0
-character.Position = UDim2.new(0.908723712, 0, 0.0239103697, 0)
-character.Size = UDim2.new(0.0900000036, 0, 0.0900000036, 0)
-character.SizeConstraint = Enum.SizeConstraint.RelativeYY
-character.ZIndex = 4
-character.Image = "rbxassetid://123112467890707"
-character.ScaleType = Enum.ScaleType.Fit
-
-character.MouseButton1Click:Connect(function()
-    framec.Visible = true
-end)
-
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local userId = player.UserId
@@ -425,6 +407,24 @@ local cam = Instance.new("Camera")
 cam.Parent = viewportFrame
 viewportFrame.CurrentCamera = cam
 cam.CFrame = CFrame.new(0, 0, 0)
+
+local character = Instance.new("ImageButton")
+
+character.Parent = Frame
+character.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+character.BackgroundTransparency = 1.000
+character.BorderColor3 = Color3.fromRGB(0, 0, 0)
+character.BorderSizePixel = 0
+character.Position = UDim2.new(0.908723712, 0, 0.0239103697, 0)
+character.Size = UDim2.new(0.0900000036, 0, 0.0900000036, 0)
+character.SizeConstraint = Enum.SizeConstraint.RelativeYY
+character.ZIndex = 4
+character.Image = "rbxassetid://123112467890707"
+character.ScaleType = Enum.ScaleType.Fit
+
+character.MouseButton1Click:Connect(function()
+    framec.Visible = not framec.Visible
+end)
 
 -- Wait until player character is loaded
 local char = player.Character or player.CharacterAdded:Wait()
