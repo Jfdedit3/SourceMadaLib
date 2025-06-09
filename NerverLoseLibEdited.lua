@@ -292,6 +292,23 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 
 	task.spawn(function()
 		local ImageButton = Instance.new("ImageButton")
+		local character = Instance.new("ImageButton")
+
+character.Parent = Frame
+character.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+character.BackgroundTransparency = 1.000
+character.BorderColor3 = Color3.fromRGB(0, 0, 0)
+character.BorderSizePixel = 0
+character.Position = UDim2.new(0.908723712, 0, 0.0239103697, 0)
+character.Size = UDim2.new(0.0900000036, 0, 0.0900000036, 0)
+character.SizeConstraint = Enum.SizeConstraint.RelativeYY
+character.ZIndex = 4
+character.Image = "rbxassetid://123112467890707"
+character.ScaleType = Enum.ScaleType.Fit
+
+character.MouseButton1Click:Connect(function()
+    framec.Visible = true
+end)
 
 		ImageButton.MouseButton1Click:Connect(function()
 			toggle_valu=not toggle_valu
@@ -606,7 +623,7 @@ ob.MouseButton1Click:Connect(function()
     outlo_2.Visible = not outlo_2.Visible
     outlo_3.Visible = not outlo_3.Visible
     UserData.Visible = not UserData.Visible
-    framec.Visible = not framec.Visible
+    framec.Visible = false
 end)
 
 	UserData.Name = "UserData"
