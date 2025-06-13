@@ -131,7 +131,7 @@ local NEVERLOSE = {
 		TraceColor = Color3.fromRGB(25, 25, 25),
 		MainColor = Color3.fromRGB(0, 172, 247),
 		MainColorDrop = Color3.fromRGB(64, 65, 67),
-		SectionColor = Color3.fromRGB(0, 0, 19),
+		SectionColor = Color3.fromRGB(10, 12, 13),
 		StrokeColor = Color3.fromRGB(28, 28, 28),
 		ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	},
@@ -147,7 +147,7 @@ function NEVERLOSE:Theme(name)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
 		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
 		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
-		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(17, 29, 53)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(10, 11, 13)
 		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
 		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	end
@@ -159,7 +159,7 @@ function NEVERLOSE:Theme(name)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
 		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
 		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
-		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(0, 0, 19)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(10, 11, 13)
 		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
 		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	end
@@ -171,7 +171,7 @@ function NEVERLOSE:Theme(name)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
 		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
 		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
-		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(0, 0, 19)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(10, 12, 13)
 		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
 		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	end
@@ -180,7 +180,7 @@ end
 function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	local WindowFunctinos={}
 	local ToggleUI=false
-	local ooldsize=UICustomSize or UDim2.new(0.224000000, 389, 0.294000000, 347)
+	local ooldsize=UICustomSize or UDim2.new(0.224000000, 379, 0.294000000, 347)
 	local Tabs={}
 
 	local ScreenGui = Instance.new("ScreenGui")
@@ -381,12 +381,12 @@ local userId = player.UserId
 local framec = Instance.new("Frame")
 framec.Size = UDim2.new(0.0001, 230, 0.000001, 420)
 framec.Position = UDim2.new(0.5, 244, 0.000001, 56) -- Center roughly
-framec.BackgroundColor3 = Color3.new(0, 0, 0)
+framec.BackgroundColor3 = Color3.new(3, 3, 3)
 framec.Parent = ScreenGui
 framec.Visible = false
 
 local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 7)
+corner.CornerRadius = UDim.new(0, 9)
 corner.Parent = framec
 
 -- Create ViewportFrame inside the frame
@@ -394,7 +394,7 @@ local viewportFrame = Instance.new("ViewportFrame")
 viewportFrame.Size = framec.Size
 viewportFrame.BackgroundTransparency = 1
 viewportFrame.Position = UDim2.new(0, 0, 0, -34)
-viewportFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+viewportFrame.BackgroundColor3 = Color3.new(3, 3, 3)
 viewportFrame.BorderSizePixel = 0
 viewportFrame.Parent = framec
 
