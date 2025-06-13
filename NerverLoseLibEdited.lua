@@ -381,7 +381,7 @@ local userId = player.UserId
 local framec = Instance.new("Frame")
 framec.Size = UDim2.new(0.0001, 230, 0.000001, 420)
 framec.Position = UDim2.new(0.5, 244, 0.000001, 56) -- Center roughly
-framec.BackgroundColor3 = Color3.new(3, 3, 3)
+framec.BackgroundColor3 = Color3.new(0, 0, 0)
 framec.Parent = ScreenGui
 framec.Visible = false
 
@@ -394,7 +394,7 @@ local viewportFrame = Instance.new("ViewportFrame")
 viewportFrame.Size = framec.Size
 viewportFrame.BackgroundTransparency = 1
 viewportFrame.Position = UDim2.new(0, 0, 0, -34)
-viewportFrame.BackgroundColor3 = Color3.new(3, 3, 3)
+viewportFrame.BackgroundColor3 = Color3.new(0, 0, 0)
 viewportFrame.BorderSizePixel = 0
 viewportFrame.Parent = framec
 
