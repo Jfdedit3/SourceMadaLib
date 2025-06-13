@@ -386,7 +386,7 @@ framec.Parent = ScreenGui
 framec.Visible = false
 
 local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 9)
+corner.CornerRadius = UDim.new(0, 7)
 corner.Parent = framec
 
 -- Create ViewportFrame inside the frame
