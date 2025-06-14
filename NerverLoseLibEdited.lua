@@ -392,7 +392,7 @@ corner.Parent = framec
 local image_ = Instance.new("ImageLabel")
 image_.Parent = ScreenGui
 image_.BackgroundTransparency = 1
-image_.Image = "rbxthumb://type=Asset&id=96085629842198&w=420&h=420"
+image_.Image = "rbxthumb://type=Asset&id=94753362580878&w=420&h=420"
 image_.Size = UDim2.new(0, 275, 0.1000004, 250)
 image_.Position = UDim2.new(0.728, 0, 0.13400005, 0)
 image_.Visible = false
