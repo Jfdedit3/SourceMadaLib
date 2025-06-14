@@ -442,7 +442,7 @@ setting.Image = "rbxassetid://134488580093972"
 setting.ScaleType = Enum.ScaleType.Fit
 
 setting.MouseButton1Click:Connect(function()
-    
+    settings:Hide()
 end)
 
 -- Wait until player character is loaded
