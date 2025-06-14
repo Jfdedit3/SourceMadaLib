@@ -680,25 +680,26 @@ ob.ZIndex = 5000
 	obcorner.CornerRadius = UDim.new(0, 8)
 	obcorner.Parent = ob
 
+local isOpen = false  -- Track state manually
+
 ob.MouseButton1Click:Connect(function()
-    local toggle = not Frame.Visible  -- Toggle logic based on Frame
+    isOpen = not isOpen  -- Flip open/close state
 
-    Frame.Visible = toggle
-    Frame_2.Visible = toggle
-    Frame_3.Visible = toggle
-    TabHose.Visible = toggle
-    outlo.Visible = toggle
-    outlo_2.Visible = toggle
-    outlo_3.Visible = toggle
-    UserData.Visible = toggle
+    Frame.Visible = isOpen
+    Frame_2.Visible = isOpen
+    Frame_3.Visible = isOpen
+    TabHose.Visible = isOpen
+    outlo.Visible = isOpen
+    outlo_2.Visible = isOpen
+    outlo_3.Visible = isOpen
+    UserData.Visible = isOpen
 
-    setting.Visible = toggle          -- ✅ make sure these are restored
-    character.Visible = toggle        -- ✅ make sure these are restored
+    setting.Visible = isOpen        -- This will now correctly restore
+    character.Visible = isOpen      -- Always restored properly
 
-    framec.Visible = false            -- always hide these
+    framec.Visible = false          -- Always hidden
     image_.Visible = false
 end)
-
 	UserData.Name = "UserData"
 	UserData.Parent = Frame
 	UserData.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
