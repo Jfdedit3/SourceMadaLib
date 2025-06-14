@@ -426,6 +426,25 @@ character.MouseButton1Click:Connect(function()
     framec.Visible = not framec.Visible
 end)
 
+local setting = Instance.new("ImageButton")
+
+setting.Parent = Frame
+setting.Name = "SettingsButton"
+setting.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+setting.BackgroundTransparency = 1.000
+setting.BorderColor3 = Color3.fromRGB(0, 0, 0)
+setting.BorderSizePixel = 0
+setting.Position = UDim2.new(0.908723712, -50, 0.0239103697, 0)
+setting.Size = UDim2.new(0.0900000036, 0, 0.0900000036, 0)
+setting.SizeConstraint = Enum.SizeConstraint.RelativeYY
+setting.ZIndex = 4
+setting.Image = "rbxassetid://123112467890707"
+setting.ScaleType = Enum.ScaleType.Fit
+
+setting.MouseButton1Click:Connect(function()
+    framec.Visible = false
+end)
+
 -- Wait until player character is loaded
 local char = player.Character or player.CharacterAdded:Wait()
 char.Archivable = true
