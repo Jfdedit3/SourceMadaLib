@@ -438,7 +438,7 @@ setting.Position = UDim2.new(0.908723712, -50, 0.0239103697, 0)
 setting.Size = UDim2.new(0.0900000036, 0, 0.0900000036, 0)
 setting.SizeConstraint = Enum.SizeConstraint.RelativeYY
 setting.ZIndex = 4
-setting.Image = "rbxassetid://123112467890707"
+setting.Image = "rbxassetid://134488580093972"
 setting.ScaleType = Enum.ScaleType.Fit
 
 setting.MouseButton1Click:Connect(function()
