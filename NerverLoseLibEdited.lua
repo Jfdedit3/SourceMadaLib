@@ -457,11 +457,17 @@ setting.ZIndex = 4
 setting.Image = "rbxassetid://134488580093972"
 setting.ScaleType = Enum.ScaleType.Fit
 
-local function showOnly(panel)
+local function hideAllPanels()
 	image_.Visible = false
 	framec.Visible = false
 	-- Add more panels here if needed
-	panel.Visible = true
+end
+
+local function showOnly(panel)
+	hideAllPanels()
+	if panel then
+		panel.Visible = true
+	end
 end
 
 setting.MouseButton1Click:Connect(function()
@@ -471,16 +477,17 @@ setting.MouseButton1Click:Connect(function()
 end)
 
 button_.MouseButton1Click:Connect(function()
-	image_.Visible = false
+	hideAllPanels()
 	setting.Visible = true
 	character.Visible = true
-	framec.Visible = false
 end)
 
 character.MouseButton1Click:Connect(function()
 	local show = not framec.Visible
-	showOnly(nil) -- hide all panels
-	if show then framec.Visible = true end
+	hideAllPanels()
+	if show then
+		framec.Visible = true
+	end
 end)
 	
 -- Wait until player character is loaded
