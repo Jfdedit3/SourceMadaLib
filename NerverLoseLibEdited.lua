@@ -442,12 +442,6 @@ character.ZIndex = 4
 character.Image = "rbxassetid://123112467890707"
 character.ScaleType = Enum.ScaleType.Fit
 
-character.MouseButton1Click:Connect(function()
-    framec.Visible = not framec.Visible
-	image_.Visible = false
-	setting.Visible = not character.Visible
-end)
-
 local setting = Instance.new("ImageButton")
 
 setting.Parent = Frame
@@ -474,6 +468,12 @@ button_.MouseButton1Click:Connect(function()
 image_.Visible = false
 setting.Visible = true
 character.Visible = true
+end)
+
+character.MouseButton1Click:Connect(function()
+        framec.Visible = not framec.Visible
+	image_.Visible = false
+	setting.Visible = not character.Visible
 end)
 
 -- Wait until player character is loaded
