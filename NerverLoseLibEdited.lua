@@ -445,6 +445,7 @@ character.ScaleType = Enum.ScaleType.Fit
 character.MouseButton1Click:Connect(function()
     framec.Visible = not framec.Visible
 	image_.Visible = false
+	setting.Visible = true
 end)
 
 local setting = Instance.new("ImageButton")
@@ -673,6 +674,7 @@ ob.MouseButton1Click:Connect(function()
     outlo_3.Visible = not outlo_3.Visible
     UserData.Visible = not UserData.Visible
     framec.Visible = false
+    image_.Visible = false
 end)
 
 	UserData.Name = "UserData"
