@@ -391,6 +391,24 @@ local corner = Instance.new("UICorner")
 corner.CornerRadius = UDim.new(0, 7)
 corner.Parent = framec
 
+local image_ = Instance.new("ImageLabel")
+image_.Parent = ScreenGui
+image_.BackgroundTransparency = 1
+image_.Image = "rbxthumb://type=Asset&id=96085629842198&w=420&h=420"
+image_.Size = UDim2.new(0, 275, 0.1000004, 250)
+image_.Position = UDim2.new(0.728, 0, 0, 0)
+image_.Visible = false
+
+local UICorner_ = Instance.new("UICorner", image_)
+UICorner_.CornerRadius = UDim.new(0, 5)
+
+local button_ = Instance.new("TextButton", image_)
+button_.BackgroundTransparency = 1
+button_.Text = ""
+button_.Position = UDim2.new(1, -20, 0, 0)
+button_.Size = UDim2.new(0.09, 0, 0.079, 0)
+button_.TextColor3 = Color3.fromRGB(255, 255, 255)
+
 -- Create ViewportFrame inside the frame
 local viewportFrame = Instance.new("ViewportFrame")
 viewportFrame.Size = framec.Size
@@ -444,6 +462,13 @@ setting.Image = "rbxassetid://134488580093972"
 setting.ScaleType = Enum.ScaleType.Fit
 
 setting.MouseButton1Click:Connect(function()
+	image_.Visible = true
+	setting.Visible = false
+end)
+
+button_.MouseButton1Click:Connect(function()
+image_.Visible = false
+setting.Visible = true
 end)
 
 -- Wait until player character is loaded
