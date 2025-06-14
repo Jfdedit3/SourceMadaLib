@@ -396,7 +396,7 @@ image_.Parent = ScreenGui
 image_.BackgroundTransparency = 1
 image_.Image = "rbxthumb://type=Asset&id=96085629842198&w=420&h=420"
 image_.Size = UDim2.new(0, 275, 0.1000004, 250)
-image_.Position = UDim2.new(0.728, 0, 0, 0)
+image_.Position = UDim2.new(0.728, 0, 0.13400005, 0)
 image_.Visible = false
 
 local UICorner_ = Instance.new("UICorner", image_)
@@ -444,6 +444,7 @@ character.ScaleType = Enum.ScaleType.Fit
 
 character.MouseButton1Click:Connect(function()
     framec.Visible = not framec.Visible
+	image_.Visible = false
 end)
 
 local setting = Instance.new("ImageButton")
@@ -464,6 +465,7 @@ setting.ScaleType = Enum.ScaleType.Fit
 setting.MouseButton1Click:Connect(function()
 	image_.Visible = true
 	setting.Visible = false
+	framec.Visible = false
 end)
 
 button_.MouseButton1Click:Connect(function()
