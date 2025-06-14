@@ -137,8 +137,6 @@ local NEVERLOSE = {
 	},
 	_Version="69.C",
 	_Name="NEVERLOSE"
-	local never = "NEVERLOSE 69.C darkmode loaded"
-	print(never)
 }
 function NEVERLOSE:Theme(name)
 	name = tostring(name or "dark"):lower()
@@ -1500,7 +1498,7 @@ end)
 				LabelText.Text = SliderNameString or "Control"
 				LabelText.TextColor3 = Color3.fromRGB(255, 255, 255)
 				LabelText.TextScaled = true
-				LabelText.TextSize = 12.000
+				LabelText.TextSize = 14.000
 				LabelText.TextWrapped = true
 				LabelText.TextXAlignment = Enum.TextXAlignment.Left
 				LabelText.TextTransparency=.3
