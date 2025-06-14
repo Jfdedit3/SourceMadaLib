@@ -2431,4 +2431,8 @@ task.spawn(function()
 	end
 end)
 
+Window:AddTabLabel('Settings')
+
+local S = Window:AddTab('Settings','folder')
+
 return NEVERLOSE
