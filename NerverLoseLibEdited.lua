@@ -445,7 +445,7 @@ character.ScaleType = Enum.ScaleType.Fit
 character.MouseButton1Click:Connect(function()
     framec.Visible = not framec.Visible
 	image_.Visible = false
-	setting.Visible = true
+	setting.Visible = not character.Visible
 end)
 
 local setting = Instance.new("ImageButton")
@@ -467,11 +467,13 @@ setting.MouseButton1Click:Connect(function()
 	image_.Visible = true
 	setting.Visible = false
 	framec.Visible = false
+	character.Visible = false
 end)
 
 button_.MouseButton1Click:Connect(function()
 image_.Visible = false
 setting.Visible = true
+character.Visible = true
 end)
 
 -- Wait until player character is loaded
