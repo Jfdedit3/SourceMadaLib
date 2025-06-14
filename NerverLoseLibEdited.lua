@@ -115,10 +115,12 @@ local function GetImageData(name:string,image:ImageLabel)
 
 	if name == "combat" then
 		image.Image = "rbxassetid://82635240213192"
+		Image.ImageRectSize = Vector2.new(0, 0)
 	end
 
 	if name == "gear" then
 	        image.Image = "rbxassetid://134488580093972"
+		Image.ImageRectSize = Vector2.new(0, 0)
 	end
 end
 
@@ -180,7 +182,7 @@ end
 function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 	local WindowFunctinos={}
 	local ToggleUI=false
-	local ooldsize=UICustomSize or UDim2.new(0.224000000, 419, 0.294000000, 347)
+	local ooldsize=UICustomSize or UDim2.new(0.224000000, 439, 0.294000000, 347)
 	local Tabs={}
 
 	local ScreenGui = Instance.new("ScreenGui")
@@ -442,7 +444,6 @@ setting.Image = "rbxassetid://134488580093972"
 setting.ScaleType = Enum.ScaleType.Fit
 
 setting.MouseButton1Click:Connect(function()
-    settings:Hide()
 end)
 
 -- Wait until player character is loaded
