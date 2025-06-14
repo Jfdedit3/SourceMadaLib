@@ -674,22 +674,18 @@ ob.ZIndex = 5000
 	obcorner.Parent = ob
 
 ob.MouseButton1Click:Connect(function()
-    local toggle = not Frame.Visible  -- Toggle logic based on Frame
-
-    Frame.Visible = toggle
-    Frame_2.Visible = toggle
-    Frame_3.Visible = toggle
-    TabHose.Visible = toggle
-    outlo.Visible = toggle
-    outlo_2.Visible = toggle
-    outlo_3.Visible = toggle
-    UserData.Visible = toggle
-
-    setting.Visible = toggle          -- ✅ make sure these are restored
-    character.Visible = toggle        -- ✅ make sure these are restored
-
-    framec.Visible = false            -- always hide these
-    image_.Visible = false
+Frame.Visible = not Frame.Visible
+Frame_2.Visible = not Frame_2.Visible
+Frame_3.Visible = not Frame_3.Visible
+TabHose.Visible = not TabHose.Visible
+outlo.Visible = not outlo.Visible
+outlo_2.Visible = not outlo_2.Visible
+outlo_3.Visible = not outlo_3.Visible
+UserData.Visible = not UserData.Visible
+framec.Visible = false
+image_.Visible = false
+setting.Visible = not setting.Visible
+character.Visible = not character.Visible
 end)
 
 	UserData.Name = "UserData"
