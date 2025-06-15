@@ -507,7 +507,7 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 			TextLabel.Size = UDim2.new(0.606889787, 0, 0.0627818182, 0)
 			TextLabel.ZIndex = 5
 			TextLabel.Font = Enum.Font.SourceSansBold
-			TextLabel.Text = Text or" "
+			TextLabel.Text = Text or"NEVERLOSE UI"
 			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 			TextLabel.TextScaled = true
 			TextLabel.TextSize = 14.000
@@ -2106,8 +2106,8 @@ end)
 				DownBar.Parent = Dropdown
 				DownBar.Active = true
 				DownBar.AnchorPoint = Vector2.new(1, 0)
-				DownBar.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
-				DownBar.BackgroundTransparency = 0.100
+				DownBar.BackgroundColor3 = Color3.fromRGB(82, 82, 82)
+				DownBar.BackgroundTransparency = 0
 				DownBar.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				DownBar.BorderSizePixel = 0
 				DownBar.Position = UDim2.new(0.948214233, 0, 0.873961239, 0)
