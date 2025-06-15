@@ -409,7 +409,7 @@ local NEVERLOSE = {
 		TraceColor = Color3.fromRGB(25, 25, 25),
 		MainColor = Color3.fromRGB(0, 172, 247),
 		MainColorDrop = Color3.fromRGB(64, 65, 67),
-		SectionColor = Color3.fromRGB(0, 0, 1),
+		SectionColor = Color3.fromRGB(10, 11, 13),
 		StrokeColor = Color3.fromRGB(28, 28, 28),
 		ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	},
@@ -419,7 +419,7 @@ local NEVERLOSE = {
 function NEVERLOSE:Theme(name)
 	name = tostring(name or "dark"):lower()
 	if name == "original" then
-		NEVERLOSE.Themes.BlackgroundColor = Color3.fromRGB(37, 37, 37)
+		NEVERLOSE.Themes.BlackgroundColor = Color3.fromRGB(0, 0, 0)
 		NEVERLOSE.Themes.BlackColor = Color3.fromRGB(8, 8, 8)
 		NEVERLOSE.Themes.HeaderColor = Color3.fromRGB(8, 8, 8)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
@@ -449,7 +449,7 @@ function NEVERLOSE:Theme(name)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
 		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
 		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
-		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(0, 0, 1)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(10, 11, 13)
 		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
 		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	end
@@ -1402,7 +1402,7 @@ end)
 				LabelText.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				LabelText.BorderSizePixel = 0
 				LabelText.Position = UDim2.new(0.5, 0, 0.5, 0)
-				LabelText.Size = UDim2.new(0.899999976, 0, 0.75, 0)
+				LabelText.Size = UDim2.new(0.899999976, -5, 0.75, -5)
 				LabelText.ZIndex = 6
 				LabelText.Font = Enum.Font.SourceSansSemibold
 				LabelText.Text = ButtonName or"Kill all"
