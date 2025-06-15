@@ -406,7 +406,7 @@ local function GetImageData(name:string,image:ImageLabel)
 	end
 
 	if name == "shop" then
-		image.Image = "rbxassetid://"
+		image.Image = "rbxassetid://97513888174732"
 		image.ImageRectOffset = Vector2.new(1, 1)
 		image.ImageRectSize = Vector2.new(1200,1200)
 	end
