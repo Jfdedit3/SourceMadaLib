@@ -403,7 +403,7 @@ end
 local NEVERLOSE = {
 	auto_function = {},
 	Themes = {
-		BlackgroundColor = Color3.fromRGB(37, 37, 37),
+		BlackgroundColor = Color3.fromRGB(22, 22, 22),
 		BlackColor = Color3.fromRGB(8, 8, 8),
 		HeaderColor = Color3.fromRGB(8, 8, 8),
 		TraceColor = Color3.fromRGB(25, 25, 25),
@@ -443,7 +443,7 @@ function NEVERLOSE:Theme(name)
 	end
 
 	if name == "dark" then
-		NEVERLOSE.Themes.BlackgroundColor = Color3.fromRGB(37, 37, 37)
+		NEVERLOSE.Themes.BlackgroundColor = Color3.fromRGB(22, 22, 22)
 		NEVERLOSE.Themes.BlackColor = Color3.fromRGB(8, 8, 8)
 		NEVERLOSE.Themes.HeaderColor = Color3.fromRGB(8, 8, 8)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
@@ -712,7 +712,7 @@ character.BackgroundTransparency = 1.000
 character.BorderColor3 = Color3.fromRGB(0, 0, 0)
 character.BorderSizePixel = 0
 character.Position = UDim2.new(0.908723712, 0, 0.0239103697, 0)
-character.Size = UDim2.new(0.0900000036, 0, 0.0900000036, 0)
+character.Size = UDim2.new(0.0700000036, 0, 0.0700000036, 0)
 character.SizeConstraint = Enum.SizeConstraint.RelativeYY
 character.ZIndex = 4
 character.Image = "rbxassetid://123112467890707"
@@ -727,7 +727,7 @@ setting.BackgroundTransparency = 1.000
 setting.BorderColor3 = Color3.fromRGB(0, 0, 0)
 setting.BorderSizePixel = 0
 setting.Position = UDim2.new(0.908723712, -50, 0.0239103697, 0)
-setting.Size = UDim2.new(0.0900000036, 0, 0.0900000036, 0)
+setting.Size = UDim2.new(0.0700000036, 0, 0.0700000036, 0)
 setting.SizeConstraint = Enum.SizeConstraint.RelativeYY
 setting.ZIndex = 4
 setting.Image = "rbxassetid://134488580093972"
