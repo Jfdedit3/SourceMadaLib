@@ -1564,7 +1564,7 @@ end)
 				Effect.Name = "Effect"
 				Effect.Parent = Toggle
 				Effect.AnchorPoint = Vector2.new(0, 0.5)
-				Effect.BackgroundColor3 = NEVERLOSE.Themes.MainColorDrop
+				Effect.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 				Effect.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Effect.BorderSizePixel = 0
 				Effect.Position = UDim2.new(0.800000012, 0, 0.5, 0)
@@ -1577,7 +1577,7 @@ end)
 				Icon.Name = "Icon"
 				Icon.Parent = Effect
 				Icon.AnchorPoint = Vector2.new(0.5, 0.5)
-				Icon.BackgroundColor3 = Color3.fromRGB(164, 164, 164)
+				Icon.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
 				Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Icon.BorderSizePixel = 0
 				Icon.Position = UDim2.new(0.75, 0, 0.5, 0)
@@ -1596,7 +1596,7 @@ end)
 					else
 						TweenService:Create(LabelText,TweenInfo.new(timea),{TextTransparency=0.3}):Play()
 						TweenService:Create(Icon,TweenInfo.new(timea),{Position=UDim2.new(0.25,0,0.5,0),BackgroundColor3=Color3.fromRGB(194, 194, 194)}):Play();
-						Effect.BackgroundColor3 = NEVERLOSE.Themes.MainColorDrop
+						Effect.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 					end
 				end
 
