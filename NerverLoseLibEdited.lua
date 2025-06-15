@@ -1577,7 +1577,7 @@ end)
 				Icon.Name = "Icon"
 				Icon.Parent = Effect
 				Icon.AnchorPoint = Vector2.new(0.5, 0.5)
-				Icon.BackgroundColor3 = NEVERLOSE.Themes.MainColor
+				Icon.BackgroundColor3 = Color3.fromRGB(164, 164, 164)
 				Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Icon.BorderSizePixel = 0
 				Icon.Position = UDim2.new(0.75, 0, 0.5, 0)
@@ -1585,7 +1585,7 @@ end)
 				Icon.SizeConstraint = Enum.SizeConstraint.RelativeYY
 				Icon.ZIndex = 7
 
-				UICorner_3.CornerRadius = UDim.new(0.5, 0)
+				UICorner_3.CornerRadius = UDim.new(1, 0)
 				UICorner_3.Parent = Icon
 
 				local function toggleval(val,timea)
