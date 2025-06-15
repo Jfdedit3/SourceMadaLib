@@ -409,7 +409,7 @@ local NEVERLOSE = {
 		TraceColor = Color3.fromRGB(25, 25, 25),
 		MainColor = Color3.fromRGB(0, 172, 247),
 		MainColorDrop = Color3.fromRGB(64, 65, 67),
-		SectionColor = Color3.fromRGB(0, 0, 16),
+		SectionColor = Color3.fromRGB(0, 0, 11),
 		StrokeColor = Color3.fromRGB(28, 28, 28),
 		ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	},
@@ -449,7 +449,7 @@ function NEVERLOSE:Theme(name)
 		NEVERLOSE.Themes.TraceColor = Color3.fromRGB(25, 25, 25)
 		NEVERLOSE.Themes.MainColor = Color3.fromRGB(0, 172, 247)
 		NEVERLOSE.Themes.MainColorDrop = Color3.fromRGB(64, 65, 67)
-		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(0, 0, 16)
+		NEVERLOSE.Themes.SectionColor = Color3.fromRGB(0, 0, 11)
 		NEVERLOSE.Themes.StrokeColor = Color3.fromRGB(28, 28, 28)
 		NEVERLOSE.Themes.ButtonBlackgroundColor = Color3.fromRGB(13, 13, 13)
 	end
@@ -1551,7 +1551,7 @@ end)
 				LabelText.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				LabelText.BorderSizePixel = 0
 				LabelText.Position = UDim2.new(0.38587454, 0, 0.499999583, 0)
-				LabelText.Size = UDim2.new(0.772000015, 0, 0.75, 0)
+				LabelText.Size = UDim2.new(0.772000015, -20, 0.75, -20)
 				LabelText.ZIndex = 6
 				LabelText.Font = Enum.Font.SourceSansSemibold
 				LabelText.Text = ToggleName or "Label-Test"
@@ -1564,7 +1564,7 @@ end)
 				Effect.Name = "Effect"
 				Effect.Parent = Toggle
 				Effect.AnchorPoint = Vector2.new(0, 0.5)
-				Effect.BackgroundColor3 = Color3.fromRGB(11, 11, 11)
+				Effect.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
 				Effect.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Effect.BorderSizePixel = 0
 				Effect.Position = UDim2.new(0.800000012, 0, 0.5, 0)
@@ -1577,7 +1577,7 @@ end)
 				Icon.Name = "Icon"
 				Icon.Parent = Effect
 				Icon.AnchorPoint = Vector2.new(0.5, 0.5)
-				Icon.BackgroundColor3 = Color3.fromRGB(73, 73 ,73)
+				Icon.BackgroundColor3 = Color3.fromRGB(95, 95, 95)
 				Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Icon.BorderSizePixel = 0
 				Icon.Position = UDim2.new(0.75, 0, 0.5, 0)
@@ -1595,8 +1595,8 @@ end)
 						Effect.BackgroundColor3 = Color3.fromRGB(12, 18, 50)
 					else
 						TweenService:Create(LabelText,TweenInfo.new(timea),{TextTransparency=0.3}):Play()
-						TweenService:Create(Icon,TweenInfo.new(timea),{Position=UDim2.new(0.25,0,0.5,0),BackgroundColor3=Color3.fromRGB(73, 73 ,73)}):Play();
-						Effect.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+						TweenService:Create(Icon,TweenInfo.new(timea),{Position=UDim2.new(0.25,0,0.5,0),BackgroundColor3=Color3.fromRGB(95, 95, 95)}):Play();
+						Effect.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
 					end
 				end
 
@@ -1689,7 +1689,7 @@ end)
 				LabelText.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				LabelText.BorderSizePixel = 0
 				LabelText.Position = UDim2.new(0.296665907, 0, 0.499999106, 0)
-				LabelText.Size = UDim2.new(0.593582749, 0, 0.75, 0)
+				LabelText.Size = UDim2.new(0.593582749, -20, 0.75, 20)
 				LabelText.ZIndex = 6
 				LabelText.Font = Enum.Font.SourceSansSemibold
 				LabelText.Text = KeybindNameString or ''
@@ -1840,7 +1840,7 @@ end)
 				LabelText.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				LabelText.BorderSizePixel = 0
 				LabelText.Position = UDim2.new(0.238462642, 0, 0.499999374, 0)
-				LabelText.Size = UDim2.new(0.477176398, 0, 0.75, 0)
+				LabelText.Size = UDim2.new(0.477176398, -20, 0.75, -20)
 				LabelText.ZIndex = 6
 				LabelText.Font = Enum.Font.SourceSansSemibold
 				LabelText.Text = SliderNameString or "Control"
