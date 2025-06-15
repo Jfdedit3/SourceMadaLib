@@ -393,6 +393,12 @@ local function GetImageData(name:string,image:ImageLabel)
 		image.ImageRectSize = Vector2.new(1200,1200)
 	end
 
+	if name == "gun" then
+		image.Image = "rbxassetid://93001822915827"
+		image.ImageRectOffset = Vector2.new(1, 1)
+		image.ImageRectSize = Vector2.new(1200,1200)
+	end
+
 	if name == "sword" then
 		image.Image = "rbxassetid://82635240213192"
 		image.ImageRectOffset = Vector2.new(10, 40)
