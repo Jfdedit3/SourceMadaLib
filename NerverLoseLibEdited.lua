@@ -1082,7 +1082,7 @@ end)
 		TabButton.BackgroundTransparency = 1
 		TabButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TabButton.BorderSizePixel = 0
-		TabButton.Size = UDim2.new(0.899999976, 0, 0.5, 0)
+		TabButton.Size = UDim2.new(0.899999976, -4, 0.5, -4)
 		TabButton.ZIndex = 5
 
 		UIAspectRatioConstraint.Parent = TabButton
@@ -1099,7 +1099,7 @@ end)
 		Image.BackgroundTransparency = 1.000
 		Image.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Image.BorderSizePixel = 0
-		Image.Position = UDim2.new(0.0149999997, 0, 0.5, 0)
+		Image.Position = UDim2.new(0.0149999997, -4, 0.5, -4)
 		Image.Size = UDim2.new(0.850000024, 0, 0.800000012, 0)
 		Image.SizeConstraint = Enum.SizeConstraint.RelativeYY
 		Image.ZIndex = 5
@@ -1121,7 +1121,7 @@ end)
 		Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Label.BorderSizePixel = 0
 		Label.Position = UDim2.new(0.640507042, 0, 0.500000238, 0)
-		Label.Size = UDim2.new(0.718986034, 0, 0.600000024, 0)
+		Label.Size = UDim2.new(0.718986034, -4, 0.600000024, -4)
 		Label.ZIndex = 5
 		Label.Font = Enum.Font.SourceSansBold
 		Label.Text = TabNameString or "Index.json"
