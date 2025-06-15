@@ -2106,7 +2106,7 @@ end)
 				DownBar.Parent = Dropdown
 				DownBar.Active = true
 				DownBar.AnchorPoint = Vector2.new(1, 0)
-				DownBar.BackgroundColor3 = NEVERLOSE.Themes.ButtonBlackgroundColor
+				DownBar.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
 				DownBar.BackgroundTransparency = 0.100
 				DownBar.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				DownBar.BorderSizePixel = 0
