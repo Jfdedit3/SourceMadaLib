@@ -2036,7 +2036,7 @@ end)
 				LabelText.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				LabelText.BorderSizePixel = 0
 				LabelText.Position = UDim2.new(0.296666116, 0, 0.499999374, 0)
-				LabelText.Size = UDim2.new(0.593582511, 0, 0.75, 0)
+				LabelText.Size = UDim2.new(0.593582511, -10, 0.75, -10)
 				LabelText.ZIndex = 6
 				LabelText.Font = Enum.Font.SourceSansSemibold
 				LabelText.Text = DropdownName or "Label-Test"
