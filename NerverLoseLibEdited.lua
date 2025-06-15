@@ -885,7 +885,7 @@ end)
 	UIListLayout.Parent = TabButtons
 	UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-	UIListLayout.Padding = UDim.new(0, 4)
+	UIListLayout.Padding = UDim.new(0, 3)
 
 	scrolling_connect(TabButtons)
 
@@ -1033,7 +1033,7 @@ end)
 		TabTitle.BackgroundTransparency = 1.000
 		TabTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TabTitle.BorderSizePixel = 0
-		TabTitle.Size = UDim2.new(0.949999988, 0, 0.5, 0)
+		TabTitle.Size = UDim2.new(0.949999988, -5, 0.5, -5)
 		TabTitle.ZIndex = 5
 		TabTitle.Font = Enum.Font.SourceSansSemibold
 		TabTitle.Text = Label or "Home"
@@ -1168,7 +1168,7 @@ end)
 		UIListLayout.Parent = Left
 		UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		UIListLayout.Padding = UDim.new(0, 5)
+		UIListLayout.Padding = UDim.new(0, 3)
 
 		Right.Name = "Right"
 		Right.Parent = Tab
@@ -1187,7 +1187,7 @@ end)
 		UIListLayout_2.Parent = Right
 		UIListLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
 		UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
-		UIListLayout_2.Padding = UDim.new(0, 5)
+		UIListLayout_2.Padding = UDim.new(0, 3)
 
 		scrolling_connect(Right)
 		scrolling_connect(Left)
