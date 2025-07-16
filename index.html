@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Embed Vidéo Stylé</title>
+  <style>
+    /* Conteneur responsive pour iframe */
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* ratio 16:9 */
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      background: #000; /* fallback si la vidéo met du temps à charger */
+      transition: box-shadow 0.3s ease-in-out;
+      margin: 2rem 0;
+    }
+
+    /* Barre de progression fictive en haut */
+    .video-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 25%; /* à ajuster dynamiquement pour simuler la progression */
+      height: 4px;
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      border-top-left-radius: 12px;
+      border-top-right-radius: 4px;
+      transition: width 0.4s ease;
+    }
+
+    /* Effet au survol : renforcement de l’ombre */
+    .video-container:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Styles pour l’iframe */
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="video-container">
+    <iframe 
+      src="https://app.videas.fr/embed/media/c3566b18-2f6f-4351-922b-782d86f0eb58/?autoplay=true&loop=true" 
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen 
+      referrerpolicy="unsafe-url">
+    </iframe>
+  </div>
+
+</body>
+</html>
